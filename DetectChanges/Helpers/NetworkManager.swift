@@ -16,13 +16,14 @@ class NetworkManager {
         fetchData(urlString: searchURLString) { [unowned self] htmlString in
             guard let htmlString = htmlString else { return }
             var currentApartments = getApartments(for: htmlString)
-            let differentApartments = comparePreviousApartments(with: currentApartments)
+            let newApartments = comparePreviousApartments(with: currentApartments)
             previousApartments = currentApartments
             
-            var newApartments = [Apartment]()
-            if differentApartments.count > 0 {
+            if newApartments.count > 0 {
+                var apartmentsWithImmmoLink = [Apartment]()
                 let group = DispatchGroup()
-                differentApartments.forEach { newApartment in
+                
+                newApartments.forEach { newApartment in
                     guard let link = newApartment.link else { return }
                     group.enter()
                     fetchData(urlString: link) {[unowned self] htmlString in
@@ -30,11 +31,11 @@ class NetworkManager {
                         guard let htmlString = htmlString else { return }
                         var updatedApartment = newApartment
                         updatedApartment.immomioLink = getImmomioLink(for: htmlString)
-                        newApartments.append(updatedApartment)
+                        apartmentsWithImmmoLink.append(updatedApartment)
                     }
                 }
                 group.notify(queue: .main) {
-                    completion(newApartments)
+                    completion(apartmentsWithImmmoLink)
                 }
             } else {
                 completion([])
