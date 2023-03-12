@@ -28,7 +28,7 @@ struct ConsolePrinter {
         guard let immomioLink = apartment.immomioLink else {
             return postTime() + startSign + errorSign + "Can't find immomioLink for apartment"
         }
-        return postTime() + startSign + successSign + "New appartment found: \(title)\n" + postTime() + startSign + urlSign + "\(url)" + "\n" + postTime() + startSign + urlSign + "\(immomioLink)" + "\n"
+        return postTime() + startSign + successSign + "\(title)\n" + postTime() + startSign + urlSign + "\(url)" + "\n" + postTime() + startSign + urlSign + "\(immomioLink)" + "\n"
     }
     
     func notFound() -> String {

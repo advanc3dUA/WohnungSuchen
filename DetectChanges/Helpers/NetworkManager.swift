@@ -15,7 +15,7 @@ class NetworkManager {
     public func start(completion: @escaping ([Apartment]) -> ()) {
         fetchData(urlString: searchURLString) { [unowned self] htmlString in
             guard let htmlString = htmlString else { return }
-            var currentApartments = getApartments(for: htmlString)
+            let currentApartments = getApartments(for: htmlString)
             let newApartments = comparePreviousApartments(with: currentApartments)
             previousApartments = currentApartments
             

@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     var soundManager = SoundManager()
     let networkManager = NetworkManager()
     let consolePrinter = ConsolePrinter()
+    var isFirstRun = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,13 +28,19 @@ class ViewController: UIViewController {
                     if apartments.count > 0 {
                         apartments.forEach { apartment in
                             consoleTextView.text += consolePrinter.foundNew(apartment)
-                            soundManager.playAlert()
-                            guard let immomioLink = apartment.immomioLink, let url = URL(string: immomioLink) else { return }
-                            UIApplication.shared.open(url)
+                        }
+                        if !isFirstRun {
+                            apartments.forEach { apartment in
+                                consoleTextView.text += consolePrinter.foundNew(apartment)
+                                soundManager.playAlert()
+                                guard let immomioLink = apartment.immomioLink, let url = URL(string: immomioLink) else { return }
+                                UIApplication.shared.open(url)
+                            }
                         }
                     } else {
                         consoleTextView.text += consolePrinter.notFound()
                     }
+                    isFirstRun = false
                     scrollConsoleToBottom()
                 }
             }
