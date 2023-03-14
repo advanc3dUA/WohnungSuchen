@@ -13,6 +13,7 @@ struct ConsolePrinter {
     private let nothingNewSign = "☑️ "
     private let errorSign = "❌ "
     private let urlSign = "🔗 "
+    private let descriptionSign = "🔍 "
     
     private func postTime() -> String {
         let currentTime = Date()
@@ -22,13 +23,16 @@ struct ConsolePrinter {
     }
     
     func foundNew(_ apartment: Apartment) -> String {
-        guard let title = apartment.title, let url = apartment.link else {
+        guard let title = apartment.title, let rooms = apartment.rooms, let area = apartment.area, let rent = apartment.rent else {
             return postTime() + startSign + errorSign + "Can't find title for apartment"
         }
         guard let immomioLink = apartment.immomioLink else {
             return postTime() + startSign + errorSign + "Can't find immomioLink for apartment"
         }
-        return postTime() + startSign + successSign + "\(title)\n" + postTime() + startSign + urlSign + "\(url)" + "\n" + postTime() + startSign + urlSign + "\(immomioLink)" + "\n"
+        let result =    postTime() + startSign + successSign + "\(title)\n" +
+                        postTime() + startSign + descriptionSign + "rooms: \(rooms), " + "m2: \(area), " + "€: \(rent)." + "\n" +
+                        postTime() + startSign + urlSign + "\(immomioLink)" + "\n"
+        return result
     }
     
     func notFound() -> String {

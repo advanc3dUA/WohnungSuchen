@@ -7,13 +7,13 @@
 
 import UIKit
 import AVFoundation
+import CoreHaptics
 
 class ViewController: UIViewController {
     @IBOutlet weak var consoleTextView: UITextView!
     var soundManager = SoundManager()
     let networkManager = NetworkManager()
     let consolePrinter = ConsolePrinter()
-    let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
     var isFirstRun = true
     
     override func viewDidLoad() {
@@ -32,7 +32,7 @@ class ViewController: UIViewController {
                     if !isFirstRun {
                         apartments.forEach { apartment in
                             soundManager.playAlert()
-                            feedbackGenerator.impactOccurred()
+                            makeFeedback()
                             guard let immomioLink = apartment.immomioLink, let url = URL(string: immomioLink) else { return }
                             UIApplication.shared.open(url)
                         }
@@ -42,15 +42,33 @@ class ViewController: UIViewController {
                         consoleTextView.text += consolePrinter.notFound()
                     }
                     isFirstRun = false
-                    scrollConsoleToBottom()
+                    scrollToBottom(consoleTextView)
                 }
             }
         }.fire()
     }
     
-    private func scrollConsoleToBottom() {
-        let range = NSMakeRange(consoleTextView.text.count - 1, 1)
-        consoleTextView.scrollRangeToVisible(range)
+    private func scrollToBottom(_ textView: UITextView) {
+        guard !textView.text.isEmpty else { return }
+        let range = NSMakeRange(textView.text.count - 1, 1)
+        textView.scrollRangeToVisible(range)
+        let bottomOffset = CGPoint(x: 0, y: textView.contentSize.height - textView.frame.height)
+        if bottomOffset.y > 0 {
+            textView.setContentOffset(bottomOffset, animated: true)
+        }
+    }
+    
+    func makeFeedback() {
+        let generator = UIImpactFeedbackGenerator(style: .heavy)
+        generator.prepare()
+        generator.impactOccurred()
+        let timer = Timer.scheduledTimer(withTimeInterval: 0.03, repeats: true) { timer in
+            generator.prepare()
+            generator.impactOccurred()
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            timer.invalidate()
+        }
     }
 }
 
