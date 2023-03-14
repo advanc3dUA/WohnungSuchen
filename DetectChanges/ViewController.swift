@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     let networkManager = NetworkManager()
     let consolePrinter = ConsolePrinter()
     var isFirstRun = true
+    var immomioLinks: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,13 +30,24 @@ class ViewController: UIViewController {
                     apartments.forEach { apartment in
                         consoleTextView.text += consolePrinter.foundNew(apartment)
                     }
-                    if !isFirstRun {
+//                    if !isFirstRun {
+//                        apartments.forEach { apartment in
+//                            soundManager.playAlert()
+//                            makeFeedback()
+//                            guard let immomioLink = apartment.immomioLink, let url = URL(string: immomioLink) else { return }
+//                            UIApplication.shared.open(url)
+//                        }
+//                    }
+//                    if !isFirstRun {
+                    if isFirstRun {
+                        soundManager.playAlert()
+                        makeFeedback()
+                        var immomioLinks = [String]()
                         apartments.forEach { apartment in
-                            soundManager.playAlert()
-                            makeFeedback()
-                            guard let immomioLink = apartment.immomioLink, let url = URL(string: immomioLink) else { return }
-                            UIApplication.shared.open(url)
+                            guard let immomioLink = apartment.immomioLink else { return }
+                            immomioLinks.append(immomioLink)
                         }
+                        showButtons(immomioLinks)
                     }
                     
                     if apartments.isEmpty {
@@ -47,6 +59,44 @@ class ViewController: UIViewController {
             }
         }.fire()
     }
+    
+    func showButtons(_ immomioLinks: [String]) {
+        self.immomioLinks = immomioLinks
+        
+        let buttonWidth: CGFloat = 100
+        let buttonHeight: CGFloat = 44
+        let spacing: CGFloat = 8
+        let maxButtonsPerRow = 3
+        let maxRows = 2
+        
+        let buttonCount = min(immomioLinks.count, maxButtonsPerRow * maxRows)
+        let rowCount = min((buttonCount + maxButtonsPerRow - 1) / maxButtonsPerRow, maxRows)
+        
+        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: CGFloat(maxButtonsPerRow) * (buttonWidth + spacing), height: CGFloat(rowCount) * (buttonHeight + spacing)))
+        containerView.backgroundColor = .clear
+        
+        for (index, immomioLink) in immomioLinks.prefix(buttonCount).enumerated() {
+            let button = UIButton(type: .system)
+            button.setTitle("Button \(index+1)", for: .normal)
+            button.frame = CGRect(x: CGFloat(index % maxButtonsPerRow) * (buttonWidth + spacing),
+                                  y: CGFloat(index / maxButtonsPerRow) * (buttonHeight + spacing),
+                                  width: buttonWidth,
+                                  height: buttonHeight)
+            button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+            button.tag = index
+            containerView.addSubview(button)
+        }
+        
+        view.addSubview(containerView)
+        containerView.center = view.center
+    }
+
+    @objc func buttonTapped(_ sender: UIButton) {
+        let immomioLink = immomioLinks[sender.tag]
+        guard let url = URL(string: immomioLink) else { return }
+        UIApplication.shared.open(url)
+    }
+
     
     private func scrollToBottom(_ textView: UITextView) {
         guard !textView.text.isEmpty else { return }
