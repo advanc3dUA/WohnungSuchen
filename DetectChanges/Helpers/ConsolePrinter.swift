@@ -23,13 +23,13 @@ struct ConsolePrinter {
     }
     
     func foundNew(_ apartment: Apartment) -> String {
-        guard let title = apartment.title, let rooms = apartment.rooms, let area = apartment.area, let rent = apartment.rent else {
+        guard let index = apartment.index, let title = apartment.title, let rooms = apartment.rooms, let area = apartment.area, let rent = apartment.rent else {
             return postTime() + startSign + errorSign + "Can't find title for apartment"
         }
         guard let immomioLink = apartment.immomioLink else {
             return postTime() + startSign + errorSign + "Can't find immomioLink for apartment"
         }
-        let result =    postTime() + startSign + successSign + "\(title)\n" +
+        let result =    postTime() + startSign + successSign + "\(index). " + "\(title)\n" +
                         postTime() + startSign + descriptionSign + "rooms: \(rooms), " + "m2: \(area), " + "€: \(rent)." + "\n" +
                         postTime() + startSign + urlSign + "\(immomioLink)" + "\n"
         return result

@@ -8,6 +8,7 @@
 import Foundation
 
 struct Apartment {
+    var index: Int?
     var title: String?
     var link: String?
     var imageSrc: String?

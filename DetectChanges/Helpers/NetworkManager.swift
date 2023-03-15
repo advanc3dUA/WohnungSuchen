@@ -57,6 +57,7 @@ class NetworkManager {
     
     private func getApartments(for htmlString: String) -> [Apartment] {
         var currentApartments = [Apartment]()
+        var apartmentIndex = 1
         
         do {
             let doc = try SwiftSoup.parse(htmlString)
@@ -69,7 +70,8 @@ class NetworkManager {
                    let rooms = extractInteger(from: roomInfo, forKey: "Zimmer: "),
                    let area = extractInteger(from: roomInfo, forKey: "Fläche: "),
                    let rent = extractInteger(from: roomInfo, forKey: "Gesamtmiete: ") {
-                        let apartmentModel = Apartment(title: title,
+                        let apartmentModel = Apartment(index: apartmentIndex,
+                                                       title: title,
                                                        link: "https://www.saga.hamburg" + href,
                                                        rooms: rooms,
                                                        area: area,
@@ -77,6 +79,7 @@ class NetworkManager {
                                                        )
                         
                         currentApartments.append(apartmentModel)
+                        apartmentIndex += 1
                 }
             }
         } catch {

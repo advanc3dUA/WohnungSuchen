@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     var soundManager = SoundManager()
     let networkManager = NetworkManager()
     let consolePrinter = ConsolePrinter()
-    var isFirstRun = true
+    var isSecondRunPlus = false
     var immomioLinks: [String] = []
     
     override func viewDidLoad() {
@@ -30,39 +30,31 @@ class ViewController: UIViewController {
                     apartments.forEach { apartment in
                         consoleTextView.text += consolePrinter.foundNew(apartment)
                     }
-//                    if !isFirstRun {
-//                        apartments.forEach { apartment in
-//                            soundManager.playAlert()
-//                            makeFeedback()
-//                            guard let immomioLink = apartment.immomioLink, let url = URL(string: immomioLink) else { return }
-//                            UIApplication.shared.open(url)
-//                        }
-//                    }
-//                    if !isFirstRun {
-                    if isFirstRun {
-                        soundManager.playAlert()
-                        makeFeedback()
-                        var immomioLinks = [String]()
+                    if isSecondRunPlus {
+                        if !apartments.isEmpty {
+                            soundManager.playAlert()
+                            makeFeedback()
+                            immomioLinks = []
+                        }
                         apartments.forEach { apartment in
                             guard let immomioLink = apartment.immomioLink else { return }
                             immomioLinks.append(immomioLink)
+                            print(immomioLink)
                         }
-                        showButtons(immomioLinks)
+                        showButtons()
                     }
                     
                     if apartments.isEmpty {
                         consoleTextView.text += consolePrinter.notFound()
                     }
-                    isFirstRun = false
+                    isSecondRunPlus = true
                     scrollToBottom(consoleTextView)
                 }
             }
         }.fire()
     }
     
-    func showButtons(_ immomioLinks: [String]) {
-        self.immomioLinks = immomioLinks
-        
+    func showButtons() {
         let buttonWidth: CGFloat = 100
         let buttonHeight: CGFloat = 44
         let spacing: CGFloat = 8
@@ -77,7 +69,9 @@ class ViewController: UIViewController {
         
         for (index, immomioLink) in immomioLinks.prefix(buttonCount).enumerated() {
             let button = UIButton(type: .system)
-            button.setTitle("Button \(index+1)", for: .normal)
+            button.backgroundColor = .white
+            button.setTitleColor(.red, for: .normal)
+            button.setTitle("Number \(index+1)", for: .normal)
             button.frame = CGRect(x: CGFloat(index % maxButtonsPerRow) * (buttonWidth + spacing),
                                   y: CGFloat(index / maxButtonsPerRow) * (buttonHeight + spacing),
                                   width: buttonWidth,
@@ -88,7 +82,18 @@ class ViewController: UIViewController {
         }
         
         view.addSubview(containerView)
-        containerView.center = view.center
+        
+        containerView.backgroundColor = .gray
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+         NSLayoutConstraint.activate([
+             containerView.topAnchor.constraint(equalTo: consoleTextView.bottomAnchor, constant: 16),
+             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+             containerView.heightAnchor.constraint(equalToConstant: buttonHeight * 2 + 10)
+//             containerView.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -16)
+         ])
+        
+//        containerView.center = view.center
     }
 
     @objc func buttonTapped(_ sender: UIButton) {
