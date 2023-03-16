@@ -11,13 +11,12 @@ import CoreHaptics
 
 class ViewController: UIViewController {
     @IBOutlet weak var consoleTextView: UITextView!
+    var containerView: UIView!
     var soundManager = SoundManager()
     let networkManager = NetworkManager()
     let consolePrinter = ConsolePrinter()
     var isSecondRunPlus = false
-//    var immomioLinks: [String] = []
-    var containerView: UIView!
-    let buttonWidth: CGFloat = 100
+    var buttonWidth: CGFloat!
     let buttonHeight: CGFloat = 44
     let spacing: CGFloat = 8
     let maxButtonsPerRow = 3
@@ -27,27 +26,26 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupContainerView()
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        buttonWidth = (containerView.frame.width - 2 * spacing) / 3
+    }
   
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         Timer.scheduledTimer(withTimeInterval: 30, repeats: true) {[unowned self] timer in
             networkManager.start { apartments in
                 DispatchQueue.main.async { [unowned self] in
                     apartments.forEach { apartment in
                         consoleTextView.text += consolePrinter.foundNew(apartment)
+                        showButtons(for: apartments) // temp
                     }
                     if isSecondRunPlus {
                         if !apartments.isEmpty {
                             soundManager.playAlert()
                             makeFeedback()
-//                            immomioLinks = []
                         }
-//                        apartments.forEach { apartment in
-//                            guard let immomioLink = apartment.immomioLink else { return }
-//                            immomioLinks.append(immomioLink)
-//                            print(immomioLink)
-//                        }
                         showButtons(for: apartments)
                     }
                     
@@ -62,14 +60,10 @@ class ViewController: UIViewController {
     }
     
     func showButtons(for apartments: [Apartment]) {
-        let buttonCount = min(apartments.count, maxButtonsPerRow * maxRows)
-        let rowCount = min((buttonCount + maxButtonsPerRow - 1) / maxButtonsPerRow, maxRows)
-        
         for (index, apartment) in apartments.enumerated() {
             let button = ImmoButton(type: .system)
             button.backgroundColor = .white
             button.setTitleColor(.red, for: .normal)
-//            button.setTitle("Number \(index+1)", for: .normal)
             button.setTitle("Apartment \(apartment.index ?? -1)", for: .normal)
             button.immomioLink = apartment.immomioLink ?? "no link"
             
@@ -77,6 +71,7 @@ class ViewController: UIViewController {
                                   y: CGFloat(index / maxButtonsPerRow) * (buttonHeight + spacing),
                                   width: buttonWidth,
                                   height: buttonHeight)
+            print("button width and height: \(button.frame.width) & \(button.frame.height)")
             button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
             button.tag = index
             containerView?.addSubview(button)
@@ -91,10 +86,9 @@ class ViewController: UIViewController {
     }
 
     private func setupContainerView() {
-        let buttonCount = maxButtonsPerRow * maxRows
-        let rowCount = maxRows
-        
-        containerView = UIView(frame: CGRect(x: 0, y: 0, width: CGFloat(maxButtonsPerRow) * (buttonWidth + spacing), height: CGFloat(rowCount) * (buttonHeight + spacing)))
+        containerView = UIView(frame: CGRect(x: 0, y: 0,
+                                             width: consoleTextView.frame.width,
+                                             height: CGFloat(maxRows) * (buttonHeight + spacing)))
         guard let containerView = containerView else { return }
 //        containerView.backgroundColor = .clear
         containerView.backgroundColor = .gray
@@ -103,9 +97,9 @@ class ViewController: UIViewController {
         view.addSubview(containerView)
         
         NSLayoutConstraint.activate([
-            containerView.topAnchor.constraint(equalTo: consoleTextView.bottomAnchor, constant: 16),
-             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            containerView.topAnchor.constraint(equalTo: consoleTextView.bottomAnchor, constant: 10),
+             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
              containerView.heightAnchor.constraint(equalToConstant: buttonHeight * 2 + 10)
          ])
 
