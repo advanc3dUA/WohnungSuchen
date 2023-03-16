@@ -63,22 +63,15 @@ class ViewController: UIViewController {
     func showButtons(for apartments: [Apartment]) {
         for apartment in apartments {
             guard let index = apartment.index else { return }
-            let button = ImmoButton(type: .system)
-            button.backgroundColor = .white
-            button.setTitleColor(.red, for: .normal)
-            button.setTitle("Apartment \(index)", for: .normal)
-            button.immomioLink = apartment.immomioLink ?? "no link"
+            let button = ImmoButton(for: apartment)
             
             button.frame = CGRect(x: CGFloat(index % maxButtonsPerRow) * (buttonWidth + spacing),
                                   y: CGFloat(index / maxButtonsPerRow) * (buttonHeight + spacing),
                                   width: buttonWidth,
                                   height: buttonHeight)
             button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
-            button.tag = index
             containerView?.addSubview(button)
         }
-        
-        
     }
 
     @objc func buttonTapped(_ sender: ImmoButton) {
