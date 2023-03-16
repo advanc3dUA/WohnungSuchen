@@ -39,8 +39,8 @@ class ViewController: UIViewController {
                 DispatchQueue.main.async { [unowned self] in
                     apartments.forEach { apartment in
                         consoleTextView.text += consolePrinter.foundNew(apartment)
-                        showButtons(for: apartments) // temp
                     }
+                    showButtons(for: apartments) // temp?
                     if isSecondRunPlus {
                         if !apartments.isEmpty {
                             containerView.removeAllSubviews()

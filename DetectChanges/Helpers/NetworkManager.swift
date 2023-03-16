@@ -69,13 +69,15 @@ class NetworkManager {
                    let roomInfo = try? link.select("span.ft-semi:contains(Zimmer:)").first()?.parent()?.text(),
                    let rooms = extractInteger(from: roomInfo, forKey: "Zimmer: "),
                    let area = extractInteger(from: roomInfo, forKey: "Fläche: "),
-                   let rent = extractInteger(from: roomInfo, forKey: "Gesamtmiete: ") {
+                   let rent = extractInteger(from: roomInfo, forKey: "Gesamtmiete: "),
+                   let street = try? link.select("span.ft-semi:contains(Straße:)").first()?.parent()?.text() {
                         let apartmentModel = Apartment(index: apartmentIndex,
                                                        title: title,
                                                        link: "https://www.saga.hamburg" + href,
+                                                       street: street,
                                                        rooms: rooms,
                                                        area: area,
-                                                       rent: rent
+                                                       rent: rent                                                       
                                                        )
                         
                         currentApartments.append(apartmentModel)
