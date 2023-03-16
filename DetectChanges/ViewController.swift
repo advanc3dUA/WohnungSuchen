@@ -43,6 +43,7 @@ class ViewController: UIViewController {
                     }
                     if isSecondRunPlus {
                         if !apartments.isEmpty {
+                            containerView.removeAllSubviews()
                             soundManager.playAlert()
                             makeFeedback()
                         }
@@ -60,7 +61,6 @@ class ViewController: UIViewController {
     }
     
     func showButtons(for apartments: [Apartment]) {
-        containerView.removeAllSubviews()
         for apartment in apartments {
             guard let index = apartment.index else { return }
             let button = ImmoButton(type: .system)
@@ -73,7 +73,6 @@ class ViewController: UIViewController {
                                   y: CGFloat(index / maxButtonsPerRow) * (buttonHeight + spacing),
                                   width: buttonWidth,
                                   height: buttonHeight)
-            print("button width and height: \(button.frame.width) & \(button.frame.height)")
             button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
             button.tag = index
             containerView?.addSubview(button)
