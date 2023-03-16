@@ -60,6 +60,7 @@ class ViewController: UIViewController {
     }
     
     func showButtons(for apartments: [Apartment]) {
+        containerView.removeAllSubviews()
         for apartment in apartments {
             guard let index = apartment.index else { return }
             let button = ImmoButton(type: .system)
