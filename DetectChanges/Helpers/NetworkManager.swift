@@ -57,7 +57,7 @@ class NetworkManager {
     
     private func getApartments(for htmlString: String) -> [Apartment] {
         var currentApartments = [Apartment]()
-        var apartmentIndex = 1
+        var apartmentIndex = 0
         
         do {
             let doc = try SwiftSoup.parse(htmlString)

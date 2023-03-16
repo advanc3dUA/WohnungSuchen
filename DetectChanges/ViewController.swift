@@ -60,11 +60,12 @@ class ViewController: UIViewController {
     }
     
     func showButtons(for apartments: [Apartment]) {
-        for (index, apartment) in apartments.enumerated() {
+        for apartment in apartments {
+            guard let index = apartment.index else { return }
             let button = ImmoButton(type: .system)
             button.backgroundColor = .white
             button.setTitleColor(.red, for: .normal)
-            button.setTitle("Apartment \(apartment.index ?? -1)", for: .normal)
+            button.setTitle("Apartment \(index)", for: .normal)
             button.immomioLink = apartment.immomioLink ?? "no link"
             
             button.frame = CGRect(x: CGFloat(index % maxButtonsPerRow) * (buttonWidth + spacing),
