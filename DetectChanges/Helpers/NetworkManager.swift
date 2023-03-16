@@ -24,9 +24,8 @@ class NetworkManager {
                 let group = DispatchGroup()
                 
                 newApartments.forEach { newApartment in
-                    guard let link = newApartment.link else { return }
                     group.enter()
-                    fetchData(urlString: link) {[unowned self] htmlString in
+                    fetchData(urlString: newApartment.link) {[unowned self] htmlString in
                         defer { group.leave() }
                         guard let htmlString = htmlString else { return }
                         var updatedApartment = newApartment

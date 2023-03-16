@@ -8,13 +8,12 @@
 import Foundation
 
 struct Apartment {
-    var index: Int?
-    var title: String?
-    var link: String?
-    var imageSrc: String?
-    var street: String?
-    var rooms: Int?
-    var area: Int?
-    var rent: Int?
-    var immomioLink: String?
+    var index = -1
+    var title = "no title"
+    var link = "no link"
+    var street = "no street"
+    var rooms = -1
+    var area = -1
+    var rent = -1
+    var immomioLink = "no immoLink"
 }
