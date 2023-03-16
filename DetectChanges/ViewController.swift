@@ -61,14 +61,15 @@ class ViewController: UIViewController {
     }
     
     func showButtons(for apartments: [Apartment]) {
+        var index = 0
         for apartment in apartments {
-            guard let index = apartment.index else { return }
             let button = ImmoButton(for: apartment)
             
             button.frame = CGRect(x: CGFloat(index % maxButtonsPerRow) * (buttonWidth + spacing),
                                   y: CGFloat(index / maxButtonsPerRow) * (buttonHeight + spacing),
                                   width: buttonWidth,
                                   height: buttonHeight)
+            index += 1
             button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
             containerView?.addSubview(button)
         }
@@ -84,10 +85,8 @@ class ViewController: UIViewController {
                                              width: consoleTextView.frame.width,
                                              height: CGFloat(maxRows) * (buttonHeight + spacing)))
         guard let containerView = containerView else { return }
-//        containerView.backgroundColor = .clear
-        containerView.backgroundColor = .gray
+        containerView.backgroundColor = .clear
         containerView.translatesAutoresizingMaskIntoConstraints = false
-//        containerView.center = view.center
         view.addSubview(containerView)
         
         NSLayoutConstraint.activate([

@@ -12,8 +12,9 @@ class ImmoButton: UIButton {
     
     convenience init(for apartment: Apartment) {
         self.init(type: .system)
-        backgroundColor = .white
-        setTitleColor(.red, for: .normal)
+        backgroundColor = .systemGreen
+        setTitleColor(.black, for: .normal)
+        layer.cornerRadius = 5
         setTitle("Apartment \(apartment.index ?? -1)", for: .normal)
         self.immomioLink = apartment.immomioLink ?? "no link"
     }
