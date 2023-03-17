@@ -15,6 +15,8 @@ struct ConsolePrinter {
     private let urlSign = "🔗 "
     private let descriptionSign = "🔍 "
     private let spaces = "                    "
+    private let apartmentNameSign = "➡️ "
+    private let streetSign = "📍 "
     
     private func postTime() -> String {
         let currentTime = Date()
@@ -24,9 +26,11 @@ struct ConsolePrinter {
     }
     
     func foundNew(_ apartment: Apartment) -> String {
-        let result =    postTime() + startSign + successSign + "\(apartment.index). " + "\(apartment.title)\n" +
-                        spaces + descriptionSign + "rooms: \(apartment.rooms), " + "m2: \(apartment.area), " + "€: \(apartment.rent), " + "\(apartment.street)." + "\n" +
-                        spaces + urlSign + "\(apartment.immomioLink)" + "\n"
+        let result =    postTime() + startSign + successSign + "Apartment #\(apartment.index):" + "\n" +
+                        apartmentNameSign + "\(apartment.title)\n" +
+                        descriptionSign + "rooms: \(apartment.rooms), " + "m2: \(apartment.area), " + "€: \(apartment.rent)" + "\n" +
+                        streetSign + "\(apartment.street)." + "\n" +
+                        urlSign + "\(apartment.immomioLink)" + "\n"
         return result
     }
     
