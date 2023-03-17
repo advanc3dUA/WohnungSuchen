@@ -73,7 +73,7 @@ class NetworkManager {
                         let apartmentModel = Apartment(index: apartmentIndex,
                                                        title: title,
                                                        link: "https://www.saga.hamburg" + href,
-                                                       street: street,
+                                                       street: dropPrefix(for: street),
                                                        rooms: rooms,
                                                        area: area,
                                                        rent: rent                                                       
@@ -115,5 +115,11 @@ class NetworkManager {
         let substring = string[keyIndex..<string.endIndex]
         let integerSubstring = substring.split(whereSeparator: { !"-0123456789".contains($0) }).first ?? ""
         return Int(integerSubstring)
+    }
+    
+    private func dropPrefix(for street: String) -> String {
+        let prefixToDrop = "Straße: "
+        let streetWithoutPrefix = street.map { $0 }.dropFirst(prefixToDrop.count)
+        return String(streetWithoutPrefix)
     }
 }
