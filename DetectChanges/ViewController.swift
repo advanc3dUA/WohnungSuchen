@@ -78,8 +78,13 @@ class ViewController: UIViewController {
     @objc func buttonTapped(_ sender: ImmoButton) {
         guard let url = URL(string: sender.immomioLink) else { return }
         UIApplication.shared.open(url)
+// This is implemention of buttonTapped for map button
+//        let urlString = "https://maps.apple.com/?q=\(sender.immomioLink)"
+//        if let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") {
+//            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//        }
     }
-
+        
     private func setupContainerView() {
         containerView = UIView(frame: CGRect(x: 0, y: 0,
                                              width: consoleTextView.frame.width,
