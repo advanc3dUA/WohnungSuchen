@@ -17,21 +17,8 @@ class ViewController: UIViewController {
     let consolePrinter = ConsolePrinter()
     var isSecondRunPlus = false
     
-    var apartButtonsWidth: CGFloat!
-    var immoButtonWidth: CGFloat! {
-        didSet {
-            mapButtonsWidth = (apartButtonsWidth - apartSpacing) - immoButtonWidth
-        }
-    }
-    var mapButtonsWidth: CGFloat!
-    var immoButtonPercentage: Double = 0.75
-    
-    let buttonHeight: CGFloat = 44
-    let spacing: CGFloat = 8
-    let apartSpacing: CGFloat = 4
-    let maxButtonsPerRow = 3
-    let maxRows = 2
-    
+    //MARK: - VC Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupContainerView()
@@ -39,8 +26,8 @@ class ViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        apartButtonsWidth = (containerView.frame.width - 2 * spacing) / 3
-        immoButtonWidth = (apartButtonsWidth - apartSpacing) * immoButtonPercentage
+        Constants.apartButtonsWidth = (containerView.frame.width - 2 * Constants.spacing) / CGFloat(Constants.maxButtonsPerRow)
+        Constants.immoButtonWidth = (Constants.apartButtonsWidth - Constants.apartSpacing) * Constants.immoButtonPercentage
     }
   
     override func viewDidAppear(_ animated: Bool) {
@@ -71,45 +58,59 @@ class ViewController: UIViewController {
         }.fire()
     }
     
+    //MARK: - Buttons configuration
+    
     func showButtons(for apartments: [Apartment]) {
         var index = 0
         for apartment in apartments {
+            guard index < Constants.maxRows * Constants.maxButtonsPerRow else { return }
             let immoButton = ImmoButton(for: apartment)
-            immoButton.frame = CGRect(x: CGFloat(index % maxButtonsPerRow) * (apartButtonsWidth + spacing),
-                                  y: CGFloat(index / maxButtonsPerRow) * (buttonHeight + spacing),
-                                  width: immoButtonWidth,
-                                  height: buttonHeight)
+            immoButton.frame = CGRect(x: CGFloat(index % Constants.maxButtonsPerRow) * (Constants.apartButtonsWidth + Constants.spacing),
+                                      y: CGFloat(index / Constants.maxButtonsPerRow) * (Constants.buttonHeight + Constants.spacing),
+                                      width: Constants.immoButtonWidth,
+                                      height: Constants.buttonHeight)
             
             let mapButton = MapButton(for: apartment)
-            mapButton.frame = CGRect(x: CGFloat(index % maxButtonsPerRow) * (apartButtonsWidth + spacing) + immoButtonWidth + apartSpacing,
-                                     y: CGFloat(index / maxButtonsPerRow) * (buttonHeight + spacing),
-                                     width: mapButtonsWidth,
-                                     height: buttonHeight)
+            mapButton.frame = CGRect(x: CGFloat(index % Constants.maxButtonsPerRow) * (Constants.apartButtonsWidth + Constants.spacing) + Constants.immoButtonWidth + Constants.apartSpacing,
+                                     y: CGFloat(index / Constants.maxButtonsPerRow) * (Constants.buttonHeight + Constants.spacing),
+                                     width: Constants.mapButtonsWidth,
+                                     height: Constants.buttonHeight)
             
             index += 1
-            immoButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+            immoButton.addTarget(self, action: #selector(immoButtonTapped(_:)), for: .touchUpInside)
             mapButton.addTarget(self, action: #selector(mapButtonTapped(_:)), for: .touchUpInside)
             containerView?.addSubview(immoButton)
             containerView?.addSubview(mapButton)
         }
     }
 
-    @objc func buttonTapped(_ sender: ImmoButton) {
+    @objc func immoButtonTapped(_ sender: ImmoButton) {
         guard let url = URL(string: sender.immomioLink) else { return }
         UIApplication.shared.open(url)
     }
     
     @objc func mapButtonTapped(_ sender: MapButton) {
-        let urlString = "https://maps.apple.com/?q=\(sender.street)"
-        if let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        guard let address = sender.street.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+        var urlString: String
+        #if os(macOS)
+            urlString = "https://www.google.com/maps/search/\(address)"
+        #elseif os(iOS)
+            urlString = "comgooglemaps://?q=\(address)&zoom=14"
+        #endif
+        print("string is: \(urlString)")
+        if let url = URL(string: urlString) {
+            UIApplication.shared.open(url)
+        } else {
+            DispatchQueue.main.async { [unowned self] in
+                consoleTextView.text += consolePrinter.errorMakingGoogleURL()
+            }
         }
     }
         
     private func setupContainerView() {
         containerView = UIView(frame: CGRect(x: 0, y: 0,
                                              width: consoleTextView.frame.width,
-                                             height: CGFloat(maxRows) * (buttonHeight + spacing)))
+                                             height: CGFloat(Constants.maxRows) * (Constants.buttonHeight + Constants.spacing)))
         guard let containerView = containerView else { return }
         containerView.backgroundColor = .clear
         containerView.translatesAutoresizingMaskIntoConstraints = false
@@ -119,10 +120,12 @@ class ViewController: UIViewController {
             containerView.topAnchor.constraint(equalTo: consoleTextView.bottomAnchor, constant: 10),
              containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
              containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-             containerView.heightAnchor.constraint(equalToConstant: buttonHeight * 2 + 10)
+            containerView.heightAnchor.constraint(equalToConstant: (Constants.buttonHeight + Constants.spacing) * CGFloat(Constants.maxRows) - Constants.spacing)
          ])
 
     }
+    
+    //MARK: - Supporting methods
     
     private func scrollToBottom(_ textView: UITextView) {
         guard !textView.text.isEmpty else { return }
@@ -134,7 +137,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func makeFeedback() {
+    private func makeFeedback() {
         let generator = UIImpactFeedbackGenerator(style: .heavy)
         generator.prepare()
         generator.impactOccurred()
@@ -147,4 +150,3 @@ class ViewController: UIViewController {
         }
     }
 }
-

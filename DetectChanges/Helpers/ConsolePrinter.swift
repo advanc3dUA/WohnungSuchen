@@ -36,4 +36,8 @@ struct ConsolePrinter {
     func notFound() -> String {
         postTime() + startSign + nothingNewSign + "Nothing new was found" + "\n"
     }
+    
+    func errorMakingGoogleURL() -> String {
+        postTime() + startSign + errorSign + "Error: unable to construct Google Maps URL" + "\n"
+    }
 }

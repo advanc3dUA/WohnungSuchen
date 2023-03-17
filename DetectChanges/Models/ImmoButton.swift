@@ -15,7 +15,7 @@ class ImmoButton: UIButton {
         backgroundColor = .systemGreen
         setTitleColor(.black, for: .normal)
         layer.cornerRadius = 5
-        setTitle("Apartment \(apartment.index)", for: .normal)
+        setTitle("#\(apartment.index)", for: .normal)
         self.immomioLink = apartment.immomioLink
     }
 }
