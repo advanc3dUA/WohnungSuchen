@@ -92,12 +92,11 @@ class ViewController: UIViewController {
     @objc func mapButtonTapped(_ sender: MapButton) {
         guard let address = sender.street.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         var urlString: String
-        #if os(macOS)
+        #if targetEnvironment(macCatalyst)
             urlString = "https://www.google.com/maps/search/\(address)"
-        #elseif os(iOS)
+        #else
             urlString = "comgooglemaps://?q=\(address)&zoom=14"
         #endif
-        print("string is: \(urlString)")
         if let url = URL(string: urlString) {
             UIApplication.shared.open(url)
         } else {

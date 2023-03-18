@@ -15,7 +15,7 @@ struct Constants {
         }
     }
     static var mapButtonsWidth: CGFloat!
-    static var immoButtonPercentage: Double = 0.75
+    static var immoButtonPercentage: Double = 0.65
     
     static let buttonHeight: CGFloat = 44
     static let spacing: CGFloat = 8
