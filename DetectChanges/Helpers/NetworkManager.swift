@@ -103,13 +103,9 @@ class NetworkManager {
     }
     
     private func comparePreviousApartments(with currentApartments: [Apartment]) -> [Apartment] {
-        var newApartments = [Apartment]()
-        for apartment in currentApartments {
-            if !previousApartments.contains(where: { $0.link == apartment.link }) {
-                newApartments.append(apartment)
-            }
+        return currentApartments.filter { apartment in
+            !previousApartments.contains(where: { $0.link == apartment.link })
         }
-        return newApartments
     }
     
     private func extractInteger(from string: String, forKey key: String) -> Int? {
