@@ -15,7 +15,9 @@ class NetworkManager {
     public func start(completion: @escaping ([Apartment]) -> ()) {
         fetchData(urlString: searchURLString) { [unowned self] htmlString in
             guard let htmlString = htmlString else { return }
-            let currentApartments = getApartments(for: htmlString)
+            let currentApartments = getApartments(for: htmlString).filter { apartment in
+                apartment.rooms >= ApartmentFilter.shared.filterModel.rooms
+            }
             let newApartments = comparePreviousApartments(with: currentApartments)
             previousApartments = currentApartments
             
@@ -42,14 +44,14 @@ class NetworkManager {
         }
     }
     
-    private func fetchData(urlString: String, completionHandler: @escaping (String?) -> ()) {
+    private func fetchData(urlString: String, completion: @escaping (String?) -> ()) {
         guard let url = URL(string: urlString) else { return }
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data else { return }
             let htmlString = String(data: data, encoding: .utf8)!
             
-            completionHandler(htmlString)
+            completion(htmlString)
         }
         task.resume()
     }

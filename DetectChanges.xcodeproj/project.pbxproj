@@ -18,6 +18,7 @@
 		BF707C0729BB427900225796 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF707C0629BB427900225796 /* Assets.xcassets */; };
 		BF707C0A29BB427900225796 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF707C0829BB427900225796 /* LaunchScreen.storyboard */; };
 		BF707C1329BB444700225796 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF707C1229BB444700225796 /* NetworkManager.swift */; };
+		BF8CCAA029C5BE6200D90B47 /* ApartmentFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8CCA9F29C5BE6200D90B47 /* ApartmentFilter.swift */; };
 		BF8EEDB829C4701100F74971 /* MapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EEDB729C4701100F74971 /* MapButton.swift */; };
 		BF8EEDBA29C4771B00F74971 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EEDB929C4771B00F74971 /* Constants.swift */; };
 		BF9DC6A829BC94B00027FADC /* sci-fi.wav in Resources */ = {isa = PBXBuildFile; fileRef = BF9DC6A729BC94B00027FADC /* sci-fi.wav */; };
@@ -43,6 +44,7 @@
 		BF707C0B29BB427900225796 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF707C1129BB43D100225796 /* DetectChanges.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DetectChanges.entitlements; sourceTree = "<group>"; };
 		BF707C1229BB444700225796 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		BF8CCA9F29C5BE6200D90B47 /* ApartmentFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentFilter.swift; sourceTree = "<group>"; };
 		BF8EEDB729C4701100F74971 /* MapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButton.swift; sourceTree = "<group>"; };
 		BF8EEDB929C4771B00F74971 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BF9DC6A729BC94B00027FADC /* sci-fi.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sci-fi.wav"; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				BF0F3F5A29BDDF89002909BB /* ConsolePrinter.swift */,
 				BF707C1229BB444700225796 /* NetworkManager.swift */,
 				BF0F3F6429BDEA9F002909BB /* SoundManager.swift */,
+				BF8CCA9F29C5BE6200D90B47 /* ApartmentFilter.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				BF707BFE29BB427700225796 /* AppDelegate.swift in Sources */,
 				BF0F3F5B29BDDF89002909BB /* ConsolePrinter.swift in Sources */,
 				BF0F3F6529BDEA9F002909BB /* SoundManager.swift in Sources */,
+				BF8CCAA029C5BE6200D90B47 /* ApartmentFilter.swift in Sources */,
 				BF707C0029BB427700225796 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
