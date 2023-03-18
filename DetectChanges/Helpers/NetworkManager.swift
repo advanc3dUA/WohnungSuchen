@@ -24,6 +24,7 @@ class NetworkManager {
             if newApartments.count > 0 {
                 var apartmentsWithImmmoLink = [Apartment]()
                 let group = DispatchGroup()
+                var apartmentIndex = 0
                 
                 newApartments.forEach { newApartment in
                     group.enter()
@@ -32,7 +33,9 @@ class NetworkManager {
                         guard let htmlString = htmlString else { return }
                         var updatedApartment = newApartment
                         updatedApartment.immomioLink = getImmomioLink(for: htmlString)
+                        updatedApartment.index = apartmentIndex
                         apartmentsWithImmmoLink.append(updatedApartment)
+                        apartmentIndex += 1
                     }
                 }
                 group.notify(queue: .main) {
@@ -58,7 +61,6 @@ class NetworkManager {
     
     private func getApartments(for htmlString: String) -> [Apartment] {
         var currentApartments = [Apartment]()
-        var apartmentIndex = 0
         
         do {
             let doc = try SwiftSoup.parse(htmlString)
@@ -72,8 +74,7 @@ class NetworkManager {
                    let area = extractInteger(from: roomInfo, forKey: "Fläche: "),
                    let rent = extractInteger(from: roomInfo, forKey: "Gesamtmiete: "),
                    let street = try? link.select("span.ft-semi:contains(Straße:)").first()?.parent()?.text() {
-                        let apartmentModel = Apartment(index: apartmentIndex,
-                                                       title: title,
+                        let apartmentModel = Apartment(title: title,
                                                        link: "https://www.saga.hamburg" + href,
                                                        street: dropPrefix(for: street),
                                                        rooms: rooms,
@@ -82,7 +83,6 @@ class NetworkManager {
                                                        )
                         
                         currentApartments.append(apartmentModel)
-                        apartmentIndex += 1
                 }
             }
         } catch {
