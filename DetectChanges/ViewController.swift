@@ -77,35 +77,11 @@ class ViewController: UIViewController {
                                      height: Constants.buttonHeight)
             
             index += 1
-            immoButton.addTarget(self, action: #selector(immoButtonTapped(_:)), for: .touchUpInside)
-            mapButton.addTarget(self, action: #selector(mapButtonTapped(_:)), for: .touchUpInside)
             containerView?.addSubview(immoButton)
             containerView?.addSubview(mapButton)
         }
     }
-
-    @objc func immoButtonTapped(_ sender: ImmoButton) {
-        guard let url = URL(string: sender.immomioLink) else { return }
-        UIApplication.shared.open(url)
-    }
     
-    @objc func mapButtonTapped(_ sender: MapButton) {
-        guard let address = sender.street.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
-        var urlString: String
-        #if targetEnvironment(macCatalyst)
-            urlString = "https://www.google.com/maps/search/\(address)"
-        #else
-            urlString = "comgooglemaps://?q=\(address)&zoom=14"
-        #endif
-        if let url = URL(string: urlString) {
-            UIApplication.shared.open(url)
-        } else {
-            DispatchQueue.main.async { [unowned self] in
-                consoleTextView.text += consolePrinter.errorMakingGoogleURL()
-            }
-        }
-    }
-        
     private func setupContainerView() {
         containerView = UIView(frame: CGRect(x: 0, y: 0,
                                              width: consoleTextView.frame.width,
@@ -121,7 +97,6 @@ class ViewController: UIViewController {
              containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             containerView.heightAnchor.constraint(equalToConstant: (Constants.buttonHeight + Constants.spacing) * CGFloat(Constants.maxRows) - Constants.spacing)
          ])
-
     }
     
     //MARK: - Supporting methods

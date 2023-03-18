@@ -17,5 +17,11 @@ class ImmoButton: UIButton {
         layer.cornerRadius = 5
         setTitle("#\(apartment.index)", for: .normal)
         self.immomioLink = apartment.immomioLink
+        self.addTarget(self, action: #selector(immoButtonTapped(_:)), for: .touchUpInside)
+    }
+    
+    @objc func immoButtonTapped(_ sender: ImmoButton) {
+        guard let url = URL(string: sender.immomioLink) else { return }
+        UIApplication.shared.open(url)
     }
 }
