@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var consoleTextView: UITextView!
     var containerView: UIView!
     var soundManager = SoundManager()
+    let backgroundAudioPlayer = BackgroundAudioPlayer()
     let networkManager = NetworkManager()
     let consolePrinter = ConsolePrinter()
     var isSecondRunPlus = false
@@ -22,6 +23,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupContainerView()
+        backgroundAudioPlayer.start(for: self)
     }
     
     override func viewDidLayoutSubviews() {
