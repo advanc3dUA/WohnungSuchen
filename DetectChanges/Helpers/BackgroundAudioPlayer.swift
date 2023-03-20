@@ -11,15 +11,13 @@ import AVFoundation
 class BackgroundAudioPlayer {
     private var audioPlayer: AVAudioPlayer?
     
-    func start(for controller: AVAudioPlayerDelegate) {
+    public func start(for controller: AVAudioPlayerDelegate) {
         guard let url = Bundle.main.url(forResource: "SilentSong", withExtension: "wav") else {
+//        guard let url = Bundle.main.url(forResource: "heavy-rain", withExtension: "wav") else {
             print("Couldn't find audio file")
             return
         }
         do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-            try AVAudioSession.sharedInstance().setActive(true)
-            
             audioPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.wav.rawValue)
             audioPlayer?.delegate = controller
             audioPlayer?.numberOfLoops = -1
@@ -27,6 +25,18 @@ class BackgroundAudioPlayer {
     
         } catch let error {
             print(error.localizedDescription)
+        }
+    }
+    
+    public func pause() {
+        guard let player = audioPlayer else { return }
+        player.pause()
+    }
+    
+    public func continuePlaying() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [unowned self] in
+            guard let player = audioPlayer else { return }
+            player.play()
         }
     }
 }

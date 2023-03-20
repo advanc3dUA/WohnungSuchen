@@ -44,7 +44,9 @@ class ViewController: UIViewController {
                     if isSecondRunPlus {
                         if !apartments.isEmpty {
                             containerView.removeAllSubviews()
+                            backgroundAudioPlayer.pause()
                             soundManager.playAlert()
+                            backgroundAudioPlayer.continuePlaying()
                             makeFeedback()
                         }
                         showButtons(for: apartments)
