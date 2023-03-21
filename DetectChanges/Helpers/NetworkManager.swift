@@ -52,7 +52,7 @@ class NetworkManager {
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data else { return }
-            let htmlString = String(data: data, encoding: .utf8)!
+            let htmlString = String(decoding: data, as: UTF8.self)
             
             completion(htmlString)
         }
@@ -74,15 +74,15 @@ class NetworkManager {
                    let area = extractInteger(from: roomInfo, forKey: "Fläche: "),
                    let rent = extractInteger(from: roomInfo, forKey: "Gesamtmiete: "),
                    let street = try? link.select("span.ft-semi:contains(Straße:)").first()?.parent()?.text() {
-                        let apartmentModel = Apartment(title: title,
-                                                       link: "https://www.saga.hamburg" + href,
-                                                       street: dropPrefix(for: street),
-                                                       rooms: rooms,
-                                                       area: area,
-                                                       rent: rent                                                       
-                                                       )
-                        
-                        currentApartments.append(apartmentModel)
+                    let apartmentModel = Apartment(title: title,
+                                                   link: "https://www.saga.hamburg" + href,
+                                                   street: dropPrefix(for: street),
+                                                   rooms: rooms,
+                                                   area: area,
+                                                   rent: rent
+                    )
+                    
+                    currentApartments.append(apartmentModel)
                 }
             }
         } catch {
