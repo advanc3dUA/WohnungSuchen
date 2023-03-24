@@ -9,6 +9,13 @@ import UIKit
 
 class ModalVC: UIViewController {
     var currentDetent: UISheetPresentationController.Detent.Identifier?
+    var containerView: UIView!
+    var soundManager = SoundManager()
+    let backgroundAudioPlayer = BackgroundAudioPlayer()
+    let networkManager = NetworkManager()
+    let consolePrinter = ConsolePrinter()
+    var isSecondRunPlus = false
+    var delegate: ModalVCDelegate?
     
     init(mediumDetentSize: CGFloat) {
         currentDetent = .medium
@@ -42,5 +49,100 @@ class ModalVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .yellow
+        setupContainerView()
+        backgroundAudioPlayer.start(for: self)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        Constants.apartButtonsWidth = (containerView.frame.width - 2 * Constants.spacing) / CGFloat(Constants.maxButtonsPerRow)
+        Constants.immoButtonWidth = (Constants.apartButtonsWidth - Constants.apartSpacing) * Constants.immoButtonPercentage
+    }
+  
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        Timer.scheduledTimer(withTimeInterval: 30, repeats: true) {[unowned self] timer in
+            networkManager.start { apartments in
+                DispatchQueue.main.async { [unowned self] in
+                    apartments.forEach { apartment in
+//                        consoleTextView.text += consolePrinter.foundNew(apartment)
+                        delegate?.updateConsoleTextView(withText: consolePrinter.foundNew(apartment))
+                    }
+                    showButtons(for: apartments) // temp?
+                    if isSecondRunPlus {
+                        if !apartments.isEmpty {
+                            containerView.removeAllSubviews()
+                            backgroundAudioPlayer.pause()
+                            soundManager.playAlert()
+                            backgroundAudioPlayer.continuePlaying()
+                            makeFeedback()
+                        }
+                        showButtons(for: apartments)
+                    }
+                    
+                    if apartments.isEmpty {
+//                        consoleTextView.text += consolePrinter.notFound()
+                        delegate?.updateConsoleTextView(withText: consolePrinter.notFound())
+                    }
+                    isSecondRunPlus = true
+                }
+            }
+        }.fire()
+    }
+    
+    //MARK: - Buttons configuration
+    
+    func showButtons(for apartments: [Apartment]) {
+        var index = 0
+        for apartment in apartments {
+            guard index < Constants.maxRows * Constants.maxButtonsPerRow else { return }
+            let immoButton = ImmoButton(for: apartment)
+            immoButton.frame = CGRect(x: CGFloat(index % Constants.maxButtonsPerRow) * (Constants.apartButtonsWidth + Constants.spacing),
+                                      y: CGFloat(index / Constants.maxButtonsPerRow) * (Constants.buttonHeight + Constants.spacing),
+                                      width: Constants.immoButtonWidth,
+                                      height: Constants.buttonHeight)
+            
+            let mapButton = MapButton(for: apartment)
+            mapButton.frame = CGRect(x: CGFloat(index % Constants.maxButtonsPerRow) * (Constants.apartButtonsWidth + Constants.spacing) + Constants.immoButtonWidth + Constants.apartSpacing,
+                                     y: CGFloat(index / Constants.maxButtonsPerRow) * (Constants.buttonHeight + Constants.spacing),
+                                     width: Constants.mapButtonsWidth,
+                                     height: Constants.buttonHeight)
+            
+            index += 1
+            containerView?.addSubview(immoButton)
+            containerView?.addSubview(mapButton)
+        }
+    }
+    
+    private func setupContainerView() {
+        containerView = UIView(frame: CGRect(x: 0, y: 0,
+                                             width: view.frame.width,
+                                             height: CGFloat(Constants.maxRows) * (Constants.buttonHeight + Constants.spacing)))
+        guard let containerView = containerView else { return }
+        containerView.backgroundColor = .clear
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(containerView)
+        
+        NSLayoutConstraint.activate([
+            containerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            containerView.heightAnchor.constraint(equalToConstant: (Constants.buttonHeight + Constants.spacing) * CGFloat(Constants.maxRows) - Constants.spacing)
+         ])
+    }
+    
+    //MARK: - Supporting methods
+    
+    private func makeFeedback() {
+        let generator = UIImpactFeedbackGenerator(style: .heavy)
+        generator.prepare()
+        generator.impactOccurred()
+        let timer = Timer.scheduledTimer(withTimeInterval: 0.03, repeats: true) { timer in
+            generator.prepare()
+            generator.impactOccurred()
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            timer.invalidate()
+        }
     }
 }

@@ -32,6 +32,8 @@
 		BFA1C3D329C339540023396C /* UIView+removeAllSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA1C3D229C339540023396C /* UIView+removeAllSubviews.swift */; };
 		BFA71BD229CD935A00F8781E /* ModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA71BD129CD935A00F8781E /* ModalVC.swift */; };
 		BFA71BD629CD949800F8781E /* DetectDetent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA71BD529CD949800F8781E /* DetectDetent.swift */; };
+		BFA71BDA29CDA57600F8781E /* ModalVC+AVAudioPlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA71BD929CDA57600F8781E /* ModalVC+AVAudioPlayerDelegate.swift */; };
+		BFA71BDC29CDA7D300F8781E /* ModalVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA71BDB29CDA7D300F8781E /* ModalVCDelegate.swift */; };
 		BFA9F37229C1F61E00ECB8F4 /* ImmoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA9F37129C1F61E00ECB8F4 /* ImmoButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +67,8 @@
 		BFA1C3D229C339540023396C /* UIView+removeAllSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+removeAllSubviews.swift"; sourceTree = "<group>"; };
 		BFA71BD129CD935A00F8781E /* ModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalVC.swift; sourceTree = "<group>"; };
 		BFA71BD529CD949800F8781E /* DetectDetent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectDetent.swift; sourceTree = "<group>"; };
+		BFA71BD929CDA57600F8781E /* ModalVC+AVAudioPlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModalVC+AVAudioPlayerDelegate.swift"; sourceTree = "<group>"; };
+		BFA71BDB29CDA7D300F8781E /* ModalVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalVCDelegate.swift; sourceTree = "<group>"; };
 		BFA9F37129C1F61E00ECB8F4 /* ImmoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmoButton.swift; sourceTree = "<group>"; };
 		E9D8D936A7A4791A5EED83EB /* Pods_DetectChanges.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DetectChanges.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -150,6 +154,8 @@
 				BF5C017D29C71DCF006C06D4 /* VC+AVAudioPlayerDelegate.swift */,
 				BFA71BD529CD949800F8781E /* DetectDetent.swift */,
 				BFA71BD129CD935A00F8781E /* ModalVC.swift */,
+				BFA71BDB29CDA7D300F8781E /* ModalVCDelegate.swift */,
+				BFA71BD929CDA57600F8781E /* ModalVC+AVAudioPlayerDelegate.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -340,6 +346,8 @@
 				BFA71BD629CD949800F8781E /* DetectDetent.swift in Sources */,
 				BF707BFE29BB427700225796 /* AppDelegate.swift in Sources */,
 				BF0F3F5B29BDDF89002909BB /* ConsolePrinter.swift in Sources */,
+				BFA71BDC29CDA7D300F8781E /* ModalVCDelegate.swift in Sources */,
+				BFA71BDA29CDA57600F8781E /* ModalVC+AVAudioPlayerDelegate.swift in Sources */,
 				BF0F3F6529BDEA9F002909BB /* SoundManager.swift in Sources */,
 				BF8CCAA029C5BE6200D90B47 /* ApartmentFilter.swift in Sources */,
 				BF707C0029BB427700225796 /* SceneDelegate.swift in Sources */,
