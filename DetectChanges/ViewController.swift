@@ -7,14 +7,9 @@
 
 import UIKit
 import AVFoundation
-import CoreHaptics
 
 class ViewController: UIViewController {
-    @IBOutlet weak var consoleTextView: UITextView! {
-        didSet {
-            scrollToBottom(consoleTextView)
-        }
-    }
+    @IBOutlet weak var consoleTextView: UITextView!
     var modalVC: ModalVC?
     
     //MARK: - VC Lifecycle
@@ -26,6 +21,7 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         presentModalVC()
+        setupConsoleTextView()
     }
     
     private func presentModalVC() {
@@ -43,6 +39,10 @@ class ViewController: UIViewController {
         if bottomOffset.y > 0 {
             textView.setContentOffset(bottomOffset, animated: true)
         }
+    }
+    
+    private func setupConsoleTextView() {
+        consoleTextView.layer.cornerRadius = 20
     }
 }
 
@@ -77,5 +77,6 @@ extension ViewController: UISheetPresentationControllerDelegate {
 extension ViewController: ModalVCDelegate {
     func updateConsoleTextView(withText text: String) {
         consoleTextView.text += text
+        scrollToBottom(consoleTextView)
     }
 }

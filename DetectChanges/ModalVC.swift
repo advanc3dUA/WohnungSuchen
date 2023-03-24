@@ -35,11 +35,10 @@ class ModalVC: UIViewController {
         sheetPresentationController?.prefersEdgeAttachedInCompactHeight = true
         sheetPresentationController?.widthFollowsPreferredContentSizeWhenEdgeAttached = true
         sheetPresentationController?.prefersGrabberVisible = false
-        sheetPresentationController?.preferredCornerRadius = 27
+        sheetPresentationController?.preferredCornerRadius = 20
         
         // Disables hiding TraineeVC
         isModalInPresentation = true
-        
     }
     
     required init?(coder: NSCoder) {
@@ -58,14 +57,13 @@ class ModalVC: UIViewController {
         Constants.apartButtonsWidth = (containerView.frame.width - 2 * Constants.spacing) / CGFloat(Constants.maxButtonsPerRow)
         Constants.immoButtonWidth = (Constants.apartButtonsWidth - Constants.apartSpacing) * Constants.immoButtonPercentage
     }
-  
+      
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         Timer.scheduledTimer(withTimeInterval: 30, repeats: true) {[unowned self] timer in
             networkManager.start { apartments in
                 DispatchQueue.main.async { [unowned self] in
                     apartments.forEach { apartment in
-//                        consoleTextView.text += consolePrinter.foundNew(apartment)
                         delegate?.updateConsoleTextView(withText: consolePrinter.foundNew(apartment))
                     }
                     showButtons(for: apartments) // temp?
@@ -81,7 +79,6 @@ class ModalVC: UIViewController {
                     }
                     
                     if apartments.isEmpty {
-//                        consoleTextView.text += consolePrinter.notFound()
                         delegate?.updateConsoleTextView(withText: consolePrinter.notFound())
                     }
                     isSecondRunPlus = true

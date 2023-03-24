@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="N1e-XE-tBU">
-                                <rect key="frame" x="10" y="69" width="373" height="500"/>
+                                <rect key="frame" x="0.0" y="69" width="393" height="500"/>
                                 <color key="backgroundColor" systemColor="tintColor"/>
                                 <color key="textColor" systemColor="systemGreenColor"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
@@ -28,9 +28,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="N1e-XE-tBU" secondAttribute="bottom" constant="249" id="29X-dr-5xr"/>
-                            <constraint firstItem="N1e-XE-tBU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="dae-rL-pHF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="N1e-XE-tBU" secondAttribute="trailing" id="c4M-Nm-Ce7"/>
                             <constraint firstItem="N1e-XE-tBU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="gn5-Cf-67j"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="N1e-XE-tBU" secondAttribute="trailing" constant="10" id="jXM-sb-QIc"/>
+                            <constraint firstItem="N1e-XE-tBU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vKS-7v-e37"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Saga Detector" id="VB9-NQ-iCb"/>
