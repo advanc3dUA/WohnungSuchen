@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     let networkManager = NetworkManager()
     let consolePrinter = ConsolePrinter()
     var isSecondRunPlus = false
+    var modalVC: ModalVC?
     
     //MARK: - VC Lifecycle
 
@@ -34,6 +35,7 @@ class ViewController: UIViewController {
   
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        presentModalVC()
         Timer.scheduledTimer(withTimeInterval: 30, repeats: true) {[unowned self] timer in
             networkManager.start { apartments in
                 DispatchQueue.main.async { [unowned self] in
@@ -60,6 +62,12 @@ class ViewController: UIViewController {
                 }
             }
         }.fire()
+    }
+    
+    private func presentModalVC() {
+        modalVC = ModalVC(mediumDetentSize: calcTraineeVCDetentSizeMedium())
+        modalVC?.presentationController?.delegate = self
+        present(modalVC!, animated: true)
     }
     
     //MARK: - Buttons configuration
@@ -125,6 +133,33 @@ class ViewController: UIViewController {
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             timer.invalidate()
+        }
+    }
+}
+
+// MARK: - DetectDetent Protocol
+
+extension ViewController: DetectDetent {
+    func detentChanged(detent: UISheetPresentationController.Detent.Identifier) {
+        switchModalVCCurrentDetent(to: detent)
+    }
+    
+    private func switchModalVCCurrentDetent(to detent: UISheetPresentationController.Detent.Identifier) {
+        modalVC?.currentDetent = detent
+    }
+    
+    private func calcTraineeVCDetentSizeMedium() -> CGFloat {
+        self.view.frame.height * 0.3
+    }
+    
+}
+
+//MARK: - UISheetPresentationControllerDelegate
+
+extension ViewController: UISheetPresentationControllerDelegate {
+    func sheetPresentationControllerDidChangeSelectedDetentIdentifier(_ sheetPresentationController: UISheetPresentationController) {
+        if let currentDetent = sheetPresentationController.selectedDetentIdentifier {
+            detentChanged(detent: currentDetent)
         }
     }
 }
