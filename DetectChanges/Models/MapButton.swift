@@ -28,16 +28,11 @@ class MapButton: UIButton {
         #if targetEnvironment(macCatalyst)
             urlString = "https://www.google.com/maps/search/\(address)"
         #else
-            urlString = "comgooglemaps://?q=\(address)&zoom=14"
+            urlString = "comgooglemaps://?q=\(address)&zoom=10"
         #endif
         if let url = URL(string: urlString) {
             UIApplication.shared.open(url)
         }
-//        else {
-//            DispatchQueue.main.async { [unowned self] in
-//                consoleTextView.text += consolePrinter.errorMakingGoogleURL()
-//            }
-//        }
     }
 
 }

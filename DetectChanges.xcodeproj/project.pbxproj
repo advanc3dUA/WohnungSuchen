@@ -11,6 +11,9 @@
 		BF0F3F5B29BDDF89002909BB /* ConsolePrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0F3F5A29BDDF89002909BB /* ConsolePrinter.swift */; };
 		BF0F3F5D29BDE47D002909BB /* fanfare.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BF0F3F5C29BDE47D002909BB /* fanfare.mp3 */; };
 		BF0F3F6529BDEA9F002909BB /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0F3F6429BDEA9F002909BB /* SoundManager.swift */; };
+		BF4704BC29D2D47A00EEABEE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4704BB29D2D47A00EEABEE /* NetworkManager.swift */; };
+		BF4704BF29D2D52A00EEABEE /* Saga.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4704BE29D2D52A00EEABEE /* Saga.swift */; };
+		BF4704C129D2D53B00EEABEE /* Landlord.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4704C029D2D53B00EEABEE /* Landlord.swift */; };
 		BF5C017829C71522006C06D4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF5C017729C71522006C06D4 /* AVFoundation.framework */; };
 		BF5C017A29C71574006C06D4 /* BackgroundAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5C017929C71574006C06D4 /* BackgroundAudioPlayer.swift */; };
 		BF5C017C29C71635006C06D4 /* heavy-rain.wav in Resources */ = {isa = PBXBuildFile; fileRef = BF5C017B29C71635006C06D4 /* heavy-rain.wav */; };
@@ -22,7 +25,7 @@
 		BF707C0529BB427700225796 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF707C0329BB427700225796 /* Main.storyboard */; };
 		BF707C0729BB427900225796 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF707C0629BB427900225796 /* Assets.xcassets */; };
 		BF707C0A29BB427900225796 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF707C0829BB427900225796 /* LaunchScreen.storyboard */; };
-		BF707C1329BB444700225796 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF707C1229BB444700225796 /* NetworkManager.swift */; };
+		BF707C1329BB444700225796 /* LandlordsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF707C1229BB444700225796 /* LandlordsManager.swift */; };
 		BF8CCAA029C5BE6200D90B47 /* ApartmentFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8CCA9F29C5BE6200D90B47 /* ApartmentFilter.swift */; };
 		BF8EEDB829C4701100F74971 /* MapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EEDB729C4701100F74971 /* MapButton.swift */; };
 		BF8EEDBA29C4771B00F74971 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EEDB929C4771B00F74971 /* Constants.swift */; };
@@ -43,6 +46,9 @@
 		BF0F3F5A29BDDF89002909BB /* ConsolePrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsolePrinter.swift; sourceTree = "<group>"; };
 		BF0F3F5C29BDE47D002909BB /* fanfare.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fanfare.mp3; sourceTree = "<group>"; };
 		BF0F3F6429BDEA9F002909BB /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		BF4704BB29D2D47A00EEABEE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		BF4704BE29D2D52A00EEABEE /* Saga.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Saga.swift; sourceTree = "<group>"; };
+		BF4704C029D2D53B00EEABEE /* Landlord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landlord.swift; sourceTree = "<group>"; };
 		BF5C017729C71522006C06D4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		BF5C017929C71574006C06D4 /* BackgroundAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundAudioPlayer.swift; sourceTree = "<group>"; };
 		BF5C017B29C71635006C06D4 /* heavy-rain.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "heavy-rain.wav"; sourceTree = "<group>"; };
@@ -57,7 +63,7 @@
 		BF707C0929BB427900225796 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BF707C0B29BB427900225796 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF707C1129BB43D100225796 /* DetectChanges.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DetectChanges.entitlements; sourceTree = "<group>"; };
-		BF707C1229BB444700225796 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		BF707C1229BB444700225796 /* LandlordsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandlordsManager.swift; sourceTree = "<group>"; };
 		BF8CCA9F29C5BE6200D90B47 /* ApartmentFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentFilter.swift; sourceTree = "<group>"; };
 		BF8EEDB729C4701100F74971 /* MapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButton.swift; sourceTree = "<group>"; };
 		BF8EEDB929C4771B00F74971 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -119,7 +125,6 @@
 			isa = PBXGroup;
 			children = (
 				BF0F3F5A29BDDF89002909BB /* ConsolePrinter.swift */,
-				BF707C1229BB444700225796 /* NetworkManager.swift */,
 				BF0F3F6429BDEA9F002909BB /* SoundManager.swift */,
 				BF5C017929C71574006C06D4 /* BackgroundAudioPlayer.swift */,
 				BF8CCA9F29C5BE6200D90B47 /* ApartmentFilter.swift */,
@@ -160,6 +165,25 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		BF4704BD29D2D51B00EEABEE /* Landlords */ = {
+			isa = PBXGroup;
+			children = (
+				BF4704BE29D2D52A00EEABEE /* Saga.swift */,
+				BF4704C029D2D53B00EEABEE /* Landlord.swift */,
+			);
+			path = Landlords;
+			sourceTree = "<group>";
+		};
+		BF4704C229D2F7B100EEABEE /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				BF707C1229BB444700225796 /* LandlordsManager.swift */,
+				BF4704BB29D2D47A00EEABEE /* NetworkManager.swift */,
+				BF4704BD29D2D51B00EEABEE /* Landlords */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		BF707BF129BB427700225796 = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +208,7 @@
 				BF0F3F6229BDE5D1002909BB /* Supporting files */,
 				BF0F3F6129BDE5B0002909BB /* Application */,
 				BF0F3F6329BDE5DE002909BB /* Controllers */,
+				BF4704C229D2F7B100EEABEE /* Networking */,
 				BF0F3F6029BDE59D002909BB /* Helpers */,
 				BF0F3F5F29BDE58F002909BB /* Models */,
 				BF0F3F5E29BDE582002909BB /* Views */,
@@ -333,7 +358,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF707C1329BB444700225796 /* NetworkManager.swift in Sources */,
+				BF4704BC29D2D47A00EEABEE /* NetworkManager.swift in Sources */,
+				BF707C1329BB444700225796 /* LandlordsManager.swift in Sources */,
 				BFA71BD229CD935A00F8781E /* ModalVC.swift in Sources */,
 				BF8EEDBA29C4771B00F74971 /* Constants.swift in Sources */,
 				BF5C017E29C71DCF006C06D4 /* VC+AVAudioPlayerDelegate.swift in Sources */,
@@ -345,8 +371,10 @@
 				BFA1C3D329C339540023396C /* UIView+removeAllSubviews.swift in Sources */,
 				BFA71BD629CD949800F8781E /* DetectDetent.swift in Sources */,
 				BF707BFE29BB427700225796 /* AppDelegate.swift in Sources */,
+				BF4704BF29D2D52A00EEABEE /* Saga.swift in Sources */,
 				BF0F3F5B29BDDF89002909BB /* ConsolePrinter.swift in Sources */,
 				BFA71BDC29CDA7D300F8781E /* ModalVCDelegate.swift in Sources */,
+				BF4704C129D2D53B00EEABEE /* Landlord.swift in Sources */,
 				BFA71BDA29CDA57600F8781E /* ModalVC+AVAudioPlayerDelegate.swift in Sources */,
 				BF0F3F6529BDEA9F002909BB /* SoundManager.swift in Sources */,
 				BF8CCAA029C5BE6200D90B47 /* ApartmentFilter.swift in Sources */,

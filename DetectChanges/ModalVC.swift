@@ -12,7 +12,7 @@ class ModalVC: UIViewController {
     var containerView: UIView!
     var soundManager = SoundManager()
     let backgroundAudioPlayer = BackgroundAudioPlayer()
-    let networkManager = NetworkManager()
+    let landlordsManager = LandlordsManager()
     let consolePrinter = ConsolePrinter()
     var isSecondRunPlus = false
     var delegate: ModalVCDelegate?
@@ -61,7 +61,7 @@ class ModalVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         Timer.scheduledTimer(withTimeInterval: 30, repeats: true) {[unowned self] timer in
-            networkManager.start { apartments in
+            landlordsManager.start { apartments in
                 DispatchQueue.main.async { [unowned self] in
                     apartments.forEach { apartment in
                         delegate?.updateConsoleTextView(withText: consolePrinter.foundNew(apartment))
