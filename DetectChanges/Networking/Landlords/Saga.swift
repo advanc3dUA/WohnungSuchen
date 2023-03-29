@@ -13,8 +13,8 @@ class Saga: Landlord {
     private let immomioLinkFetcher: ImmomioLinkFetcher
     private let searchURLString = "https://www.saga.hamburg/immobiliensuche?type=wohnungen"
     
-    init() {
-        self.networkManager = NetworkManager()
+    init(networkManager: NetworkManager = NetworkManager()) {
+        self.networkManager = networkManager
         self.immomioLinkFetcher = ImmomioLinkFetcher(networkManager: networkManager)
     }
     

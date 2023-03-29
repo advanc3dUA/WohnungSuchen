@@ -9,8 +9,13 @@ import Foundation
 import SwiftSoup
 
 class LandlordsManager {
+    private var requiredApartment: Apartment
     private var previousApartments = [Apartment]()
     var landlords: [Landlord] = [Saga()]
+    
+    init(requiredApartment: Apartment) {
+        self.requiredApartment = requiredApartment
+    }
     
     public func start(completion: @escaping ([Apartment]) -> ()) {
         var currentApartments = [Apartment]()
@@ -18,10 +23,10 @@ class LandlordsManager {
         
         for landlord in landlords {
             dispatchGroup.enter()
-            landlord.getApartmentsList { apartments in
-                currentApartments += apartments.filter({ apartment in
-                    apartment.rooms >= ApartmentFilter.shared.filterModel.rooms
-                })
+            landlord.getApartmentsList { [unowned self] apartments in
+                currentApartments += apartments.filter { apartment in
+                    apartment.rooms >= requiredApartment.rooms && apartment.area >= requiredApartment.area
+                }
                 dispatchGroup.leave()
             }
         }
