@@ -9,8 +9,14 @@ import Foundation
 import SwiftSoup
 
 class Saga: Landlord {
-    private let networkManager = NetworkManager()
+    private let networkManager: NetworkManager
+    private let immomioLinkFetcher: ImmomioLinkFetcher
     private let searchURLString = "https://www.saga.hamburg/immobiliensuche?type=wohnungen"
+    
+    init() {
+        self.networkManager = NetworkManager()
+        self.immomioLinkFetcher = ImmomioLinkFetcher(networkManager: networkManager)
+    }
     
     func getApartmentsList(completion: @escaping ([Apartment]) -> Void) {
         var currentApartments = [Apartment]()
@@ -32,7 +38,7 @@ class Saga: Landlord {
                        let area = extractInteger(from: roomInfo, forKey: "Fläche: "),
                        let rent = extractInteger(from: roomInfo, forKey: "Gesamtmiete: "),
                        let street = try? link.select("span.ft-semi:contains(Straße:)").first()?.parent()?.text() {
-                        var apartmentModel = Apartment(title: title,
+                        var newApartment = Apartment(title: title,
                                                        link: "https://www.saga.hamburg" + href,
                                                        street: dropPrefix(for: street),
                                                        rooms: rooms,
@@ -40,9 +46,9 @@ class Saga: Landlord {
                                                        rent: rent
                         )
                         dispatchGroup.enter()
-                        getImmomioLink(for: apartmentModel.link) { immomioLink in
-                            apartmentModel.immomioLink = immomioLink
-                            currentApartments.append(apartmentModel)
+                        immomioLinkFetcher.fetchLink(for: newApartment.link) { immomioLink in
+                            newApartment.immomioLink = immomioLink
+                            currentApartments.append(newApartment)
                             dispatchGroup.leave()
                         }
                     }
@@ -51,22 +57,6 @@ class Saga: Landlord {
             dispatchGroup.notify(queue: DispatchQueue.main) {
                 completion(currentApartments)
             }
-        }
-    }
-    
-    private func getImmomioLink(for apartmentLink: String, completion: @escaping (String) -> Void) {
-        var immomioLink = ""
-        networkManager.fetchData(urlString: apartmentLink) { htmlString in
-            guard let htmlString = htmlString else {
-                fatalError("Couldn't parse SAGA apartment htmlString")
-            }
-            do {
-                let doc = try SwiftSoup.parse(htmlString)
-                immomioLink = try doc.select("a[href^=\"https://rdr.immomio.com\"]").first()!.attr("href")
-            } catch {
-                print("Error parsing HTML: \(error)")
-            }
-            completion(immomioLink)
         }
     }
     
