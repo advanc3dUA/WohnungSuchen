@@ -57,6 +57,7 @@ class ModalVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .yellow
         setupContainerView()
+        setupStartStopButton()
         backgroundAudioPlayer = BackgroundAudioPlayer(for: self)
         backgroundAudioPlayer?.start()
     }
@@ -133,6 +134,18 @@ class ModalVC: UIViewController {
              containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             containerView.heightAnchor.constraint(equalToConstant: (Constants.buttonHeight + Constants.spacing) * CGFloat(Constants.maxRows) - Constants.spacing)
          ])
+    }
+    
+    private func setupStartStopButton() {
+        let startStopButton = StartStopButton()
+        startStopButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(startStopButton)
+        NSLayoutConstraint.activate([
+            startStopButton.widthAnchor.constraint(equalToConstant: 70),
+            startStopButton.heightAnchor.constraint(equalToConstant: 70),
+            startStopButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            startStopButton.centerYAnchor.constraint(equalTo: view.bottomAnchor, constant: -50)
+        ])
     }
     
     //MARK: - Supporting methods

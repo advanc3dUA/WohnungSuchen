@@ -15,6 +15,8 @@ class ImmoButton: UIButton {
         backgroundColor = .systemGreen
         setTitleColor(.black, for: .normal)
         layer.cornerRadius = 5
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.black.cgColor
         setTitle("#\(apartment.index)", for: .normal)
         self.immomioLink = apartment.immomioLink
         self.addTarget(self, action: #selector(immoButtonTapped(_:)), for: .touchUpInside)
