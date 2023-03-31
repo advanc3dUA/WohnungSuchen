@@ -16,4 +16,22 @@ extension ModalVC: AVAudioPlayerDelegate {
             player.play()
         }
     }
+    
+    func audioPlayerBeginInterruption(_ player: AVAudioPlayer) {
+        bgAudioPlayerIsInterrupted = true
+        player.pause()
+    }
+    
+    func audioPlayerEndInterruption(_ player: AVAudioPlayer, withOptions flags: Int) {
+        guard bgAudioPlayerIsInterrupted else { return }
+        do {
+            try AVAudioSession.sharedInstance().setActive(true)
+            player.play()
+        }
+        
+        catch {
+            print(error.localizedDescription)
+        }
+        
+    }
 }

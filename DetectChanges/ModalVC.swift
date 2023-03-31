@@ -13,18 +13,19 @@ class ModalVC: UIViewController {
     var requiredApartment: Apartment
     var landlordsManager: LandlordsManager
     var soundManager: SoundManager
-    var backgroundAudioPlayer: BackgroundAudioPlayer
+    var backgroundAudioPlayer: BackgroundAudioPlayer?
     var consolePrinter: ConsolePrinter
     var delegate: ModalVCDelegate?
     var isSecondRunPlus: Bool
+    var bgAudioPlayerIsInterrupted: Bool
     
     init(mediumDetentSize: CGFloat) {
         self.soundManager = SoundManager()
-        self.backgroundAudioPlayer = BackgroundAudioPlayer()
         self.consolePrinter = ConsolePrinter()
         self.requiredApartment = Apartment(rooms: 2, area: 40)
         self.landlordsManager = LandlordsManager(requiredApartment: requiredApartment)
         self.isSecondRunPlus = false
+        bgAudioPlayerIsInterrupted = false
         currentDetent = .medium
         super.init(nibName: nil, bundle: nil)
         
@@ -54,9 +55,10 @@ class ModalVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .yellow
+        view.backgroundColor = .yellow
         setupContainerView()
-        backgroundAudioPlayer.start(for: self)
+        backgroundAudioPlayer = BackgroundAudioPlayer(for: self)
+        backgroundAudioPlayer?.start()
     }
     
     override func viewDidLayoutSubviews() {
@@ -77,9 +79,7 @@ class ModalVC: UIViewController {
                     if isSecondRunPlus {
                         if !apartments.isEmpty {
                             containerView.removeAllSubviews()
-                            backgroundAudioPlayer.pause()
                             soundManager.playAlert()
-                            backgroundAudioPlayer.continuePlaying()
                             makeFeedback()
                         }
                         showButtons(for: apartments)
