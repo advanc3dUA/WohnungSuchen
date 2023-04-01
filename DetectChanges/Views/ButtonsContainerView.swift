@@ -27,14 +27,6 @@ class ButtonsContainerView: UIView {
                        height: CGFloat(Constants.maxRows) * (Constants.buttonHeight + Constants.spacing)
         )
         backgroundColor = .clear
-        translatesAutoresizingMaskIntoConstraints = false
-
-//        NSLayoutConstraint.activate([
-//            topAnchor.constraint(equalTo: modalView.topAnchor, constant: 10),
-//            leadingAnchor.constraint(equalTo: modalView.leadingAnchor, constant: 10),
-//            trailingAnchor.constraint(equalTo: modalView.trailingAnchor, constant: -10),
-//            heightAnchor.constraint(equalToConstant: (Constants.buttonHeight + Constants.spacing) * CGFloat(Constants.maxRows) - Constants.spacing)
-//         ])
     }
 
     func showButtons(for apartments: [Apartment]) {

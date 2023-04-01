@@ -27,6 +27,15 @@ class ModalView: UIView {
     private func setupButtonsContainerView() {
         buttonsContainerView = ButtonsContainerView(for: self)
         addSubview(buttonsContainerView)
+        
+        buttonsContainerView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            buttonsContainerView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            buttonsContainerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            buttonsContainerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            buttonsContainerView.heightAnchor.constraint(equalToConstant: (Constants.buttonHeight + Constants.spacing) * CGFloat(Constants.maxRows) - Constants.spacing)
+         ])
     }
 }
 
