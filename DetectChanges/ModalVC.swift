@@ -34,19 +34,7 @@ class ModalVC: UIViewController {
         let mediumDetent = UISheetPresentationController.Detent.custom(identifier: mediumID) { context in
             return mediumDetentSize
         }
-        
-        sheetPresentationController?.detents = [mediumDetent, .large()]
-        
-        // Sheet setup
-        sheetPresentationController?.largestUndimmedDetentIdentifier = .large
-        sheetPresentationController?.prefersScrollingExpandsWhenScrolledToEdge = true
-        sheetPresentationController?.prefersEdgeAttachedInCompactHeight = true
-        sheetPresentationController?.widthFollowsPreferredContentSizeWhenEdgeAttached = true
-        sheetPresentationController?.prefersGrabberVisible = false
-        sheetPresentationController?.preferredCornerRadius = 20
-        
-        // Disables hiding TraineeVC
-        isModalInPresentation = true
+        setupSheetPresentationController(with: mediumDetent)
     }
     
     required init?(coder: NSCoder) {
@@ -97,6 +85,20 @@ class ModalVC: UIViewController {
     }
     
     //MARK: - Supporting methods
+    private func setupSheetPresentationController(with mediumDetent: UISheetPresentationController.Detent) {
+        sheetPresentationController?.detents = [mediumDetent, .large()]
+        
+        // Sheet setup
+        sheetPresentationController?.largestUndimmedDetentIdentifier = .large
+        sheetPresentationController?.prefersScrollingExpandsWhenScrolledToEdge = true
+        sheetPresentationController?.prefersEdgeAttachedInCompactHeight = true
+        sheetPresentationController?.widthFollowsPreferredContentSizeWhenEdgeAttached = true
+        sheetPresentationController?.prefersGrabberVisible = false
+        sheetPresentationController?.preferredCornerRadius = 20
+        
+        // Disables hiding TraineeVC
+        isModalInPresentation = true
+    }
     
     private func makeFeedback() {
         let generator = UIImpactFeedbackGenerator(style: .heavy)
