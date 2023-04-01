@@ -8,10 +8,10 @@
 import UIKit
 
 class ButtonsContainerView: UIView {
-    var modalView: ModalView
+    var superViewWidth: CGFloat
 
-    init(for modalView: ModalView) {
-        self.modalView = modalView
+    init(_ superViewWidth: CGFloat) {
+        self.superViewWidth = superViewWidth
         super.init(frame: .zero)
         setup()
     }
@@ -23,7 +23,7 @@ class ButtonsContainerView: UIView {
     private func setup() {
         frame = CGRect(x: 0,
                        y: 0,
-                       width: modalView.frame.width,
+                       width: superViewWidth,
                        height: CGFloat(Constants.maxRows) * (Constants.buttonHeight + Constants.spacing)
         )
         backgroundColor = .clear

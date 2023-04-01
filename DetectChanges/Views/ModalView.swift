@@ -9,14 +9,11 @@ import UIKit
 
 class ModalView: UIView {
     
-    var superView: UIView
     var buttonsContainerView: ButtonsContainerView!
     var startStopButton: StartStopButton!
     
-    init(for superView: UIView) {
-        self.superView = superView
-        super.init(frame: superView.bounds)
-        autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    init() {
+        super.init(frame: .zero)
         backgroundColor = .darkGray
         setupButtonsContainerView()
         setupStartStopButton()
@@ -27,7 +24,7 @@ class ModalView: UIView {
     }
     
     private func setupButtonsContainerView() {
-        buttonsContainerView = ButtonsContainerView(for: self)
+        buttonsContainerView = ButtonsContainerView(self.frame.width)
         addSubview(buttonsContainerView)
         
         buttonsContainerView.translatesAutoresizingMaskIntoConstraints = false

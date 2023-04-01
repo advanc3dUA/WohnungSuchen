@@ -8,8 +8,8 @@
 import UIKit
 
 class ModalVC: UIViewController {
-    var currentDetent: UISheetPresentationController.Detent.Identifier?
     var modalView: ModalView!
+    var currentDetent: UISheetPresentationController.Detent.Identifier?
     var requiredApartment: Apartment
     var landlordsManager: LandlordsManager
     var soundManager: SoundManager
@@ -41,11 +41,13 @@ class ModalVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func loadView() {
+        modalView = ModalView()
+        view = modalView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .yellow
-        self.modalView = ModalView(for: view)
-        view.addSubview(modalView)
         backgroundAudioPlayer = BackgroundAudioPlayer(for: self)
         backgroundAudioPlayer?.start()
     }
@@ -65,7 +67,7 @@ class ModalVC: UIViewController {
                     apartments.forEach { apartment in
                         delegate?.updateConsoleTextView(withText: consolePrinter.foundNew(apartment))
                     }
-                    modalView.buttonsContainerView.showButtons(for: apartments) // temp?
+                    modalView.buttonsContainerView.showButtons(for: apartments)
                     if isSecondRunPlus {
                         if !apartments.isEmpty {
                             modalView.buttonsContainerView.removeAllSubviews()
@@ -87,8 +89,6 @@ class ModalVC: UIViewController {
     //MARK: - Supporting methods
     private func setupSheetPresentationController(with mediumDetent: UISheetPresentationController.Detent) {
         sheetPresentationController?.detents = [mediumDetent, .large()]
-        
-        // Sheet setup
         sheetPresentationController?.largestUndimmedDetentIdentifier = .large
         sheetPresentationController?.prefersScrollingExpandsWhenScrolledToEdge = true
         sheetPresentationController?.prefersEdgeAttachedInCompactHeight = true
