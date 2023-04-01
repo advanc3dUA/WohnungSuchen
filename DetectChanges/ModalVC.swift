@@ -9,7 +9,7 @@ import UIKit
 
 class ModalVC: UIViewController {
     var currentDetent: UISheetPresentationController.Detent.Identifier?
-    var containerView: UIView!
+    var modalView: ModalView!
     var requiredApartment: Apartment
     var landlordsManager: LandlordsManager
     var soundManager: SoundManager
@@ -56,15 +56,16 @@ class ModalVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .yellow
-        setupContainerView()
-        setupStartStopButton()
+        self.modalView = ModalView(for: view)
+        view.addSubview(modalView)
         backgroundAudioPlayer = BackgroundAudioPlayer(for: self)
         backgroundAudioPlayer?.start()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        Constants.apartButtonsWidth = (containerView.frame.width - 2 * Constants.spacing) / CGFloat(Constants.maxButtonsPerRow)
+        guard let buttonsContainerView = modalView.buttonsContainerView else { return }
+        Constants.apartButtonsWidth = (buttonsContainerView.frame.width - 2 * Constants.spacing) / CGFloat(Constants.maxButtonsPerRow)
         Constants.immoButtonWidth = (Constants.apartButtonsWidth - Constants.apartSpacing) * Constants.immoButtonPercentage
     }
       
@@ -76,14 +77,14 @@ class ModalVC: UIViewController {
                     apartments.forEach { apartment in
                         delegate?.updateConsoleTextView(withText: consolePrinter.foundNew(apartment))
                     }
-                    showButtons(for: apartments) // temp?
+                    modalView.buttonsContainerView.showButtons(for: apartments) // temp?
                     if isSecondRunPlus {
                         if !apartments.isEmpty {
-                            containerView.removeAllSubviews()
+                            modalView.buttonsContainerView.removeAllSubviews()
                             soundManager.playAlert()
                             makeFeedback()
                         }
-                        showButtons(for: apartments)
+                        modalView.buttonsContainerView.showButtons(for: apartments)
                     }
                     
                     if apartments.isEmpty {
@@ -93,59 +94,6 @@ class ModalVC: UIViewController {
                 }
             }
         }.fire()
-    }
-    
-    //MARK: - Buttons configuration
-    
-    func showButtons(for apartments: [Apartment]) {
-        var index = 0
-        for apartment in apartments {
-            guard index < Constants.maxRows * Constants.maxButtonsPerRow else { return }
-            let immoButton = ImmoButton(for: apartment)
-            immoButton.frame = CGRect(x: CGFloat(index % Constants.maxButtonsPerRow) * (Constants.apartButtonsWidth + Constants.spacing),
-                                      y: CGFloat(index / Constants.maxButtonsPerRow) * (Constants.buttonHeight + Constants.spacing),
-                                      width: Constants.immoButtonWidth,
-                                      height: Constants.buttonHeight)
-            
-            let mapButton = MapButton(for: apartment)
-            mapButton.frame = CGRect(x: CGFloat(index % Constants.maxButtonsPerRow) * (Constants.apartButtonsWidth + Constants.spacing) + Constants.immoButtonWidth + Constants.apartSpacing,
-                                     y: CGFloat(index / Constants.maxButtonsPerRow) * (Constants.buttonHeight + Constants.spacing),
-                                     width: Constants.mapButtonsWidth,
-                                     height: Constants.buttonHeight)
-            
-            index += 1
-            containerView?.addSubview(immoButton)
-            containerView?.addSubview(mapButton)
-        }
-    }
-    
-    private func setupContainerView() {
-        containerView = UIView(frame: CGRect(x: 0, y: 0,
-                                             width: view.frame.width,
-                                             height: CGFloat(Constants.maxRows) * (Constants.buttonHeight + Constants.spacing)))
-        guard let containerView = containerView else { return }
-        containerView.backgroundColor = .clear
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(containerView)
-        
-        NSLayoutConstraint.activate([
-            containerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
-             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            containerView.heightAnchor.constraint(equalToConstant: (Constants.buttonHeight + Constants.spacing) * CGFloat(Constants.maxRows) - Constants.spacing)
-         ])
-    }
-    
-    private func setupStartStopButton() {
-        let startStopButton = StartStopButton()
-        startStopButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(startStopButton)
-        NSLayoutConstraint.activate([
-            startStopButton.widthAnchor.constraint(equalToConstant: 70),
-            startStopButton.heightAnchor.constraint(equalToConstant: 70),
-            startStopButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            startStopButton.centerYAnchor.constraint(equalTo: view.bottomAnchor, constant: -50)
-        ])
     }
     
     //MARK: - Supporting methods
