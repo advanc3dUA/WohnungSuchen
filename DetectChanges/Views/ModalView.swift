@@ -11,6 +11,7 @@ class ModalView: UIView {
     
     var superView: UIView
     var buttonsContainerView: ButtonsContainerView!
+    var startStopButton: StartStopButton!
     
     init(for superView: UIView) {
         self.superView = superView
@@ -18,6 +19,7 @@ class ModalView: UIView {
         autoresizingMask = [.flexibleWidth, .flexibleHeight]
         backgroundColor = .darkGray
         setupButtonsContainerView()
+        setupStartStopButton()
     }
     
     required init?(coder: NSCoder) {
@@ -36,6 +38,18 @@ class ModalView: UIView {
             buttonsContainerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             buttonsContainerView.heightAnchor.constraint(equalToConstant: (Constants.buttonHeight + Constants.spacing) * CGFloat(Constants.maxRows) - Constants.spacing)
          ])
+    }
+    
+    private func setupStartStopButton() {
+        startStopButton = StartStopButton()
+        startStopButton.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(startStopButton)
+        NSLayoutConstraint.activate([
+            startStopButton.widthAnchor.constraint(equalToConstant: 70),
+            startStopButton.heightAnchor.constraint(equalToConstant: 70),
+            startStopButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            startStopButton.centerYAnchor.constraint(equalTo: bottomAnchor, constant: -50)
+        ])
     }
 }
 

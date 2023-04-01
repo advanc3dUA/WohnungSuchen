@@ -111,9 +111,12 @@
 			isa = PBXGroup;
 			children = (
 				BF707C0329BB427700225796 /* Main.storyboard */,
-				BFA1C3D229C339540023396C /* UIView+removeAllSubviews.swift */,
+				BFA9F37129C1F61E00ECB8F4 /* ImmoButton.swift */,
+				BF8EEDB729C4701100F74971 /* MapButton.swift */,
 				BFA3DEF029D82FD5009B23D8 /* ModalView.swift */,
 				BFA3DEF229D834F4009B23D8 /* ButtonsContainerView.swift */,
+				BF94F64929D75D0B00993295 /* StartStopButton.swift */,
+				BFA1C3D229C339540023396C /* UIView+removeAllSubviews.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -122,9 +125,6 @@
 			isa = PBXGroup;
 			children = (
 				BF9DC6AB29BCAF630027FADC /* Apartment.swift */,
-				BFA9F37129C1F61E00ECB8F4 /* ImmoButton.swift */,
-				BF94F64929D75D0B00993295 /* StartStopButton.swift */,
-				BF8EEDB729C4701100F74971 /* MapButton.swift */,
 				BF8EEDB929C4771B00F74971 /* Constants.swift */,
 			);
 			path = Models;

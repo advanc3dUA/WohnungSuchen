@@ -50,16 +50,4 @@ class ButtonsContainerView: UIView {
             self.addSubview(mapButton)
         }
     }
-    
-//    private func setupStartStopButton() {
-//        let startStopButton = StartStopButton()
-//        startStopButton.translatesAutoresizingMaskIntoConstraints = false
-//        view.addSubview(startStopButton)
-//        NSLayoutConstraint.activate([
-//            startStopButton.widthAnchor.constraint(equalToConstant: 70),
-//            startStopButton.heightAnchor.constraint(equalToConstant: 70),
-//            startStopButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            startStopButton.centerYAnchor.constraint(equalTo: view.bottomAnchor, constant: -50)
-//        ])
-//    }
 }
