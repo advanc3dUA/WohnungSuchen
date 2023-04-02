@@ -8,5 +8,5 @@
 import Foundation
 
 protocol ModalVCDelegate {
-    func updateConsoleTextView(withText text: String)
+    func updateConsoleTextView(_ text: String)
 }

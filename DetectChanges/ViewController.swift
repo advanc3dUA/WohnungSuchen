@@ -76,7 +76,7 @@ extension ViewController: UISheetPresentationControllerDelegate {
 
 //MARK: - ModalVCDelegate
 extension ViewController: ModalVCDelegate {
-    func updateConsoleTextView(withText text: String) {
+    func updateConsoleTextView(_ text: String) {
         consoleTextView.text += text
         scrollToBottom(consoleTextView)
     }

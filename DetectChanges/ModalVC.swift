@@ -65,7 +65,7 @@ class ModalVC: UIViewController {
             landlordsManager.start { apartments in
                 DispatchQueue.main.async { [unowned self] in
                     apartments.forEach { apartment in
-                        delegate?.updateConsoleTextView(withText: consolePrinter.foundNew(apartment))
+                        delegate?.updateConsoleTextView(consolePrinter.foundNew(apartment))
                     }
                     modalView.buttonsContainerView.showButtons(for: apartments)
                     if isSecondRunPlus {
@@ -78,7 +78,7 @@ class ModalVC: UIViewController {
                     }
                     
                     if apartments.isEmpty {
-                        delegate?.updateConsoleTextView(withText: consolePrinter.notFound())
+                        delegate?.updateConsoleTextView(consolePrinter.notFound())
                     }
                     isSecondRunPlus = true
                 }
