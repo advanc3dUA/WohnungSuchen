@@ -11,7 +11,7 @@ import SwiftSoup
 class LandlordsManager {
     private var requiredApartment: Apartment
     private var previousApartments = [Apartment]()
-    var landlords: [Landlord] = [Saga()]
+    var landlords: [Landlord] = [Saga(), Vonovia()]
     
     init(requiredApartment: Apartment) {
         self.requiredApartment = requiredApartment

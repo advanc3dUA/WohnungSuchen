@@ -29,6 +29,8 @@
 		BF8EEDB829C4701100F74971 /* MapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EEDB729C4701100F74971 /* MapButton.swift */; };
 		BF8EEDBA29C4771B00F74971 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EEDB929C4771B00F74971 /* Constants.swift */; };
 		BF94F64A29D75D0B00993295 /* StartStopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF94F64929D75D0B00993295 /* StartStopButton.swift */; };
+		BF9C8CF529D97FB500406480 /* Vonovia.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9C8CF429D97FB500406480 /* Vonovia.swift */; };
+		BF9C8CF729D9952500406480 /* VonoviaJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9C8CF629D9952500406480 /* VonoviaJson.swift */; };
 		BF9DC6A829BC94B00027FADC /* sci-fi.wav in Resources */ = {isa = PBXBuildFile; fileRef = BF9DC6A729BC94B00027FADC /* sci-fi.wav */; };
 		BF9DC6AA29BC96CE0027FADC /* chicken.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BF9DC6A929BC96CD0027FADC /* chicken.mp3 */; };
 		BF9DC6AC29BCAF630027FADC /* Apartment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9DC6AB29BCAF630027FADC /* Apartment.swift */; };
@@ -70,6 +72,8 @@
 		BF8EEDB729C4701100F74971 /* MapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButton.swift; sourceTree = "<group>"; };
 		BF8EEDB929C4771B00F74971 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BF94F64929D75D0B00993295 /* StartStopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartStopButton.swift; sourceTree = "<group>"; };
+		BF9C8CF429D97FB500406480 /* Vonovia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vonovia.swift; sourceTree = "<group>"; };
+		BF9C8CF629D9952500406480 /* VonoviaJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VonoviaJson.swift; sourceTree = "<group>"; };
 		BF9DC6A729BC94B00027FADC /* sci-fi.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sci-fi.wav"; sourceTree = "<group>"; };
 		BF9DC6A929BC96CD0027FADC /* chicken.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chicken.mp3; sourceTree = "<group>"; };
 		BF9DC6AB29BCAF630027FADC /* Apartment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apartment.swift; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 			children = (
 				BF9DC6AB29BCAF630027FADC /* Apartment.swift */,
 				BF8EEDB929C4771B00F74971 /* Constants.swift */,
+				BF9C8CF629D9952500406480 /* VonoviaJson.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -177,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				BF4704BE29D2D52A00EEABEE /* Saga.swift */,
+				BF9C8CF429D97FB500406480 /* Vonovia.swift */,
 				BFBA6CF729D42F08004D0AFD /* ImmomioLinkFetcher.swift */,
 				BF4704C029D2D53B00EEABEE /* Landlord.swift */,
 			);
@@ -370,6 +376,7 @@
 				BF4704BC29D2D47A00EEABEE /* NetworkManager.swift in Sources */,
 				BF707C1329BB444700225796 /* LandlordsManager.swift in Sources */,
 				BFA71BD229CD935A00F8781E /* ModalVC.swift in Sources */,
+				BF9C8CF729D9952500406480 /* VonoviaJson.swift in Sources */,
 				BF8EEDBA29C4771B00F74971 /* Constants.swift in Sources */,
 				BF5C017E29C71DCF006C06D4 /* VC+AVAudioPlayerDelegate.swift in Sources */,
 				BF5C017A29C71574006C06D4 /* BackgroundAudioPlayer.swift in Sources */,
@@ -382,6 +389,7 @@
 				BFA3DEF129D82FD5009B23D8 /* ModalView.swift in Sources */,
 				BFA1C3D329C339540023396C /* UIView+removeAllSubviews.swift in Sources */,
 				BFA71BD629CD949800F8781E /* DetectDetent.swift in Sources */,
+				BF9C8CF529D97FB500406480 /* Vonovia.swift in Sources */,
 				BF707BFE29BB427700225796 /* AppDelegate.swift in Sources */,
 				BF4704BF29D2D52A00EEABEE /* Saga.swift in Sources */,
 				BF0F3F5B29BDDF89002909BB /* ConsolePrinter.swift in Sources */,

@@ -22,7 +22,7 @@ class Saga: Landlord {
         var currentApartments = [Apartment]()
         let dispatchGroup = DispatchGroup()
         
-        networkManager.fetchData(urlString: searchURLString) {[unowned self] htmlString in
+        networkManager.fetchHtmlString(urlString: searchURLString) {[unowned self] htmlString in
             guard let htmlString = htmlString else {
                 fatalError("Can't get htmlString for SAGA")
             }

@@ -17,7 +17,7 @@ class ImmomioLinkFetcher {
     
     func fetchLink(for apartmentLink: String, completion: @escaping (String) -> Void) {
         var immomioLink = ""
-        networkManager.fetchData(urlString: apartmentLink) { htmlString in
+        networkManager.fetchHtmlString(urlString: apartmentLink) { htmlString in
             guard let htmlString = htmlString else {
                 fatalError("Couldn't parse SAGA apartment htmlString")
             }
