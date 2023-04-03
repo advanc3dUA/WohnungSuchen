@@ -37,6 +37,8 @@
 		BFA1C3D329C339540023396C /* UIView+removeAllSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA1C3D229C339540023396C /* UIView+removeAllSubviews.swift */; };
 		BFA3DEF129D82FD5009B23D8 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA3DEF029D82FD5009B23D8 /* ModalView.swift */; };
 		BFA3DEF329D834F4009B23D8 /* ButtonsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA3DEF229D834F4009B23D8 /* ButtonsContainerView.swift */; };
+		BFA68DD429DAEAB20023B268 /* ApartmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA68DD229DAEAB20023B268 /* ApartmentCell.swift */; };
+		BFA68DD529DAEAB20023B268 /* ApartmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFA68DD329DAEAB20023B268 /* ApartmentCell.xib */; };
 		BFA71BD229CD935A00F8781E /* ModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA71BD129CD935A00F8781E /* ModalVC.swift */; };
 		BFA71BD629CD949800F8781E /* DetectDetent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA71BD529CD949800F8781E /* DetectDetent.swift */; };
 		BFA71BDA29CDA57600F8781E /* ModalVC+AVAudioPlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA71BD929CDA57600F8781E /* ModalVC+AVAudioPlayerDelegate.swift */; };
@@ -80,6 +82,8 @@
 		BFA1C3D229C339540023396C /* UIView+removeAllSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+removeAllSubviews.swift"; sourceTree = "<group>"; };
 		BFA3DEF029D82FD5009B23D8 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
 		BFA3DEF229D834F4009B23D8 /* ButtonsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsContainerView.swift; sourceTree = "<group>"; };
+		BFA68DD229DAEAB20023B268 /* ApartmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentCell.swift; sourceTree = "<group>"; };
+		BFA68DD329DAEAB20023B268 /* ApartmentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApartmentCell.xib; sourceTree = "<group>"; };
 		BFA71BD129CD935A00F8781E /* ModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalVC.swift; sourceTree = "<group>"; };
 		BFA71BD529CD949800F8781E /* DetectDetent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectDetent.swift; sourceTree = "<group>"; };
 		BFA71BD929CDA57600F8781E /* ModalVC+AVAudioPlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModalVC+AVAudioPlayerDelegate.swift"; sourceTree = "<group>"; };
@@ -121,6 +125,8 @@
 				BFA9F37129C1F61E00ECB8F4 /* ImmoButton.swift */,
 				BF94F64929D75D0B00993295 /* StartStopButton.swift */,
 				BFA1C3D229C339540023396C /* UIView+removeAllSubviews.swift */,
+				BFA68DD229DAEAB20023B268 /* ApartmentCell.swift */,
+				BFA68DD329DAEAB20023B268 /* ApartmentCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -318,6 +324,7 @@
 				BF9DC6A829BC94B00027FADC /* sci-fi.wav in Resources */,
 				BF707C0729BB427900225796 /* Assets.xcassets in Resources */,
 				BF707C0529BB427700225796 /* Main.storyboard in Resources */,
+				BFA68DD529DAEAB20023B268 /* ApartmentCell.xib in Resources */,
 				BF0F3F5D29BDE47D002909BB /* fanfare.mp3 in Resources */,
 				BF9DC6AA29BC96CE0027FADC /* chicken.mp3 in Resources */,
 				BF5C017C29C71635006C06D4 /* heavy-rain.wav in Resources */,
@@ -384,6 +391,7 @@
 				BF707C0229BB427700225796 /* ViewController.swift in Sources */,
 				BF9DC6AC29BCAF630027FADC /* Apartment.swift in Sources */,
 				BFBA6CF829D42F08004D0AFD /* ImmomioLinkFetcher.swift in Sources */,
+				BFA68DD429DAEAB20023B268 /* ApartmentCell.swift in Sources */,
 				BFA3DEF329D834F4009B23D8 /* ButtonsContainerView.swift in Sources */,
 				BF8EEDB829C4701100F74971 /* MapButton.swift in Sources */,
 				BFA3DEF129D82FD5009B23D8 /* ModalView.swift in Sources */,
