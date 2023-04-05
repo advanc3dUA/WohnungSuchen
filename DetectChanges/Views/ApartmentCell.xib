@@ -56,11 +56,17 @@
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="32"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Link"/>
+                                        <connections>
+                                            <action selector="linkButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="dHW-Ux-oz4"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KdT-Cp-48f" customClass="MapButton" customModule="DetectChanges" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="33" width="80" height="32"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Map"/>
+                                        <connections>
+                                            <action selector="mapButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="1oj-62-dmU"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>

@@ -9,7 +9,6 @@ import UIKit
 
 @IBDesignable
 class ImmoButton: UIButton {
-//    var immomioLink = ""
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,12 +27,5 @@ class ImmoButton: UIButton {
         layer.borderWidth = 1
         layer.borderColor = UIColor.black.cgColor
         setTitle("🔗", for: .normal)
-//        self.immomioLink = apartment.immomioLink
-//        self.addTarget(self, action: #selector(immoButtonTapped(_:)), for: .touchUpInside)
     }
-    
-//    @objc func immoButtonTapped(_ sender: ImmoButton) {
-//        guard let url = URL(string: sender.immomioLink) else { return }
-//        UIApplication.shared.open(url)
-//    }
 }

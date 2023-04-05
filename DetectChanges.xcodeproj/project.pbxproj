@@ -27,6 +27,8 @@
 		BF707C0A29BB427900225796 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF707C0829BB427900225796 /* LaunchScreen.storyboard */; };
 		BF707C1329BB444700225796 /* LandlordsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF707C1229BB444700225796 /* LandlordsManager.swift */; };
 		BF8A62F829DD7B8500E2DCD4 /* VC+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A62F729DD7B8500E2DCD4 /* VC+TableViewDelegate.swift */; };
+		BF8A62FA29DD9F5300E2DCD4 /* ApartmentCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A62F929DD9F5300E2DCD4 /* ApartmentCellDelegate.swift */; };
+		BF8A62FC29DDA1E700E2DCD4 /* VC+ApartmentCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A62FB29DDA1E700E2DCD4 /* VC+ApartmentCellDelegate.swift */; };
 		BF8EEDB829C4701100F74971 /* MapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EEDB729C4701100F74971 /* MapButton.swift */; };
 		BF8EEDBA29C4771B00F74971 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EEDB929C4771B00F74971 /* Constants.swift */; };
 		BF94F64A29D75D0B00993295 /* StartStopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF94F64929D75D0B00993295 /* StartStopButton.swift */; };
@@ -73,6 +75,8 @@
 		BF707C1129BB43D100225796 /* DetectChanges.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DetectChanges.entitlements; sourceTree = "<group>"; };
 		BF707C1229BB444700225796 /* LandlordsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandlordsManager.swift; sourceTree = "<group>"; };
 		BF8A62F729DD7B8500E2DCD4 /* VC+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+TableViewDelegate.swift"; sourceTree = "<group>"; };
+		BF8A62F929DD9F5300E2DCD4 /* ApartmentCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentCellDelegate.swift; sourceTree = "<group>"; };
+		BF8A62FB29DDA1E700E2DCD4 /* VC+ApartmentCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+ApartmentCellDelegate.swift"; sourceTree = "<group>"; };
 		BF8EEDB729C4701100F74971 /* MapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButton.swift; sourceTree = "<group>"; };
 		BF8EEDB929C4771B00F74971 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BF94F64929D75D0B00993295 /* StartStopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartStopButton.swift; sourceTree = "<group>"; };
@@ -178,11 +182,13 @@
 			children = (
 				BF707C0129BB427700225796 /* ViewController.swift */,
 				BF8A62F729DD7B8500E2DCD4 /* VC+TableViewDelegate.swift */,
+				BF8A62FB29DDA1E700E2DCD4 /* VC+ApartmentCellDelegate.swift */,
 				BF5C017D29C71DCF006C06D4 /* VC+AVAudioPlayerDelegate.swift */,
 				BFA71BD529CD949800F8781E /* DetectDetent.swift */,
 				BFA71BD129CD935A00F8781E /* ModalVC.swift */,
 				BFA71BDB29CDA7D300F8781E /* ModalVCDelegate.swift */,
 				BFA71BD929CDA57600F8781E /* ModalVC+AVAudioPlayerDelegate.swift */,
+				BF8A62F929DD9F5300E2DCD4 /* ApartmentCellDelegate.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -391,6 +397,7 @@
 				BF8EEDBA29C4771B00F74971 /* Constants.swift in Sources */,
 				BF5C017E29C71DCF006C06D4 /* VC+AVAudioPlayerDelegate.swift in Sources */,
 				BF5C017A29C71574006C06D4 /* BackgroundAudioPlayer.swift in Sources */,
+				BF8A62FA29DD9F5300E2DCD4 /* ApartmentCellDelegate.swift in Sources */,
 				BFA9F37229C1F61E00ECB8F4 /* ImmoButton.swift in Sources */,
 				BF707C0229BB427700225796 /* ViewController.swift in Sources */,
 				BF9DC6AC29BCAF630027FADC /* Apartment.swift in Sources */,
@@ -410,6 +417,7 @@
 				BF4704C129D2D53B00EEABEE /* Landlord.swift in Sources */,
 				BFA71BDA29CDA57600F8781E /* ModalVC+AVAudioPlayerDelegate.swift in Sources */,
 				BF0F3F6529BDEA9F002909BB /* SoundManager.swift in Sources */,
+				BF8A62FC29DDA1E700E2DCD4 /* VC+ApartmentCellDelegate.swift in Sources */,
 				BF707C0029BB427700225796 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

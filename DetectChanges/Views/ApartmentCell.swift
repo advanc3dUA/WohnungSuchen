@@ -15,6 +15,8 @@ class ApartmentCell: UITableViewCell {
     @IBOutlet weak var detailsLabel: UILabel!
     @IBOutlet var linkButton: ImmoButton!
     @IBOutlet weak var mapButton: MapButton!
+    weak var delegate: ApartmentCellDelegate?
+    var apartment: Apartment?
     
     class var identifier: String {
         String(describing: self)
@@ -35,4 +37,14 @@ class ApartmentCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func linkButtonTapped(_ sender: ImmoButton) {
+        guard let apartment = apartment else { return }
+        delegate?.didTapLinkButtonInCell(with: apartment.immomioLink)
+    }
+    
+    
+    @IBAction func mapButtonTapped(_ sender: MapButton) {
+        guard let apartment = apartment else { return }
+        delegate?.didTapMapButtonInCell(with: apartment.street)
+    }
 }

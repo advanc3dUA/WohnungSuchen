@@ -21,7 +21,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let apartment = currentApartments[indexPath.row]
         cell.addressLabel.text = "\(apartment.street)"
         cell.detailsLabel.text = "Rooms: \(apartment.rooms), m2: \(apartment.area), €: \(apartment.rent)"
-
+        cell.apartment = apartment
+        cell.delegate = self
         
         return cell
     }
