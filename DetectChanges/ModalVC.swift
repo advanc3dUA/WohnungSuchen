@@ -14,14 +14,12 @@ class ModalVC: UIViewController {
     var landlordsManager: LandlordsManager
     var soundManager: SoundManager
     var backgroundAudioPlayer: BackgroundAudioPlayer?
-    var consolePrinter: ConsolePrinter
     var delegate: ModalVCDelegate?
     var isSecondRunPlus: Bool
     var bgAudioPlayerIsInterrupted: Bool
     
     init(mediumDetentSize: CGFloat) {
         self.soundManager = SoundManager()
-        self.consolePrinter = ConsolePrinter()
         self.requiredApartment = Apartment(rooms: 2, area: 40)
         self.landlordsManager = LandlordsManager(requiredApartment: requiredApartment)
         self.isSecondRunPlus = false
@@ -65,7 +63,7 @@ class ModalVC: UIViewController {
             landlordsManager.start { apartments in
                 DispatchQueue.main.async { [unowned self] in
                     apartments.forEach { apartment in
-                        delegate?.updateConsoleTextView(consolePrinter.foundNew(apartment))
+                        delegate?.updateConsoleTextView(ConsolePrinter.shared.foundNew(apartment))
                     }
                     modalView.buttonsContainerView.showButtons(for: apartments)
                     if isSecondRunPlus {
@@ -78,7 +76,7 @@ class ModalVC: UIViewController {
                     }
                     
                     if apartments.isEmpty {
-                        delegate?.updateConsoleTextView(consolePrinter.notFound())
+                        delegate?.updateConsoleTextView(ConsolePrinter.shared.notFound())
                     }
                     isSecondRunPlus = true
                 }

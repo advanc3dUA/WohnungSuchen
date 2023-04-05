@@ -5,9 +5,11 @@
 //  Created by Yuriy Gudimov on 12.03.2023.
 //
 
-import Foundation
+import UIKit
 
-struct ConsolePrinter {
+class ConsolePrinter {
+    
+    static var shared = ConsolePrinter()
     private let startSign = " → "
     private let successSign = "✅ "
     private let nothingNewSign = "☑️ "
@@ -17,11 +19,23 @@ struct ConsolePrinter {
     private let apartmentNameSign = "➡️ "
     private let streetSign = "📍 "
     
+    private init() {}
+    
     private func postTime() -> String {
         let currentTime = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = .medium
         return dateFormatter.string(from: currentTime)
+    }
+    
+    func postDebug(message: String) {
+        DispatchQueue.main.async {
+            if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let window = scene.windows.first,
+               let viewController = window.rootViewController as? ViewController {
+                viewController.consoleTextView.text += "\(self.postTime())\(self.startSign)\(message)\n"
+            }
+        }
     }
     
     func foundNew(_ apartment: Apartment) -> String {

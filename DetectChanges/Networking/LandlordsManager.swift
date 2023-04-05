@@ -32,12 +32,14 @@ class LandlordsManager {
         }
         
         dispatchGroup.notify(queue: .main) { [unowned self] in
+            ConsolePrinter.shared.postDebug(message: "Found totally apartments: \(currentApartments.count)")
             let newApartments = comparePreviousApartments(with: currentApartments)
+            ConsolePrinter.shared.postDebug(message: "Found new apartments: \(newApartments.count)")
             previousApartments = currentApartments
             
             let indexedApartments = newApartments.enumerated().map { (index, apartment) in
                 var indexedApartment = apartment
-                indexedApartment.index = index
+                indexedApartment.index = index + 1
                 return indexedApartment
             }
             completion(indexedApartments)

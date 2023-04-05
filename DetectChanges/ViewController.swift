@@ -44,6 +44,7 @@ class ViewController: UIViewController {
     
     private func setupConsoleTextView() {
         consoleTextView.layer.cornerRadius = 20
+        consoleTextView.textColor = .black
     }
 }
 
