@@ -16,6 +16,14 @@ class ApartmentCell: UITableViewCell {
     @IBOutlet weak var linkButton: ImmoButton!
     @IBOutlet weak var mapButton: MapButton!
     
+    class var identifier: String {
+        String(describing: self)
+    }
+    
+    class var nib: UINib {
+        UINib(nibName: identifier, bundle: nil)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

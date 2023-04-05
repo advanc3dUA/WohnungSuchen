@@ -10,21 +10,13 @@ import UIKit
 class ModalVC: UIViewController {
     var modalView: ModalView!
     var currentDetent: UISheetPresentationController.Detent.Identifier?
-    var requiredApartment: Apartment
-    var landlordsManager: LandlordsManager
-    var soundManager: SoundManager
-    var backgroundAudioPlayer: BackgroundAudioPlayer?
     var delegate: ModalVCDelegate?
-    var isSecondRunPlus: Bool
+    var backgroundAudioPlayer: BackgroundAudioPlayer?
     var bgAudioPlayerIsInterrupted: Bool
     
     init(mediumDetentSize: CGFloat) {
-        self.soundManager = SoundManager()
-        self.requiredApartment = Apartment(rooms: 2, area: 40)
-        self.landlordsManager = LandlordsManager(requiredApartment: requiredApartment)
-        self.isSecondRunPlus = false
-        bgAudioPlayerIsInterrupted = false
         currentDetent = .medium
+        bgAudioPlayerIsInterrupted = false
         super.init(nibName: nil, bundle: nil)
         
         // Custom medium detent
@@ -50,38 +42,15 @@ class ModalVC: UIViewController {
         backgroundAudioPlayer?.start()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        guard let buttonsContainerView = modalView.buttonsContainerView else { return }
-        Constants.apartButtonsWidth = (buttonsContainerView.frame.width - 2 * Constants.spacing) / CGFloat(Constants.maxButtonsPerRow)
-        Constants.immoButtonWidth = (Constants.apartButtonsWidth - Constants.apartSpacing) * Constants.immoButtonPercentage
-    }
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        guard let buttonsContainerView = modalView.buttonsContainerView else { return }
+//        Constants.apartButtonsWidth = (buttonsContainerView.frame.width - 2 * Constants.spacing) / CGFloat(Constants.maxButtonsPerRow)
+//        Constants.immoButtonWidth = (Constants.apartButtonsWidth - Constants.apartSpacing) * Constants.immoButtonPercentage
+//    }
       
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        Timer.scheduledTimer(withTimeInterval: 30, repeats: true) {[unowned self] timer in
-            landlordsManager.start { apartments in
-                DispatchQueue.main.async { [unowned self] in
-                    apartments.forEach { apartment in
-                        delegate?.updateConsoleTextView(ConsolePrinter.shared.foundNew(apartment))
-                    }
-                    modalView.buttonsContainerView.showButtons(for: apartments)
-                    if isSecondRunPlus {
-                        if !apartments.isEmpty {
-                            modalView.buttonsContainerView.removeAllSubviews()
-                            soundManager.playAlert()
-                            makeFeedback()
-                        }
-                        modalView.buttonsContainerView.showButtons(for: apartments)
-                    }
-                    
-                    if apartments.isEmpty {
-                        delegate?.updateConsoleTextView(ConsolePrinter.shared.notFound())
-                    }
-                    isSecondRunPlus = true
-                }
-            }
-        }.fire()
     }
     
     //MARK: - Supporting methods
@@ -96,18 +65,5 @@ class ModalVC: UIViewController {
         
         // Disables hiding TraineeVC
         isModalInPresentation = true
-    }
-    
-    private func makeFeedback() {
-        let generator = UIImpactFeedbackGenerator(style: .heavy)
-        generator.prepare()
-        generator.impactOccurred()
-        let timer = Timer.scheduledTimer(withTimeInterval: 0.03, repeats: true) { timer in
-            generator.prepare()
-            generator.impactOccurred()
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            timer.invalidate()
-        }
     }
 }

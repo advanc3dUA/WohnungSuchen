@@ -26,6 +26,7 @@
 		BF707C0729BB427900225796 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF707C0629BB427900225796 /* Assets.xcassets */; };
 		BF707C0A29BB427900225796 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF707C0829BB427900225796 /* LaunchScreen.storyboard */; };
 		BF707C1329BB444700225796 /* LandlordsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF707C1229BB444700225796 /* LandlordsManager.swift */; };
+		BF8A62F829DD7B8500E2DCD4 /* VC+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A62F729DD7B8500E2DCD4 /* VC+TableViewDelegate.swift */; };
 		BF8EEDB829C4701100F74971 /* MapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EEDB729C4701100F74971 /* MapButton.swift */; };
 		BF8EEDBA29C4771B00F74971 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EEDB929C4771B00F74971 /* Constants.swift */; };
 		BF94F64A29D75D0B00993295 /* StartStopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF94F64929D75D0B00993295 /* StartStopButton.swift */; };
@@ -71,6 +72,7 @@
 		BF707C0B29BB427900225796 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF707C1129BB43D100225796 /* DetectChanges.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DetectChanges.entitlements; sourceTree = "<group>"; };
 		BF707C1229BB444700225796 /* LandlordsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandlordsManager.swift; sourceTree = "<group>"; };
+		BF8A62F729DD7B8500E2DCD4 /* VC+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		BF8EEDB729C4701100F74971 /* MapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButton.swift; sourceTree = "<group>"; };
 		BF8EEDB929C4771B00F74971 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BF94F64929D75D0B00993295 /* StartStopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartStopButton.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				BF707C0129BB427700225796 /* ViewController.swift */,
+				BF8A62F729DD7B8500E2DCD4 /* VC+TableViewDelegate.swift */,
 				BF5C017D29C71DCF006C06D4 /* VC+AVAudioPlayerDelegate.swift */,
 				BFA71BD529CD949800F8781E /* DetectDetent.swift */,
 				BFA71BD129CD935A00F8781E /* ModalVC.swift */,
@@ -383,6 +386,7 @@
 				BF4704BC29D2D47A00EEABEE /* NetworkManager.swift in Sources */,
 				BF707C1329BB444700225796 /* LandlordsManager.swift in Sources */,
 				BFA71BD229CD935A00F8781E /* ModalVC.swift in Sources */,
+				BF8A62F829DD7B8500E2DCD4 /* VC+TableViewDelegate.swift in Sources */,
 				BF9C8CF729D9952500406480 /* VonoviaJson.swift in Sources */,
 				BF8EEDBA29C4771B00F74971 /* Constants.swift in Sources */,
 				BF5C017E29C71DCF006C06D4 /* VC+AVAudioPlayerDelegate.swift in Sources */,
