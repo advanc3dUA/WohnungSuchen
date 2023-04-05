@@ -9,6 +9,7 @@ import Foundation
 
 struct Apartment {
     var index = -1
+    var time = "00:00:00"
     var title = "no title"
     var link = "no link"
     var street = "no street"

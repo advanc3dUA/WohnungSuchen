@@ -19,10 +19,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ApartmentCell.identifier, for: indexPath) as! ApartmentCell
         let apartment = currentApartments[indexPath.row]
-        cell.addressLabel.text = "\(apartment.street)"
-        cell.detailsLabel.text = "Rooms: \(apartment.rooms), m2: \(apartment.area), €: \(apartment.rent)"
         cell.apartment = apartment
         cell.delegate = self
+        cell.addressLabel.text = "\(apartment.street)"
+        cell.detailsLabel.text = "Rooms: \(apartment.rooms), m2: \(apartment.area), €: \(apartment.rent)"
+        cell.timeLabel.text = apartment.time
         
         return cell
     }

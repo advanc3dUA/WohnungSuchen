@@ -49,42 +49,22 @@ class ViewController: UIViewController {
         setupConsoleTextView()
         
         Timer.scheduledTimer(withTimeInterval: 30, repeats: true) {[unowned self] timer in
-            
-            landlordsManager.start { apartments in
+            landlordsManager.start { [weak self] apartments in
+                guard let self = self else { return }
                 if !self.isSecondRunPlus {
                     self.currentApartments = apartments
+                    self.isSecondRunPlus = true
+                } else {
+                    if !apartments.isEmpty {
+                        self.currentApartments.insert(contentsOf: apartments, at: 0)
+                        self.soundManager.playAlert()
+                        self.makeFeedback()
+                        print("found new")
+                    } else {
+                        print("nothing new")
+                    }
                 }
-                
             }
-            
-            
-            
-            
-            
-            
-            
-//            landlordsManager.start { apartments in
-//                DispatchQueue.main.async { [unowned self] in
-//                    apartments.forEach { apartment in
-//                        consoleTextView.text += ConsolePrinter.shared.foundNew(apartment)
-//                        print("found new: \(apartment.street)")
-//                    }
-////                    modalView.buttonsContainerView.showButtons(for: apartments)
-//                    if isSecondRunPlus {
-//                        if !apartments.isEmpty {
-////                            modalView.buttonsContainerView.removeAllSubviews()
-//                            soundManager.playAlert()
-//                            makeFeedback()
-//                        }
-////                        modalView.buttonsContainerView.showButtons(for: apartments)
-//                    }
-//
-//                    if apartments.isEmpty {
-//                        consoleTextView.text += ConsolePrinter.shared.notFound()
-//                    }
-//                    isSecondRunPlus = true
-//                }
-//            }
         }.fire()
     }
     
