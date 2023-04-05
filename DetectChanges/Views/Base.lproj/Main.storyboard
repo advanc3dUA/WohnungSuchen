@@ -16,34 +16,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="N1e-XE-tBU">
-                                <rect key="frame" x="0.0" y="69" width="393" height="500"/>
-                                <color key="backgroundColor" systemColor="tintColor"/>
-                                <color key="textColor" systemColor="systemGreenColor"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baK-Zu-6OY">
+                                <rect key="frame" x="0.0" y="59" width="393" height="35"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="I40-be-S9K">
-                                <rect key="frame" x="0.0" y="59" width="393" height="681.66666666666663"/>
+                                <rect key="frame" x="0.0" y="102" width="393" height="596.33333333333337"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="N1e-XE-tBU" secondAttribute="bottom" constant="249" id="29X-dr-5xr"/>
-                            <constraint firstItem="I40-be-S9K" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="I7l-yt-iwK"/>
+                            <constraint firstItem="baK-Zu-6OY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Ibi-io-ipx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="I40-be-S9K" secondAttribute="bottom" constant="119.66666666666652" id="IwD-jb-EPB"/>
                             <constraint firstItem="I40-be-S9K" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NNe-Fz-93G"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="N1e-XE-tBU" secondAttribute="trailing" id="c4M-Nm-Ce7"/>
-                            <constraint firstItem="I40-be-S9K" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.8" id="dx8-Ft-qh3"/>
-                            <constraint firstItem="N1e-XE-tBU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="gn5-Cf-67j"/>
+                            <constraint firstItem="baK-Zu-6OY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="aFj-pB-XUT"/>
+                            <constraint firstItem="I40-be-S9K" firstAttribute="top" secondItem="baK-Zu-6OY" secondAttribute="bottom" constant="8" symbolic="YES" id="bx5-Ne-Hiq"/>
+                            <constraint firstItem="I40-be-S9K" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="dx8-Ft-qh3"/>
                             <constraint firstItem="I40-be-S9K" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="s27-MR-6Dp"/>
-                            <constraint firstItem="N1e-XE-tBU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vKS-7v-e37"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="baK-Zu-6OY" secondAttribute="trailing" id="xSL-fn-8GT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Saga Detector" id="VB9-NQ-iCb"/>
                     <connections>
-                        <outlet property="consoleTextView" destination="N1e-XE-tBU" id="BRT-AC-Y1q"/>
+                        <outlet property="statusLabel" destination="baK-Zu-6OY" id="W5m-Ue-iyL"/>
                         <outlet property="tableView" destination="I40-be-S9K" id="p9T-eA-i7I"/>
                     </connections>
                 </viewController>
@@ -56,11 +56,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

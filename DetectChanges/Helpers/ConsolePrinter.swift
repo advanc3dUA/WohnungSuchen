@@ -28,15 +28,15 @@ class ConsolePrinter {
         return dateFormatter.string(from: currentTime)
     }
     
-    func postDebug(message: String) {
-        DispatchQueue.main.async {
-            if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-               let window = scene.windows.first,
-               let viewController = window.rootViewController as? ViewController {
-                viewController.consoleTextView.text += "\(self.postTime())\(self.startSign)\(message)\n"
-            }
-        }
-    }
+//    func postDebug(message: String) {
+//        DispatchQueue.main.async {
+//            if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+//               let window = scene.windows.first,
+//               let viewController = window.rootViewController as? ViewController {
+//                viewController.consoleTextView.text += "\(self.postTime())\(self.startSign)\(message)\n"
+//            }
+//        }
+//    }
     
     func foundNew(_ apartment: Apartment) -> String {
         let result =    postTime() + startSign + successSign + "Apartment #\(apartment.index):" + "\n" +

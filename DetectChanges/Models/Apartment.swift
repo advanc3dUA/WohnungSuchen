@@ -17,4 +17,5 @@ struct Apartment {
     var area = -1
     var rent = -1
     var immomioLink = "no immoLink"
+    var company = Company.unknown
 }

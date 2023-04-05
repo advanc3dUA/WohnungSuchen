@@ -9,7 +9,6 @@ import UIKit
 
 extension ViewController: ApartmentCellDelegate {
     func didTapLinkButtonInCell(with apartmentLink: String) {
-        print("url= ", apartmentLink)
         guard let url = URL(string: apartmentLink) else { return }
         UIApplication.shared.open(url)
     }

@@ -37,7 +37,8 @@ class Vonovia: Landlord {
                                               rooms: rooms,
                                               area: area,
                                               rent: price,
-                                              immomioLink: link)
+                                              immomioLink: link,
+                                              company: .vonovia)
                     currentApartments.append(apartment)
                 }
                 completion(currentApartments)

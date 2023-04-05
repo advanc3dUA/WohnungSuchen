@@ -29,6 +29,10 @@
 		BF8A62F829DD7B8500E2DCD4 /* VC+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A62F729DD7B8500E2DCD4 /* VC+TableViewDelegate.swift */; };
 		BF8A62FA29DD9F5300E2DCD4 /* ApartmentCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A62F929DD9F5300E2DCD4 /* ApartmentCellDelegate.swift */; };
 		BF8A62FC29DDA1E700E2DCD4 /* VC+ApartmentCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A62FB29DDA1E700E2DCD4 /* VC+ApartmentCellDelegate.swift */; };
+		BF8C912829DDB865008AD739 /* IntelPentiumSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BF8C912729DDB865008AD739 /* IntelPentiumSound.mp3 */; };
+		BF8C912B29DDB877008AD739 /* VonoviaLogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BF8C912929DDB877008AD739 /* VonoviaLogo.jpg */; };
+		BF8C912C29DDB877008AD739 /* SagaLogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BF8C912A29DDB877008AD739 /* SagaLogo.jpg */; };
+		BF8C912E29DDB8C8008AD739 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C912D29DDB8C8008AD739 /* Company.swift */; };
 		BF8EEDB829C4701100F74971 /* MapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EEDB729C4701100F74971 /* MapButton.swift */; };
 		BF8EEDBA29C4771B00F74971 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EEDB929C4771B00F74971 /* Constants.swift */; };
 		BF94F64A29D75D0B00993295 /* StartStopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF94F64929D75D0B00993295 /* StartStopButton.swift */; };
@@ -77,6 +81,10 @@
 		BF8A62F729DD7B8500E2DCD4 /* VC+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		BF8A62F929DD9F5300E2DCD4 /* ApartmentCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentCellDelegate.swift; sourceTree = "<group>"; };
 		BF8A62FB29DDA1E700E2DCD4 /* VC+ApartmentCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+ApartmentCellDelegate.swift"; sourceTree = "<group>"; };
+		BF8C912729DDB865008AD739 /* IntelPentiumSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = IntelPentiumSound.mp3; sourceTree = "<group>"; };
+		BF8C912929DDB877008AD739 /* VonoviaLogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = VonoviaLogo.jpg; sourceTree = "<group>"; };
+		BF8C912A29DDB877008AD739 /* SagaLogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SagaLogo.jpg; sourceTree = "<group>"; };
+		BF8C912D29DDB8C8008AD739 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		BF8EEDB729C4701100F74971 /* MapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButton.swift; sourceTree = "<group>"; };
 		BF8EEDB929C4771B00F74971 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BF94F64929D75D0B00993295 /* StartStopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartStopButton.swift; sourceTree = "<group>"; };
@@ -141,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				BF9DC6AB29BCAF630027FADC /* Apartment.swift */,
+				BF8C912D29DDB8C8008AD739 /* Company.swift */,
 				BF8EEDB929C4771B00F74971 /* Constants.swift */,
 				BF9C8CF629D9952500406480 /* VonoviaJson.swift */,
 			);
@@ -218,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				BF707BFC29BB427700225796 /* DetectChanges */,
+				BF8C912629DDB846008AD739 /* Logos */,
 				BF707BFB29BB427700225796 /* Products */,
 				27D87C37BF331BB9AAB094A1 /* Pods */,
 				F7ACA5E1051974026F484C05 /* Frameworks */,
@@ -247,6 +257,15 @@
 			path = DetectChanges;
 			sourceTree = "<group>";
 		};
+		BF8C912629DDB846008AD739 /* Logos */ = {
+			isa = PBXGroup;
+			children = (
+				BF8C912A29DDB877008AD739 /* SagaLogo.jpg */,
+				BF8C912929DDB877008AD739 /* VonoviaLogo.jpg */,
+			);
+			path = Logos;
+			sourceTree = "<group>";
+		};
 		BF9DC6A629BC948F0027FADC /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,6 +274,7 @@
 				BF9DC6A729BC94B00027FADC /* sci-fi.wav */,
 				BF9DC6A929BC96CD0027FADC /* chicken.mp3 */,
 				BF0F3F5C29BDE47D002909BB /* fanfare.mp3 */,
+				BF8C912729DDB865008AD739 /* IntelPentiumSound.mp3 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -332,10 +352,13 @@
 				BF707C0A29BB427900225796 /* LaunchScreen.storyboard in Resources */,
 				BF9DC6A829BC94B00027FADC /* sci-fi.wav in Resources */,
 				BF707C0729BB427900225796 /* Assets.xcassets in Resources */,
+				BF8C912C29DDB877008AD739 /* SagaLogo.jpg in Resources */,
 				BF707C0529BB427700225796 /* Main.storyboard in Resources */,
 				BFA68DD529DAEAB20023B268 /* ApartmentCell.xib in Resources */,
 				BF0F3F5D29BDE47D002909BB /* fanfare.mp3 in Resources */,
 				BF9DC6AA29BC96CE0027FADC /* chicken.mp3 in Resources */,
+				BF8C912B29DDB877008AD739 /* VonoviaLogo.jpg in Resources */,
+				BF8C912829DDB865008AD739 /* IntelPentiumSound.mp3 in Resources */,
 				BF5C017C29C71635006C06D4 /* heavy-rain.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,6 +442,7 @@
 				BF0F3F6529BDEA9F002909BB /* SoundManager.swift in Sources */,
 				BF8A62FC29DDA1E700E2DCD4 /* VC+ApartmentCellDelegate.swift in Sources */,
 				BF707C0029BB427700225796 /* SceneDelegate.swift in Sources */,
+				BF8C912E29DDB8C8008AD739 /* Company.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

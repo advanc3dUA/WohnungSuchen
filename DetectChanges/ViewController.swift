@@ -10,8 +10,8 @@ import AVFoundation
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var consoleTextView: UITextView!
     var modalVC: ModalVC?
     var requiredApartment: Apartment
     var currentApartments: [Apartment] {
@@ -46,9 +46,9 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         presentModalVC()
-        setupConsoleTextView()
         
         Timer.scheduledTimer(withTimeInterval: 30, repeats: true) {[unowned self] timer in
+            statusLabel.text = "Last update: \(postTime())"
             landlordsManager.start { [weak self] apartments in
                 guard let self = self else { return }
                 if !self.isSecondRunPlus {
@@ -59,9 +59,6 @@ class ViewController: UIViewController {
                         self.currentApartments.insert(contentsOf: apartments, at: 0)
                         self.soundManager.playAlert()
                         self.makeFeedback()
-                        print("found new")
-                    } else {
-                        print("nothing new")
                     }
                 }
             }
@@ -85,18 +82,6 @@ class ViewController: UIViewController {
         }
     }
     
-//    private func setupTableView() {
-//        let height = view.frame.height * 0.9
-//        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: height))
-//        tableView.delegate = self
-//        tableView.dataSource = self
-//    }
-    
-    private func setupConsoleTextView() {
-        consoleTextView.layer.cornerRadius = 20
-        consoleTextView.textColor = .black
-    }
-    
     private func makeFeedback() {
         let generator = UIImpactFeedbackGenerator(style: .heavy)
         generator.prepare()
@@ -108,6 +93,13 @@ class ViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             timer.invalidate()
         }
+    }
+    
+    private func postTime() -> String {
+        let currentTime = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        return dateFormatter.string(from: currentTime)
     }
 }
 
@@ -141,7 +133,7 @@ extension ViewController: UISheetPresentationControllerDelegate {
 //MARK: - ModalVCDelegate
 extension ViewController: ModalVCDelegate {
     func updateConsoleTextView(_ text: String) {
-        consoleTextView.text += text
-        scrollToBottom(consoleTextView)
+//        consoleTextView.text += text
+//        scrollToBottom(consoleTextView)
     }
 }

@@ -43,7 +43,8 @@ class Saga: Landlord {
                                                        street: dropPrefix(for: street),
                                                        rooms: rooms,
                                                        area: area,
-                                                       rent: rent
+                                                       rent: rent,
+                                                    company: .saga
                         )
                         dispatchGroup.enter()
                         immomioLinkFetcher.fetchLink(for: newApartment.link) { immomioLink in
