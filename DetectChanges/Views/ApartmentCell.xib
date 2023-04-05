@@ -16,71 +16,65 @@
                 <rect key="frame" x="0.0" y="0.0" width="352" height="75"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleAspectFill" spacing="81" translatesAutoresizingMaskIntoConstraints="NO" id="JbM-5X-eGx">
-                        <rect key="frame" x="5" y="5" width="348.66666666666669" height="65"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="JbM-5X-eGx">
+                        <rect key="frame" x="5" y="5" width="342" height="65"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SRp-Nh-JQv">
-                                <rect key="frame" x="0.0" y="0.0" width="60" height="65"/>
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="65"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="WdW-9K-2IL"/>
+                                    <constraint firstAttribute="width" constant="50" id="Ost-L2-zlE"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="1LA-nZ-0xX">
-                                <rect key="frame" x="65" y="0.0" width="200" height="65"/>
+                                <rect key="frame" x="55" y="0.0" width="202" height="65"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pRV-IB-t7s">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="21.666666666666668"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="202" height="21.666666666666668"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4b-Ta-5oS">
-                                        <rect key="frame" x="0.0" y="21.666666666666664" width="200" height="21.666666666666664"/>
+                                        <rect key="frame" x="0.0" y="21.666666666666664" width="202" height="21.666666666666664"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rooms, m2, €" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCX-9C-BgX">
-                                        <rect key="frame" x="0.0" y="43.333333333333336" width="200" height="21.666666666666664"/>
+                                        <rect key="frame" x="0.0" y="43.333333333333336" width="202" height="21.666666666666664"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="ZoD-3F-vu4"/>
-                                </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="6cD-FD-btq">
-                                <rect key="frame" x="270" y="0.0" width="78.666666666666686" height="65"/>
+                                <rect key="frame" x="262" y="0.0" width="80" height="65"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8I3-Yv-jjI" customClass="ImmoButton" customModule="DetectChanges" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="78.666666666666671" height="32"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="32"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Link"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KdT-Cp-48f" customClass="MapButton" customModule="DetectChanges" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="33" width="78.666666666666671" height="32"/>
+                                        <rect key="frame" x="0.0" y="33" width="80" height="32"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Map"/>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="78.670000000000002" id="X89-yK-gHA"/>
+                                    <constraint firstAttribute="width" constant="80" id="eKp-aW-RRF"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="6cD-FD-btq" secondAttribute="trailing" id="5Ur-1A-p8h"/>
-                            <constraint firstItem="6cD-FD-btq" firstAttribute="leading" secondItem="1LA-nZ-0xX" secondAttribute="trailing" constant="5" id="IT4-ZR-Tab"/>
-                            <constraint firstItem="SRp-Nh-JQv" firstAttribute="leading" secondItem="JbM-5X-eGx" secondAttribute="leading" id="OdO-H3-HAA"/>
-                            <constraint firstAttribute="bottom" secondItem="6cD-FD-btq" secondAttribute="bottom" id="SEb-iM-OzO"/>
-                            <constraint firstItem="1LA-nZ-0xX" firstAttribute="leading" secondItem="SRp-Nh-JQv" secondAttribute="trailing" constant="5" id="fMS-MY-bB7"/>
-                            <constraint firstAttribute="bottom" secondItem="1LA-nZ-0xX" secondAttribute="bottom" id="mjS-3g-n8t"/>
-                            <constraint firstItem="6cD-FD-btq" firstAttribute="top" secondItem="JbM-5X-eGx" secondAttribute="top" id="obV-I8-nab"/>
-                            <constraint firstAttribute="bottom" secondItem="SRp-Nh-JQv" secondAttribute="bottom" id="swc-9G-OMe"/>
-                            <constraint firstItem="1LA-nZ-0xX" firstAttribute="top" secondItem="JbM-5X-eGx" secondAttribute="top" id="u1N-dw-YAV"/>
-                            <constraint firstItem="SRp-Nh-JQv" firstAttribute="top" secondItem="JbM-5X-eGx" secondAttribute="top" id="wIO-z9-3WA"/>
+                            <constraint firstAttribute="bottom" secondItem="6cD-FD-btq" secondAttribute="bottom" id="0tc-kv-TVX"/>
+                            <constraint firstItem="SRp-Nh-JQv" firstAttribute="top" secondItem="JbM-5X-eGx" secondAttribute="top" id="3cc-xQ-72U"/>
+                            <constraint firstItem="6cD-FD-btq" firstAttribute="top" secondItem="JbM-5X-eGx" secondAttribute="top" id="C6q-G2-CJS"/>
+                            <constraint firstAttribute="bottom" secondItem="SRp-Nh-JQv" secondAttribute="bottom" id="H5Y-Wh-flH"/>
+                            <constraint firstItem="SRp-Nh-JQv" firstAttribute="leading" secondItem="JbM-5X-eGx" secondAttribute="leading" id="HCI-by-VMO"/>
+                            <constraint firstAttribute="trailing" secondItem="6cD-FD-btq" secondAttribute="trailing" id="KkC-Vr-rSj"/>
                         </constraints>
                     </stackView>
                 </subviews>
@@ -93,8 +87,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="addressLabel" destination="zCX-9C-BgX" id="sMd-TG-H3o"/>
-                <outlet property="detailsLabel" destination="zCX-9C-BgX" id="t0L-ws-d6m"/>
+                <outlet property="addressLabel" destination="i4b-Ta-5oS" id="lIA-5O-I75"/>
+                <outlet property="detailsLabel" destination="zCX-9C-BgX" id="sJd-a0-oQK"/>
                 <outlet property="linkButton" destination="8I3-Yv-jjI" id="phg-U3-STf"/>
                 <outlet property="logoImageView" destination="SRp-Nh-JQv" id="gj1-Rv-cWV"/>
                 <outlet property="mapButton" destination="KdT-Cp-48f" id="ydc-EO-1Ln"/>

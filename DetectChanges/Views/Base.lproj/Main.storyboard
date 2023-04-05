@@ -24,7 +24,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="I40-be-S9K">
-                                <rect key="frame" x="0.0" y="59" width="393" height="653"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="681.66666666666663"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -35,7 +35,7 @@
                             <constraint firstItem="I40-be-S9K" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="I7l-yt-iwK"/>
                             <constraint firstItem="I40-be-S9K" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NNe-Fz-93G"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="N1e-XE-tBU" secondAttribute="trailing" id="c4M-Nm-Ce7"/>
-                            <constraint firstItem="I40-be-S9K" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.766432" id="dx8-Ft-qh3"/>
+                            <constraint firstItem="I40-be-S9K" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.8" id="dx8-Ft-qh3"/>
                             <constraint firstItem="N1e-XE-tBU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="gn5-Cf-67j"/>
                             <constraint firstItem="I40-be-S9K" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="s27-MR-6Dp"/>
                             <constraint firstItem="N1e-XE-tBU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vKS-7v-e37"/>

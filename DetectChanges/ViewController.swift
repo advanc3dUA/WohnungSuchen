@@ -9,16 +9,23 @@ import UIKit
 import AVFoundation
 
 class ViewController: UIViewController {
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var consoleTextView: UITextView!
     var modalVC: ModalVC?
     var requiredApartment: Apartment
+    var currentApartments: [Apartment] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     var landlordsManager: LandlordsManager
     var soundManager: SoundManager
     var isSecondRunPlus: Bool
     
     required init?(coder aDecoder: NSCoder) {
         self.requiredApartment = Apartment(rooms: 2, area: 40)
+        self.currentApartments = [Apartment]()
         self.landlordsManager = LandlordsManager(requiredApartment: requiredApartment)
         self.soundManager = SoundManager()
         self.isSecondRunPlus = false
@@ -42,27 +49,42 @@ class ViewController: UIViewController {
         setupConsoleTextView()
         
         Timer.scheduledTimer(withTimeInterval: 30, repeats: true) {[unowned self] timer in
+            
             landlordsManager.start { apartments in
-                DispatchQueue.main.async { [unowned self] in
-                    apartments.forEach { apartment in
-                        consoleTextView.text += ConsolePrinter.shared.foundNew(apartment)
-                    }
-//                    modalView.buttonsContainerView.showButtons(for: apartments)
-                    if isSecondRunPlus {
-                        if !apartments.isEmpty {
-//                            modalView.buttonsContainerView.removeAllSubviews()
-                            soundManager.playAlert()
-                            makeFeedback()
-                        }
-//                        modalView.buttonsContainerView.showButtons(for: apartments)
-                    }
-                    
-                    if apartments.isEmpty {
-                        consoleTextView.text += ConsolePrinter.shared.notFound()
-                    }
-                    isSecondRunPlus = true
+                if !self.isSecondRunPlus {
+                    self.currentApartments = apartments
                 }
+                
             }
+            
+            
+            
+            
+            
+            
+            
+//            landlordsManager.start { apartments in
+//                DispatchQueue.main.async { [unowned self] in
+//                    apartments.forEach { apartment in
+//                        consoleTextView.text += ConsolePrinter.shared.foundNew(apartment)
+//                        print("found new: \(apartment.street)")
+//                    }
+////                    modalView.buttonsContainerView.showButtons(for: apartments)
+//                    if isSecondRunPlus {
+//                        if !apartments.isEmpty {
+////                            modalView.buttonsContainerView.removeAllSubviews()
+//                            soundManager.playAlert()
+//                            makeFeedback()
+//                        }
+////                        modalView.buttonsContainerView.showButtons(for: apartments)
+//                    }
+//
+//                    if apartments.isEmpty {
+//                        consoleTextView.text += ConsolePrinter.shared.notFound()
+//                    }
+//                    isSecondRunPlus = true
+//                }
+//            }
         }.fire()
     }
     

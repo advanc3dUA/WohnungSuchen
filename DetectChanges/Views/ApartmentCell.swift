@@ -13,7 +13,7 @@ class ApartmentCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var detailsLabel: UILabel!
-    @IBOutlet weak var linkButton: ImmoButton!
+    @IBOutlet var linkButton: ImmoButton!
     @IBOutlet weak var mapButton: MapButton!
     
     class var identifier: String {
