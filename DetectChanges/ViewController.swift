@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    var timer: Timer?
     var modalVC: ModalVC?
     var requiredApartment: Apartment
     var currentApartments: [Apartment] {
@@ -41,28 +42,36 @@ class ViewController: UIViewController {
         tableView.register(ApartmentCell.nib, forCellReuseIdentifier: ApartmentCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
+        
+        startEngine()
     }
   
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         presentModalVC()
-        
-        Timer.scheduledTimer(withTimeInterval: 30, repeats: true) {[unowned self] timer in
-            statusLabel.text = "Last update: \(postTime())"
-            landlordsManager.start { [weak self] apartments in
-                guard let self = self else { return }
-                if !self.isSecondRunPlus {
-                    self.currentApartments = apartments
-                    self.isSecondRunPlus = true
-                } else {
-                    if !apartments.isEmpty {
-                        self.currentApartments.insert(contentsOf: apartments, at: 0)
-                        self.soundManager.playAlert()
-                        self.makeFeedback()
+        startEngine()
+    }
+    
+    private func startEngine() {
+        if timer == nil {
+            timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) {[unowned self] timer in
+                statusLabel.text = "Last update: \(postTime())"
+                landlordsManager.start { [weak self] apartments in
+                    guard let self = self else { return }
+                    if !self.isSecondRunPlus {
+                        self.currentApartments = apartments
+                        self.isSecondRunPlus = true
+                    } else {
+                        if !apartments.isEmpty {
+                            self.currentApartments.insert(contentsOf: apartments, at: 0)
+                            self.soundManager.playAlert()
+                            self.makeFeedback()
+                        }
                     }
                 }
             }
-        }.fire()
+        }
+        timer?.fire()
     }
     
     private func presentModalVC() {
