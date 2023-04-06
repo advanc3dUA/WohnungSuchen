@@ -43,7 +43,6 @@
 		BF9DC6AC29BCAF630027FADC /* Apartment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9DC6AB29BCAF630027FADC /* Apartment.swift */; };
 		BFA1C3D329C339540023396C /* UIView+removeAllSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA1C3D229C339540023396C /* UIView+removeAllSubviews.swift */; };
 		BFA3DEF129D82FD5009B23D8 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA3DEF029D82FD5009B23D8 /* ModalView.swift */; };
-		BFA3DEF329D834F4009B23D8 /* ButtonsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA3DEF229D834F4009B23D8 /* ButtonsContainerView.swift */; };
 		BFA68DD429DAEAB20023B268 /* ApartmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA68DD229DAEAB20023B268 /* ApartmentCell.swift */; };
 		BFA68DD529DAEAB20023B268 /* ApartmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFA68DD329DAEAB20023B268 /* ApartmentCell.xib */; };
 		BFA71BD229CD935A00F8781E /* ModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA71BD129CD935A00F8781E /* ModalVC.swift */; };
@@ -95,7 +94,6 @@
 		BF9DC6AB29BCAF630027FADC /* Apartment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apartment.swift; sourceTree = "<group>"; };
 		BFA1C3D229C339540023396C /* UIView+removeAllSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+removeAllSubviews.swift"; sourceTree = "<group>"; };
 		BFA3DEF029D82FD5009B23D8 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
-		BFA3DEF229D834F4009B23D8 /* ButtonsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsContainerView.swift; sourceTree = "<group>"; };
 		BFA68DD229DAEAB20023B268 /* ApartmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentCell.swift; sourceTree = "<group>"; };
 		BFA68DD329DAEAB20023B268 /* ApartmentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApartmentCell.xib; sourceTree = "<group>"; };
 		BFA71BD129CD935A00F8781E /* ModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalVC.swift; sourceTree = "<group>"; };
@@ -134,7 +132,6 @@
 			children = (
 				BF707C0329BB427700225796 /* Main.storyboard */,
 				BFA3DEF029D82FD5009B23D8 /* ModalView.swift */,
-				BFA3DEF229D834F4009B23D8 /* ButtonsContainerView.swift */,
 				BF8EEDB729C4701100F74971 /* MapButton.swift */,
 				BFA9F37129C1F61E00ECB8F4 /* ImmoButton.swift */,
 				BF94F64929D75D0B00993295 /* StartStopButton.swift */,
@@ -426,7 +423,6 @@
 				BF9DC6AC29BCAF630027FADC /* Apartment.swift in Sources */,
 				BFBA6CF829D42F08004D0AFD /* ImmomioLinkFetcher.swift in Sources */,
 				BFA68DD429DAEAB20023B268 /* ApartmentCell.swift in Sources */,
-				BFA3DEF329D834F4009B23D8 /* ButtonsContainerView.swift in Sources */,
 				BF8EEDB829C4701100F74971 /* MapButton.swift in Sources */,
 				BFA3DEF129D82FD5009B23D8 /* ModalView.swift in Sources */,
 				BFA1C3D329C339540023396C /* UIView+removeAllSubviews.swift in Sources */,

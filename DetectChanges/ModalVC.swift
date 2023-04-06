@@ -41,14 +41,7 @@ class ModalVC: UIViewController {
         backgroundAudioPlayer = BackgroundAudioPlayer(for: self)
         backgroundAudioPlayer?.start()
     }
-    
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//        guard let buttonsContainerView = modalView.buttonsContainerView else { return }
-//        Constants.apartButtonsWidth = (buttonsContainerView.frame.width - 2 * Constants.spacing) / CGFloat(Constants.maxButtonsPerRow)
-//        Constants.immoButtonWidth = (Constants.apartButtonsWidth - Constants.apartSpacing) * Constants.immoButtonPercentage
-//    }
-      
+        
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
