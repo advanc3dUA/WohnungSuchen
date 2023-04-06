@@ -34,16 +34,14 @@ class Saga: Landlord {
                        let href = try? link.attr("href"),
                        let title = try? link.select("h3").first()?.text(),
                        let roomInfo = try? link.select("span.ft-semi:contains(Zimmer:)").first()?.parent()?.text(),
-                       let rooms = extractInteger(from: roomInfo, forKey: "Zimmer: "),
-                       let area = extractInteger(from: roomInfo, forKey: "Fläche: "),
-                       let rent = extractInteger(from: roomInfo, forKey: "Gesamtmiete: "),
+                       let details = extractApartmentDetails(from: roomInfo),
                        let street = try? link.select("span.ft-semi:contains(Straße:)").first()?.parent()?.text() {
                         var newApartment = Apartment(title: title,
                                                        link: "https://www.saga.hamburg" + href,
                                                        street: dropPrefix(for: street),
-                                                       rooms: rooms,
-                                                       area: area,
-                                                       rent: rent,
+                                                     rooms: details.rooms,
+                                                     area: details.area,
+                                                     rent: details.rent,
                                                     company: .saga
                         )
                         dispatchGroup.enter()
@@ -61,11 +59,27 @@ class Saga: Landlord {
         }
     }
     
-    private func extractInteger(from string: String, forKey key: String) -> Int? {
-        let keyIndex = string.range(of: key)?.upperBound ?? string.startIndex
-        let substring = string[keyIndex..<string.endIndex]
-        let integerSubstring = substring.split(whereSeparator: { !"-0123456789".contains($0) }).first ?? ""
-        return Int(integerSubstring)
+    private func extractApartmentDetails(from string: String) -> (rooms: Int, area: Int, rent: Int)? {
+        let components = string.components(separatedBy: .whitespacesAndNewlines)
+        
+        guard let roomsIndex = components.firstIndex(of: "Zimmer:"), roomsIndex + 2 < components.count else { return nil }
+        let roomsString = components[roomsIndex + 1]
+        var rooms = Int(roomsString) ?? 0
+        if components[roomsIndex + 2].contains("1/2") {
+            rooms += 1
+        } else if components[roomsIndex + 2].contains("2/2") {
+            rooms += 2
+        }
+        
+        guard let areaIndex = components.firstIndex(of: "Fläche:"), areaIndex + 1 < components.count else { return nil }
+        let area = Int(components[areaIndex + 2]) ?? 0
+        
+        guard let rentIndex = components.firstIndex(of: "Gesamtmiete:"), rentIndex + 1 < components.count else { return nil }
+        let rentString = components[rentIndex + 1].replacingOccurrences(of: ".", with: "").replacingOccurrences(of: ",", with: ".")
+        let rentFloat = Float(rentString) ?? 0
+        let rent = Int(rentFloat)
+        
+        return (rooms: rooms, area: area, rent: rent)
     }
     
     private func dropPrefix(for street: String) -> String {

@@ -28,11 +28,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.addressLabel.text = "\(apartment.street)"
         cell.detailsLabel.text = "Rooms: \(apartment.rooms), m2: \(apartment.area), €: \(apartment.rent)"
         cell.timeLabel.text = apartment.time
-        if apartment.company == .saga {
-            cell.logoImageView.image = UIImage(named: "SagaLogo.jpg")
-        } else {
-            cell.logoImageView.image = UIImage(named: "VonoviaLogo.jpg")
-        }
+        cell.logoImageView.image = apartment.company.logoImage
         
         return cell
     }

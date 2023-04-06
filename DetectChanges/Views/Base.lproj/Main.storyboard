@@ -17,14 +17,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baK-Zu-6OY">
-                                <rect key="frame" x="0.0" y="59" width="393" height="35"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="0.0"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="I40-be-S9K">
-                                <rect key="frame" x="0.0" y="102" width="393" height="596.33333333333337"/>
+                                <rect key="frame" x="0.0" y="67" width="393" height="639"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -32,11 +32,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="baK-Zu-6OY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Ibi-io-ipx"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="I40-be-S9K" secondAttribute="bottom" constant="119.66666666666652" id="IwD-jb-EPB"/>
                             <constraint firstItem="I40-be-S9K" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NNe-Fz-93G"/>
                             <constraint firstItem="baK-Zu-6OY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="aFj-pB-XUT"/>
                             <constraint firstItem="I40-be-S9K" firstAttribute="top" secondItem="baK-Zu-6OY" secondAttribute="bottom" constant="8" symbolic="YES" id="bx5-Ne-Hiq"/>
-                            <constraint firstItem="I40-be-S9K" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="dx8-Ft-qh3"/>
+                            <constraint firstItem="I40-be-S9K" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.75" id="dx8-Ft-qh3"/>
                             <constraint firstItem="I40-be-S9K" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="s27-MR-6Dp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="baK-Zu-6OY" secondAttribute="trailing" id="xSL-fn-8GT"/>
                         </constraints>

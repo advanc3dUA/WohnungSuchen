@@ -16,9 +16,7 @@ class ViewController: UIViewController {
     var modalVC: ModalVC?
     var requiredApartment: Apartment
     var currentApartments: [Apartment] {
-        didSet {
-            tableView.reloadData()
-        }
+        didSet { tableView.reloadData() }
     }
     var landlordsManager: LandlordsManager
     var soundManager: SoundManager
@@ -52,6 +50,8 @@ class ViewController: UIViewController {
         startEngine()
     }
     
+    //MARK: - Main logic
+    
     private func startEngine() {
         if timer == nil {
             timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) {[unowned self] timer in
@@ -77,25 +77,17 @@ class ViewController: UIViewController {
     private func presentModalVC() {
         modalVC = ModalVC(mediumDetentSize: calcModalVCDetentSizeMedium())
         modalVC?.presentationController?.delegate = self
-        modalVC?.delegate = self
+//        modalVC?.delegate = self
         present(modalVC!, animated: true)
     }
     
-    private func scrollToBottom(_ textView: UITextView) {
-        guard !textView.text.isEmpty else { return }
-        let range = NSMakeRange(textView.text.count - 1, 1)
-        textView.scrollRangeToVisible(range)
-        let bottomOffset = CGPoint(x: 0, y: textView.contentSize.height - textView.frame.height)
-        if bottomOffset.y > 0 {
-            textView.setContentOffset(bottomOffset, animated: true)
-        }
-    }
+    //MARK: - Support functions
     
     private func makeFeedback() {
         let generator = UIImpactFeedbackGenerator(style: .heavy)
         generator.prepare()
         generator.impactOccurred()
-        let timer = Timer.scheduledTimer(withTimeInterval: 0.03, repeats: true) { timer in
+        let timer = Timer.scheduledTimer(withTimeInterval: 0.015, repeats: true) { timer in
             generator.prepare()
             generator.impactOccurred()
         }
@@ -140,9 +132,9 @@ extension ViewController: UISheetPresentationControllerDelegate {
 }
 
 //MARK: - ModalVCDelegate
-extension ViewController: ModalVCDelegate {
-    func updateConsoleTextView(_ text: String) {
+//extension ViewController: ModalVCDelegate {
+//    func updateConsoleTextView(_ text: String) {
 //        consoleTextView.text += text
 //        scrollToBottom(consoleTextView)
-    }
-}
+//    }
+//}
