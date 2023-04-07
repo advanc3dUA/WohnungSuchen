@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +20,7 @@
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="JbM-5X-eGx">
                         <rect key="frame" x="5" y="5" width="342" height="65"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SRp-Nh-JQv">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SRp-Nh-JQv">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="Ost-L2-zlE"/>
@@ -31,19 +32,19 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pRV-IB-t7s">
                                         <rect key="frame" x="0.0" y="0.0" width="202" height="21.666666666666668"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="BrandDark"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4b-Ta-5oS">
                                         <rect key="frame" x="0.0" y="21.666666666666664" width="202" height="21.666666666666664"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="BrandDark"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rooms, m2, €" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCX-9C-BgX">
                                         <rect key="frame" x="0.0" y="43.333333333333336" width="202" height="21.666666666666664"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="BrandDark"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -73,6 +74,7 @@
                                 </constraints>
                             </stackView>
                         </subviews>
+                        <color key="backgroundColor" name="BrandGray"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="6cD-FD-btq" secondAttribute="bottom" id="0tc-kv-TVX"/>
                             <constraint firstItem="SRp-Nh-JQv" firstAttribute="top" secondItem="JbM-5X-eGx" secondAttribute="top" id="3cc-xQ-72U"/>
@@ -83,6 +85,7 @@
                         </constraints>
                     </stackView>
                 </subviews>
+                <color key="backgroundColor" name="BrandGray"/>
                 <constraints>
                     <constraint firstItem="JbM-5X-eGx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="6wD-rn-1n9"/>
                     <constraint firstAttribute="bottom" secondItem="JbM-5X-eGx" secondAttribute="bottom" constant="5" id="D3Q-QR-hnx"/>
@@ -110,4 +113,12 @@
             <size key="intrinsicContentSize" width="30" height="30"/>
         </designable>
     </designables>
+    <resources>
+        <namedColor name="BrandDark">
+            <color red="0.3411764705882353" green="0.35294117647058826" blue="0.42745098039215684" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="BrandGray">
+            <color red="0.8784313725490196" green="0.8901960784313725" blue="0.82352941176470584" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

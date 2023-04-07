@@ -21,11 +21,10 @@ class ImmoButton: UIButton {
     }
     
     private func setup() {
-        backgroundColor = .systemGreen
-        setTitleColor(.black, for: .normal)
+        backgroundColor = UIColor(named: "BrandBlue")
         layer.cornerRadius = 5
         layer.borderWidth = 1
-        layer.borderColor = UIColor.black.cgColor
+        layer.borderColor = UIColor(named: "BrandDark")?.cgColor
         setTitle("🔗", for: .normal)
     }
 }

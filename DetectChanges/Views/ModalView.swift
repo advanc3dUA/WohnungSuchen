@@ -14,8 +14,8 @@ class ModalView: UIView {
     
     init() {
         super.init(frame: .zero)
-        backgroundColor = .darkGray
-        setupStartStopButton()
+        backgroundColor = UIColor(named: "BrandOlive")
+//        setupStartStopButton()
     }
     
     required init?(coder: NSCoder) {
