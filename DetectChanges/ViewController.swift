@@ -55,7 +55,6 @@ class ViewController: UIViewController {
     private func startEngine() {
         if timer == nil {
             timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) {[unowned self] timer in
-                statusLabel.text = "Last update: \(postTime())"
                 landlordsManager.start { [weak self] apartments in
                     guard let self = self else { return }
                     if !self.isSecondRunPlus {
@@ -68,6 +67,7 @@ class ViewController: UIViewController {
                             self.makeFeedback()
                         }
                     }
+                    self.statusLabel.text = "Last update: \(TimeManager.shared.postTime())"
                 }
             }
         }
@@ -94,13 +94,6 @@ class ViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             timer.invalidate()
         }
-    }
-    
-    private func postTime() -> String {
-        let currentTime = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm:ss"
-        return dateFormatter.string(from: currentTime)
     }
 }
 

@@ -27,6 +27,7 @@ class Saga: Landlord {
                 fatalError("Can't get htmlString for SAGA")
             }
             do {
+                let time = TimeManager.shared.postTime()
                 let doc = try SwiftSoup.parse(htmlString)
                 let apartments = try doc.select("div.teaser3")
                 for apartment in apartments {
@@ -36,13 +37,14 @@ class Saga: Landlord {
                        let roomInfo = try? link.select("span.ft-semi:contains(Zimmer:)").first()?.parent()?.text(),
                        let details = extractApartmentDetails(from: roomInfo),
                        let street = try? link.select("span.ft-semi:contains(Straße:)").first()?.parent()?.text() {
-                        var newApartment = Apartment(title: title,
-                                                       link: "https://www.saga.hamburg" + href,
-                                                       street: dropPrefix(for: street),
+                        var newApartment = Apartment(time: time,
+                                                     title: title,
+                                                     link: "https://www.saga.hamburg" + href,
+                                                     street: dropPrefix(for: street),
                                                      rooms: details.rooms,
                                                      area: details.area,
                                                      rent: details.rent,
-                                                    company: .saga
+                                                     company: .saga
                         )
                         dispatchGroup.enter()
                         immomioLinkFetcher.fetchLink(for: newApartment.link) { immomioLink in

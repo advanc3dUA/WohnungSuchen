@@ -39,7 +39,7 @@ class ConsolePrinter {
 //    }
     
     func foundNew(_ apartment: Apartment) -> String {
-        let result =    postTime() + startSign + successSign + "Apartment #\(apartment.index):" + "\n" +
+        let result =    postTime() + startSign + successSign +
                         apartmentNameSign + "\(apartment.title)\n" +
                         descriptionSign + "Rooms: \(apartment.rooms), " + "m2: \(apartment.area), " + "€: \(apartment.rent)" + "\n" +
                         streetSign + "Street: \(apartment.street)" + "\n" +

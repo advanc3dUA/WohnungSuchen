@@ -34,14 +34,8 @@ class LandlordsManager {
         dispatchGroup.notify(queue: .main) { [unowned self] in
             let newApartments = comparePreviousApartments(with: currentApartments)
             previousApartments = currentApartments
-            
-            let indexedApartments = newApartments.enumerated().map { (index, apartment) in
-                var indexedApartment = apartment
-                indexedApartment.index = index + 1
-                indexedApartment.time = postTime()
-                return indexedApartment
-            }
-            completion(indexedApartments)
+
+            completion(newApartments)
         }
     }
     
@@ -49,12 +43,5 @@ class LandlordsManager {
         return currentApartments.filter { apartment in
             !previousApartments.contains(where: { $0.link == apartment.link })
         }
-    }
-    
-    private func postTime() -> String {
-        let currentTime = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm:ss"
-        return dateFormatter.string(from: currentTime)
     }
 }

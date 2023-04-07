@@ -24,15 +24,17 @@ class Vonovia: Landlord {
                 let result = try decoder.decode(VonoviaJson.self, from: data)
                 
                 var currentApartments = [Apartment]()
+                guard let self = self else { return }
+                let time = TimeManager.shared.postTime()
                 for jsonApartment in result.apartments {
-                    guard let self = self else { return }
                     let link = self.vonoviaURL + jsonApartment.slug.lowercased() + "-" + jsonApartment.wrk_id
                     let area = self.getRoundedInt(from: jsonApartment.groesse)
                     let price = self.getRoundedInt(from: jsonApartment.preis)
                     let rooms = self.getRoundedInt(from: jsonApartment.anzahl_zimmer)
                     
                     
-                    let apartment = Apartment(title: jsonApartment.titel,
+                    let apartment = Apartment(time: time,
+                                              title: jsonApartment.titel,
                                               street: jsonApartment.strasse,
                                               rooms: rooms,
                                               area: area,
