@@ -15,9 +15,7 @@ class ViewController: UIViewController {
     var timer: Timer?
     var modalVC: ModalVC?
     var requiredApartment: Apartment
-    var currentApartments: [Apartment] {
-        didSet { tableView.reloadData() }
-    }
+    var currentApartments: [Apartment]
     var landlordsManager: LandlordsManager
     var soundManager: SoundManager
     var isSecondRunPlus: Bool
@@ -59,10 +57,12 @@ class ViewController: UIViewController {
                     guard let self = self else { return }
                     if !self.isSecondRunPlus {
                         self.currentApartments = apartments
+                        self.updateTableView(with: apartments.count)
                         self.isSecondRunPlus = true
                     } else {
                         if !apartments.isEmpty {
                             self.currentApartments.insert(contentsOf: apartments, at: 0)
+                            self.updateTableView(with: apartments.count)
                             self.soundManager.playAlert()
                             self.makeFeedback()
                         }
@@ -72,6 +72,14 @@ class ViewController: UIViewController {
             }
         }
         timer?.fire()
+    }
+    
+    private func updateTableView(with apartmentsNumber: Int) {
+        let indexPaths = (0..<apartmentsNumber).map { index in
+            IndexPath(row: index, section: 0)
+        }
+        self.tableView.insertRows(at: indexPaths, with: .middle)
+
     }
     
     private func presentModalVC() {
