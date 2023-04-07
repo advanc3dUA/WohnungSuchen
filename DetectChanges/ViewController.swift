@@ -75,7 +75,7 @@ class ViewController: UIViewController {
     }
     
     private func presentModalVC() {
-        modalVC = ModalVC(mediumDetentSize: calcModalVCDetentSizeMedium())
+        modalVC = ModalVC(smallDetentSize: calcModalVCDetentSizeSmall())
         modalVC?.presentationController?.delegate = self
 //        modalVC?.delegate = self
         present(modalVC!, animated: true)
@@ -108,7 +108,7 @@ extension ViewController: DetectDetent {
         modalVC?.currentDetent = detent
     }
     
-    private func calcModalVCDetentSizeMedium() -> CGFloat {
+    private func calcModalVCDetentSizeSmall() -> CGFloat {
         self.view.frame.height * 0.1
     }
     

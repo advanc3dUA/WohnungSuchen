@@ -14,17 +14,17 @@ class ModalVC: UIViewController {
     var backgroundAudioPlayer: BackgroundAudioPlayer?
     var bgAudioPlayerIsInterrupted: Bool
     
-    init(mediumDetentSize: CGFloat) {
+    init(smallDetentSize: CGFloat) {
         currentDetent = .medium
         bgAudioPlayerIsInterrupted = false
         super.init(nibName: nil, bundle: nil)
         
         // Custom medium detent
-        let mediumID = UISheetPresentationController.Detent.Identifier("medium")
-        let mediumDetent = UISheetPresentationController.Detent.custom(identifier: mediumID) { context in
-            return mediumDetentSize
+        let smallID = UISheetPresentationController.Detent.Identifier("small")
+        let smallDetent = UISheetPresentationController.Detent.custom(identifier: smallID) { context in
+            return smallDetentSize
         }
-        setupSheetPresentationController(with: mediumDetent)
+        setupSheetPresentationController(with: smallDetent)
     }
     
     required init?(coder: NSCoder) {
