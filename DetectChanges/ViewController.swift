@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     var landlordsManager: LandlordsManager
     var soundManager: SoundManager
     var isSecondRunPlus: Bool
+    var loadingView: LoadingView?
     
     required init?(coder aDecoder: NSCoder) {
         self.requiredApartment = Apartment(rooms: 2, area: 40)
@@ -53,6 +54,8 @@ class ViewController: UIViewController {
     
     private func startEngine() {
         if timer == nil {
+            loadingView = LoadingView(frame: tableView.bounds)
+            tableView.addSubview(loadingView!)
             timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) {[unowned self] timer in
                 landlordsManager.start { [weak self] apartments in
                     guard let self = self else { return }
@@ -67,7 +70,9 @@ class ViewController: UIViewController {
                             self.soundManager.playAlert()
                             self.makeFeedback()
                         }
+                        self.statusLabel.flash(numberOfFlashes: 1)
                     }
+                    self.loadingView?.removeFromSuperview()
                     self.statusLabel.text = "Last update: \(TimeManager.shared.postTime())"
                 }
             }
