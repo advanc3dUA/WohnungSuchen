@@ -27,7 +27,7 @@ class Saga: Landlord {
                 fatalError("Can't get htmlString for SAGA")
             }
             do {
-                let time = TimeManager.shared.postTime()
+                let time = TimeManager.shared.getCurrentTime()
                 let doc = try SwiftSoup.parse(htmlString)
                 let apartments = try doc.select("div.teaser3")
                 for apartment in apartments {

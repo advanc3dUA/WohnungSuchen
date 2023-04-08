@@ -36,6 +36,7 @@
 		BF8EB0F329E166D10070C64B /* Colour.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EB0F229E166D10070C64B /* Colour.swift */; };
 		BF8EB0F529E16B880070C64B /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EB0F429E16B880070C64B /* LoadingView.swift */; };
 		BF8EB0F729E17A360070C64B /* UIView+Flashing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EB0F629E17A360070C64B /* UIView+Flashing.swift */; };
+		BF8EB0F929E19B050070C64B /* ClearButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EB0F829E19B050070C64B /* ClearButton.swift */; };
 		BF8EEDB829C4701100F74971 /* MapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EEDB729C4701100F74971 /* MapButton.swift */; };
 		BF8EEDBA29C4771B00F74971 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EEDB929C4771B00F74971 /* Constants.swift */; };
 		BF9205A029E029830017CEEA /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF92059F29E029830017CEEA /* TimeManager.swift */; };
@@ -91,6 +92,7 @@
 		BF8EB0F229E166D10070C64B /* Colour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colour.swift; sourceTree = "<group>"; };
 		BF8EB0F429E16B880070C64B /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		BF8EB0F629E17A360070C64B /* UIView+Flashing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Flashing.swift"; sourceTree = "<group>"; };
+		BF8EB0F829E19B050070C64B /* ClearButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearButton.swift; sourceTree = "<group>"; };
 		BF8EEDB729C4701100F74971 /* MapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButton.swift; sourceTree = "<group>"; };
 		BF8EEDB929C4771B00F74971 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BF92059F29E029830017CEEA /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				BF8EEDB729C4701100F74971 /* MapButton.swift */,
 				BFA9F37129C1F61E00ECB8F4 /* ImmoButton.swift */,
 				BF94F64929D75D0B00993295 /* StartStopButton.swift */,
+				BF8EB0F829E19B050070C64B /* ClearButton.swift */,
 				BFA1C3D229C339540023396C /* UIView+removeAllSubviews.swift */,
 				BFA68DD229DAEAB20023B268 /* ApartmentCell.swift */,
 				BFA68DD329DAEAB20023B268 /* ApartmentCell.xib */,
@@ -448,6 +451,7 @@
 				BF0F3F5B29BDDF89002909BB /* ConsolePrinter.swift in Sources */,
 				BF94F64A29D75D0B00993295 /* StartStopButton.swift in Sources */,
 				BF8EB0F729E17A360070C64B /* UIView+Flashing.swift in Sources */,
+				BF8EB0F929E19B050070C64B /* ClearButton.swift in Sources */,
 				BFA71BDC29CDA7D300F8781E /* ModalVCDelegate.swift in Sources */,
 				BF4704C129D2D53B00EEABEE /* Landlord.swift in Sources */,
 				BFA71BDA29CDA57600F8781E /* ModalVC+AVAudioPlayerDelegate.swift in Sources */,

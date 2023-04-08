@@ -12,7 +12,7 @@ struct TimeManager {
     
     private init() {}
     
-    func postTime() -> String {
+    func getCurrentTime() -> String {
         let currentTime = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm:ss"

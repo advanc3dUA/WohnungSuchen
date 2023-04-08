@@ -10,4 +10,5 @@ import Foundation
 protocol ModalVCDelegate {
     func startEngine()
     func stopEngine()
+    func clearTableView()
 }

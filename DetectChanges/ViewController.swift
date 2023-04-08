@@ -31,7 +31,7 @@ class ViewController: UIViewController, ModalVCDelegate {
     }
     
     //MARK: - VC Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Colour.brandDark.setColor
@@ -40,10 +40,8 @@ class ViewController: UIViewController, ModalVCDelegate {
         tableView.register(ApartmentCell.nib, forCellReuseIdentifier: ApartmentCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
-        
-        startEngine()
     }
-  
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         presentModalVC()
@@ -53,28 +51,31 @@ class ViewController: UIViewController, ModalVCDelegate {
     //MARK: - Main logic
     
     func startEngine() {
-        if timer == nil {
-            loadingView = LoadingView(frame: tableView.bounds)
-            tableView.addSubview(loadingView!)
-            timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) {[unowned self] timer in
-                landlordsManager.start { [weak self] apartments in
-                    guard let self = self else { return }
-                    if !self.isSecondRunPlus {
-                        self.currentApartments = apartments
+        guard timer == nil else { return }
+        loadingView = LoadingView(frame: tableView.bounds)
+        tableView.addSubview(loadingView!)
+        guard let modalVCView = modalVC?.view as? ModalView else { fatalError("Unable to get modalVCView in startEngine") }
+        modalVCView.containerView?.isHidden = true
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) {[unowned self] timer in
+            landlordsManager.start { [weak self] apartments in
+                guard let self = self else { return }
+                if !self.isSecondRunPlus {
+                    self.currentApartments = apartments
+                    self.updateTableView(with: apartments.count)
+                    self.isSecondRunPlus = true
+                } else {
+                    if !apartments.isEmpty {
+                        self.currentApartments.insert(contentsOf: apartments, at: 0)
                         self.updateTableView(with: apartments.count)
-                        self.isSecondRunPlus = true
-                    } else {
-                        if !apartments.isEmpty {
-                            self.currentApartments.insert(contentsOf: apartments, at: 0)
-                            self.updateTableView(with: apartments.count)
-                            self.soundManager.playAlert()
-                            self.makeFeedback()
-                        }
-                        self.statusLabel.flash(numberOfFlashes: 1)
+                        self.soundManager.playAlert()
+                        self.makeFeedback()
                     }
-                    self.loadingView?.removeFromSuperview()
-                    self.statusLabel.text = "Last update: \(TimeManager.shared.postTime())"
+                    self.statusLabel.flash(numberOfFlashes: 1)
                 }
+                self.loadingView?.removeFromSuperview()
+                self.statusLabel.text = "Last update: \(TimeManager.shared.getCurrentTime())"
+                modalVCView.containerView?.isHidden = false
             }
         }
         timer?.fire()
@@ -83,7 +84,20 @@ class ViewController: UIViewController, ModalVCDelegate {
     func stopEngine() {
         timer?.invalidate()
         timer = nil
+    }
+    
+    func clearTableView() {
+        let numberOfRows = tableView.numberOfRows(inSection: 0)
+        guard numberOfRows > 0 else {
+            return
+        }
         currentApartments.removeAll()
+        
+        var indexPaths = [IndexPath]()
+        for row in 0..<numberOfRows {
+            indexPaths.append(IndexPath(row: row, section: 0))
+        }
+        tableView.deleteRows(at: indexPaths, with: .automatic)
     }
     
     private func updateTableView(with apartmentsNumber: Int) {
@@ -91,7 +105,7 @@ class ViewController: UIViewController, ModalVCDelegate {
             IndexPath(row: index, section: 0)
         }
         self.tableView.insertRows(at: indexPaths, with: .middle)
-
+        
     }
     
     private func presentModalVC() {
@@ -143,12 +157,3 @@ extension ViewController: UISheetPresentationControllerDelegate {
         }
     }
 }
-
-//MARK: - ModalVCDelegate
-//extension ViewController: ModalVCDelegate {
-//    func updateConsoleTextView(_ text: String) {
-//        consoleTextView.text += text
-//        scrollToBottom(consoleTextView)
-//    }
-
-//}

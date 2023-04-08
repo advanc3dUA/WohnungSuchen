@@ -26,31 +26,34 @@ class StartStopButton: UIButton {
     }
     
     private func setup() {
-        frame = CGRect(x: 0, y: 0, width: 70, height: 70)
-        layer.cornerRadius = 35
+        frame = CGRect(x: 0, y: 0, width: 35, height: 35)
+        layer.cornerRadius = 10
         layer.borderWidth = 1
     }
     
     func switchOn() {
-        layer.borderColor = Colour.brandDark.setColor?.cgColor
-        backgroundColor = Colour.brandBlue.setColor
+        layer.borderColor = Colour.brandBlue.setColor?.cgColor
+        backgroundColor = Colour.brandDark.setColor
         isOn = true
-        switchImage(to: .play)
+        switchImage(to: .play, color: Colour.brandBlue.setColor)
     }
     
     func switchOff() {
-        layer.borderColor = Colour.brandBlue.setColor?.cgColor
-        backgroundColor = Colour.brandDark.setColor
+        layer.borderColor = Colour.brandDark.setColor?.cgColor
+        backgroundColor = Colour.brandBlue.setColor
         isOn = false
-        switchImage(to: .stop)
+        switchImage(to: .stop, color: Colour.brandDark.setColor)
     }
     
-    private func switchImage(to imageState: ImageState) {
-        let imageSize = CGSize(width: 40, height: 40)
+    private func switchImage(to imageState: ImageState, color: UIColor?) {
+        guard let color = color else { return }
+        let imageSize = CGSize(width: 40, height: 35)
         let imageRenderer = UIGraphicsImageRenderer(size: imageSize)
         let image = imageRenderer.image { context in
             let imageBounds = CGRect(origin: .zero, size: imageSize)
-            UIImage(systemName: imageState.rawValue)?.draw(in: imageBounds)
+            UIImage(systemName: imageState.rawValue)?
+                .withTintColor(color, renderingMode: .alwaysOriginal)
+                .draw(in: imageBounds)
         }
         setImage(image, for: .normal)
     }
