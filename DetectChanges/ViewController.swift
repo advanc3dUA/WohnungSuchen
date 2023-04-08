@@ -33,8 +33,9 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "BrandDark")
+        view.backgroundColor = Colour.brandDark.setColor
         
+        tableView.layer.cornerRadius = 10
         tableView.register(ApartmentCell.nib, forCellReuseIdentifier: ApartmentCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self

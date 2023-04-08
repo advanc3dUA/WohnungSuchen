@@ -14,7 +14,7 @@ class ModalView: UIView {
     
     init() {
         super.init(frame: .zero)
-        backgroundColor = UIColor(named: "BrandOlive")
+        backgroundColor = Colour.brandOlive.setColor
 //        setupStartStopButton()
     }
     

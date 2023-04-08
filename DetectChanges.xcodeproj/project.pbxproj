@@ -33,6 +33,7 @@
 		BF8C912B29DDB877008AD739 /* VonoviaLogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BF8C912929DDB877008AD739 /* VonoviaLogo.jpg */; };
 		BF8C912C29DDB877008AD739 /* SagaLogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BF8C912A29DDB877008AD739 /* SagaLogo.jpg */; };
 		BF8C912E29DDB8C8008AD739 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C912D29DDB8C8008AD739 /* Company.swift */; };
+		BF8EB0F329E166D10070C64B /* Colour.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EB0F229E166D10070C64B /* Colour.swift */; };
 		BF8EEDB829C4701100F74971 /* MapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EEDB729C4701100F74971 /* MapButton.swift */; };
 		BF8EEDBA29C4771B00F74971 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EEDB929C4771B00F74971 /* Constants.swift */; };
 		BF9205A029E029830017CEEA /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF92059F29E029830017CEEA /* TimeManager.swift */; };
@@ -85,6 +86,7 @@
 		BF8C912929DDB877008AD739 /* VonoviaLogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = VonoviaLogo.jpg; sourceTree = "<group>"; };
 		BF8C912A29DDB877008AD739 /* SagaLogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SagaLogo.jpg; sourceTree = "<group>"; };
 		BF8C912D29DDB8C8008AD739 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
+		BF8EB0F229E166D10070C64B /* Colour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colour.swift; sourceTree = "<group>"; };
 		BF8EEDB729C4701100F74971 /* MapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButton.swift; sourceTree = "<group>"; };
 		BF8EEDB929C4771B00F74971 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BF92059F29E029830017CEEA /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			children = (
 				BF9DC6AB29BCAF630027FADC /* Apartment.swift */,
 				BF8C912D29DDB8C8008AD739 /* Company.swift */,
+				BF8EB0F229E166D10070C64B /* Colour.swift */,
 				BF8EEDB929C4771B00F74971 /* Constants.swift */,
 				BF9C8CF629D9952500406480 /* VonoviaJson.swift */,
 			);
@@ -417,6 +420,7 @@
 				BFA71BD229CD935A00F8781E /* ModalVC.swift in Sources */,
 				BF8A62F829DD7B8500E2DCD4 /* VC+TableViewDelegate.swift in Sources */,
 				BF9C8CF729D9952500406480 /* VonoviaJson.swift in Sources */,
+				BF8EB0F329E166D10070C64B /* Colour.swift in Sources */,
 				BF8EEDBA29C4771B00F74971 /* Constants.swift in Sources */,
 				BF5C017E29C71DCF006C06D4 /* VC+AVAudioPlayerDelegate.swift in Sources */,
 				BF9205A029E029830017CEEA /* TimeManager.swift in Sources */,

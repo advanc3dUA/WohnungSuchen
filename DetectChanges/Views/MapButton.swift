@@ -21,10 +21,10 @@ class MapButton: UIButton {
     }
     
     private func setup() {
-        backgroundColor = UIColor(named: "BrandDark")
+        backgroundColor = Colour.brandDark.setColor
         layer.cornerRadius = 5
         layer.borderWidth = 1
-        layer.borderColor = UIColor(named: "BrandBlue")?.cgColor
+        layer.borderColor = Colour.brandBlue.setColor?.cgColor
         setTitle("🧭", for: .normal)
     }
 }

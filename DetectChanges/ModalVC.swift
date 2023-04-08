@@ -54,7 +54,7 @@ class ModalVC: UIViewController {
         sheetPresentationController?.prefersEdgeAttachedInCompactHeight = true
         sheetPresentationController?.widthFollowsPreferredContentSizeWhenEdgeAttached = true
         sheetPresentationController?.prefersGrabberVisible = false
-        sheetPresentationController?.preferredCornerRadius = 20
+        sheetPresentationController?.preferredCornerRadius = 10
         
         // Disables hiding TraineeVC
         isModalInPresentation = true
