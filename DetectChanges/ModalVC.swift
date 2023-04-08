@@ -32,7 +32,8 @@ class ModalVC: UIViewController {
     }
     
     override func loadView() {
-        modalView = ModalView()
+        guard let delegate = delegate else { return }
+        modalView = ModalView(delegate: delegate)
         view = modalView
     }
     

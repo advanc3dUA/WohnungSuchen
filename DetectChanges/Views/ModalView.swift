@@ -9,13 +9,14 @@ import UIKit
 
 class ModalView: UIView {
     
-//    var buttonsContainerView: ButtonsContainerView!
     var startStopButton: StartStopButton!
+    var delegate: ModalVCDelegate
     
-    init() {
+    init(delegate: ModalVCDelegate) {
+        self.delegate = delegate
         super.init(frame: .zero)
         backgroundColor = Colour.brandOlive.setColor
-//        setupStartStopButton()
+        setupStartStopButton()
     }
     
     required init?(coder: NSCoder) {
@@ -24,6 +25,7 @@ class ModalView: UIView {
     
     private func setupStartStopButton() {
         startStopButton = StartStopButton()
+        startStopButton.addTarget(self, action: #selector(startStopButtonTapped), for: .touchUpInside)
         startStopButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(startStopButton)
         NSLayoutConstraint.activate([
@@ -33,5 +35,16 @@ class ModalView: UIView {
             startStopButton.centerYAnchor.constraint(equalTo: bottomAnchor, constant: -50)
         ])
     }
+    
+    @objc func startStopButtonTapped() {
+        if startStopButton.isOn {
+            startStopButton.switchOff()
+            delegate.startEngine()
+        } else {
+            startStopButton.switchOn()
+            delegate.stopEngine()
+        }
+    }
+
 }
 

@@ -13,9 +13,8 @@ enum ImageState: String {
 }
 
 class StartStopButton: UIButton {
-    
     var isOn = false
-    
+   
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -30,28 +29,20 @@ class StartStopButton: UIButton {
         frame = CGRect(x: 0, y: 0, width: 70, height: 70)
         layer.cornerRadius = 35
         layer.borderWidth = 1
-        layer.borderColor = UIColor.black.cgColor
-        addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
     
     func switchOn() {
-        backgroundColor = .systemGreen
+        layer.borderColor = Colour.brandDark.setColor?.cgColor
+        backgroundColor = Colour.brandBlue.setColor
         isOn = true
         switchImage(to: .play)
     }
     
     func switchOff() {
-        backgroundColor = .systemRed
+        layer.borderColor = Colour.brandBlue.setColor?.cgColor
+        backgroundColor = Colour.brandDark.setColor
         isOn = false
         switchImage(to: .stop)
-    }
-    
-    @objc func buttonTapped() {
-        if isOn {
-            switchOff()
-        } else {
-            switchOn()
-        }
     }
     
     private func switchImage(to imageState: ImageState) {

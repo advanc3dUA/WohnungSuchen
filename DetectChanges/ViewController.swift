@@ -8,7 +8,7 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ModalVCDelegate {
     
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -52,7 +52,7 @@ class ViewController: UIViewController {
     
     //MARK: - Main logic
     
-    private func startEngine() {
+    func startEngine() {
         if timer == nil {
             loadingView = LoadingView(frame: tableView.bounds)
             tableView.addSubview(loadingView!)
@@ -80,6 +80,12 @@ class ViewController: UIViewController {
         timer?.fire()
     }
     
+    func stopEngine() {
+        timer?.invalidate()
+        timer = nil
+        currentApartments.removeAll()
+    }
+    
     private func updateTableView(with apartmentsNumber: Int) {
         let indexPaths = (0..<apartmentsNumber).map { index in
             IndexPath(row: index, section: 0)
@@ -91,7 +97,7 @@ class ViewController: UIViewController {
     private func presentModalVC() {
         modalVC = ModalVC(smallDetentSize: calcModalVCDetentSizeSmall())
         modalVC?.presentationController?.delegate = self
-//        modalVC?.delegate = self
+        modalVC?.delegate = self
         present(modalVC!, animated: true)
     }
     
@@ -144,4 +150,5 @@ extension ViewController: UISheetPresentationControllerDelegate {
 //        consoleTextView.text += text
 //        scrollToBottom(consoleTextView)
 //    }
+
 //}

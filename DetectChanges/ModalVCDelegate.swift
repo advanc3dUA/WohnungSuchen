@@ -8,5 +8,6 @@
 import Foundation
 
 protocol ModalVCDelegate {
-    func updateConsoleTextView(_ text: String)
+    func startEngine()
+    func stopEngine()
 }
