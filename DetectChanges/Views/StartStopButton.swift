@@ -8,7 +8,7 @@
 import UIKit
 
 enum ImageState: String {
-    case stop = "stop"
+    case pause = "pause"
     case play = "play"
 }
 
@@ -42,7 +42,7 @@ class StartStopButton: UIButton {
         layer.borderColor = Colour.brandDark.setColor?.cgColor
         backgroundColor = Colour.brandBlue.setColor
         isOn = false
-        switchImage(to: .stop, color: Colour.brandDark.setColor)
+        switchImage(to: .pause, color: Colour.brandDark.setColor)
     }
     
     private func switchImage(to imageState: ImageState, color: UIColor?) {
