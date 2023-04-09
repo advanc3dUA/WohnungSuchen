@@ -35,13 +35,14 @@
                                             <color key="textColor" name="brandDark"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="2" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Saw-65-Rsm">
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2" borderStyle="roundedRect" placeholder="2" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Saw-65-Rsm">
                                             <rect key="frame" x="62.333333333333329" y="0.0" width="60" height="35"/>
                                             <color key="backgroundColor" name="brandGray"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="35" id="f2f-Ur-KBu"/>
                                                 <constraint firstAttribute="width" constant="60" id="z3q-AS-Ge8"/>
                                             </constraints>
+                                            <color key="textColor" name="brandDark"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         </textField>
@@ -51,13 +52,14 @@
                                             <color key="textColor" name="brandDark"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="40" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="drc-6k-Lsi">
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="40" borderStyle="roundedRect" placeholder="40" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="drc-6k-Lsi">
                                             <rect key="frame" x="161.33333333333334" y="0.0" width="60" height="35"/>
                                             <color key="backgroundColor" name="brandGray"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="DMt-bk-jp2"/>
                                                 <constraint firstAttribute="height" constant="35" id="aY8-mL-lOr"/>
                                             </constraints>
+                                            <color key="textColor" name="brandDark"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         </textField>
@@ -67,13 +69,14 @@
                                             <color key="textColor" name="brandDark"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="1200" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WAx-K6-O2m">
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1200" borderStyle="roundedRect" placeholder="1200" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WAx-K6-O2m">
                                             <rect key="frame" x="274.33333333333331" y="0.0" width="60" height="35"/>
                                             <color key="backgroundColor" name="brandGray"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="ID7-rF-dwa"/>
                                                 <constraint firstAttribute="height" constant="35" id="JpO-d6-ewT"/>
                                             </constraints>
+                                            <color key="textColor" name="brandDark"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         </textField>
@@ -90,13 +93,14 @@
                                     <color key="textColor" name="brandDark"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="30" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BuA-Ml-h5H">
+                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="30" borderStyle="roundedRect" placeholder="30" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BuA-Ml-h5H">
                                     <rect key="frame" x="136.66666666666669" y="0.0" width="60" height="35"/>
                                     <color key="backgroundColor" name="brandGray"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="35" id="ooU-gd-ciU"/>
                                         <constraint firstAttribute="width" constant="60" id="s3m-q2-VCe"/>
                                     </constraints>
+                                    <color key="textColor" name="brandDark"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 </textField>
@@ -126,7 +130,7 @@
                                     <color key="textColor" name="brandDark"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" minValue="0.0" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="gw4-Ns-rH5">
+                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="7" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="gw4-Ns-rH5">
                                     <rect key="frame" x="94.666666666666657" y="0.0" width="287.33333333333337" height="32"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="vF2-74-OOg"/>
@@ -149,7 +153,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="areaTextField" destination="drc-6k-Lsi" id="558-9n-bpl"/>
-                <outlet property="priceTextField" destination="WAx-K6-O2m" id="RT3-7t-yiN"/>
+                <outlet property="rentTextField" destination="WAx-K6-O2m" id="pyc-gc-tbg"/>
                 <outlet property="roomsTextField" destination="Saw-65-Rsm" id="Ro1-c9-fEf"/>
                 <outlet property="soundSwitch" destination="xof-tU-012" id="6S4-ZH-J3k"/>
                 <outlet property="timerUpdateTextField" destination="BuA-Ml-h5H" id="W5y-mL-fYc"/>

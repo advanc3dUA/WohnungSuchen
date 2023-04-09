@@ -20,16 +20,20 @@ class ModalView: UIView {
         super.init(frame: .zero)
         backgroundColor = Colour.brandOlive.setColor
         setupStartStopButton()
+        setupOptionsView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func showOptionsContent() {
+    private func setupOptionsView() {
         let optionsNib = UINib(nibName: "OptionsView", bundle: nil)
         optionsView = optionsNib.instantiate(withOwner: self).first as? OptionsView
         optionsView.soundSwitch.set(offTint: Colour.brandGray.setColor)
+    }
+    
+    func showOptionsContent() {
         self.addSubview(optionsView)
         optionsView.translatesAutoresizingMaskIntoConstraints = false
 

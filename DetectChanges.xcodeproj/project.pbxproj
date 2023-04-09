@@ -58,6 +58,7 @@
 		BFBA6CF829D42F08004D0AFD /* ImmomioLinkFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBA6CF729D42F08004D0AFD /* ImmomioLinkFetcher.swift */; };
 		BFEBAA5829E2D15300CC83C8 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEBAA5729E2D15300CC83C8 /* OptionsView.swift */; };
 		BFEBAA5A29E2D67B00CC83C8 /* OptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFEBAA5929E2D67B00CC83C8 /* OptionsView.xib */; };
+		BFEBAA5C29E2EF0A00CC83C8 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEBAA5B29E2EF0A00CC83C8 /* Options.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +117,7 @@
 		BFBA6CF729D42F08004D0AFD /* ImmomioLinkFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmomioLinkFetcher.swift; sourceTree = "<group>"; };
 		BFEBAA5729E2D15300CC83C8 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
 		BFEBAA5929E2D67B00CC83C8 /* OptionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionsView.xib; sourceTree = "<group>"; };
+		BFEBAA5B29E2EF0A00CC83C8 /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		E9D8D936A7A4791A5EED83EB /* Pods_DetectChanges.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DetectChanges.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -169,6 +171,7 @@
 				BF8EB0F229E166D10070C64B /* Colour.swift */,
 				BF8EEDB929C4771B00F74971 /* Constants.swift */,
 				BF9C8CF629D9952500406480 /* VonoviaJson.swift */,
+				BFEBAA5B29E2EF0A00CC83C8 /* Options.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -464,6 +467,7 @@
 				BF4704C129D2D53B00EEABEE /* Landlord.swift in Sources */,
 				BFA71BDA29CDA57600F8781E /* ModalVC+AVAudioPlayerDelegate.swift in Sources */,
 				BF0F3F6529BDEA9F002909BB /* SoundManager.swift in Sources */,
+				BFEBAA5C29E2EF0A00CC83C8 /* Options.swift in Sources */,
 				BF8A62FC29DDA1E700E2DCD4 /* VC+ApartmentCellDelegate.swift in Sources */,
 				BF707C0029BB427700225796 /* SceneDelegate.swift in Sources */,
 				BF8C912E29DDB8C8008AD739 /* Company.swift in Sources */,

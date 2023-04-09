@@ -10,7 +10,7 @@ import UIKit
 class OptionsView: UIView {
     
     @IBOutlet weak var roomsTextField: UITextField!
-    @IBOutlet weak var priceTextField: UITextField!
+    @IBOutlet weak var rentTextField: UITextField!
     @IBOutlet weak var areaTextField: UITextField!
     @IBOutlet weak var volumeSlider: UISlider!
     @IBOutlet weak var soundSwitch: UISwitch!

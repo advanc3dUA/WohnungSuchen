@@ -49,10 +49,16 @@ class ModalVC: UIViewController {
         super.viewDidLoad()
         backgroundAudioPlayer = BackgroundAudioPlayer(for: self)
         backgroundAudioPlayer?.start()
+        
+        let tapGasture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGasture)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    @objc private func hideKeyboard() {
+            modalView.optionsView.roomsTextField.resignFirstResponder()
+            modalView.optionsView.areaTextField.resignFirstResponder()
+            modalView.optionsView.rentTextField.resignFirstResponder()
+            modalView.optionsView.timerUpdateTextField.resignFirstResponder()
     }
     
     //MARK: - Supporting methods

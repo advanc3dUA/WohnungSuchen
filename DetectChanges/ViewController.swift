@@ -14,7 +14,7 @@ class ViewController: UIViewController, ModalVCDelegate {
     @IBOutlet weak var tableView: UITableView!
     var timer: Timer?
     var modalVC: ModalVC?
-    var requiredApartment: Apartment
+    var options: Options
     var currentApartments: [Apartment]
     var landlordsManager: LandlordsManager
     var soundManager: SoundManager
@@ -22,9 +22,9 @@ class ViewController: UIViewController, ModalVCDelegate {
     var loadingView: LoadingView?
     
     required init?(coder aDecoder: NSCoder) {
-        self.requiredApartment = Apartment(rooms: 2, area: 40, rent: 1200)
+        self.options = Options()
         self.currentApartments = [Apartment]()
-        self.landlordsManager = LandlordsManager(requiredApartment: requiredApartment)
+        self.landlordsManager = LandlordsManager(with: options)
         self.soundManager = SoundManager()
         self.isSecondRunPlus = false
         super.init(coder: aDecoder)
@@ -48,16 +48,28 @@ class ViewController: UIViewController, ModalVCDelegate {
         startEngine()
     }
     
+    private func presentModalVC() {
+        modalVC = ModalVC(smallDetentSize: calcModalVCDetentSizeSmall())
+        modalVC?.presentationController?.delegate = self
+        modalVC?.delegate = self
+        present(modalVC!, animated: true)
+    }
+    
     //MARK: - Main logic
     
     func startEngine() {
         guard timer == nil else { return }
+        
         loadingView = LoadingView(frame: tableView.bounds)
         tableView.addSubview(loadingView!)
+        
         guard let modalVCView = modalVC?.view as? ModalView else { fatalError("Unable to get modalVCView in startEngine") }
         modalVCView.containerView?.isHidden = true
+        updateOptions(from: modalVCView)
+        soundManager.setVolume(to: options.volume)
+        landlordsManager.setOptions(options)
         
-        timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) {[unowned self] timer in
+        timer = Timer.scheduledTimer(withTimeInterval: options.updateTime, repeats: true) {[unowned self] timer in
             landlordsManager.start { [weak self] apartments in
                 guard let self = self else { return }
                 if !self.isSecondRunPlus {
@@ -68,7 +80,9 @@ class ViewController: UIViewController, ModalVCDelegate {
                     if !apartments.isEmpty {
                         self.currentApartments.insert(contentsOf: apartments, at: 0)
                         self.updateTableView(with: apartments.count)
-                        self.soundManager.playAlert()
+                        if self.options.soundIsOn {
+                            self.soundManager.playAlert()
+                        }
                         self.makeFeedback()
                     }
                     self.statusLabel.flash(numberOfFlashes: 1)
@@ -108,14 +122,18 @@ class ViewController: UIViewController, ModalVCDelegate {
         
     }
     
-    private func presentModalVC() {
-        modalVC = ModalVC(smallDetentSize: calcModalVCDetentSizeSmall())
-        modalVC?.presentationController?.delegate = self
-        modalVC?.delegate = self
-        present(modalVC!, animated: true)
-    }
-    
     //MARK: - Support functions
+    
+    private func updateOptions(from modalView: ModalView) {
+        guard let rooms = Int(modalView.optionsView.roomsTextField.text ?? "2"),
+        let area = Int(modalView.optionsView.areaTextField.text ?? "40"),
+        let rent = Int(modalView.optionsView.rentTextField.text ?? "1200"),
+        let updateTimer = Double(modalView.optionsView.timerUpdateTextField.text ?? "30") else { return }
+        let soundIsOn = modalView.optionsView.soundSwitch.isOn
+        let volume = modalView.optionsView.volumeSlider.value
+        let updatedOptions = Options(rooms: rooms, area: area, rent: rent, updateTime: updateTimer, soundIsOn: soundIsOn, volume: volume)
+        self.options = updatedOptions
+    }
     
     private func makeFeedback() {
         let generator = UIImpactFeedbackGenerator(style: .heavy)
