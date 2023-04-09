@@ -56,6 +56,8 @@
 		BFA71BDC29CDA7D300F8781E /* ModalVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA71BDB29CDA7D300F8781E /* ModalVCDelegate.swift */; };
 		BFA9F37229C1F61E00ECB8F4 /* ImmoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA9F37129C1F61E00ECB8F4 /* ImmoButton.swift */; };
 		BFBA6CF829D42F08004D0AFD /* ImmomioLinkFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBA6CF729D42F08004D0AFD /* ImmomioLinkFetcher.swift */; };
+		BFEBAA5829E2D15300CC83C8 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEBAA5729E2D15300CC83C8 /* OptionsView.swift */; };
+		BFEBAA5A29E2D67B00CC83C8 /* OptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFEBAA5929E2D67B00CC83C8 /* OptionsView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +114,8 @@
 		BFA71BDB29CDA7D300F8781E /* ModalVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalVCDelegate.swift; sourceTree = "<group>"; };
 		BFA9F37129C1F61E00ECB8F4 /* ImmoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmoButton.swift; sourceTree = "<group>"; };
 		BFBA6CF729D42F08004D0AFD /* ImmomioLinkFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmomioLinkFetcher.swift; sourceTree = "<group>"; };
+		BFEBAA5729E2D15300CC83C8 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
+		BFEBAA5929E2D67B00CC83C8 /* OptionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionsView.xib; sourceTree = "<group>"; };
 		E9D8D936A7A4791A5EED83EB /* Pods_DetectChanges.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DetectChanges.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -151,6 +155,8 @@
 				BFA68DD329DAEAB20023B268 /* ApartmentCell.xib */,
 				BF8EB0F429E16B880070C64B /* LoadingView.swift */,
 				BF8EB0F629E17A360070C64B /* UIView+Flashing.swift */,
+				BFEBAA5729E2D15300CC83C8 /* OptionsView.swift */,
+				BFEBAA5929E2D67B00CC83C8 /* OptionsView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -372,6 +378,7 @@
 				BF8C912B29DDB877008AD739 /* VonoviaLogo.jpg in Resources */,
 				BF8C912829DDB865008AD739 /* IntelPentiumSound.mp3 in Resources */,
 				BF5C017C29C71635006C06D4 /* heavy-rain.wav in Resources */,
+				BFEBAA5A29E2D67B00CC83C8 /* OptionsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +434,7 @@
 				BF4704BC29D2D47A00EEABEE /* NetworkManager.swift in Sources */,
 				BF707C1329BB444700225796 /* LandlordsManager.swift in Sources */,
 				BFA71BD229CD935A00F8781E /* ModalVC.swift in Sources */,
+				BFEBAA5829E2D15300CC83C8 /* OptionsView.swift in Sources */,
 				BF8A62F829DD7B8500E2DCD4 /* VC+TableViewDelegate.swift in Sources */,
 				BF9C8CF729D9952500406480 /* VonoviaJson.swift in Sources */,
 				BF8EB0F329E166D10070C64B /* Colour.swift in Sources */,

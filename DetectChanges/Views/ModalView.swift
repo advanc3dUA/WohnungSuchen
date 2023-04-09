@@ -13,6 +13,7 @@ class ModalView: UIView {
     var startStopButton: StartStopButton!
     var clearButton: ClearButton!
     var delegate: ModalVCDelegate
+    var optionsView: OptionsView!
     
     init(delegate: ModalVCDelegate) {
         self.delegate = delegate
@@ -23,6 +24,25 @@ class ModalView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func showOptionsContent() {
+        let optionsNib = UINib(nibName: "OptionsView", bundle: nil)
+        optionsView = optionsNib.instantiate(withOwner: self).first as? OptionsView
+        optionsView.soundSwitch.set(offTint: Colour.brandGray.setColor)
+        self.addSubview(optionsView)
+        optionsView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            optionsView.leftAnchor.constraint(equalTo: leftAnchor, constant: 5),
+            optionsView.rightAnchor.constraint(equalTo: rightAnchor, constant: -5),
+            optionsView.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: -5),
+            optionsView.topAnchor.constraint(equalTo: centerYAnchor, constant: -100)
+        ])
+    }
+    
+    func hideOptionsContent() {
+        optionsView.removeFromSuperview()
     }
     
     private func setupStartStopButton() {

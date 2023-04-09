@@ -9,7 +9,15 @@ import UIKit
 
 class ModalVC: UIViewController {
     var modalView: ModalView!
-    var currentDetent: UISheetPresentationController.Detent.Identifier?
+    var currentDetent: UISheetPresentationController.Detent.Identifier? {
+        didSet {
+            switch currentDetent?.rawValue {
+            case "com.apple.UIKit.large": modalView.showOptionsContent()
+            case "small": modalView.hideOptionsContent()
+            default: return
+            }
+        }
+    }
     var delegate: ModalVCDelegate?
     var backgroundAudioPlayer: BackgroundAudioPlayer?
     var bgAudioPlayerIsInterrupted: Bool
@@ -42,14 +50,14 @@ class ModalVC: UIViewController {
         backgroundAudioPlayer = BackgroundAudioPlayer(for: self)
         backgroundAudioPlayer?.start()
     }
-        
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
     //MARK: - Supporting methods
-    private func setupSheetPresentationController(with mediumDetent: UISheetPresentationController.Detent) {
-        sheetPresentationController?.detents = [mediumDetent, .large()]
+    private func setupSheetPresentationController(with smallDetent: UISheetPresentationController.Detent) {
+        sheetPresentationController?.detents = [smallDetent, .large()]
         sheetPresentationController?.largestUndimmedDetentIdentifier = .large
         sheetPresentationController?.prefersScrollingExpandsWhenScrolledToEdge = true
         sheetPresentationController?.prefersEdgeAttachedInCompactHeight = true

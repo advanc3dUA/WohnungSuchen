@@ -11,7 +11,8 @@ import SwiftSoup
 class LandlordsManager {
     private var requiredApartment: Apartment
     private var previousApartments = [Apartment]()
-    var landlords: [Landlord] = [Saga(), Vonovia()]
+    var landlords: [Landlord] = []
+//    [Saga(), Vonovia()]
     
     init(requiredApartment: Apartment) {
         self.requiredApartment = requiredApartment
@@ -25,7 +26,7 @@ class LandlordsManager {
             dispatchGroup.enter()
             landlord.getApartmentsList { [unowned self] apartments in
                 currentApartments += apartments.filter { apartment in
-                    apartment.rooms >= requiredApartment.rooms && apartment.area >= requiredApartment.area
+                    apartment.rooms >= requiredApartment.rooms && apartment.area >= requiredApartment.area && apartment.rent <= requiredApartment.rent
                 }
                 dispatchGroup.leave()
             }

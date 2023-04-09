@@ -22,7 +22,7 @@ class ViewController: UIViewController, ModalVCDelegate {
     var loadingView: LoadingView?
     
     required init?(coder aDecoder: NSCoder) {
-        self.requiredApartment = Apartment(rooms: 2, area: 40)
+        self.requiredApartment = Apartment(rooms: 2, area: 40, rent: 1200)
         self.currentApartments = [Apartment]()
         self.landlordsManager = LandlordsManager(requiredApartment: requiredApartment)
         self.soundManager = SoundManager()
