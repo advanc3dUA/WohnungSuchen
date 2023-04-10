@@ -80,9 +80,7 @@ class ViewController: UIViewController, ModalVCDelegate {
                     if !apartments.isEmpty {
                         self.currentApartments.insert(contentsOf: apartments, at: 0)
                         self.updateTableView(with: apartments.count)
-                        if self.options.soundIsOn {
-                            self.soundManager.playAlert()
-                        }
+                        self.soundManager.playAlert(if: self.options.soundIsOn)
                         self.makeFeedback()
                     }
                     self.statusLabel.flash(numberOfFlashes: 1)
