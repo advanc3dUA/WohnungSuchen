@@ -75,19 +75,18 @@ class ViewController: UIViewController, ModalVCDelegate {
                 
                 if !self.isSecondRunPlus {
                     self.currentApartments = apartments
-                    self.updateTableView(with: apartments.count)
                     self.isSecondRunPlus = true
                 } else {
                     if !apartments.isEmpty {
                         self.currentApartments.insert(contentsOf: apartments, at: 0)
-                        self.updateTableView(with: apartments.count)
                         self.soundManager.playAlert(if: self.options.soundIsOn)
                         self.makeFeedback()
                     }
-                    self.statusLabel.flash(numberOfFlashes: 1)
                 }
+                self.updateTableView(with: apartments.count)
                 self.loadingView?.removeFromSuperview()
                 self.statusLabel.text = "Last update: \(TimeManager.shared.getCurrentTime())"
+                self.statusLabel.flash(numberOfFlashes: 1)
                 modalVCView.containerView?.isHidden = false
             }
         }

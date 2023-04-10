@@ -33,7 +33,6 @@ class LandlordsManager {
         dispatchGroup.notify(queue: .main) { [unowned self] in
             let newApartments = comparePreviousApartments(with: currentApartments)
             previousApartments = currentApartments
-
             completion(newApartments)
         }
     }
