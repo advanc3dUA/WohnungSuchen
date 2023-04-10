@@ -60,9 +60,6 @@ class ViewController: UIViewController, ModalVCDelegate {
     func startEngine() {
         guard timer == nil else { return }
         
-        loadingView = LoadingView(frame: tableView.bounds)
-        tableView.addSubview(loadingView!)
-        
         guard let modalVCView = modalVC?.view as? ModalView else { fatalError("Unable to get modalVCView in startEngine") }
         modalVCView.containerView?.isHidden = true
         updateOptions(from: modalVCView)
@@ -70,8 +67,12 @@ class ViewController: UIViewController, ModalVCDelegate {
         landlordsManager.setOptions(options)
         
         timer = Timer.scheduledTimer(withTimeInterval: options.updateTime, repeats: true) {[unowned self] timer in
+            loadingView = LoadingView(frame: tableView.bounds)
+            tableView.addSubview(loadingView!)
+            
             landlordsManager.start { [weak self] apartments in
                 guard let self = self else { return }
+                
                 if !self.isSecondRunPlus {
                     self.currentApartments = apartments
                     self.updateTableView(with: apartments.count)
