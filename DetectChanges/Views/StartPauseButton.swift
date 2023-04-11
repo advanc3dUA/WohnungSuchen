@@ -1,5 +1,5 @@
 //
-//  StartStopButton.swift
+//  StartPauseButton.swift
 //  DetectChanges
 //
 //  Created by Yuriy Gudimov on 31.03.2023.
@@ -12,7 +12,7 @@ enum ImageState: String {
     case play = "play"
 }
 
-class StartStopButton: UIButton {
+class StartPauseButton: UIButton {
     var isOn = false
    
     override init(frame: CGRect) {

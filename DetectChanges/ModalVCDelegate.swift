@@ -9,6 +9,6 @@ import Foundation
 
 protocol ModalVCDelegate {
     func startEngine()
+    func pauseEngine()
     func stopEngine()
-    func clearTableView()
 }

@@ -9,6 +9,7 @@ import Foundation
 import SwiftSoup
 
 class Saga: Landlord {
+    let title = "Saga"
     private let networkManager: NetworkManager
     private let immomioLinkFetcher: ImmomioLinkFetcher
     private let searchURLString = "https://www.saga.hamburg/immobiliensuche?type=wohnungen"
@@ -39,7 +40,7 @@ class Saga: Landlord {
                        let street = try? link.select("span.ft-semi:contains(Straße:)").first()?.parent()?.text() {
                         var newApartment = Apartment(time: time,
                                                      title: title,
-                                                     link: "https://www.saga.hamburg" + href,
+                                                     internalLink: "https://www.saga.hamburg" + href,
                                                      street: dropPrefix(for: street),
                                                      rooms: details.rooms,
                                                      area: details.area,
@@ -47,8 +48,8 @@ class Saga: Landlord {
                                                      company: .saga
                         )
                         dispatchGroup.enter()
-                        immomioLinkFetcher.fetchLink(for: newApartment.link) { immomioLink in
-                            newApartment.immomioLink = immomioLink
+                        immomioLinkFetcher.fetchLink(for: newApartment.internalLink) { immomioLink in
+                            newApartment.externalLink = immomioLink
                             currentApartments.append(newApartment)
                             dispatchGroup.leave()
                         }

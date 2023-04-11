@@ -8,5 +8,6 @@
 import Foundation
 
 protocol Landlord {
+    var title: String { get }
     func getApartmentsList(completion: @escaping ([Apartment]) -> Void)
 }

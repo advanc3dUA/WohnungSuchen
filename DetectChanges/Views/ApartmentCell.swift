@@ -39,7 +39,7 @@ class ApartmentCell: UITableViewCell {
     
     @IBAction func linkButtonTapped(_ sender: ImmoButton) {
         guard let apartment = apartment else { return }
-        delegate?.didTapLinkButtonInCell(with: apartment.immomioLink)
+        delegate?.didTapLinkButtonInCell(with: apartment.externalLink)
     }
     
     

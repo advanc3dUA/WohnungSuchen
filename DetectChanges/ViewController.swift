@@ -20,6 +20,7 @@ class ViewController: UIViewController, ModalVCDelegate {
     var soundManager: SoundManager
     var isSecondRunPlus: Bool
     var loadingView: LoadingView?
+    var modalVCView: ModalView?
     
     required init?(coder aDecoder: NSCoder) {
         self.options = Options()
@@ -53,6 +54,7 @@ class ViewController: UIViewController, ModalVCDelegate {
         modalVC?.presentationController?.delegate = self
         modalVC?.delegate = self
         present(modalVC!, animated: true)
+        modalVCView = modalVC?.view as? ModalView
     }
     
     //MARK: - Main logic
@@ -60,15 +62,17 @@ class ViewController: UIViewController, ModalVCDelegate {
     func startEngine() {
         guard timer == nil else { return }
         
-        guard let modalVCView = modalVC?.view as? ModalView else { fatalError("Unable to get modalVCView in startEngine") }
+//        guard let modalVCView = modalVC?.view as? ModalView else { fatalError("Unable to get modalVCView in startEngine") }
+        guard let modalVCView = modalVCView else { fatalError("Unable to get modalVCView in startEngine") }
         modalVCView.containerView?.isHidden = true
         updateOptions(from: modalVCView)
         soundManager.setVolume(to: options.volume)
         landlordsManager.setOptions(options)
         
+        loadingView = LoadingView(frame: tableView.bounds)
+        tableView.addSubview(loadingView!)
+        
         timer = Timer.scheduledTimer(withTimeInterval: options.updateTime, repeats: true) {[unowned self] timer in
-            loadingView = LoadingView(frame: tableView.bounds)
-            tableView.addSubview(loadingView!)
             
             landlordsManager.start { [weak self] apartments in
                 guard let self = self else { return }
@@ -88,17 +92,19 @@ class ViewController: UIViewController, ModalVCDelegate {
                 self.statusLabel.text = "Last update: \(TimeManager.shared.getCurrentTime())"
                 self.statusLabel.flash(numberOfFlashes: 1)
                 modalVCView.containerView?.isHidden = false
+                self.stopButtonIsActive(false)
             }
         }
         timer?.fire()
     }
     
-    func stopEngine() {
+    func pauseEngine() {
         timer?.invalidate()
         timer = nil
+        stopButtonIsActive(true)
     }
     
-    func clearTableView() {
+    func stopEngine() {
         let numberOfRows = tableView.numberOfRows(inSection: 0)
         guard numberOfRows > 0 else {
             return
@@ -110,6 +116,17 @@ class ViewController: UIViewController, ModalVCDelegate {
             indexPaths.append(IndexPath(row: row, section: 0))
         }
         tableView.deleteRows(at: indexPaths, with: .automatic)
+        landlordsManager = LandlordsManager(with: options)
+    }
+    
+    private func stopButtonIsActive(_ status: Bool) {
+        if status {
+            modalVCView?.stopButton.isEnabled = true
+            modalVCView?.stopButton.alpha = 1.0
+        } else {
+            modalVCView?.stopButton.isEnabled = false
+            modalVCView?.stopButton.alpha = 0.5
+        }
     }
     
     private func updateTableView(with apartmentsNumber: Int) {
@@ -117,7 +134,6 @@ class ViewController: UIViewController, ModalVCDelegate {
             IndexPath(row: index, section: 0)
         }
         self.tableView.insertRows(at: indexPaths, with: .middle)
-        
     }
     
     //MARK: - Support functions

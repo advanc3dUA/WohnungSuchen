@@ -10,8 +10,8 @@ import UIKit
 class ModalView: UIView {
     
     var containerView: UIView!
-    var startStopButton: StartStopButton!
-    var clearButton: ClearButton!
+    var startPauseButton: StartPauseButton!
+    var stopButton: StopButton!
     var delegate: ModalVCDelegate
     var optionsView: OptionsView!
     
@@ -65,41 +65,41 @@ class ModalView: UIView {
             containerView.centerYAnchor.constraint(equalTo: bottomAnchor, constant: -50)
         ])
         
-        startStopButton = StartStopButton()
-        startStopButton.addTarget(self, action: #selector(startStopButtonTapped(sender:)), for: .touchUpInside)
-        startStopButton.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(startStopButton)
+        startPauseButton = StartPauseButton()
+        startPauseButton.addTarget(self, action: #selector(startPauseButtonTapped(sender:)), for: .touchUpInside)
+        startPauseButton.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(startPauseButton)
         NSLayoutConstraint.activate([
-            startStopButton.widthAnchor.constraint(equalToConstant: CGFloat(buttonsWidth)),
-            startStopButton.heightAnchor.constraint(equalToConstant: CGFloat(buttonsHeight)),
-            startStopButton.leftAnchor.constraint(equalTo: containerView.leftAnchor),
-            startStopButton.topAnchor.constraint(equalTo: containerView.topAnchor)
+            startPauseButton.widthAnchor.constraint(equalToConstant: CGFloat(buttonsWidth)),
+            startPauseButton.heightAnchor.constraint(equalToConstant: CGFloat(buttonsHeight)),
+            startPauseButton.leftAnchor.constraint(equalTo: containerView.leftAnchor),
+            startPauseButton.topAnchor.constraint(equalTo: containerView.topAnchor)
         ])
         
-        clearButton = ClearButton()
-        clearButton.addTarget(self, action: #selector(clearButtonTapped(sender:)), for: .touchUpInside)
-        clearButton.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(clearButton)
+        stopButton = StopButton()
+        stopButton.addTarget(self, action: #selector(stopButtonTapped(sender:)), for: .touchUpInside)
+        stopButton.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(stopButton)
         NSLayoutConstraint.activate([
-            clearButton.widthAnchor.constraint(equalToConstant: CGFloat(buttonsWidth)),
-            clearButton.heightAnchor.constraint(equalToConstant: CGFloat(buttonsHeight)),
-            clearButton.rightAnchor.constraint(equalTo: containerView.rightAnchor),
-            clearButton.topAnchor.constraint(equalTo: containerView.topAnchor)
+            stopButton.widthAnchor.constraint(equalToConstant: CGFloat(buttonsWidth)),
+            stopButton.heightAnchor.constraint(equalToConstant: CGFloat(buttonsHeight)),
+            stopButton.rightAnchor.constraint(equalTo: containerView.rightAnchor),
+            stopButton.topAnchor.constraint(equalTo: containerView.topAnchor)
         ])
     }
     
-    @objc func startStopButtonTapped(sender: StartStopButton) {
+    @objc func startPauseButtonTapped(sender: StartPauseButton) {
         if sender.isOn {
             sender.switchOff()
             delegate.startEngine()
         } else {
             sender.switchOn()
-            delegate.stopEngine()
+            delegate.pauseEngine()
         }
     }
     
-    @objc func clearButtonTapped(sender: ClearButton) {
-        delegate.clearTableView()
+    @objc func stopButtonTapped(sender: StopButton) {
+        delegate.stopEngine()
     }
 
 }

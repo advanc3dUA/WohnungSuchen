@@ -43,7 +43,7 @@ class ConsolePrinter {
                         apartmentNameSign + "\(apartment.title)\n" +
                         descriptionSign + "Rooms: \(apartment.rooms), " + "m2: \(apartment.area), " + "€: \(apartment.rent)" + "\n" +
                         streetSign + "Street: \(apartment.street)" + "\n" +
-                        urlSign + "\(apartment.immomioLink)" + "\n"
+                        urlSign + "\(apartment.externalLink)" + "\n"
         return result
     }
     

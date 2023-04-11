@@ -10,11 +10,11 @@ import Foundation
 struct Apartment {
     var time = "00:00:00"
     var title = "no title"
-    var link = "no link"
+    var internalLink = "no link"
     var street = "no street"
     var rooms = -1
     var area = -1
     var rent = -1
-    var immomioLink = "no immoLink"
+    var externalLink = "no immoLink"
     var company = Company.unknown
 }
