@@ -57,12 +57,11 @@ class ViewController: UIViewController, ModalVCDelegate {
         modalVCView = modalVC?.view as? ModalView
     }
     
-    //MARK: - Main logic
+    //MARK: - Start, pause & stop logic
     
     func startEngine() {
         guard timer == nil else { return }
         
-//        guard let modalVCView = modalVC?.view as? ModalView else { fatalError("Unable to get modalVCView in startEngine") }
         guard let modalVCView = modalVCView else { fatalError("Unable to get modalVCView in startEngine") }
         modalVCView.containerView?.isHidden = true
         updateOptions(from: modalVCView)

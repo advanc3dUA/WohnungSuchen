@@ -9,7 +9,6 @@ import Foundation
 import SwiftSoup
 
 class Saga: Landlord {
-    let title = "Saga"
     private let networkManager: NetworkManager
     private let immomioLinkFetcher: ImmomioLinkFetcher
     private let searchURLString = "https://www.saga.hamburg/immobiliensuche?type=wohnungen"
