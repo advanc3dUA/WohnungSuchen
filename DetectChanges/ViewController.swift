@@ -91,7 +91,7 @@ class ViewController: UIViewController, ModalVCDelegate {
                 self.statusLabel.text = "Last update: \(TimeManager.shared.getCurrentTime())"
                 self.statusLabel.flash(numberOfFlashes: 1)
                 modalVCView.containerView?.isHidden = false
-                self.stopButtonIsActive(false)
+                self.enableStopButton(false)
             }
         }
         timer?.fire()
@@ -100,7 +100,7 @@ class ViewController: UIViewController, ModalVCDelegate {
     func pauseEngine() {
         timer?.invalidate()
         timer = nil
-        stopButtonIsActive(true)
+        enableStopButton(true)
     }
     
     func stopEngine() {
@@ -118,7 +118,7 @@ class ViewController: UIViewController, ModalVCDelegate {
         landlordsManager = LandlordsManager(with: options)
     }
     
-    private func stopButtonIsActive(_ status: Bool) {
+    private func enableStopButton(_ status: Bool) {
         if status {
             modalVCView?.stopButton.isEnabled = true
             modalVCView?.stopButton.alpha = 1.0
