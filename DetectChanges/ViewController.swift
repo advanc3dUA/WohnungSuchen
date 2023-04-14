@@ -83,7 +83,7 @@ class ViewController: UIViewController, ModalVCDelegate {
                     if !apartments.isEmpty {
                         self.currentApartments.insert(contentsOf: apartments, at: 0)
                         self.soundManager.playAlert(if: self.options.soundIsOn)
-                        self.makeFeedback()
+                        self.makeFeedback(if: !self.options.soundIsOn)
                     }
                 }
                 self.updateTableView(with: apartments.count)
@@ -115,6 +115,7 @@ class ViewController: UIViewController, ModalVCDelegate {
             indexPaths.append(IndexPath(row: row, section: 0))
         }
         tableView.deleteRows(at: indexPaths, with: .automatic)
+        isSecondRunPlus = false
         landlordsManager = LandlordsManager(with: options)
     }
     
@@ -148,16 +149,18 @@ class ViewController: UIViewController, ModalVCDelegate {
         self.options = updatedOptions
     }
     
-    private func makeFeedback() {
-        let generator = UIImpactFeedbackGenerator(style: .heavy)
-        generator.prepare()
-        generator.impactOccurred()
-        let timer = Timer.scheduledTimer(withTimeInterval: 0.015, repeats: true) { timer in
+    private func makeFeedback(if soundIsOff: Bool) {
+        if soundIsOff {
+            let generator = UIImpactFeedbackGenerator(style: .heavy)
             generator.prepare()
             generator.impactOccurred()
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            timer.invalidate()
+            let timer = Timer.scheduledTimer(withTimeInterval: 0.015, repeats: true) { timer in
+                generator.prepare()
+                generator.impactOccurred()
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                timer.invalidate()
+            }
         }
     }
 }
