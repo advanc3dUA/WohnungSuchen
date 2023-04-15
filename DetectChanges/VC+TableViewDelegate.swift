@@ -27,11 +27,24 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.delegate = self
         cell.addressLabel.text = "\(apartment.street)"
         cell.detailsLabel.text = "Rooms: \(apartment.rooms), m2: \(apartment.area), €: \(apartment.rent)"
-        cell.timeLabel.text = apartment.time
         cell.logoImageView.image = apartment.company.logoImage
+        cell.timeLabel.text = apartment.time
+        if apartment.isNew {
+            cell.timeLabel.backgroundColor = Colour.brandOlive.setColor
+        }
         
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? ApartmentCell else { return }
+        if currentApartments[indexPath.row].isNew {
+            cell.timeLabel.backgroundColor = Colour.brandGray.setColor
+            currentApartments[indexPath.row].isNew = false
+        } else {
+            cell.timeLabel.backgroundColor = Colour.brandOlive.setColor
+            currentApartments[indexPath.row].isNew = true
+        }
+    }
     
 }

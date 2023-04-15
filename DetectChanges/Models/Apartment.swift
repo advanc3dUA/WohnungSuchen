@@ -17,4 +17,5 @@ struct Apartment {
     var rent = -1
     var externalLink = "no immoLink"
     var company = Company.unknown
+    var isNew = false
 }

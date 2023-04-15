@@ -62,11 +62,6 @@ class ViewController: UIViewController, ModalVCDelegate {
     //MARK: - ModalVCDelegate
     
     func startEngine() {
-        guard timer == nil else {
-            self.statusLabel.text = "Error at: \(TimeManager.shared.getCurrentTime())"
-            return
-        }
-        
         guard let modalVCView = modalVCView else { fatalError("Unable to get modalVCView in startEngine") }
         modalVCView.containerView?.isHidden = true
         updateOptions(from: modalVCView)
@@ -84,7 +79,12 @@ class ViewController: UIViewController, ModalVCDelegate {
                     self.isSecondRunPlus = true
                 } else {
                     if !apartments.isEmpty {
-                        self.currentApartments.insert(contentsOf: apartments, at: 0)
+                        
+                        let newApartments = apartments.map {
+                            Apartment(time: $0.time, title: $0.title, internalLink: $0.internalLink, street: $0.street, rooms: $0.rooms, area: $0.area, rent: $0.rent, externalLink: $0.externalLink, company: $0.company, isNew: true)
+                        }
+                        
+                        self.currentApartments.insert(contentsOf: newApartments, at: 0)
                         self.feedbackManager.makeFeedback()
                     }
                 }
