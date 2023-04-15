@@ -29,9 +29,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.detailsLabel.text = "Rooms: \(apartment.rooms), m2: \(apartment.area), €: \(apartment.rent)"
         cell.logoImageView.image = apartment.company.logoImage
         cell.timeLabel.text = apartment.time
-        if apartment.isNew {
-            cell.timeLabel.backgroundColor = Colour.brandOlive.setColor
-        }
+        cell.timeLabel.backgroundColor = apartment.isNew ? Colour.brandOlive.setColor : Colour.brandGray.setColor
         
         return cell
     }
