@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import AVFoundation
+import Combine
 
 class ViewController: UIViewController, ModalVCDelegate {
     
@@ -17,16 +17,18 @@ class ViewController: UIViewController, ModalVCDelegate {
     var options: Options
     var currentApartments: [Apartment]
     var landlordsManager: LandlordsManager
-    var soundManager: SoundManager
+    var feedbackManager: FeedbackManager
     var isSecondRunPlus: Bool
     var loadingView: LoadingView?
     var modalVCView: ModalView?
+    
+    private var cancellables: Set<AnyCancellable> = []
     
     required init?(coder aDecoder: NSCoder) {
         self.options = Options()
         self.currentApartments = [Apartment]()
         self.landlordsManager = LandlordsManager(with: options)
-        self.soundManager = SoundManager()
+        self.feedbackManager = FeedbackManager()
         self.isSecondRunPlus = false
         super.init(coder: aDecoder)
     }
@@ -57,22 +59,23 @@ class ViewController: UIViewController, ModalVCDelegate {
         modalVCView = modalVC?.view as? ModalView
     }
     
-    //MARK: - Start, pause & stop logic
+    //MARK: - ModalVCDelegate
     
     func startEngine() {
-        guard timer == nil else { return }
+        guard timer == nil else {
+            self.statusLabel.text = "Error at: \(TimeManager.shared.getCurrentTime())"
+            return
+        }
         
         guard let modalVCView = modalVCView else { fatalError("Unable to get modalVCView in startEngine") }
         modalVCView.containerView?.isHidden = true
         updateOptions(from: modalVCView)
-        soundManager.setVolume(to: options.volume)
         landlordsManager.setOptions(options)
         
         loadingView = LoadingView(frame: tableView.bounds)
         tableView.addSubview(loadingView!)
         
         timer = Timer.scheduledTimer(withTimeInterval: options.updateTime, repeats: true) {[unowned self] timer in
-            
             landlordsManager.start { [weak self] apartments in
                 guard let self = self else { return }
                 
@@ -82,8 +85,7 @@ class ViewController: UIViewController, ModalVCDelegate {
                 } else {
                     if !apartments.isEmpty {
                         self.currentApartments.insert(contentsOf: apartments, at: 0)
-                        self.soundManager.playAlert(if: self.options.soundIsOn)
-                        self.makeFeedback(if: !self.options.soundIsOn)
+                        self.feedbackManager.makeFeedback()
                     }
                 }
                 self.updateTableView(with: apartments.count)
@@ -119,6 +121,17 @@ class ViewController: UIViewController, ModalVCDelegate {
         landlordsManager = LandlordsManager(with: options)
     }
     
+    func updateSoundManagerAlertType(with status: Bool) {
+        guard let modalView = modalVCView else { return }
+        feedbackManager.setAlertType(to: modalView.optionsView.soundSwitch.isOn ? .sound : .vibration)
+    }
+    
+    func updateSoundManagerVolume(with value: Float) {
+        guard let modalView = modalVCView else { return }
+        feedbackManager.setVolume(to: modalView.optionsView.volumeSlider.value)
+    }
+    
+    //MARK: - Support functions
     private func enableStopButton(_ status: Bool) {
         if status {
             modalVCView?.stopButton.isEnabled = true
@@ -128,7 +141,6 @@ class ViewController: UIViewController, ModalVCDelegate {
             modalVCView?.stopButton.alpha = 0.5
         }
     }
-    
     private func updateTableView(with apartmentsNumber: Int) {
         let indexPaths = (0..<apartmentsNumber).map { index in
             IndexPath(row: index, section: 0)
@@ -136,32 +148,38 @@ class ViewController: UIViewController, ModalVCDelegate {
         self.tableView.insertRows(at: indexPaths, with: .middle)
     }
     
-    //MARK: - Support functions
-    
     private func updateOptions(from modalView: ModalView) {
-        guard let rooms = Int(modalView.optionsView.roomsTextField.text ?? "2"),
-        let area = Int(modalView.optionsView.areaTextField.text ?? "40"),
-        let rent = Int(modalView.optionsView.rentTextField.text ?? "1200"),
-        let updateTimer = Double(modalView.optionsView.timerUpdateTextField.text ?? "30") else { return }
-        let soundIsOn = modalView.optionsView.soundSwitch.isOn
-        let volume = modalView.optionsView.volumeSlider.value
-        let updatedOptions = Options(rooms: rooms, area: area, rent: rent, updateTime: updateTimer, soundIsOn: soundIsOn, volume: volume)
-        self.options = updatedOptions
-    }
-    
-    private func makeFeedback(if soundIsOff: Bool) {
-        if soundIsOff {
-            let generator = UIImpactFeedbackGenerator(style: .heavy)
-            generator.prepare()
-            generator.impactOccurred()
-            let timer = Timer.scheduledTimer(withTimeInterval: 0.015, repeats: true) { timer in
-                generator.prepare()
-                generator.impactOccurred()
+        modalView.optionsView.roomsTextField.publisher(for: \.text)
+            .map { Int(extractFrom: $0, defaultValue: Constants.defaultOptions.rooms) }
+            .sink { [weak self] in
+                guard let self = self else { return }
+                self.options.rooms = $0
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                timer.invalidate()
+            .store(in: &cancellables)
+        
+        modalView.optionsView.areaTextField.publisher(for: \.text)
+            .map { Int(extractFrom: $0, defaultValue: Constants.defaultOptions.area) }
+            .sink { [weak self] in
+                guard let self = self else { return }
+                self.options.area = $0
             }
-        }
+            .store(in: &cancellables)
+        
+        modalView.optionsView.rentTextField.publisher(for: \.text)
+            .map { Int(extractFrom: $0, defaultValue: Constants.defaultOptions.rent) }
+            .sink { [weak self] in
+                guard let self = self else { return }
+                self.options.rent = $0
+            }
+            .store(in: &cancellables)
+        
+        modalView.optionsView.timerUpdateTextField.publisher(for: \.text)
+            .map { Double(extractFrom: $0, defaultValue: Constants.defaultOptions.updateTimer) }
+            .sink { [weak self] in
+                guard let self = self else { return }
+                self.options.updateTime = $0
+            }
+            .store(in: &cancellables)
     }
 }
 

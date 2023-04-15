@@ -31,6 +31,16 @@ class ModalView: UIView {
         let optionsNib = UINib(nibName: "OptionsView", bundle: nil)
         optionsView = optionsNib.instantiate(withOwner: self).first as? OptionsView
         optionsView.soundSwitch.set(offTint: Colour.brandGray.setColor)
+        optionsView.soundSwitch.addTarget(self, action: #selector(soundSwitchChanged), for: .valueChanged)
+        optionsView.volumeSlider.addTarget(self, action: #selector(volumeSliderChanged), for: .valueChanged)
+    }
+    
+    @objc func soundSwitchChanged(_ sender: UISwitch) {
+        delegate.updateSoundManagerAlertType(with: sender.isOn)
+    }
+    
+    @objc func volumeSliderChanged(_ sender: UISlider) {
+        delegate.updateSoundManagerVolume(with: sender.value)
     }
     
     func showOptionsContent() {

@@ -8,10 +8,8 @@
 import Foundation
 
 struct Options {
-    var rooms = 2
-    var area = 40
-    var rent = 1200
-    var updateTime: TimeInterval = 30
-    var soundIsOn = true
-    var volume: Float = 7.5
+    var rooms = Constants.defaultOptions.rooms
+    var area = Constants.defaultOptions.area
+    var rent = Constants.defaultOptions.rent
+    var updateTime: TimeInterval = Constants.defaultOptions.updateTimer
 }
