@@ -14,18 +14,8 @@ class ViewController: UIViewController, ModalVCDelegate {
     @IBOutlet weak var tableView: UITableView!
     var timer: Timer?
     var modalVC: ModalVC?
-    var options: Options {
-        didSet {
-            apartmentsDataSource = filterCurrentApartments()
-            tableView.reloadData()
-        }
-    }
-    var currentApartments: [Apartment] {
-        didSet {
-            apartmentsDataSource = filterCurrentApartments()
-            tableView.reloadData()
-        }
-    }
+    @Published var options: Options
+    @Published var currentApartments: [Apartment]
     var apartmentsDataSource: [Apartment]
     var landlordsManager: LandlordsManager
     var feedbackManager: FeedbackManager
@@ -76,7 +66,8 @@ class ViewController: UIViewController, ModalVCDelegate {
     func startEngine() {
         guard let modalVCView = modalVCView else { fatalError("Unable to get modalVCView in startEngine") }
         modalVCView.containerView?.isHidden = true
-        updateOptions(from: modalVCView)
+        setPublishersToUpdateOptions(from: modalVCView)
+        setPublisherToUpdateApartmentsDataSource()
         loadingView = LoadingView(frame: tableView.bounds)
         tableView.addSubview(loadingView!)
         
@@ -157,7 +148,7 @@ class ViewController: UIViewController, ModalVCDelegate {
         }
     }
     
-    private func updateOptions(from modalView: ModalView) {
+    private func setPublishersToUpdateOptions(from modalView: ModalView) {
         modalView.optionsView.roomsTextField.publisher(for: \.text)
             .map { Int(extractFrom: $0, defaultValue: Constants.defaultOptions.rooms) }
             .sink { [weak self] in
@@ -187,6 +178,20 @@ class ViewController: UIViewController, ModalVCDelegate {
             .sink { [weak self] in
                 guard let self = self else { return }
                 self.options.updateTime = $0
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func setPublisherToUpdateApartmentsDataSource() {
+        Publishers.CombineLatest($currentApartments, $options)
+            .map { apartments, options in
+                apartments.filter { apartment in
+                    apartment.rooms >= options.rooms && apartment.area >= options.area && apartment.rent <= options.rent
+                }
+            }
+            .sink { [unowned self] filteredApartments in
+                apartmentsDataSource = filteredApartments
+                tableView.reloadData()
             }
             .store(in: &cancellables)
     }
