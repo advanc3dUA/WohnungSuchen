@@ -25,6 +25,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let apartment = currentApartments[indexPath.row]
         cell.apartment = apartment
         cell.delegate = self
+        cell.selectionStyle = .none
         cell.addressLabel.text = "\(apartment.street)"
         cell.detailsLabel.text = "Rooms: \(apartment.rooms), m2: \(apartment.area), €: \(apartment.rent)"
         cell.logoImageView.image = apartment.company.logoImage
