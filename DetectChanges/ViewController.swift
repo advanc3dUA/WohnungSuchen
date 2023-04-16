@@ -132,12 +132,6 @@ class ViewController: UIViewController, ModalVCDelegate {
     }
     
     //MARK: - Support functions
-    private func filterCurrentApartments() -> [Apartment] {
-        currentApartments.filter { apartment in
-            apartment.rooms >= options.rooms && apartment.area >= options.area && apartment.rent <= options.rent
-        }
-    }
-    
     private func enableStopButton(_ status: Bool) {
         if status {
             modalVCView?.stopButton.isEnabled = true
