@@ -13,7 +13,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currentApartments.count
+        return apartmentsDataSource.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -22,7 +22,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ApartmentCell.identifier, for: indexPath) as! ApartmentCell
-        let apartment = currentApartments[indexPath.row]
+        let apartment = apartmentsDataSource[indexPath.row]
         cell.apartment = apartment
         cell.delegate = self
         cell.selectionStyle = .none
@@ -37,13 +37,22 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? ApartmentCell else { return }
-        if currentApartments[indexPath.row].isNew {
+        if apartmentsDataSource[indexPath.row].isNew {
             cell.timeLabel.backgroundColor = Colour.brandGray.setColor
-            currentApartments[indexPath.row].isNew = false
+            apartmentsDataSource[indexPath.row].isNew = false
+            if let index = currentApartments.firstIndex(where: { apartment in
+                apartment.externalLink == apartmentsDataSource[indexPath.row].externalLink
+            }) {
+                currentApartments[index].isNew = false
+            }
         } else {
             cell.timeLabel.backgroundColor = Colour.brandOlive.setColor
-            currentApartments[indexPath.row].isNew = true
+            apartmentsDataSource[indexPath.row].isNew = true
+            if let index = currentApartments.firstIndex(where: { apartment in
+                apartment.externalLink == apartmentsDataSource[indexPath.row].externalLink
+            }) {
+                currentApartments[index].isNew = true
+            }
         }
     }
-    
 }

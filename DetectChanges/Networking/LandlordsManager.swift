@@ -9,23 +9,16 @@ import Foundation
 import SwiftSoup
 
 class LandlordsManager {
-    private var options: Options
     private var previousApartments = [Apartment]()
     var landlords: [Landlord] = [Saga(), Vonovia()]
-    
-    init(with options: Options) {
-        self.options = options
-    }
     
     public func start(completion: @escaping ([Apartment]) -> ()) {
         var currentApartments = [Apartment]()
         let dispatchGroup = DispatchGroup()
         for landlord in landlords {
             dispatchGroup.enter()
-            landlord.getApartmentsList { [unowned self] apartments in
-                currentApartments += apartments.filter { apartment in
-                    apartment.rooms >= options.rooms && apartment.area >= options.area && apartment.rent <= options.rent
-                }
+            landlord.getApartmentsList { apartments in
+                currentApartments += apartments
                 dispatchGroup.leave()
             }
         }
@@ -41,9 +34,5 @@ class LandlordsManager {
         return currentApartments.filter { apartment in
             !previousApartments.contains(where: { $0.externalLink == apartment.externalLink })
         }
-    }
-    
-    func setOptions(_ options: Options) {
-        self.options = options
     }
 }

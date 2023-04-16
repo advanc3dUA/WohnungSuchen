@@ -14,8 +14,23 @@ class ViewController: UIViewController, ModalVCDelegate {
     @IBOutlet weak var tableView: UITableView!
     var timer: Timer?
     var modalVC: ModalVC?
-    var options: Options
-    var currentApartments: [Apartment]
+    var options: Options {
+        didSet {
+            apartmentsDataSource = filterCurrentApartments()
+        }
+    }
+    var currentApartments: [Apartment] {
+        didSet {
+            apartmentsDataSource = filterCurrentApartments()
+        }
+    }
+    var apartmentsDataSource: [Apartment] {
+        didSet {
+            if !apartmentsDataSource.isEmpty {
+                tableView.reloadData()
+            }
+        }
+    }
     var landlordsManager: LandlordsManager
     var feedbackManager: FeedbackManager
     var isSecondRunPlus: Bool
@@ -27,7 +42,8 @@ class ViewController: UIViewController, ModalVCDelegate {
     required init?(coder aDecoder: NSCoder) {
         self.options = Options()
         self.currentApartments = [Apartment]()
-        self.landlordsManager = LandlordsManager(with: options)
+        self.apartmentsDataSource = [Apartment]()
+        self.landlordsManager = LandlordsManager()
         self.feedbackManager = FeedbackManager()
         self.isSecondRunPlus = false
         super.init(coder: aDecoder)
@@ -65,8 +81,6 @@ class ViewController: UIViewController, ModalVCDelegate {
         guard let modalVCView = modalVCView else { fatalError("Unable to get modalVCView in startEngine") }
         modalVCView.containerView?.isHidden = true
         updateOptions(from: modalVCView)
-        landlordsManager.setOptions(options)
-        
         loadingView = LoadingView(frame: tableView.bounds)
         tableView.addSubview(loadingView!)
         
@@ -88,7 +102,6 @@ class ViewController: UIViewController, ModalVCDelegate {
                         self.feedbackManager.makeFeedback()
                     }
                 }
-                self.updateTableView(with: apartments.count)
                 self.loadingView?.removeFromSuperview()
                 self.statusLabel.text = "Last update: \(TimeManager.shared.getCurrentTime())"
                 self.statusLabel.flash(numberOfFlashes: 1)
@@ -118,7 +131,7 @@ class ViewController: UIViewController, ModalVCDelegate {
         }
         tableView.deleteRows(at: indexPaths, with: .automatic)
         isSecondRunPlus = false
-        landlordsManager = LandlordsManager(with: options)
+        landlordsManager = LandlordsManager()
     }
     
     func updateSoundManagerAlertType(with status: Bool) {
@@ -132,6 +145,12 @@ class ViewController: UIViewController, ModalVCDelegate {
     }
     
     //MARK: - Support functions
+    private func filterCurrentApartments() -> [Apartment] {
+        currentApartments.filter { apartment in
+            apartment.rooms >= options.rooms && apartment.area >= options.area && apartment.rent <= options.rent
+        }
+    }
+    
     private func enableStopButton(_ status: Bool) {
         if status {
             modalVCView?.stopButton.isEnabled = true
@@ -141,12 +160,13 @@ class ViewController: UIViewController, ModalVCDelegate {
             modalVCView?.stopButton.alpha = 0.5
         }
     }
-    private func updateTableView(with apartmentsNumber: Int) {
-        let indexPaths = (0..<apartmentsNumber).map { index in
-            IndexPath(row: index, section: 0)
-        }
-        self.tableView.insertRows(at: indexPaths, with: .middle)
-    }
+    
+//    private func updateTableView(with apartmentsNumber: Int) {
+//        let indexPaths = (0..<apartmentsNumber).map { index in
+//            IndexPath(row: index, section: 0)
+//        }
+//        self.tableView.insertRows(at: indexPaths, with: .middle)
+//    }
     
     private func updateOptions(from modalView: ModalView) {
         modalView.optionsView.roomsTextField.publisher(for: \.text)
