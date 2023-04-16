@@ -37,22 +37,18 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? ApartmentCell else { return }
-        if apartmentsDataSource[indexPath.row].isNew {
-            cell.timeLabel.backgroundColor = Colour.brandGray.setColor
-            apartmentsDataSource[indexPath.row].isNew = false
-            if let index = currentApartments.firstIndex(where: { apartment in
-                apartment.externalLink == apartmentsDataSource[indexPath.row].externalLink
-            }) {
-                currentApartments[index].isNew = false
-            }
-        } else {
-            cell.timeLabel.backgroundColor = Colour.brandOlive.setColor
-            apartmentsDataSource[indexPath.row].isNew = true
-            if let index = currentApartments.firstIndex(where: { apartment in
-                apartment.externalLink == apartmentsDataSource[indexPath.row].externalLink
-            }) {
-                currentApartments[index].isNew = true
-            }
+        toggleIsNew(at: indexPath.row, cell: cell)
+    }
+    
+    func toggleIsNew(at index: Int, cell: ApartmentCell) {
+        let currentApartmentIndex = currentApartments.firstIndex { $0.externalLink == apartmentsDataSource[index].externalLink }
+        
+        let toggledIsNew = !apartmentsDataSource[index].isNew
+        apartmentsDataSource[index].isNew = toggledIsNew
+        cell.timeLabel.backgroundColor = toggledIsNew ? Colour.brandOlive.setColor : Colour.brandGray.setColor
+        
+        if let index = currentApartmentIndex {
+            currentApartments[index].isNew = toggledIsNew
         }
     }
 }

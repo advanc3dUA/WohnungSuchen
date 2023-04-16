@@ -17,7 +17,7 @@ class ViewController: UIViewController, ModalVCDelegate {
     @Published var options: Options
     @Published var currentApartments: [Apartment]
     var apartmentsDataSource: [Apartment]
-    var landlordsManager: LandlordsManager
+    var landlordsManager: LandlordsManager?
     var feedbackManager: FeedbackManager
     var isSecondRunPlus: Bool
     var loadingView: LoadingView?
@@ -29,7 +29,6 @@ class ViewController: UIViewController, ModalVCDelegate {
         self.options = Options()
         self.currentApartments = [Apartment]()
         self.apartmentsDataSource = [Apartment]()
-        self.landlordsManager = LandlordsManager()
         self.feedbackManager = FeedbackManager()
         self.isSecondRunPlus = false
         super.init(coder: aDecoder)
@@ -64,6 +63,7 @@ class ViewController: UIViewController, ModalVCDelegate {
     //MARK: - ModalVCDelegate
     
     func startEngine() {
+        landlordsManager = landlordsManager ?? LandlordsManager()
         guard let modalVCView = modalVCView else { fatalError("Unable to get modalVCView in startEngine") }
         modalVCView.containerView?.isHidden = true
         setPublishersToUpdateOptions(from: modalVCView)
@@ -72,7 +72,7 @@ class ViewController: UIViewController, ModalVCDelegate {
         tableView.addSubview(loadingView!)
         
         timer = Timer.scheduledTimer(withTimeInterval: options.updateTime, repeats: true) {[unowned self] timer in
-            landlordsManager.start { [weak self] apartments in
+            landlordsManager?.start { [weak self] apartments in
                 guard let self = self else { return }
                 
                 if !self.isSecondRunPlus {
@@ -118,7 +118,7 @@ class ViewController: UIViewController, ModalVCDelegate {
         }
         tableView.deleteRows(at: indexPaths, with: .automatic)
         isSecondRunPlus = false
-        landlordsManager = LandlordsManager()
+        landlordsManager = nil
     }
     
     func updateSoundManagerAlertType(with status: Bool) {
