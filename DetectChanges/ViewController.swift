@@ -17,20 +17,16 @@ class ViewController: UIViewController, ModalVCDelegate {
     var options: Options {
         didSet {
             apartmentsDataSource = filterCurrentApartments()
+            tableView.reloadData()
         }
     }
     var currentApartments: [Apartment] {
         didSet {
             apartmentsDataSource = filterCurrentApartments()
+            tableView.reloadData()
         }
     }
-    var apartmentsDataSource: [Apartment] {
-        didSet {
-            if !apartmentsDataSource.isEmpty {
-                tableView.reloadData()
-            }
-        }
-    }
+    var apartmentsDataSource: [Apartment]
     var landlordsManager: LandlordsManager
     var feedbackManager: FeedbackManager
     var isSecondRunPlus: Bool
@@ -123,7 +119,7 @@ class ViewController: UIViewController, ModalVCDelegate {
         guard numberOfRows > 0 else {
             return
         }
-        currentApartments.removeAll()
+        apartmentsDataSource.removeAll()
         
         var indexPaths = [IndexPath]()
         for row in 0..<numberOfRows {
@@ -160,13 +156,6 @@ class ViewController: UIViewController, ModalVCDelegate {
             modalVCView?.stopButton.alpha = 0.5
         }
     }
-    
-//    private func updateTableView(with apartmentsNumber: Int) {
-//        let indexPaths = (0..<apartmentsNumber).map { index in
-//            IndexPath(row: index, section: 0)
-//        }
-//        self.tableView.insertRows(at: indexPaths, with: .middle)
-//    }
     
     private func updateOptions(from modalView: ModalView) {
         modalView.optionsView.roomsTextField.publisher(for: \.text)
