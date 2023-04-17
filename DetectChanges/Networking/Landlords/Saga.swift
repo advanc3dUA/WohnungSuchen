@@ -16,7 +16,7 @@ class Saga: Landlord {
         self.networkManager = networkManager
     }
     
-    func getApartmentsList(completion: @escaping ([Apartment]) -> Void) {
+    func fetchApartmentsList(completion: @escaping (Result<[Apartment], Error>) -> Void) {
         var currentApartments = [Apartment]()
         let dispatchGroup = DispatchGroup()
         
@@ -51,7 +51,11 @@ class Saga: Landlord {
                 }
             } catch { print("Error parsing HTML: \(error)") }
             dispatchGroup.notify(queue: DispatchQueue.main) {
-                completion(currentApartments)
+                if currentApartments.isEmpty {
+                    completion(.success([]))
+                } else {
+                    completion(.success(currentApartments))
+                }
             }
         }
     }

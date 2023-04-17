@@ -8,45 +8,73 @@
 import Foundation
 
 class LandlordsManager {
-    private var previousApartments = [Apartment]()
-    private let immomioLinkFetcher = ImmomioLinkFetcher(networkManager: NetworkManager())
-    var landlords: [Landlord] = [Saga(), Vonovia()]
+    fileprivate var previousApartments = [Apartment]()
+    private var landlords: [Landlord] = [Saga(), Vonovia()]
+    private let immomioLinkFetcher: ImmomioLinkFetcher
+    
+    init(immomioLinkFetcher: ImmomioLinkFetcher) {
+        self.immomioLinkFetcher = immomioLinkFetcher
+    }
     
     public func start(completion: @escaping ([Apartment]) -> ()) {
         var currentApartments = [Apartment]()
         let dispatchGroup = DispatchGroup()
+        
         for landlord in landlords {
             dispatchGroup.enter()
-            landlord.getApartmentsList { apartments in
-                currentApartments += apartments
+            landlord.fetchApartmentsList { result in
+                switch result {
+                case .success(let apartments): currentApartments += apartments
+                case .failure(let error): print("Failed to fetch apartments for landlord. Error: \(error)")
+                }
                 dispatchGroup.leave()
             }
         }
         
-        dispatchGroup.notify(queue: .main) { [unowned self] in
-            comparePreviousApartments(with: currentApartments) { newApartments in
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            self?.comparePreviousApartments(with: currentApartments) { newApartments in
                 completion(newApartments)
             }
-            previousApartments = currentApartments
+            self?.previousApartments = currentApartments
         }
     }
     
     private func comparePreviousApartments(with currentApartments: [Apartment], completion: @escaping ([Apartment]) -> ()) {
-        let dispatchGroup = DispatchGroup()
-        var newApartments = currentApartments.filter { apartment in
+        var newApartments = findNewApartments(from: currentApartments)
+        fetchImmomioLinks(for: newApartments) { modifiedApartments in
+            completion(modifiedApartments)
+        }
+    }
+    
+    private func findNewApartments(from currentApartments: [Apartment]) -> [Apartment] {
+        return currentApartments.filter { apartment in
             !previousApartments.contains(where: { $0.internalLink == apartment.internalLink })
         }
-        for (index, apartment) in newApartments.enumerated() {
-            if apartment.company == .saga {
-                dispatchGroup.enter()
-                immomioLinkFetcher.fetchLink(for: apartment.internalLink) { immomioLink in
-                    newApartments[index].externalLink = immomioLink
-                    dispatchGroup.leave()
+    }
+    
+    private func fetchImmomioLinks(for apartments: [Apartment], completion: @escaping ([Apartment]) -> ()) {
+        let dispatchGroup = DispatchGroup()
+        var modifiedApartments = [Apartment]()
+        
+        let sagaApartments = apartments.filter { $0.company == .saga }
+        
+        for apartment in sagaApartments {
+            dispatchGroup.enter()
+            immomioLinkFetcher.fetchLink(for: apartment.internalLink) { result in
+                switch result {
+                case .success(let immomioLink):
+                    var sagaModifiedApartment = apartment
+                    sagaModifiedApartment.externalLink = immomioLink
+                    modifiedApartments.append(sagaModifiedApartment)
+                case .failure(let error): print("Failed to fetch Immomio link for apartment: \(apartment.title). Error: \(error)")
                 }
+                dispatchGroup.leave()
             }
+            
         }
+        modifiedApartments += apartments.filter { $0.company != .saga }
         dispatchGroup.notify(queue: .main) {
-            completion(newApartments)
+            completion(modifiedApartments)
         }
     }
 }

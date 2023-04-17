@@ -17,7 +17,7 @@ class Vonovia: Landlord {
         self.networkManager = networkManager
     }
     
-    func getApartmentsList(completion: @escaping ([Apartment]) -> Void) {
+    func fetchApartmentsList(completion: @escaping (Result<[Apartment], Error>) -> Void) {
         networkManager.fetchData(urlString: searchURLString) {[weak self] data in
             do {
                 let decoder = JSONDecoder()
@@ -44,7 +44,11 @@ class Vonovia: Landlord {
                                               company: .vonovia)
                     currentApartments.append(apartment)
                 }
-                completion(currentApartments)
+                if currentApartments.isEmpty {
+                    completion(.success([]))
+                } else {
+                    completion(.success(currentApartments))
+                }
             }
 
             catch {

@@ -15,7 +15,7 @@ class ImmomioLinkFetcher {
         self.networkManager = networkManager
     }
     
-    func fetchLink(for apartmentLink: String, completion: @escaping (String) -> Void) {
+    func fetchLink(for apartmentLink: String, completion: @escaping (Result<String, Error>) -> Void) {
         var immomioLink = ""
         networkManager.fetchHtmlString(urlString: apartmentLink) { htmlString in
             guard let htmlString = htmlString else {
@@ -26,8 +26,9 @@ class ImmomioLinkFetcher {
                 immomioLink = try doc.select("a[href^=\"https://rdr.immomio.com\"]").first()!.attr("href")
             } catch {
                 print("Error parsing HTML: \(error)")
+                completion(.failure(error))
             }
-            completion(immomioLink)
+            completion(.success(immomioLink))
         }
     }
 }

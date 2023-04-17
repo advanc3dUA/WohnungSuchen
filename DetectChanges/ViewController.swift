@@ -17,6 +17,7 @@ class ViewController: UIViewController, ModalVCDelegate {
     @Published var options: Options
     @Published var currentApartments: [Apartment]
     var apartmentsDataSource: [Apartment]
+    var immomioLinkFetcher: ImmomioLinkFetcher
     var landlordsManager: LandlordsManager?
     var feedbackManager: FeedbackManager
     var isSecondRunPlus: Bool
@@ -27,6 +28,7 @@ class ViewController: UIViewController, ModalVCDelegate {
     
     required init?(coder aDecoder: NSCoder) {
         self.options = Options()
+        self.immomioLinkFetcher = ImmomioLinkFetcher(networkManager: NetworkManager())
         self.currentApartments = [Apartment]()
         self.apartmentsDataSource = [Apartment]()
         self.feedbackManager = FeedbackManager()
@@ -63,7 +65,7 @@ class ViewController: UIViewController, ModalVCDelegate {
     //MARK: - ModalVCDelegate
     
     func startEngine() {
-        landlordsManager = landlordsManager ?? LandlordsManager()
+        landlordsManager = landlordsManager ?? LandlordsManager(immomioLinkFetcher: immomioLinkFetcher)
         guard let modalVCView = modalVCView else { fatalError("Unable to get modalVCView in startEngine") }
         modalVCView.containerView?.isHidden = true
         setPublishersToUpdateOptions(from: modalVCView)

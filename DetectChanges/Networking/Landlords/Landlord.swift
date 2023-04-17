@@ -8,5 +8,5 @@
 import Foundation
 
 protocol Landlord {
-    func getApartmentsList(completion: @escaping ([Apartment]) -> Void)
+    func fetchApartmentsList(completion: @escaping (Result<[Apartment], Error>) -> Void)
 }
