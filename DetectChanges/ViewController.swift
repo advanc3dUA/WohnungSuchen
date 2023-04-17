@@ -82,13 +82,14 @@ class ViewController: UIViewController, ModalVCDelegate {
                     self.isSecondRunPlus = true
                 } else {
                     if !apartments.isEmpty {
-                        
                         let newApartments = apartments.map {
                             Apartment(time: $0.time, title: $0.title, internalLink: $0.internalLink, street: $0.street, rooms: $0.rooms, area: $0.area, rent: $0.rent, externalLink: $0.externalLink, company: $0.company, isNew: true)
                         }
-                        
                         self.currentApartments.insert(contentsOf: newApartments, at: 0)
-                        self.feedbackManager.makeFeedback()
+                        
+                        if newApartments.contains(where: { self.apartmentSatisfyCurrentFilter($0) }) {
+                            self.feedbackManager.makeFeedback()
+                        }
                     }
                 }
                 self.loadingView?.removeFromSuperview()
@@ -190,6 +191,10 @@ class ViewController: UIViewController, ModalVCDelegate {
                 tableView.reloadData()
             }
             .store(in: &cancellables)
+    }
+    
+    private func apartmentSatisfyCurrentFilter(_ apartment: Apartment) -> Bool {
+        return apartment.rooms >= options.rooms && apartment.area >= options.area && apartment.rent <= options.rent
     }
 }
 
