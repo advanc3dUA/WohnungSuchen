@@ -35,6 +35,7 @@ class Vonovia: Landlord {
                     
                     let apartment = Apartment(time: time,
                                               title: jsonApartment.titel,
+                                              internalLink: link,
                                               street: jsonApartment.strasse,
                                               rooms: rooms,
                                               area: area,

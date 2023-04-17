@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import SwiftSoup
 
 class LandlordsManager {
     private var previousApartments = [Apartment]()
+    private let immomioLinkFetcher = ImmomioLinkFetcher(networkManager: NetworkManager())
     var landlords: [Landlord] = [Saga(), Vonovia()]
     
     public func start(completion: @escaping ([Apartment]) -> ()) {
@@ -24,15 +24,29 @@ class LandlordsManager {
         }
         
         dispatchGroup.notify(queue: .main) { [unowned self] in
-            let newApartments = comparePreviousApartments(with: currentApartments)
+            comparePreviousApartments(with: currentApartments) { newApartments in
+                completion(newApartments)
+            }
             previousApartments = currentApartments
-            completion(newApartments)
         }
     }
     
-    private func comparePreviousApartments(with currentApartments: [Apartment]) -> [Apartment] {
-        return currentApartments.filter { apartment in
-            !previousApartments.contains(where: { $0.externalLink == apartment.externalLink })
+    private func comparePreviousApartments(with currentApartments: [Apartment], completion: @escaping ([Apartment]) -> ()) {
+        let dispatchGroup = DispatchGroup()
+        var newApartments = currentApartments.filter { apartment in
+            !previousApartments.contains(where: { $0.internalLink == apartment.internalLink })
+        }
+        for (index, apartment) in newApartments.enumerated() {
+            if apartment.company == .saga {
+                dispatchGroup.enter()
+                immomioLinkFetcher.fetchLink(for: apartment.internalLink) { immomioLink in
+                    newApartments[index].externalLink = immomioLink
+                    dispatchGroup.leave()
+                }
+            }
+        }
+        dispatchGroup.notify(queue: .main) {
+            completion(newApartments)
         }
     }
 }

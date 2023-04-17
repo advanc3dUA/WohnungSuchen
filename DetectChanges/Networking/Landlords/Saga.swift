@@ -10,12 +10,10 @@ import SwiftSoup
 
 class Saga: Landlord {
     private let networkManager: NetworkManager
-    private let immomioLinkFetcher: ImmomioLinkFetcher
     private let searchURLString = "https://www.saga.hamburg/immobiliensuche?type=wohnungen"
     
     init(networkManager: NetworkManager = NetworkManager()) {
         self.networkManager = networkManager
-        self.immomioLinkFetcher = ImmomioLinkFetcher(networkManager: networkManager)
     }
     
     func getApartmentsList(completion: @escaping ([Apartment]) -> Void) {
@@ -37,7 +35,7 @@ class Saga: Landlord {
                        let roomInfo = try? link.select("span.ft-semi:contains(Zimmer:)").first()?.parent()?.text(),
                        let details = extractApartmentDetails(from: roomInfo),
                        let street = try? link.select("span.ft-semi:contains(Straße:)").first()?.parent()?.text() {
-                        var newApartment = Apartment(time: time,
+                        let newApartment = Apartment(time: time,
                                                      title: title,
                                                      internalLink: "https://www.saga.hamburg" + href,
                                                      street: dropPrefix(for: street),
@@ -47,11 +45,8 @@ class Saga: Landlord {
                                                      company: .saga
                         )
                         dispatchGroup.enter()
-                        immomioLinkFetcher.fetchLink(for: newApartment.internalLink) { immomioLink in
-                            newApartment.externalLink = immomioLink
-                            currentApartments.append(newApartment)
-                            dispatchGroup.leave()
-                        }
+                        currentApartments.append(newApartment)
+                        dispatchGroup.leave()
                     }
                 }
             } catch { print("Error parsing HTML: \(error)") }
