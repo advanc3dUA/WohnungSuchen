@@ -14,6 +14,7 @@ class ViewController: UIViewController, ModalVCDelegate {
     @IBOutlet weak var tableView: UITableView!
     var timer: Timer?
     var modalVC: ModalVC?
+    var modalVCIsPresented: Bool
     @Published var options: Options
     @Published var currentApartments: [Apartment]
     var apartmentsDataSource: [Apartment]
@@ -23,6 +24,8 @@ class ViewController: UIViewController, ModalVCDelegate {
     var isSecondRunPlus: Bool
     var loadingView: LoadingView?
     var modalVCView: ModalView?
+    var backgroundAudioPlayer: BackgroundAudioPlayer?
+    var bgAudioPlayerIsInterrupted: Bool
     
     private var cancellables: Set<AnyCancellable> = []
     
@@ -32,7 +35,9 @@ class ViewController: UIViewController, ModalVCDelegate {
         self.currentApartments = [Apartment]()
         self.apartmentsDataSource = [Apartment]()
         self.feedbackManager = FeedbackManager()
+        self.modalVCIsPresented = false
         self.isSecondRunPlus = false
+        self.bgAudioPlayerIsInterrupted = false
         super.init(coder: aDecoder)
     }
     
@@ -42,23 +47,44 @@ class ViewController: UIViewController, ModalVCDelegate {
         super.viewDidLoad()
         view.backgroundColor = Colour.brandDark.setColor
         
+        backgroundAudioPlayer = BackgroundAudioPlayer(for: self)
+        backgroundAudioPlayer?.start()
+        
         tableView.layer.cornerRadius = 10
         tableView.register(ApartmentCell.nib, forCellReuseIdentifier: ApartmentCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
+        
+        setupModalVC()
+        startEngine()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        presentModalVC()
-        startEngine()
+
+        if let modalVC = modalVC, !modalVCIsPresented {
+            present(modalVC, animated: true)
+            setPublishersToUpdateOptions(from: modalVC.modalView)
+            setPublisherToUpdateApartmentsDataSource()
+            modalVCIsPresented = true
+        }
+        
+        if backgroundAudioPlayer == nil {
+            statusLabel.backgroundColor = .red
+            statusLabel.text = "bgAudioPlayer is nil at \(TimeManager.shared.getCurrentTime())"
+            backgroundAudioPlayer = BackgroundAudioPlayer(for: self)
+            backgroundAudioPlayer?.start()
+        }
+        if timer == nil {
+            statusLabel.backgroundColor = .systemYellow
+            statusLabel.text = "timer is nil at \(TimeManager.shared.getCurrentTime())"
+        }
     }
     
-    private func presentModalVC() {
+    private func setupModalVC() {
         modalVC = ModalVC(smallDetentSize: calcModalVCDetentSizeSmall())
         modalVC?.presentationController?.delegate = self
         modalVC?.delegate = self
-        present(modalVC!, animated: true)
         modalVCView = modalVC?.view as? ModalView
     }
     
@@ -68,8 +94,6 @@ class ViewController: UIViewController, ModalVCDelegate {
         landlordsManager = landlordsManager ?? LandlordsManager(immomioLinkFetcher: immomioLinkFetcher)
         guard let modalVCView = modalVCView else { fatalError("Unable to get modalVCView in startEngine") }
         modalVCView.containerView?.isHidden = true
-        setPublishersToUpdateOptions(from: modalVCView)
-        setPublisherToUpdateApartmentsDataSource()
         loadingView = LoadingView(frame: tableView.bounds)
         tableView.addSubview(loadingView!)
         

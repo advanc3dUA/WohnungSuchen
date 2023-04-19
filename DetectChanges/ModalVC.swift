@@ -19,12 +19,9 @@ class ModalVC: UIViewController {
         }
     }
     var delegate: ModalVCDelegate?
-    var backgroundAudioPlayer: BackgroundAudioPlayer?
-    var bgAudioPlayerIsInterrupted: Bool
     
     init(smallDetentSize: CGFloat) {
         currentDetent = .medium
-        bgAudioPlayerIsInterrupted = false
         super.init(nibName: nil, bundle: nil)
         
         // Custom medium detent
@@ -47,8 +44,6 @@ class ModalVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        backgroundAudioPlayer = BackgroundAudioPlayer(for: self)
-        backgroundAudioPlayer?.start()
         
         let tapGasture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGasture)

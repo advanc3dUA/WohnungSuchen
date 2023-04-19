@@ -10,6 +10,7 @@
 		6B59BD45DF2B8933B6250731 /* Pods_DetectChanges.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9D8D936A7A4791A5EED83EB /* Pods_DetectChanges.framework */; };
 		BF0F3F5B29BDDF89002909BB /* ConsolePrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0F3F5A29BDDF89002909BB /* ConsolePrinter.swift */; };
 		BF0F3F5D29BDE47D002909BB /* fanfare.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BF0F3F5C29BDE47D002909BB /* fanfare.mp3 */; };
+		BF11CEA029EFD6FF00A9D194 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF11CE9F29EFD6FF00A9D194 /* CustomButton.swift */; };
 		BF22E7E329EAB279003F245A /* Int+ExtractFromString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF22E7E229EAB279003F245A /* Int+ExtractFromString.swift */; };
 		BF22E7E529EAB7E0003F245A /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF22E7E429EAB7E0003F245A /* FeedbackManager.swift */; };
 		BF22E7E729EAD5CD003F245A /* Double+ExtractFromString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF22E7E629EAD5CD003F245A /* Double+ExtractFromString.swift */; };
@@ -54,7 +55,6 @@
 		BFA68DD529DAEAB20023B268 /* ApartmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFA68DD329DAEAB20023B268 /* ApartmentCell.xib */; };
 		BFA71BD229CD935A00F8781E /* ModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA71BD129CD935A00F8781E /* ModalVC.swift */; };
 		BFA71BD629CD949800F8781E /* DetectDetent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA71BD529CD949800F8781E /* DetectDetent.swift */; };
-		BFA71BDA29CDA57600F8781E /* ModalVC+AVAudioPlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA71BD929CDA57600F8781E /* ModalVC+AVAudioPlayerDelegate.swift */; };
 		BFA71BDC29CDA7D300F8781E /* ModalVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA71BDB29CDA7D300F8781E /* ModalVCDelegate.swift */; };
 		BFA9F37229C1F61E00ECB8F4 /* ImmoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA9F37129C1F61E00ECB8F4 /* ImmoButton.swift */; };
 		BFBA6CF829D42F08004D0AFD /* ImmomioLinkFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBA6CF729D42F08004D0AFD /* ImmomioLinkFetcher.swift */; };
@@ -68,6 +68,7 @@
 		A3FE12165EF32A695B2F9190 /* Pods-DetectChanges.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DetectChanges.debug.xcconfig"; path = "Target Support Files/Pods-DetectChanges/Pods-DetectChanges.debug.xcconfig"; sourceTree = "<group>"; };
 		BF0F3F5A29BDDF89002909BB /* ConsolePrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsolePrinter.swift; sourceTree = "<group>"; };
 		BF0F3F5C29BDE47D002909BB /* fanfare.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fanfare.mp3; sourceTree = "<group>"; };
+		BF11CE9F29EFD6FF00A9D194 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		BF22E7E229EAB279003F245A /* Int+ExtractFromString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+ExtractFromString.swift"; sourceTree = "<group>"; };
 		BF22E7E429EAB7E0003F245A /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
 		BF22E7E629EAD5CD003F245A /* Double+ExtractFromString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+ExtractFromString.swift"; sourceTree = "<group>"; };
@@ -115,7 +116,6 @@
 		BFA68DD329DAEAB20023B268 /* ApartmentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApartmentCell.xib; sourceTree = "<group>"; };
 		BFA71BD129CD935A00F8781E /* ModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalVC.swift; sourceTree = "<group>"; };
 		BFA71BD529CD949800F8781E /* DetectDetent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectDetent.swift; sourceTree = "<group>"; };
-		BFA71BD929CDA57600F8781E /* ModalVC+AVAudioPlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModalVC+AVAudioPlayerDelegate.swift"; sourceTree = "<group>"; };
 		BFA71BDB29CDA7D300F8781E /* ModalVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalVCDelegate.swift; sourceTree = "<group>"; };
 		BFA9F37129C1F61E00ECB8F4 /* ImmoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmoButton.swift; sourceTree = "<group>"; };
 		BFBA6CF729D42F08004D0AFD /* ImmomioLinkFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmomioLinkFetcher.swift; sourceTree = "<group>"; };
@@ -152,6 +152,7 @@
 			children = (
 				BF707C0329BB427700225796 /* Main.storyboard */,
 				BFA3DEF029D82FD5009B23D8 /* ModalView.swift */,
+				BF11CE9F29EFD6FF00A9D194 /* CustomButton.swift */,
 				BF8EEDB729C4701100F74971 /* MapButton.swift */,
 				BFA9F37129C1F61E00ECB8F4 /* ImmoButton.swift */,
 				BF94F64929D75D0B00993295 /* StartPauseButton.swift */,
@@ -223,7 +224,6 @@
 				BFA71BD529CD949800F8781E /* DetectDetent.swift */,
 				BFA71BD129CD935A00F8781E /* ModalVC.swift */,
 				BFA71BDB29CDA7D300F8781E /* ModalVCDelegate.swift */,
-				BFA71BD929CDA57600F8781E /* ModalVC+AVAudioPlayerDelegate.swift */,
 				BF8A62F929DD9F5300E2DCD4 /* ApartmentCellDelegate.swift */,
 			);
 			name = Controllers;
@@ -466,6 +466,7 @@
 				BF707BFE29BB427700225796 /* AppDelegate.swift in Sources */,
 				BF4704BF29D2D52A00EEABEE /* Saga.swift in Sources */,
 				BF22E7E529EAB7E0003F245A /* FeedbackManager.swift in Sources */,
+				BF11CEA029EFD6FF00A9D194 /* CustomButton.swift in Sources */,
 				BF0F3F5B29BDDF89002909BB /* ConsolePrinter.swift in Sources */,
 				BF94F64A29D75D0B00993295 /* StartPauseButton.swift in Sources */,
 				BF8EB0F729E17A360070C64B /* UIView+Flashing.swift in Sources */,
@@ -474,7 +475,6 @@
 				BF8EB0F929E19B050070C64B /* StopButton.swift in Sources */,
 				BFA71BDC29CDA7D300F8781E /* ModalVCDelegate.swift in Sources */,
 				BF4704C129D2D53B00EEABEE /* Landlord.swift in Sources */,
-				BFA71BDA29CDA57600F8781E /* ModalVC+AVAudioPlayerDelegate.swift in Sources */,
 				BFEBAA5C29E2EF0A00CC83C8 /* Options.swift in Sources */,
 				BF8A62FC29DDA1E700E2DCD4 /* VC+ApartmentCellDelegate.swift in Sources */,
 				BF707C0029BB427700225796 /* SceneDelegate.swift in Sources */,

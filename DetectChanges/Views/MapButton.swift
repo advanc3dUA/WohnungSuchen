@@ -8,23 +8,18 @@
 import UIKit
 
 @IBDesignable
-class MapButton: UIButton {
+class MapButton: CustomButton {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setup()
-    }
-    
-    private func setup() {
-        backgroundColor = Colour.brandDark.setColor
+    override func setup() {
         layer.cornerRadius = 5
         layer.borderWidth = 1
         layer.borderColor = Colour.brandBlue.setColor?.cgColor
         setTitle("🧭", for: .normal)
+        
+        let normalBackgroundColor = imageWithColor(Colour.brandDark.setColor ?? .clear)
+        setBackgroundImage(normalBackgroundColor, for: .normal)
+        
+        let highlightedBackgroundColor = imageWithColor(Colour.brandBlue.setColor ?? .clear)
+        setBackgroundImage(highlightedBackgroundColor, for: .highlighted)
     }
 }

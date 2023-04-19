@@ -16,16 +16,21 @@ class OptionsView: UIView {
     @IBOutlet weak var soundSwitch: UISwitch!
     @IBOutlet weak var timerUpdateTextField: UITextField!
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        roomsTextField.placeholder = String(Constants.defaultOptions.rooms)
-        rentTextField.placeholder = String(Constants.defaultOptions.rent)
-        areaTextField.placeholder = String(Constants.defaultOptions.area)
-        timerUpdateTextField.placeholder = String(Constants.defaultOptions.updateTimer)
+        let defaultAttributes = [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+        roomsTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.rooms), attributes: defaultAttributes)
+        rentTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.rent), attributes: defaultAttributes)
+        areaTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.area), attributes: defaultAttributes)
+        timerUpdateTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.updateTimer), attributes: defaultAttributes)
     }
 }
 
