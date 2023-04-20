@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -109,36 +110,21 @@
                                 <constraint firstAttribute="height" constant="35" id="swO-lq-qC0"/>
                             </constraints>
                         </stackView>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="tSU-3u-nvn">
-                            <rect key="frame" x="0.0" y="209.33333333333334" width="380" height="31"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="tSU-3u-nvn">
+                            <rect key="frame" x="67.333333333333329" y="209.33333333333334" width="245.33333333333337" height="31"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🔕" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bw-4f-c6a">
-                                    <rect key="frame" x="0.0" y="0.0" width="22.666666666666668" height="31"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Custom notification alert:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPN-o2-lVe">
+                                    <rect key="frame" x="0.0" y="0.0" width="191.33333333333334" height="31"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" name="brandDark"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xof-tU-012">
-                                    <rect key="frame" x="23.666666666666661" y="0.0" width="50.333333333333343" height="31"/>
+                                    <rect key="frame" x="196.33333333333337" y="0.0" width="51" height="31"/>
                                     <color key="tintColor" name="brandGray"/>
                                     <color key="onTintColor" name="brandGray"/>
                                     <color key="thumbTintColor" name="brandBlue"/>
                                 </switch>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🔔" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rTK-YS-MUT">
-                                    <rect key="frame" x="73" y="0.0" width="22.666666666666671" height="31"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" name="brandDark"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="7" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="gw4-Ns-rH5">
-                                    <rect key="frame" x="94.666666666666657" y="0.0" width="287.33333333333337" height="32"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="vF2-74-OOg"/>
-                                    </constraints>
-                                    <color key="minimumTrackTintColor" name="brandGray"/>
-                                    <color key="maximumTrackTintColor" name="brandGray"/>
-                                    <color key="thumbTintColor" name="brandBlue"/>
-                                </slider>
                             </subviews>
                         </stackView>
                     </subviews>
@@ -157,7 +143,6 @@
                 <outlet property="roomsTextField" destination="Saw-65-Rsm" id="Ro1-c9-fEf"/>
                 <outlet property="soundSwitch" destination="xof-tU-012" id="6S4-ZH-J3k"/>
                 <outlet property="timerUpdateTextField" destination="BuA-Ml-h5H" id="W5y-mL-fYc"/>
-                <outlet property="volumeSlider" destination="gw4-Ns-rH5" id="byt-JB-w4x"/>
             </connections>
             <point key="canvasLocation" x="274.80916030534348" y="-93.661971830985919"/>
         </view>
