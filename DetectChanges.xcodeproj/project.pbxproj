@@ -32,6 +32,7 @@
 		BF8A62F829DD7B8500E2DCD4 /* VC+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A62F729DD7B8500E2DCD4 /* VC+TableViewDelegate.swift */; };
 		BF8A62FA29DD9F5300E2DCD4 /* ApartmentCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A62F929DD9F5300E2DCD4 /* ApartmentCellDelegate.swift */; };
 		BF8A62FC29DDA1E700E2DCD4 /* VC+ApartmentCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A62FB29DDA1E700E2DCD4 /* VC+ApartmentCellDelegate.swift */; };
+		BF8BD27729F13DC400771321 /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8BD27629F13DC400771321 /* NotificationsManager.swift */; };
 		BF8C912829DDB865008AD739 /* IntelPentiumSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BF8C912729DDB865008AD739 /* IntelPentiumSound.mp3 */; };
 		BF8C912B29DDB877008AD739 /* VonoviaLogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BF8C912929DDB877008AD739 /* VonoviaLogo.jpg */; };
 		BF8C912C29DDB877008AD739 /* SagaLogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BF8C912A29DDB877008AD739 /* SagaLogo.jpg */; };
@@ -93,6 +94,7 @@
 		BF8A62F729DD7B8500E2DCD4 /* VC+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		BF8A62F929DD9F5300E2DCD4 /* ApartmentCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentCellDelegate.swift; sourceTree = "<group>"; };
 		BF8A62FB29DDA1E700E2DCD4 /* VC+ApartmentCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+ApartmentCellDelegate.swift"; sourceTree = "<group>"; };
+		BF8BD27629F13DC400771321 /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
 		BF8C912729DDB865008AD739 /* IntelPentiumSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = IntelPentiumSound.mp3; sourceTree = "<group>"; };
 		BF8C912929DDB877008AD739 /* VonoviaLogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = VonoviaLogo.jpg; sourceTree = "<group>"; };
 		BF8C912A29DDB877008AD739 /* SagaLogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SagaLogo.jpg; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				BF92059F29E029830017CEEA /* TimeManager.swift */,
 				BF22E7E229EAB279003F245A /* Int+ExtractFromString.swift */,
 				BF22E7E629EAD5CD003F245A /* Double+ExtractFromString.swift */,
+				BF8BD27629F13DC400771321 /* NotificationsManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				BF8EB0F529E16B880070C64B /* LoadingView.swift in Sources */,
 				BFBA6CF829D42F08004D0AFD /* ImmomioLinkFetcher.swift in Sources */,
 				BFA68DD429DAEAB20023B268 /* ApartmentCell.swift in Sources */,
+				BF8BD27729F13DC400771321 /* NotificationsManager.swift in Sources */,
 				BF8EEDB829C4701100F74971 /* MapButton.swift in Sources */,
 				BFA3DEF129D82FD5009B23D8 /* ModalView.swift in Sources */,
 				BFA1C3D329C339540023396C /* UIView+removeAllSubviews.swift in Sources */,

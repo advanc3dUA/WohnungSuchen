@@ -20,7 +20,7 @@ class ViewController: UIViewController, ModalVCDelegate {
     var apartmentsDataSource: [Apartment]
     var immomioLinkFetcher: ImmomioLinkFetcher
     var landlordsManager: LandlordsManager?
-    var feedbackManager: FeedbackManager
+    var notificationsManager: NotificationsManager
     var isSecondRunPlus: Bool
     var loadingView: LoadingView?
     var modalVCView: ModalView?
@@ -34,7 +34,7 @@ class ViewController: UIViewController, ModalVCDelegate {
         self.immomioLinkFetcher = ImmomioLinkFetcher(networkManager: NetworkManager())
         self.currentApartments = [Apartment]()
         self.apartmentsDataSource = [Apartment]()
-        self.feedbackManager = FeedbackManager()
+        self.notificationsManager = NotificationsManager()
         self.modalVCIsPresented = false
         self.isSecondRunPlus = false
         self.bgAudioPlayerIsInterrupted = false
@@ -46,6 +46,7 @@ class ViewController: UIViewController, ModalVCDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Colour.brandDark.setColor
+        notificationsManager.requestNotificationAuthorization()
         
         backgroundAudioPlayer = BackgroundAudioPlayer(for: self)
         backgroundAudioPlayer?.start()
@@ -68,17 +69,6 @@ class ViewController: UIViewController, ModalVCDelegate {
             setPublisherToUpdateApartmentsDataSource()
             modalVCIsPresented = true
         }
-        
-        if backgroundAudioPlayer == nil {
-            statusLabel.backgroundColor = .red
-            statusLabel.text = "bgAudioPlayer is nil at \(TimeManager.shared.getCurrentTime())"
-            backgroundAudioPlayer = BackgroundAudioPlayer(for: self)
-            backgroundAudioPlayer?.start()
-        }
-        if timer == nil {
-            statusLabel.backgroundColor = .systemYellow
-            statusLabel.text = "timer is nil at \(TimeManager.shared.getCurrentTime())"
-        }
     }
     
     private func setupModalVC() {
@@ -100,7 +90,6 @@ class ViewController: UIViewController, ModalVCDelegate {
         timer = Timer.scheduledTimer(withTimeInterval: options.updateTime, repeats: true) {[unowned self] timer in
             landlordsManager?.start { [weak self] apartments in
                 guard let self = self else { return }
-                
                 if !self.isSecondRunPlus {
                     self.currentApartments = apartments
                     self.isSecondRunPlus = true
@@ -112,7 +101,7 @@ class ViewController: UIViewController, ModalVCDelegate {
                         self.currentApartments.insert(contentsOf: newApartments, at: 0)
                         
                         if newApartments.contains(where: { self.apartmentSatisfyCurrentFilter($0) }) {
-                            self.feedbackManager.makeFeedback()
+                            self.notificationsManager.pushNotification(for: newApartments.count)
                         }
                     }
                 }
@@ -148,14 +137,9 @@ class ViewController: UIViewController, ModalVCDelegate {
         landlordsManager = nil
     }
     
-    func updateSoundManagerAlertType(with status: Bool) {
+    func setNotificationManagerAlertType(with state: Bool) {
         guard let modalView = modalVCView else { return }
-        feedbackManager.setAlertType(to: modalView.optionsView.soundSwitch.isOn ? .sound : .vibration)
-    }
-    
-    func updateSoundManagerVolume(with value: Float) {
-        guard let modalView = modalVCView else { return }
-        feedbackManager.setVolume(to: modalView.optionsView.volumeSlider.value)
+        notificationsManager.setAlertType(to: modalView.optionsView.soundSwitch.isOn ? .custom : .standart)
     }
     
     //MARK: - Support functions

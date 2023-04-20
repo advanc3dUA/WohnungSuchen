@@ -9,7 +9,7 @@ import UIKit
 import AVFoundation
 
 class BackgroundAudioPlayer {
-    private var audioPlayer: AVAudioPlayer?
+    var audioPlayer: AVAudioPlayer?
     private var controller: AVAudioPlayerDelegate
     
     init(for controller: AVAudioPlayerDelegate) {
