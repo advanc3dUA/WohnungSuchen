@@ -49,7 +49,6 @@ class ViewController: UIViewController, ModalVCDelegate {
         notificationsManager.requestNotificationAuthorization()
         
         backgroundAudioPlayer = BackgroundAudioPlayer(for: self)
-        backgroundAudioPlayer?.start()
         
         tableView.layer.cornerRadius = 10
         tableView.register(ApartmentCell.nib, forCellReuseIdentifier: ApartmentCell.identifier)
@@ -81,6 +80,7 @@ class ViewController: UIViewController, ModalVCDelegate {
     //MARK: - ModalVCDelegate
     
     func startEngine() {
+        backgroundAudioPlayer?.start()
         landlordsManager = landlordsManager ?? LandlordsManager(immomioLinkFetcher: immomioLinkFetcher)
         guard let modalVCView = modalVCView else { fatalError("Unable to get modalVCView in startEngine") }
         modalVCView.containerView?.isHidden = true
@@ -135,6 +135,8 @@ class ViewController: UIViewController, ModalVCDelegate {
         tableView.deleteRows(at: indexPaths, with: .automatic)
         isSecondRunPlus = false
         landlordsManager = nil
+        backgroundAudioPlayer?.stop()
+        bgAudioPlayerIsInterrupted = false
     }
     
     func setNotificationManagerAlertType(with state: Bool) {
