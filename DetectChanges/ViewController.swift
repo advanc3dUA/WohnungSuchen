@@ -154,27 +154,51 @@ class ViewController: UIViewController, ModalVCDelegate {
     }
     
     private func setPublishersToUpdateOptions(from modalView: ModalView) {
-        modalView.optionsView.roomsTextField.publisher(for: \.text)
-            .map { Int(extractFrom: $0, defaultValue: Constants.defaultOptions.rooms) }
+        modalView.optionsView.roomsMinTextField.publisher(for: \.text)
+            .map { Int(extractFrom: $0, defaultValue: Constants.defaultOptions.rooms.min) }
             .sink { [weak self] in
                 guard let self = self else { return }
-                self.options.rooms = $0
+                self.options.rooms.min = $0
             }
             .store(in: &cancellables)
         
-        modalView.optionsView.areaTextField.publisher(for: \.text)
-            .map { Int(extractFrom: $0, defaultValue: Constants.defaultOptions.area) }
+        modalView.optionsView.roomsMaxTextField.publisher(for: \.text)
+            .map { Int(extractFrom: $0, defaultValue: Constants.defaultOptions.rooms.max) }
             .sink { [weak self] in
                 guard let self = self else { return }
-                self.options.area = $0
+                self.options.rooms.max = $0
             }
             .store(in: &cancellables)
         
-        modalView.optionsView.rentTextField.publisher(for: \.text)
-            .map { Int(extractFrom: $0, defaultValue: Constants.defaultOptions.rent) }
+        modalView.optionsView.areaMinTextField.publisher(for: \.text)
+            .map { Int(extractFrom: $0, defaultValue: Constants.defaultOptions.area.min) }
             .sink { [weak self] in
                 guard let self = self else { return }
-                self.options.rent = $0
+                self.options.area.min = $0
+            }
+            .store(in: &cancellables)
+        
+        modalView.optionsView.areaMaxTextField.publisher(for: \.text)
+            .map { Int(extractFrom: $0, defaultValue: Constants.defaultOptions.area.max) }
+            .sink { [weak self] in
+                guard let self = self else { return }
+                self.options.area.max = $0
+            }
+            .store(in: &cancellables)
+        
+        modalView.optionsView.rentMinTextField.publisher(for: \.text)
+            .map { Int(extractFrom: $0, defaultValue: Constants.defaultOptions.rent.min) }
+            .sink { [weak self] in
+                guard let self = self else { return }
+                self.options.rent.min = $0
+            }
+            .store(in: &cancellables)
+        
+        modalView.optionsView.rentMaxTextField.publisher(for: \.text)
+            .map { Int(extractFrom: $0, defaultValue: Constants.defaultOptions.rent.max) }
+            .sink { [weak self] in
+                guard let self = self else { return }
+                self.options.rent.max = $0
             }
             .store(in: &cancellables)
         
@@ -191,7 +215,9 @@ class ViewController: UIViewController, ModalVCDelegate {
         Publishers.CombineLatest($currentApartments, $options)
             .map { apartments, options in
                 apartments.filter { apartment in
-                    apartment.rooms >= options.rooms && apartment.area >= options.area && apartment.rent <= options.rent
+                    apartment.rooms >= options.rooms.min && apartment.rooms <= options.rooms.max &&
+                    apartment.area >= options.area.min && apartment.area <= options.area.max &&
+                    apartment.rent >= options.rent.min && apartment.rent <= options.rent.max
                 }
             }
             .sink { [unowned self] filteredApartments in
@@ -202,7 +228,9 @@ class ViewController: UIViewController, ModalVCDelegate {
     }
     
     private func apartmentSatisfyCurrentFilter(_ apartment: Apartment) -> Bool {
-        return apartment.rooms >= options.rooms && apartment.area >= options.area && apartment.rent <= options.rent
+        apartment.rooms >= options.rooms.min && apartment.rooms <= options.rooms.max &&
+        apartment.area >= options.area.min && apartment.area <= options.area.max &&
+        apartment.rent >= options.rent.min && apartment.rent <= options.rent.max
     }
 }
 

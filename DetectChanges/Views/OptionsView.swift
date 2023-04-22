@@ -9,9 +9,13 @@ import UIKit
 
 class OptionsView: UIView {
     
-    @IBOutlet weak var roomsTextField: UITextField!
-    @IBOutlet weak var rentTextField: UITextField!
-    @IBOutlet weak var areaTextField: UITextField!
+    @IBOutlet weak var roomsMinTextField: UITextField!
+    @IBOutlet weak var roomsMaxTextField: UITextField!
+    @IBOutlet weak var areaMinTextField: UITextField!
+    @IBOutlet weak var areaMaxTextField: UITextField!
+    @IBOutlet weak var rentMinTextField: UITextField!
+    @IBOutlet weak var rentMaxTextField: UITextField!
+    
     @IBOutlet weak var soundSwitch: UISwitch!
     @IBOutlet weak var timerUpdateTextField: UITextField!
     
@@ -26,9 +30,12 @@ class OptionsView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         let defaultAttributes = [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
-        roomsTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.rooms), attributes: defaultAttributes)
-        rentTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.rent), attributes: defaultAttributes)
-        areaTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.area), attributes: defaultAttributes)
+        roomsMinTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.rooms.min), attributes: defaultAttributes)
+        roomsMaxTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.rooms.max), attributes: defaultAttributes)
+        rentMinTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.rent.min), attributes: defaultAttributes)
+        rentMaxTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.rent.max), attributes: defaultAttributes)
+        areaMinTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.area.min), attributes: defaultAttributes)
+        areaMaxTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.area.max), attributes: defaultAttributes)
         timerUpdateTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.updateTimer), attributes: defaultAttributes)
     }
 }

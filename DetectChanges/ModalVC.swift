@@ -50,10 +50,13 @@ class ModalVC: UIViewController {
     }
     
     @objc private func hideKeyboard() {
-            modalView.optionsView.roomsTextField.resignFirstResponder()
-            modalView.optionsView.areaTextField.resignFirstResponder()
-            modalView.optionsView.rentTextField.resignFirstResponder()
-            modalView.optionsView.timerUpdateTextField.resignFirstResponder()
+        modalView.optionsView.roomsMinTextField.resignFirstResponder()
+        modalView.optionsView.roomsMaxTextField.resignFirstResponder()
+        modalView.optionsView.areaMinTextField.resignFirstResponder()
+        modalView.optionsView.areaMaxTextField.resignFirstResponder()
+        modalView.optionsView.rentMinTextField.resignFirstResponder()
+        modalView.optionsView.rentMaxTextField.resignFirstResponder()
+        modalView.optionsView.timerUpdateTextField.resignFirstResponder()
     }
     
     //MARK: - Supporting methods
