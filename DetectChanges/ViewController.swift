@@ -153,62 +153,28 @@ class ViewController: UIViewController, ModalVCDelegate {
         }
     }
     
+    private func bindPublisher<T: Extractable>(_ publisher: NSObject.KeyValueObservingPublisher<UITextField, String?>, keyPath: WritableKeyPath<Options, T>, defaultValue: T) {
+        publisher
+            .map { value in
+                let extractedValue = T(extractFrom: value, defaultValue: defaultValue)
+                return extractedValue
+            }
+            .sink { [weak self] (value: T) in
+                guard let self = self else { return }
+                self.options[keyPath: keyPath] = value
+            }
+            .store(in: &cancellables)
+    }
+    
     private func setPublishersToUpdateOptions(from modalView: ModalView) {
-        modalView.optionsView.roomsMinTextField.publisher(for: \.text)
-            .map { Int(extractFrom: $0, defaultValue: Constants.defaultOptions.rooms.min) }
-            .sink { [weak self] in
-                guard let self = self else { return }
-                self.options.rooms.min = $0
-            }
-            .store(in: &cancellables)
-        
-        modalView.optionsView.roomsMaxTextField.publisher(for: \.text)
-            .map { Int(extractFrom: $0, defaultValue: Constants.defaultOptions.rooms.max) }
-            .sink { [weak self] in
-                guard let self = self else { return }
-                self.options.rooms.max = $0
-            }
-            .store(in: &cancellables)
-        
-        modalView.optionsView.areaMinTextField.publisher(for: \.text)
-            .map { Int(extractFrom: $0, defaultValue: Constants.defaultOptions.area.min) }
-            .sink { [weak self] in
-                guard let self = self else { return }
-                self.options.area.min = $0
-            }
-            .store(in: &cancellables)
-        
-        modalView.optionsView.areaMaxTextField.publisher(for: \.text)
-            .map { Int(extractFrom: $0, defaultValue: Constants.defaultOptions.area.max) }
-            .sink { [weak self] in
-                guard let self = self else { return }
-                self.options.area.max = $0
-            }
-            .store(in: &cancellables)
-        
-        modalView.optionsView.rentMinTextField.publisher(for: \.text)
-            .map { Int(extractFrom: $0, defaultValue: Constants.defaultOptions.rent.min) }
-            .sink { [weak self] in
-                guard let self = self else { return }
-                self.options.rent.min = $0
-            }
-            .store(in: &cancellables)
-        
-        modalView.optionsView.rentMaxTextField.publisher(for: \.text)
-            .map { Int(extractFrom: $0, defaultValue: Constants.defaultOptions.rent.max) }
-            .sink { [weak self] in
-                guard let self = self else { return }
-                self.options.rent.max = $0
-            }
-            .store(in: &cancellables)
-        
-        modalView.optionsView.timerUpdateTextField.publisher(for: \.text)
-            .map { Double(extractFrom: $0, defaultValue: Constants.defaultOptions.updateTimer) }
-            .sink { [weak self] in
-                guard let self = self else { return }
-                self.options.updateTime = $0
-            }
-            .store(in: &cancellables)
+        guard let view = modalView.optionsView else { return }
+        bindPublisher(view.roomsMinTextField.publisher(for: \.text), keyPath: \.rooms.min, defaultValue: Constants.defaultOptions.rooms.min)
+        bindPublisher(view.roomsMaxTextField.publisher(for: \.text), keyPath: \.rooms.max, defaultValue: Constants.defaultOptions.rooms.max)
+        bindPublisher(view.areaMinTextField.publisher(for: \.text), keyPath: \.area.min, defaultValue: Constants.defaultOptions.area.min)
+        bindPublisher(view.areaMaxTextField.publisher(for: \.text), keyPath: \.area.max, defaultValue: Constants.defaultOptions.area.max)
+        bindPublisher(view.rentMinTextField.publisher(for: \.text), keyPath: \.rent.min, defaultValue: Constants.defaultOptions.rent.min)
+        bindPublisher(view.rentMaxTextField.publisher(for: \.text), keyPath: \.rent.max, defaultValue: Constants.defaultOptions.rent.max)
+        bindPublisher(view.timerUpdateTextField.publisher(for: \.text), keyPath: \.updateTime, defaultValue: Constants.defaultOptions.updateTimer)
     }
     
     private func setPublisherToUpdateApartmentsDataSource() {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Double {
+extension Double: Extractable {
     init(extractFrom string: String?, defaultValue: TimeInterval) {
         guard let string = string else {
             self = defaultValue

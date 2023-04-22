@@ -57,6 +57,7 @@
 		BFA71BD229CD935A00F8781E /* ModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA71BD129CD935A00F8781E /* ModalVC.swift */; };
 		BFA71BD629CD949800F8781E /* DetectDetent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA71BD529CD949800F8781E /* DetectDetent.swift */; };
 		BFA71BDC29CDA7D300F8781E /* ModalVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA71BDB29CDA7D300F8781E /* ModalVCDelegate.swift */; };
+		BFA8D22729F3FC810091D0FA /* Extractable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA8D22629F3FC810091D0FA /* Extractable.swift */; };
 		BFA9F37229C1F61E00ECB8F4 /* ImmoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA9F37129C1F61E00ECB8F4 /* ImmoButton.swift */; };
 		BFBA6CF829D42F08004D0AFD /* ImmomioLinkFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBA6CF729D42F08004D0AFD /* ImmomioLinkFetcher.swift */; };
 		BFEBAA5829E2D15300CC83C8 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEBAA5729E2D15300CC83C8 /* OptionsView.swift */; };
@@ -119,6 +120,7 @@
 		BFA71BD129CD935A00F8781E /* ModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalVC.swift; sourceTree = "<group>"; };
 		BFA71BD529CD949800F8781E /* DetectDetent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectDetent.swift; sourceTree = "<group>"; };
 		BFA71BDB29CDA7D300F8781E /* ModalVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalVCDelegate.swift; sourceTree = "<group>"; };
+		BFA8D22629F3FC810091D0FA /* Extractable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extractable.swift; sourceTree = "<group>"; };
 		BFA9F37129C1F61E00ECB8F4 /* ImmoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmoButton.swift; sourceTree = "<group>"; };
 		BFBA6CF729D42F08004D0AFD /* ImmomioLinkFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmomioLinkFetcher.swift; sourceTree = "<group>"; };
 		BFEBAA5729E2D15300CC83C8 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				BF22E7E229EAB279003F245A /* Int+ExtractFromString.swift */,
 				BF22E7E629EAD5CD003F245A /* Double+ExtractFromString.swift */,
 				BF8BD27629F13DC400771321 /* NotificationsManager.swift */,
+				BFA8D22629F3FC810091D0FA /* Extractable.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				BFA9F37229C1F61E00ECB8F4 /* ImmoButton.swift in Sources */,
 				BF707C0229BB427700225796 /* ViewController.swift in Sources */,
 				BF9DC6AC29BCAF630027FADC /* Apartment.swift in Sources */,
+				BFA8D22729F3FC810091D0FA /* Extractable.swift in Sources */,
 				BF8EB0F529E16B880070C64B /* LoadingView.swift in Sources */,
 				BFBA6CF829D42F08004D0AFD /* ImmomioLinkFetcher.swift in Sources */,
 				BFA68DD429DAEAB20023B268 /* ApartmentCell.swift in Sources */,

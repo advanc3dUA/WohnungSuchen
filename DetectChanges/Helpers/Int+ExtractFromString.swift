@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Int {
+extension Int: Extractable {
     init(extractFrom string: String?, defaultValue: Int) {
         guard let string = string else {
             self = defaultValue
