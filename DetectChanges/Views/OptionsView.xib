@@ -15,8 +15,8 @@
             <rect key="frame" x="0.0" y="0.0" width="400" height="448"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="Q6U-61-QH2">
-                    <rect key="frame" x="10" y="25" width="380" height="348.33333333333331"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Q6U-61-QH2">
+                    <rect key="frame" x="10" y="25" width="380" height="353.33333333333331"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="3lZ-6l-THA">
                             <rect key="frame" x="82.666666666666686" y="0.0" width="215" height="182.33333333333334"/>
@@ -138,7 +138,7 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="8c3-HW-4Zo">
-                            <rect key="frame" x="91.666666666666671" y="232.33333333333331" width="196.66666666666663" height="35"/>
+                            <rect key="frame" x="91.666666666666671" y="207.33333333333334" width="196.66666666666663" height="35"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update every (s):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S04-sZ-Ojc">
                                     <rect key="frame" x="0.0" y="0.0" width="131.66666666666666" height="35"/>
@@ -163,7 +163,7 @@
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="tSU-3u-nvn">
-                            <rect key="frame" x="67.333333333333329" y="317.33333333333331" width="245.33333333333337" height="31"/>
+                            <rect key="frame" x="67.333333333333329" y="267.33333333333331" width="245.33333333333337" height="31"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Custom notification alert:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPN-o2-lVe">
                                     <rect key="frame" x="0.0" y="0.0" width="191.33333333333334" height="31"/>
@@ -177,6 +177,30 @@
                                     <color key="onTintColor" name="brandGray"/>
                                     <color key="thumbTintColor" name="brandBlue"/>
                                 </switch>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="B91-oZ-l0W">
+                            <rect key="frame" x="80" y="323.33333333333331" width="220" height="30"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Options as default:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nhy-3t-7HF">
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="150" id="55b-nN-1cS"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" name="brandDark"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KYn-Qa-ThD" customClass="SaveButton" customModule="DetectChanges" customModuleProvider="target">
+                                    <rect key="frame" x="155" y="0.0" width="65" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="OLR-KX-Uoz"/>
+                                        <constraint firstAttribute="width" constant="65" id="WoP-Xt-Vc1"/>
+                                    </constraints>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="Save"/>
+                                    <state key="highlighted" title="Test"/>
+                                </button>
                             </subviews>
                         </stackView>
                     </subviews>
@@ -202,6 +226,11 @@
             <point key="canvasLocation" x="274.80916030534348" y="-92.253521126760575"/>
         </view>
     </objects>
+    <designables>
+        <designable name="KYn-Qa-ThD">
+            <size key="intrinsicContentSize" width="39" height="34"/>
+        </designable>
+    </designables>
     <resources>
         <namedColor name="brandBlue">
             <color red="0.21568627450980393" green="0.52549019607843139" blue="0.78823529411764703" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

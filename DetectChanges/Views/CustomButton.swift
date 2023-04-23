@@ -23,14 +23,21 @@ class CustomButton: UIButton {
         
     }
     
-    func imageWithColor(_ color: UIColor) -> UIImage {
+    func imageWithColor(_ color: UIColor, cornerRadius: CGFloat = 0.0) -> UIImage {
         let size = CGSize(width: 1, height: 1)
-        UIGraphicsBeginImageContext(size)
-        let context = UIGraphicsGetCurrentContext()!
-        context.setFillColor(color.cgColor)
-        context.fill(CGRect(origin: .zero, size: size))
-        let image = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return image.resizableImage(withCapInsets: UIEdgeInsets.zero)
+        let bounds = CGRect(origin: .zero, size: size)
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        
+        let image = renderer.image { context in
+            let path = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius)
+            color.setFill()
+            path.fill()
+            
+            // Set the clip bounds to the same corner radius
+            context.cgContext.addPath(path.cgPath)
+            context.cgContext.clip()
+        }
+        
+        return image.resizableImage(withCapInsets: UIEdgeInsets(top: cornerRadius, left: cornerRadius, bottom: cornerRadius, right: cornerRadius))
     }
 }
