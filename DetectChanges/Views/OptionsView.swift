@@ -31,36 +31,28 @@ class OptionsView: UIView {
         super.awakeFromNib()
         let defaultAttributes = [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
         
-        let roomsMin = String(UserDefaults.standard.object(forKey: SavingKeys.roomsMin.rawValue) as? Int ?? Constants.defaultOptions.roomsMin)
-        roomsMinTextField.attributedPlaceholder = NSAttributedString(string: roomsMin, attributes: defaultAttributes)
-        roomsMinTextField.attributedText = NSAttributedString(string: roomsMin)
+        roomsMinTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.roomsMin), attributes: defaultAttributes)
+        roomsMinTextField.attributedText = NSAttributedString(string: String(Constants.defaultOptions.roomsMin))
         
-        let roomsMax = String(UserDefaults.standard.object(forKey: SavingKeys.roomsMax.rawValue) as? Int ?? Constants.defaultOptions.roomsMax)
-        roomsMaxTextField.attributedPlaceholder = NSAttributedString(string: roomsMax, attributes: defaultAttributes)
-        roomsMaxTextField.attributedText = NSAttributedString(string: roomsMax)
+        roomsMaxTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.roomsMax), attributes: defaultAttributes)
+        roomsMaxTextField.attributedText = NSAttributedString(string: String(Constants.defaultOptions.roomsMax))
         
-        let areaMin = String(UserDefaults.standard.object(forKey: SavingKeys.areaMin.rawValue) as? Int ?? Constants.defaultOptions.areaMin)
-        areaMinTextField.attributedPlaceholder = NSAttributedString(string: areaMin, attributes: defaultAttributes)
-        areaMinTextField.attributedText = NSAttributedString(string: areaMin)
+        areaMinTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.areaMin), attributes: defaultAttributes)
+        areaMinTextField.attributedText = NSAttributedString(string: String(Constants.defaultOptions.areaMin))
         
-        let areaMax = String(UserDefaults.standard.object(forKey: SavingKeys.areaMax.rawValue) as? Int ?? Constants.defaultOptions.areaMax)
-        areaMaxTextField.attributedPlaceholder = NSAttributedString(string: areaMax, attributes: defaultAttributes)
-        areaMaxTextField.attributedText = NSAttributedString(string: areaMax)
+        areaMaxTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.areaMax), attributes: defaultAttributes)
+        areaMaxTextField.attributedText = NSAttributedString(string: String(Constants.defaultOptions.areaMax))
         
-        let rentMin = String(UserDefaults.standard.object(forKey: SavingKeys.rentMin.rawValue) as? Int ?? Constants.defaultOptions.rentMin)
-        rentMinTextField.attributedPlaceholder = NSAttributedString(string: rentMin, attributes: defaultAttributes)
-        rentMinTextField.attributedText = NSAttributedString(string: rentMin)
+        rentMinTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.rentMin), attributes: defaultAttributes)
+        rentMinTextField.attributedText = NSAttributedString(string: String(Constants.defaultOptions.rentMin))
         
-        let rentMax = String(UserDefaults.standard.object(forKey: SavingKeys.rentMax.rawValue) as? Int ?? Constants.defaultOptions.rentMax)
-        rentMaxTextField.attributedPlaceholder = NSAttributedString(string: rentMax, attributes: defaultAttributes)
-        rentMaxTextField.attributedText = NSAttributedString(string: rentMax)
+        rentMaxTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.rentMax), attributes: defaultAttributes)
+        rentMaxTextField.attributedText = NSAttributedString(string: String(Constants.defaultOptions.rentMax))
         
-        let updateTime = String(UserDefaults.standard.object(forKey: SavingKeys.updateTime.rawValue) as? TimeInterval ?? Constants.defaultOptions.updateTime)
-        timerUpdateTextField.attributedPlaceholder = NSAttributedString(string: updateTime, attributes: defaultAttributes)
-        timerUpdateTextField.attributedText = NSAttributedString(string: updateTime)
+        timerUpdateTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.updateTime), attributes: defaultAttributes)
+        timerUpdateTextField.attributedText = NSAttributedString(string: String(Constants.defaultOptions.updateTime))
         
-        let soundIsOn = UserDefaults.standard.object(forKey: SavingKeys.soundIsOn.rawValue) as? Bool ?? Constants.defaultOptions.soundIsOn
-        soundSwitch.isOn = soundIsOn
+        soundSwitch.isOn = Constants.defaultOptions.soundIsOn
     }
 }
 

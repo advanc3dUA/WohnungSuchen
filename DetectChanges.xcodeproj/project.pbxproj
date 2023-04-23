@@ -12,7 +12,6 @@
 		BF0F3F5D29BDE47D002909BB /* fanfare.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BF0F3F5C29BDE47D002909BB /* fanfare.mp3 */; };
 		BF11CEA029EFD6FF00A9D194 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF11CE9F29EFD6FF00A9D194 /* CustomButton.swift */; };
 		BF22E7E329EAB279003F245A /* Int+ExtractFromString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF22E7E229EAB279003F245A /* Int+ExtractFromString.swift */; };
-		BF22E7E529EAB7E0003F245A /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF22E7E429EAB7E0003F245A /* FeedbackManager.swift */; };
 		BF22E7E729EAD5CD003F245A /* Double+ExtractFromString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF22E7E629EAD5CD003F245A /* Double+ExtractFromString.swift */; };
 		BF4704BC29D2D47A00EEABEE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4704BB29D2D47A00EEABEE /* NetworkManager.swift */; };
 		BF4704BF29D2D52A00EEABEE /* Saga.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4704BE29D2D52A00EEABEE /* Saga.swift */; };
@@ -73,7 +72,6 @@
 		BF0F3F5C29BDE47D002909BB /* fanfare.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fanfare.mp3; sourceTree = "<group>"; };
 		BF11CE9F29EFD6FF00A9D194 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		BF22E7E229EAB279003F245A /* Int+ExtractFromString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+ExtractFromString.swift"; sourceTree = "<group>"; };
-		BF22E7E429EAB7E0003F245A /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
 		BF22E7E629EAD5CD003F245A /* Double+ExtractFromString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+ExtractFromString.swift"; sourceTree = "<group>"; };
 		BF4704BB29D2D47A00EEABEE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		BF4704BE29D2D52A00EEABEE /* Saga.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Saga.swift; sourceTree = "<group>"; };
@@ -192,7 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				BF0F3F5A29BDDF89002909BB /* ConsolePrinter.swift */,
-				BF22E7E429EAB7E0003F245A /* FeedbackManager.swift */,
 				BF5C017929C71574006C06D4 /* BackgroundAudioPlayer.swift */,
 				BF92059F29E029830017CEEA /* TimeManager.swift */,
 				BFA8D22629F3FC810091D0FA /* Extractable.swift */,
@@ -477,7 +474,6 @@
 				BF9C8CF529D97FB500406480 /* Vonovia.swift in Sources */,
 				BF707BFE29BB427700225796 /* AppDelegate.swift in Sources */,
 				BF4704BF29D2D52A00EEABEE /* Saga.swift in Sources */,
-				BF22E7E529EAB7E0003F245A /* FeedbackManager.swift in Sources */,
 				BF11CEA029EFD6FF00A9D194 /* CustomButton.swift in Sources */,
 				BF0F3F5B29BDDF89002909BB /* ConsolePrinter.swift in Sources */,
 				BF94F64A29D75D0B00993295 /* StartPauseButton.swift in Sources */,
