@@ -7,9 +7,24 @@
 
 import Foundation
 
+enum SavingKeys: String {
+    case roomsMin
+    case roomsMax
+    case areaMin
+    case areaMax
+    case rentMin
+    case rentMax
+    case updateTime
+    case soundIsOn
+}
+
 struct Options {
-    var rooms = Constants.defaultOptions.rooms
-    var area = Constants.defaultOptions.area
-    var rent = Constants.defaultOptions.rent
-    var updateTime: TimeInterval = Constants.defaultOptions.updateTimer
+    var roomsMin = UserDefaults.standard.object(forKey: SavingKeys.roomsMin.rawValue) as? Int ?? Constants.defaultOptions.roomsMin
+    var roomsMax = UserDefaults.standard.object(forKey: SavingKeys.roomsMax.rawValue) as? Int ?? Constants.defaultOptions.roomsMax
+    var areaMin = UserDefaults.standard.object(forKey: SavingKeys.areaMin.rawValue) as? Int ?? Constants.defaultOptions.areaMin
+    var areaMax = UserDefaults.standard.object(forKey: SavingKeys.areaMax.rawValue) as? Int ?? Constants.defaultOptions.areaMax
+    var rentMin = UserDefaults.standard.object(forKey: SavingKeys.rentMin.rawValue) as? Int ?? Constants.defaultOptions.rentMin
+    var rentMax = UserDefaults.standard.object(forKey: SavingKeys.rentMax.rawValue) as? Int ?? Constants.defaultOptions.rentMax
+    var updateTime: TimeInterval = UserDefaults.standard.object(forKey: SavingKeys.updateTime.rawValue) as? TimeInterval ?? Constants.defaultOptions.updateTime
+    var soundIsOn: Bool = UserDefaults.standard.object(forKey: SavingKeys.soundIsOn.rawValue) as? Bool ?? Constants.defaultOptions.soundIsOn
 }

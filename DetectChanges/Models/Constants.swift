@@ -9,11 +9,13 @@ import Foundation
 
 struct Constants {
     struct defaultOptions {
-        static let rooms = (min: 2, max: 3)
-        static let area = (min: 40, max: 60)
-        static let rent = (min: 300, max: 900)
-        static let updateTimer: TimeInterval = 30
-        static let alertType: AlertType = .sound
-        static let volume: Float = 7.0
+        static let roomsMin = 2
+        static let roomsMax = 3
+        static let areaMin = 40
+        static let areaMax = 60
+        static let rentMin = 300
+        static let rentMax = 900
+        static let updateTime: TimeInterval = 30
+        static let soundIsOn = true
     }
 }

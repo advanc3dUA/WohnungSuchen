@@ -170,22 +170,22 @@ class ViewController: UIViewController, ModalVCDelegate {
     
     private func setPublishersToUpdateOptions(from modalView: ModalView) {
         guard let view = modalView.optionsView else { return }
-        bindPublisher(view.roomsMinTextField.publisher(for: \.text), keyPath: \.rooms.min, defaultValue: Constants.defaultOptions.rooms.min)
-        bindPublisher(view.roomsMaxTextField.publisher(for: \.text), keyPath: \.rooms.max, defaultValue: Constants.defaultOptions.rooms.max)
-        bindPublisher(view.areaMinTextField.publisher(for: \.text), keyPath: \.area.min, defaultValue: Constants.defaultOptions.area.min)
-        bindPublisher(view.areaMaxTextField.publisher(for: \.text), keyPath: \.area.max, defaultValue: Constants.defaultOptions.area.max)
-        bindPublisher(view.rentMinTextField.publisher(for: \.text), keyPath: \.rent.min, defaultValue: Constants.defaultOptions.rent.min)
-        bindPublisher(view.rentMaxTextField.publisher(for: \.text), keyPath: \.rent.max, defaultValue: Constants.defaultOptions.rent.max)
-        bindPublisher(view.timerUpdateTextField.publisher(for: \.text), keyPath: \.updateTime, defaultValue: Constants.defaultOptions.updateTimer)
+        bindPublisher(view.roomsMinTextField.publisher(for: \.text), keyPath: \.roomsMin, defaultValue: Constants.defaultOptions.roomsMin)
+        bindPublisher(view.roomsMaxTextField.publisher(for: \.text), keyPath: \.roomsMax, defaultValue: Constants.defaultOptions.roomsMax)
+        bindPublisher(view.areaMinTextField.publisher(for: \.text), keyPath: \.areaMin, defaultValue: Constants.defaultOptions.areaMin)
+        bindPublisher(view.areaMaxTextField.publisher(for: \.text), keyPath: \.areaMax, defaultValue: Constants.defaultOptions.areaMax)
+        bindPublisher(view.rentMinTextField.publisher(for: \.text), keyPath: \.rentMin, defaultValue: Constants.defaultOptions.rentMin)
+        bindPublisher(view.rentMaxTextField.publisher(for: \.text), keyPath: \.rentMax, defaultValue: Constants.defaultOptions.rentMax)
+        bindPublisher(view.timerUpdateTextField.publisher(for: \.text), keyPath: \.updateTime, defaultValue: Constants.defaultOptions.updateTime)
     }
     
     private func setPublisherToUpdateApartmentsDataSource() {
         Publishers.CombineLatest($currentApartments, $options)
             .map { apartments, options in
                 apartments.filter { apartment in
-                    apartment.rooms >= options.rooms.min && apartment.rooms <= options.rooms.max &&
-                    apartment.area >= options.area.min && apartment.area <= options.area.max &&
-                    apartment.rent >= options.rent.min && apartment.rent <= options.rent.max
+                    apartment.rooms >= options.roomsMin && apartment.rooms <= options.roomsMax &&
+                    apartment.area >= options.areaMin && apartment.area <= options.areaMax &&
+                    apartment.rent >= options.rentMin && apartment.rent <= options.rentMax
                 }
             }
             .sink { [unowned self] filteredApartments in
@@ -196,9 +196,9 @@ class ViewController: UIViewController, ModalVCDelegate {
     }
     
     private func apartmentSatisfyCurrentFilter(_ apartment: Apartment) -> Bool {
-        apartment.rooms >= options.rooms.min && apartment.rooms <= options.rooms.max &&
-        apartment.area >= options.area.min && apartment.area <= options.area.max &&
-        apartment.rent >= options.rent.min && apartment.rent <= options.rent.max
+        apartment.rooms >= options.roomsMin && apartment.rooms <= options.roomsMax &&
+        apartment.area >= options.areaMin && apartment.area <= options.areaMax &&
+        apartment.rent >= options.rentMin && apartment.rent <= options.rentMax
     }
 }
 

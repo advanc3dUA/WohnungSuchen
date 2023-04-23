@@ -32,6 +32,26 @@ class ModalView: UIView {
         optionsView = optionsNib.instantiate(withOwner: self).first as? OptionsView
         optionsView.soundSwitch.set(offTint: Colour.brandGray.setColor)
         optionsView.soundSwitch.addTarget(self, action: #selector(soundSwitchChanged), for: .valueChanged)
+        optionsView.saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func saveButtonTapped() {
+        if let roomsMin = optionsView.roomsMinTextField.text,
+           let roomsMax = optionsView.roomsMaxTextField.text,
+           let areaMin = optionsView.areaMinTextField.text,
+           let areaMax = optionsView.areaMaxTextField.text,
+           let rentMin = optionsView.rentMinTextField.text,
+           let rentMax = optionsView.rentMaxTextField.text,
+           let updateTime = optionsView.timerUpdateTextField.text {
+            UserDefaults.standard.set(Int(roomsMin), forKey: SavingKeys.roomsMin.rawValue)
+            UserDefaults.standard.set(Int(roomsMax), forKey: SavingKeys.roomsMax.rawValue)
+            UserDefaults.standard.set(Int(areaMin), forKey: SavingKeys.areaMin.rawValue)
+            UserDefaults.standard.set(Int(areaMax), forKey: SavingKeys.areaMax.rawValue)
+            UserDefaults.standard.set(Int(rentMin), forKey: SavingKeys.rentMin.rawValue)
+            UserDefaults.standard.set(Int(rentMax), forKey: SavingKeys.rentMax.rawValue)
+            UserDefaults.standard.set(TimeInterval(updateTime), forKey: SavingKeys.updateTime.rawValue)
+            UserDefaults.standard.set(optionsView.soundSwitch.isOn, forKey: SavingKeys.soundIsOn.rawValue)
+        }
     }
     
     @objc func soundSwitchChanged(_ sender: UISwitch) {

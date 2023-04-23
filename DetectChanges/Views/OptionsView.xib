@@ -220,6 +220,7 @@
                 <outlet property="rentMinTextField" destination="Saw-65-Rsm" id="4wf-sQ-6Sj"/>
                 <outlet property="roomsMaxTextField" destination="n3q-YH-J8b" id="FxP-CA-eWd"/>
                 <outlet property="roomsMinTextField" destination="Jih-Dl-Wrz" id="1aD-Mp-HbA"/>
+                <outlet property="saveButton" destination="KYn-Qa-ThD" id="yNA-wi-uNj"/>
                 <outlet property="soundSwitch" destination="xof-tU-012" id="6S4-ZH-J3k"/>
                 <outlet property="timerUpdateTextField" destination="BuA-Ml-h5H" id="W5y-mL-fYc"/>
             </connections>
