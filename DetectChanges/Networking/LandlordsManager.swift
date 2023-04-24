@@ -40,7 +40,7 @@ class LandlordsManager {
     }
     
     private func comparePreviousApartments(with currentApartments: [Apartment], completion: @escaping ([Apartment]) -> ()) {
-        var newApartments = findNewApartments(from: currentApartments)
+        let newApartments = findNewApartments(from: currentApartments)
         fetchImmomioLinks(for: newApartments) { modifiedApartments in
             completion(modifiedApartments)
         }

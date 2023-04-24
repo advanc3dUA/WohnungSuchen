@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class ModalView: UIView {
     
@@ -14,6 +15,8 @@ class ModalView: UIView {
     var stopButton: StopButton!
     var delegate: ModalVCDelegate
     var optionsView: OptionsView!
+    private let timerUpdateSubject = PassthroughSubject<String?, Never>()
+    private var cancellables = Set<AnyCancellable>()
     
     init(delegate: ModalVCDelegate) {
         self.delegate = delegate
@@ -21,10 +24,47 @@ class ModalView: UIView {
         backgroundColor = Colour.brandOlive.setColor
         setupStartStopButton()
         setupOptionsView()
+        toggleSaveButtonState()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func toggleSaveButtonState() {
+        let roomsPub = Publishers.CombineLatest(optionsView.roomsMinTextField.publisher(for: \.text).removeDuplicates(), optionsView.roomsMaxTextField.publisher(for: \.text).removeDuplicates())
+        
+        let areaPub = Publishers.CombineLatest(optionsView.areaMinTextField.publisher(for: \.text).removeDuplicates(), optionsView.areaMaxTextField.publisher(for: \.text).removeDuplicates())
+        
+        let rentPub = Publishers.CombineLatest(optionsView.rentMinTextField.publisher(for: \.text).removeDuplicates(), optionsView.rentMaxTextField.publisher(for: \.text).removeDuplicates())
+
+        Publishers.CombineLatest4(roomsPub, areaPub, rentPub, timerUpdateSubject.removeDuplicates())
+            .dropFirst()
+            .scan(nil) { previous, current in
+                guard let updateTimerCurrent = current.3, let updateTimerCurrentDouble = Double(updateTimerCurrent), updateTimerCurrentDouble < 30 else { return current }
+                self.optionsView.timerUpdateTextField.text = "30.0"
+                return nil
+            }
+            .compactMap { $0 }
+            .sink { _ in
+                self.saveButtonIsEnabled(true)
+            }
+            .store(in: &cancellables)
+
+        optionsView.timerUpdateTextField.publisher(for: \.text)
+            .removeDuplicates()
+            .subscribe(timerUpdateSubject)
+            .store(in: &cancellables)
+    }
+    
+    private func saveButtonIsEnabled(_ param: Bool) {
+        if param {
+            optionsView.saveButton.alpha = 1.0
+            optionsView.saveButton.isEnabled = true
+        } else {
+            optionsView.saveButton.alpha = 0.5
+            optionsView.saveButton.isEnabled = false
+        }
     }
     
     private func setupOptionsView() {
@@ -32,6 +72,7 @@ class ModalView: UIView {
         optionsView = optionsNib.instantiate(withOwner: self).first as? OptionsView
         optionsView.soundSwitch.set(offTint: Colour.brandGray.setColor)
         optionsView.soundSwitch.addTarget(self, action: #selector(soundSwitchChanged), for: .valueChanged)
+        saveButtonIsEnabled(false)
         optionsView.saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
     }
     
@@ -52,6 +93,7 @@ class ModalView: UIView {
             UserDefaults.standard.set(TimeInterval(updateTime), forKey: SavingKeys.updateTime.rawValue)
             UserDefaults.standard.set(optionsView.soundSwitch.isOn, forKey: SavingKeys.soundIsOn.rawValue)
         }
+        saveButtonIsEnabled(false)
     }
     
     @objc func soundSwitchChanged(_ sender: UISwitch) {
@@ -61,7 +103,7 @@ class ModalView: UIView {
     func showOptionsContent() {
         self.addSubview(optionsView)
         optionsView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         NSLayoutConstraint.activate([
             optionsView.leftAnchor.constraint(equalTo: leftAnchor, constant: 5),
             optionsView.rightAnchor.constraint(equalTo: rightAnchor, constant: -5),
@@ -126,6 +168,6 @@ class ModalView: UIView {
     @objc func stopButtonTapped(sender: StopButton) {
         delegate.stopEngine()
     }
-
+    
 }
 
