@@ -185,9 +185,7 @@ class ViewController: UIViewController, ModalVCDelegate {
         Publishers.CombineLatest($currentApartments, $options)
             .map { apartments, options in
                 apartments.filter { apartment in
-                    apartment.rooms >= options.roomsMin && apartment.rooms <= options.roomsMax &&
-                    apartment.area >= options.areaMin && apartment.area <= options.areaMax &&
-                    apartment.rent >= options.rentMin && apartment.rent <= options.rentMax
+                    self.apartmentSatisfyCurrentFilter(apartment)
                 }
             }
             .sink { [unowned self] filteredApartments in
