@@ -42,7 +42,7 @@ class ModalView: UIView {
             .dropFirst()
             .scan(nil) { previous, current in
                 guard let updateTimerCurrent = current.3, let updateTimerCurrentDouble = Double(updateTimerCurrent), updateTimerCurrentDouble < 30 else { return current }
-                self.optionsView.timerUpdateTextField.text = "30.0"
+                self.optionsView.timerUpdateTextField.text = "30"
                 return nil
             }
             .compactMap { $0 }
@@ -90,7 +90,7 @@ class ModalView: UIView {
             UserDefaults.standard.set(Int(areaMax), forKey: SavingKeys.areaMax.rawValue)
             UserDefaults.standard.set(Int(rentMin), forKey: SavingKeys.rentMin.rawValue)
             UserDefaults.standard.set(Int(rentMax), forKey: SavingKeys.rentMax.rawValue)
-            UserDefaults.standard.set(TimeInterval(updateTime), forKey: SavingKeys.updateTime.rawValue)
+            UserDefaults.standard.set(Int(updateTime), forKey: SavingKeys.updateTime.rawValue)
             UserDefaults.standard.set(optionsView.soundSwitch.isOn, forKey: SavingKeys.soundIsOn.rawValue)
         }
         saveButtonIsEnabled(false)

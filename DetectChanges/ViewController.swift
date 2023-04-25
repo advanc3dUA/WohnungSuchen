@@ -87,7 +87,7 @@ class ViewController: UIViewController, ModalVCDelegate {
         loadingView = LoadingView(frame: tableView.bounds)
         tableView.addSubview(loadingView!)
         
-        timer = Timer.scheduledTimer(withTimeInterval: options.updateTime, repeats: true) {[unowned self] timer in
+        timer = Timer.scheduledTimer(withTimeInterval: Double(options.updateTime), repeats: true) {[unowned self] timer in
             landlordsManager?.start { [weak self] apartments in
                 guard let self = self else { return }
                 if !self.isSecondRunPlus {
