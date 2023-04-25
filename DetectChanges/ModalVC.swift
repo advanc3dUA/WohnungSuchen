@@ -9,6 +9,7 @@ import UIKit
 
 class ModalVC: UIViewController {
     var modalView: ModalView!
+    var options: Options
     var currentDetent: UISheetPresentationController.Detent.Identifier? {
         didSet {
             switch currentDetent?.rawValue {
@@ -20,8 +21,9 @@ class ModalVC: UIViewController {
     }
     var delegate: ModalVCDelegate?
     
-    init(smallDetentSize: CGFloat) {
+    init(smallDetentSize: CGFloat, options: Options) {
         currentDetent = .medium
+        self.options = options
         super.init(nibName: nil, bundle: nil)
         
         // Custom medium detent
@@ -38,7 +40,7 @@ class ModalVC: UIViewController {
     
     override func loadView() {
         guard let delegate = delegate else { return }
-        modalView = ModalView(delegate: delegate)
+        modalView = ModalView(delegate: delegate, options: options)
         view = modalView
     }
     
@@ -47,6 +49,12 @@ class ModalVC: UIViewController {
         
         let tapGasture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGasture)
+        
+        modalView.optionsView.updateOptionsUI(with: options)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
     }
     
     @objc private func hideKeyboard() {

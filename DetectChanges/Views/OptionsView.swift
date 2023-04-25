@@ -27,32 +27,16 @@ class OptionsView: UIView {
         super.init(coder: coder)
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        let defaultAttributes = [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
-        
-        roomsMinTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.roomsMin), attributes: defaultAttributes)
-        roomsMinTextField.attributedText = NSAttributedString(string: String(Constants.defaultOptions.roomsMin))
-        
-        roomsMaxTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.roomsMax), attributes: defaultAttributes)
-        roomsMaxTextField.attributedText = NSAttributedString(string: String(Constants.defaultOptions.roomsMax))
-        
-        areaMinTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.areaMin), attributes: defaultAttributes)
-        areaMinTextField.attributedText = NSAttributedString(string: String(Constants.defaultOptions.areaMin))
-        
-        areaMaxTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.areaMax), attributes: defaultAttributes)
-        areaMaxTextField.attributedText = NSAttributedString(string: String(Constants.defaultOptions.areaMax))
-        
-        rentMinTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.rentMin), attributes: defaultAttributes)
-        rentMinTextField.attributedText = NSAttributedString(string: String(Constants.defaultOptions.rentMin))
-        
-        rentMaxTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.rentMax), attributes: defaultAttributes)
-        rentMaxTextField.attributedText = NSAttributedString(string: String(Constants.defaultOptions.rentMax))
-        
-        timerUpdateTextField.attributedPlaceholder = NSAttributedString(string: String(Constants.defaultOptions.updateTime), attributes: defaultAttributes)
-        timerUpdateTextField.attributedText = NSAttributedString(string: String(Constants.defaultOptions.updateTime))
-        
-        soundSwitch.isOn = Constants.defaultOptions.soundIsOn
+    func updateOptionsUI(with options: Options) {
+        let defaultAttributes = [NSAttributedString.Key.foregroundColor: UIColor.darkGray]
+        roomsMinTextField.attributedText = NSAttributedString(string: String(options.roomsMin), attributes: defaultAttributes)
+        roomsMaxTextField.attributedText = NSAttributedString(string: String(options.roomsMax), attributes: defaultAttributes)
+        areaMinTextField.attributedText = NSAttributedString(string: String(options.areaMin), attributes: defaultAttributes)
+        areaMaxTextField.attributedText = NSAttributedString(string: String(options.areaMax), attributes: defaultAttributes)
+        rentMinTextField.attributedText = NSAttributedString(string: String(options.rentMin), attributes: defaultAttributes)
+        rentMaxTextField.attributedText = NSAttributedString(string: String(options.rentMax), attributes: defaultAttributes)
+        timerUpdateTextField.attributedText = NSAttributedString(string: String(options.updateTime), attributes: defaultAttributes)
+        soundSwitch.isOn = options.soundIsOn
     }
 }
 

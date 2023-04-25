@@ -14,12 +14,14 @@ class ModalView: UIView {
     var startPauseButton: StartPauseButton!
     var stopButton: StopButton!
     var delegate: ModalVCDelegate
+    var options: Options
     var optionsView: OptionsView!
     private let timerUpdateSubject = PassthroughSubject<String?, Never>()
     private var cancellables = Set<AnyCancellable>()
     
-    init(delegate: ModalVCDelegate) {
+    init(delegate: ModalVCDelegate, options: Options) {
         self.delegate = delegate
+        self.options = options
         super.init(frame: .zero)
         backgroundColor = Colour.brandOlive.setColor
         setupStartStopButton()
@@ -72,27 +74,19 @@ class ModalView: UIView {
         optionsView = optionsNib.instantiate(withOwner: self).first as? OptionsView
         optionsView.soundSwitch.set(offTint: Colour.brandGray.setColor)
         optionsView.soundSwitch.addTarget(self, action: #selector(soundSwitchChanged), for: .valueChanged)
-        saveButtonIsEnabled(false)
         optionsView.saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+        saveButtonIsEnabled(false)
     }
     
     @objc func saveButtonTapped() {
-        if let roomsMin = optionsView.roomsMinTextField.text,
-           let roomsMax = optionsView.roomsMaxTextField.text,
-           let areaMin = optionsView.areaMinTextField.text,
-           let areaMax = optionsView.areaMaxTextField.text,
-           let rentMin = optionsView.rentMinTextField.text,
-           let rentMax = optionsView.rentMaxTextField.text,
-           let updateTime = optionsView.timerUpdateTextField.text {
-            UserDefaults.standard.set(Int(roomsMin), forKey: SavingKeys.roomsMin.rawValue)
-            UserDefaults.standard.set(Int(roomsMax), forKey: SavingKeys.roomsMax.rawValue)
-            UserDefaults.standard.set(Int(areaMin), forKey: SavingKeys.areaMin.rawValue)
-            UserDefaults.standard.set(Int(areaMax), forKey: SavingKeys.areaMax.rawValue)
-            UserDefaults.standard.set(Int(rentMin), forKey: SavingKeys.rentMin.rawValue)
-            UserDefaults.standard.set(Int(rentMax), forKey: SavingKeys.rentMax.rawValue)
-            UserDefaults.standard.set(Int(updateTime), forKey: SavingKeys.updateTime.rawValue)
-            UserDefaults.standard.set(optionsView.soundSwitch.isOn, forKey: SavingKeys.soundIsOn.rawValue)
-        }
+        UserDefaults.standard.set(options.roomsMin, forKey: SavingKeys.roomsMin.rawValue)
+        UserDefaults.standard.set(options.roomsMax, forKey: SavingKeys.roomsMax.rawValue)
+        UserDefaults.standard.set(options.areaMin, forKey: SavingKeys.areaMin.rawValue)
+        UserDefaults.standard.set(options.areaMax, forKey: SavingKeys.areaMax.rawValue)
+        UserDefaults.standard.set(options.rentMin, forKey: SavingKeys.rentMin.rawValue)
+        UserDefaults.standard.set(options.rentMax, forKey: SavingKeys.rentMax.rawValue)
+        UserDefaults.standard.set(options.updateTime, forKey: SavingKeys.updateTime.rawValue)
+        UserDefaults.standard.set(options.soundIsOn, forKey: SavingKeys.soundIsOn.rawValue)
         saveButtonIsEnabled(false)
     }
     

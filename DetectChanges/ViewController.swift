@@ -71,7 +71,7 @@ class ViewController: UIViewController, ModalVCDelegate {
     }
     
     private func setupModalVC() {
-        modalVC = ModalVC(smallDetentSize: calcModalVCDetentSizeSmall())
+        modalVC = ModalVC(smallDetentSize: calcModalVCDetentSizeSmall(), options: options)
         modalVC?.presentationController?.delegate = self
         modalVC?.delegate = self
         modalVCView = modalVC?.view as? ModalView
@@ -170,13 +170,13 @@ class ViewController: UIViewController, ModalVCDelegate {
     
     private func setPublishersToUpdateOptions(from modalView: ModalView) {
         guard let view = modalView.optionsView else { return }
-        bindPublisher(view.roomsMinTextField.publisher(for: \.text), keyPath: \.roomsMin, defaultValue: Constants.defaultOptions.roomsMin)
-        bindPublisher(view.roomsMaxTextField.publisher(for: \.text), keyPath: \.roomsMax, defaultValue: Constants.defaultOptions.roomsMax)
-        bindPublisher(view.areaMinTextField.publisher(for: \.text), keyPath: \.areaMin, defaultValue: Constants.defaultOptions.areaMin)
-        bindPublisher(view.areaMaxTextField.publisher(for: \.text), keyPath: \.areaMax, defaultValue: Constants.defaultOptions.areaMax)
-        bindPublisher(view.rentMinTextField.publisher(for: \.text), keyPath: \.rentMin, defaultValue: Constants.defaultOptions.rentMin)
-        bindPublisher(view.rentMaxTextField.publisher(for: \.text), keyPath: \.rentMax, defaultValue: Constants.defaultOptions.rentMax)
-        bindPublisher(view.timerUpdateTextField.publisher(for: \.text), keyPath: \.updateTime, defaultValue: Constants.defaultOptions.updateTime)
+        bindPublisher(view.roomsMinTextField.publisher(for: \.text), keyPath: \.roomsMin, defaultValue: options.roomsMin)
+        bindPublisher(view.roomsMaxTextField.publisher(for: \.text), keyPath: \.roomsMax, defaultValue: options.roomsMax)
+        bindPublisher(view.areaMinTextField.publisher(for: \.text), keyPath: \.areaMin, defaultValue: options.areaMin)
+        bindPublisher(view.areaMaxTextField.publisher(for: \.text), keyPath: \.areaMax, defaultValue: options.areaMax)
+        bindPublisher(view.rentMinTextField.publisher(for: \.text), keyPath: \.rentMin, defaultValue: options.rentMin)
+        bindPublisher(view.rentMaxTextField.publisher(for: \.text), keyPath: \.rentMax, defaultValue: options.rentMax)
+        bindPublisher(view.timerUpdateTextField.publisher(for: \.text), keyPath: \.updateTime, defaultValue: options.updateTime)
     }
     
     private func setPublisherToUpdateApartmentsDataSource() {

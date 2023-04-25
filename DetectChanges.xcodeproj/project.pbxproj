@@ -179,9 +179,9 @@
 				BF9DC6AB29BCAF630027FADC /* Apartment.swift */,
 				BF8C912D29DDB8C8008AD739 /* Company.swift */,
 				BF8EB0F229E166D10070C64B /* Colour.swift */,
+				BFEBAA5B29E2EF0A00CC83C8 /* Options.swift */,
 				BF8EEDB929C4771B00F74971 /* Constants.swift */,
 				BF9C8CF629D9952500406480 /* VonoviaJson.swift */,
-				BFEBAA5B29E2EF0A00CC83C8 /* Options.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
