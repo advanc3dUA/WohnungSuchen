@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class ModalVC: UIViewController {
     var modalView: ModalView!
@@ -38,6 +39,8 @@ class ModalVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - VC Lifecycle
+    
     override func loadView() {
         guard let delegate = delegate else { return }
         modalView = ModalView(delegate: delegate, options: options)
@@ -53,20 +56,6 @@ class ModalVC: UIViewController {
         modalView.optionsView.updateOptionsUI(with: options)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-    }
-    
-    @objc private func hideKeyboard() {
-        modalView.optionsView.roomsMinTextField.resignFirstResponder()
-        modalView.optionsView.roomsMaxTextField.resignFirstResponder()
-        modalView.optionsView.areaMinTextField.resignFirstResponder()
-        modalView.optionsView.areaMaxTextField.resignFirstResponder()
-        modalView.optionsView.rentMinTextField.resignFirstResponder()
-        modalView.optionsView.rentMaxTextField.resignFirstResponder()
-        modalView.optionsView.timerUpdateTextField.resignFirstResponder()
-    }
-    
     //MARK: - Supporting methods
     private func setupSheetPresentationController(with smallDetent: UISheetPresentationController.Detent) {
         sheetPresentationController?.detents = [smallDetent, .large()]
@@ -79,5 +68,15 @@ class ModalVC: UIViewController {
         
         // Disables hiding TraineeVC
         isModalInPresentation = true
+    }
+    
+    @objc private func hideKeyboard() {
+        modalView.optionsView.roomsMinTextField.resignFirstResponder()
+        modalView.optionsView.roomsMaxTextField.resignFirstResponder()
+        modalView.optionsView.areaMinTextField.resignFirstResponder()
+        modalView.optionsView.areaMaxTextField.resignFirstResponder()
+        modalView.optionsView.rentMinTextField.resignFirstResponder()
+        modalView.optionsView.rentMaxTextField.resignFirstResponder()
+        modalView.optionsView.timerUpdateTextField.resignFirstResponder()
     }
 }

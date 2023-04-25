@@ -141,7 +141,9 @@ class ViewController: UIViewController, ModalVCDelegate {
     
     func setNotificationManagerAlertType(with state: Bool) {
         guard let modalView = modalVCView else { return }
-        notificationsManager.setAlertType(to: modalView.optionsView.soundSwitch.isOn ? .custom : .standart)
+        options.soundIsOn = modalView.optionsView.soundSwitch.isOn
+        UserDefaults.standard.set(options.soundIsOn, forKey: SavingKeys.soundIsOn.rawValue)
+        notificationsManager.setAlertType(to: options.soundIsOn ? .custom : .standart)
     }
     
     //MARK: - Support functions
@@ -155,7 +157,7 @@ class ViewController: UIViewController, ModalVCDelegate {
         }
     }
     
-    private func bindPublisher<T: Extractable>(_ publisher: NSObject.KeyValueObservingPublisher<UITextField, String?>, keyPath: WritableKeyPath<Options, T>, defaultValue: T) {
+    private func bindPublisher<T: Equatable & Extractable>(_ publisher: NSObject.KeyValueObservingPublisher<UITextField, String?>, keyPath: WritableKeyPath<Options, T>, defaultValue: T) {
         publisher
             .map { value in
                 let extractedValue = T(extractFrom: value, defaultValue: defaultValue)

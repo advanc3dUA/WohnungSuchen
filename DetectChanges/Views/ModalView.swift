@@ -33,41 +33,7 @@ class ModalView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func toggleSaveButtonState() {
-        let roomsPub = Publishers.CombineLatest(optionsView.roomsMinTextField.publisher(for: \.text).removeDuplicates(), optionsView.roomsMaxTextField.publisher(for: \.text).removeDuplicates())
-        
-        let areaPub = Publishers.CombineLatest(optionsView.areaMinTextField.publisher(for: \.text).removeDuplicates(), optionsView.areaMaxTextField.publisher(for: \.text).removeDuplicates())
-        
-        let rentPub = Publishers.CombineLatest(optionsView.rentMinTextField.publisher(for: \.text).removeDuplicates(), optionsView.rentMaxTextField.publisher(for: \.text).removeDuplicates())
-
-        Publishers.CombineLatest4(roomsPub, areaPub, rentPub, timerUpdateSubject.removeDuplicates())
-            .dropFirst()
-            .scan(nil) { previous, current in
-                guard let updateTimerCurrent = current.3, let updateTimerCurrentDouble = Double(updateTimerCurrent), updateTimerCurrentDouble < 30 else { return current }
-                self.optionsView.timerUpdateTextField.text = "30"
-                return nil
-            }
-            .compactMap { $0 }
-            .sink { _ in
-                self.saveButtonIsEnabled(true)
-            }
-            .store(in: &cancellables)
-
-        optionsView.timerUpdateTextField.publisher(for: \.text)
-            .removeDuplicates()
-            .subscribe(timerUpdateSubject)
-            .store(in: &cancellables)
-    }
-    
-    private func saveButtonIsEnabled(_ param: Bool) {
-        if param {
-            optionsView.saveButton.alpha = 1.0
-            optionsView.saveButton.isEnabled = true
-        } else {
-            optionsView.saveButton.alpha = 0.5
-            optionsView.saveButton.isEnabled = false
-        }
-    }
+    //MARK: - Setup views
     
     private func setupOptionsView() {
         let optionsNib = UINib(nibName: "OptionsView", bundle: nil)
@@ -76,22 +42,6 @@ class ModalView: UIView {
         optionsView.soundSwitch.addTarget(self, action: #selector(soundSwitchChanged), for: .valueChanged)
         optionsView.saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         saveButtonIsEnabled(false)
-    }
-    
-    @objc func saveButtonTapped() {
-        UserDefaults.standard.set(options.roomsMin, forKey: SavingKeys.roomsMin.rawValue)
-        UserDefaults.standard.set(options.roomsMax, forKey: SavingKeys.roomsMax.rawValue)
-        UserDefaults.standard.set(options.areaMin, forKey: SavingKeys.areaMin.rawValue)
-        UserDefaults.standard.set(options.areaMax, forKey: SavingKeys.areaMax.rawValue)
-        UserDefaults.standard.set(options.rentMin, forKey: SavingKeys.rentMin.rawValue)
-        UserDefaults.standard.set(options.rentMax, forKey: SavingKeys.rentMax.rawValue)
-        UserDefaults.standard.set(options.updateTime, forKey: SavingKeys.updateTime.rawValue)
-        UserDefaults.standard.set(options.soundIsOn, forKey: SavingKeys.soundIsOn.rawValue)
-        saveButtonIsEnabled(false)
-    }
-    
-    @objc func soundSwitchChanged(_ sender: UISwitch) {
-        delegate.setNotificationManagerAlertType(with: sender.isOn)
     }
     
     func showOptionsContent() {
@@ -147,6 +97,60 @@ class ModalView: UIView {
             stopButton.rightAnchor.constraint(equalTo: containerView.rightAnchor),
             stopButton.topAnchor.constraint(equalTo: containerView.topAnchor)
         ])
+    }
+    
+    //MARK: - Save button
+    
+    private func toggleSaveButtonState() {
+        let roomsPub = Publishers.CombineLatest(optionsView.roomsMinTextField.publisher(for: \.text).removeDuplicates(), optionsView.roomsMaxTextField.publisher(for: \.text).removeDuplicates())
+        
+        let areaPub = Publishers.CombineLatest(optionsView.areaMinTextField.publisher(for: \.text).removeDuplicates(), optionsView.areaMaxTextField.publisher(for: \.text).removeDuplicates())
+        
+        let rentPub = Publishers.CombineLatest(optionsView.rentMinTextField.publisher(for: \.text).removeDuplicates(), optionsView.rentMaxTextField.publisher(for: \.text).removeDuplicates())
+
+        Publishers.CombineLatest4(roomsPub, areaPub, rentPub, timerUpdateSubject.removeDuplicates())
+            .dropFirst()
+            .scan(nil) { previous, current in
+                guard let updateTimerCurrent = current.3, let updateTimerCurrentDouble = Double(updateTimerCurrent), updateTimerCurrentDouble < 30 else { return current }
+                self.optionsView.timerUpdateTextField.text = "30"
+                return nil
+            }
+            .compactMap { $0 }
+            .sink { _ in
+                self.saveButtonIsEnabled(true)
+            }
+            .store(in: &cancellables)
+
+        optionsView.timerUpdateTextField.publisher(for: \.text)
+            .removeDuplicates()
+            .subscribe(timerUpdateSubject)
+            .store(in: &cancellables)
+    }
+    
+    private func saveButtonIsEnabled(_ param: Bool) {
+        if param {
+            optionsView.saveButton.alpha = 1.0
+            optionsView.saveButton.isEnabled = true
+        } else {
+            optionsView.saveButton.alpha = 0.5
+            optionsView.saveButton.isEnabled = false
+        }
+    }
+    
+    @objc func saveButtonTapped() {
+        UserDefaults.standard.set(options.roomsMin, forKey: SavingKeys.roomsMin.rawValue)
+        UserDefaults.standard.set(options.roomsMax, forKey: SavingKeys.roomsMax.rawValue)
+        UserDefaults.standard.set(options.areaMin, forKey: SavingKeys.areaMin.rawValue)
+        UserDefaults.standard.set(options.areaMax, forKey: SavingKeys.areaMax.rawValue)
+        UserDefaults.standard.set(options.rentMin, forKey: SavingKeys.rentMin.rawValue)
+        UserDefaults.standard.set(options.rentMax, forKey: SavingKeys.rentMax.rawValue)
+        UserDefaults.standard.set(options.updateTime, forKey: SavingKeys.updateTime.rawValue)
+        UserDefaults.standard.set(options.soundIsOn, forKey: SavingKeys.soundIsOn.rawValue)
+        saveButtonIsEnabled(false)
+    }
+    
+    @objc func soundSwitchChanged(_ sender: UISwitch) {
+        delegate.setNotificationManagerAlertType(with: sender.isOn)
     }
     
     @objc func startPauseButtonTapped(sender: StartPauseButton) {
