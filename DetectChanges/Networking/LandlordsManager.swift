@@ -9,8 +9,7 @@ import Foundation
 
 class LandlordsManager {
     fileprivate var previousApartments = [Apartment]()
-    private var landlords: [Landlord] = [Saga()]
-    //, Vonovia()
+    private var landlords: [Landlord] = [Saga(), Vonovia()]
     private let immomioLinkFetcher: ImmomioLinkFetcher
     
     init(immomioLinkFetcher: ImmomioLinkFetcher) {

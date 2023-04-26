@@ -59,51 +59,26 @@ class ModalVC: UIViewController {
     }
     
     //MARK: - Save button
+    
+    func makeTextFieldIntPublisher(_ textField: UITextField, initialValue: Int) -> AnyPublisher<Int, Never> {
+        textField.publisher(for: \.text)
+            .map { text in
+                Int(extractFrom: text, defaultValue: initialValue)
+            }
+            .prepend(initialValue)
+            .removeDuplicates()
+            .eraseToAnyPublisher()
+    }
 
     private func setOptionsPublishers() {
-        let roomsMinTextFieldPublisher = modalView.optionsView.roomsMinTextField.publisher(for: \.text)
-        let roomsMaxTextFieldPublisher = modalView.optionsView.roomsMaxTextField.publisher(for: \.text)
-        let areaMinTextFieldPublisher = modalView.optionsView.areaMinTextField.publisher(for: \.text)
-        let areaMaxTextFieldPublisher = modalView.optionsView.areaMaxTextField.publisher(for: \.text)
-        let rentMinTextFieldPublisher = modalView.optionsView.rentMinTextField.publisher(for: \.text)
-        let rentMaxTextFieldPublisher = modalView.optionsView.rentMaxTextField.publisher(for: \.text)
-        let timerUpdateTextFieldPublisher = modalView.optionsView.timerUpdateTextField.publisher(for: \.text)
+        let roomsMinIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.roomsMinTextField, initialValue: options.roomsMin)
+        let roomsMaxIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.roomsMaxTextField, initialValue: options.roomsMax)
+        let areaMinIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.areaMinTextField, initialValue: options.areaMin)
+        let areaMaxIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.areaMaxTextField, initialValue: options.areaMax)
+        let rentMinIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.rentMinTextField, initialValue: options.rentMin)
+        let rentMaxIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.rentMaxTextField, initialValue: options.rentMax)
         
-        
-        let roomsMinIntPublisher = roomsMinTextFieldPublisher
-            .removeDuplicates()
-            .map { [unowned self] textValue in
-                Int(extractFrom: textValue, defaultValue: options.roomsMin)
-            }
-        let roomsMaxIntPublisher = roomsMaxTextFieldPublisher
-            .removeDuplicates()
-            .map { [unowned self] textValue in
-                Int(extractFrom: textValue, defaultValue: options.roomsMax)
-            }
-        
-        let areaMinIntPublisher = areaMinTextFieldPublisher
-            .removeDuplicates()
-            .map { [unowned self] textValue in
-                Int(extractFrom: textValue, defaultValue: options.areaMin)
-            }
-        let areaMaxIntPublisher = areaMaxTextFieldPublisher
-            .removeDuplicates()
-            .map { [unowned self] textValue in
-                Int(extractFrom: textValue, defaultValue: options.areaMax)
-            }
-        
-        let rentMinIntPublisher = rentMinTextFieldPublisher
-            .removeDuplicates()
-            .map { [unowned self] textValue in
-                Int(extractFrom: textValue, defaultValue: options.rentMin)
-            }
-        let rentMaxIntPublisher = rentMaxTextFieldPublisher
-            .removeDuplicates()
-            .map { [unowned self] textValue in
-                Int(extractFrom: textValue, defaultValue: options.rentMax)
-            }
-        
-        let timerUpdateIntPublisher = timerUpdateTextFieldPublisher
+        let timerUpdateIntPublisher = modalView.optionsView.timerUpdateTextField.publisher(for: \.text)
             .map { [unowned self] textValue in
                 Int(extractFrom: textValue, defaultValue: options.updateTime)
             }
