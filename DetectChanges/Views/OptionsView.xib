@@ -30,7 +30,7 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="pyr-6Y-in7">
                                     <rect key="frame" x="0.0" y="39.333333333333329" width="215" height="35"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jih-Dl-Wrz">
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jih-Dl-Wrz">
                                             <rect key="frame" x="0.0" y="0.0" width="60" height="35"/>
                                             <color key="backgroundColor" name="brandGray"/>
                                             <constraints>
@@ -50,7 +50,7 @@
                                             <color key="textColor" name="brandDark"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="3" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n3q-YH-J8b">
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n3q-YH-J8b">
                                             <rect key="frame" x="155" y="0.0" width="60" height="35"/>
                                             <color key="backgroundColor" name="brandGray"/>
                                             <constraints>
@@ -66,7 +66,7 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="yKM-uv-Spx">
                                     <rect key="frame" x="0.0" y="93.333333333333329" width="215" height="34.999999999999986"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="40" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wli-Fg-1dH">
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wli-Fg-1dH">
                                             <rect key="frame" x="0.0" y="0.0" width="60" height="35"/>
                                             <color key="backgroundColor" name="brandGray"/>
                                             <constraints>
@@ -86,7 +86,7 @@
                                             <color key="textColor" name="brandDark"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="60" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5tz-XP-35M">
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5tz-XP-35M">
                                             <rect key="frame" x="155" y="0.0" width="60" height="35"/>
                                             <color key="backgroundColor" name="brandGray"/>
                                             <constraints>
@@ -102,7 +102,7 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fUf-eQ-ivA">
                                     <rect key="frame" x="0.0" y="147.33333333333334" width="215" height="35"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="300" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Saw-65-Rsm">
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Saw-65-Rsm">
                                             <rect key="frame" x="0.0" y="0.0" width="60" height="35"/>
                                             <color key="backgroundColor" name="brandGray"/>
                                             <constraints>
@@ -122,7 +122,7 @@
                                             <color key="textColor" name="brandDark"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="900" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="drc-6k-Lsi">
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="drc-6k-Lsi">
                                             <rect key="frame" x="155" y="0.0" width="60" height="35"/>
                                             <color key="backgroundColor" name="brandGray"/>
                                             <constraints>
@@ -146,7 +146,7 @@
                                     <color key="textColor" name="brandDark"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="30" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BuA-Ml-h5H">
+                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BuA-Ml-h5H">
                                     <rect key="frame" x="136.66666666666669" y="0.0" width="60" height="35"/>
                                     <color key="backgroundColor" name="brandGray"/>
                                     <constraints>

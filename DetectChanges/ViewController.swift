@@ -15,7 +15,11 @@ class ViewController: UIViewController, ModalVCDelegate {
     var timer: Timer?
     var modalVC: ModalVC?
     var modalVCIsPresented: Bool
-    @Published var options: Options
+    @Published var options: Options {
+        didSet {
+            print("options was updated")
+        }
+    }
     @Published var currentApartments: [Apartment]
     var apartmentsDataSource: [Apartment]
     var immomioLinkFetcher: ImmomioLinkFetcher
@@ -64,7 +68,7 @@ class ViewController: UIViewController, ModalVCDelegate {
 
         if let modalVC = modalVC, !modalVCIsPresented {
             present(modalVC, animated: true)
-            setPublishersToUpdateOptions(from: modalVC.modalView)
+//            setPublishersToUpdateOptions(from: modalVC.modalView)
             setPublisherToUpdateApartmentsDataSource()
             modalVCIsPresented = true
         }
@@ -184,7 +188,8 @@ class ViewController: UIViewController, ModalVCDelegate {
     private func setPublisherToUpdateApartmentsDataSource() {
         Publishers.CombineLatest($currentApartments, $options)
             .map { apartments, options in
-                apartments.filter { apartment in
+                print("dataSourceUpdate")
+                return apartments.filter { apartment in
                     self.apartmentSatisfyCurrentFilter(apartment)
                 }
             }
