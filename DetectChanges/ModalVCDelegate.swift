@@ -12,5 +12,4 @@ protocol ModalVCDelegate {
     func startEngine()
     func pauseEngine()
     func stopEngine()
-    func setNotificationManagerAlertType(with state: Bool)
 }

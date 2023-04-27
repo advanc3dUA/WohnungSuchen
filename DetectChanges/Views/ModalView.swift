@@ -16,8 +16,6 @@ class ModalView: UIView {
     var delegate: ModalVCDelegate
     var options: Options
     var optionsView: OptionsView!
-    private let timerUpdateSubject = PassthroughSubject<String?, Never>()
-    private var cancellables = Set<AnyCancellable>()
     
     init(delegate: ModalVCDelegate, options: Options) {
         self.delegate = delegate
@@ -38,7 +36,6 @@ class ModalView: UIView {
         let optionsNib = UINib(nibName: "OptionsView", bundle: nil)
         optionsView = optionsNib.instantiate(withOwner: self).first as? OptionsView
         optionsView.soundSwitch.set(offTint: Colour.brandGray.setColor)
-        optionsView.soundSwitch.addTarget(self, action: #selector(soundSwitchChanged), for: .valueChanged)
         optionsView.saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         saveButtonIsEnabled(false)
     }
@@ -118,10 +115,6 @@ class ModalView: UIView {
         UserDefaults.standard.set(options.updateTime, forKey: SavingKeys.updateTime.rawValue)
         UserDefaults.standard.set(options.soundIsOn, forKey: SavingKeys.soundIsOn.rawValue)
         saveButtonIsEnabled(false)
-    }
-    
-    @objc func soundSwitchChanged(_ sender: UISwitch) {
-        delegate.setNotificationManagerAlertType(with: sender.isOn)
     }
     
     @objc func startPauseButtonTapped(sender: StartPauseButton) {

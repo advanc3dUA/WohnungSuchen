@@ -15,6 +15,7 @@ class ViewController: UIViewController, ModalVCDelegate {
     var timer: Timer?
     var modalVC: ModalVC?
     var modalVCIsPresented: Bool
+    var modalVCView: ModalView?
     @Published var options: Options
     @Published var currentApartments: [Apartment]
     var apartmentsDataSource: [Apartment]
@@ -23,7 +24,6 @@ class ViewController: UIViewController, ModalVCDelegate {
     var notificationsManager: NotificationsManager
     var isSecondRunPlus: Bool
     var loadingView: LoadingView?
-    var modalVCView: ModalView?
     var backgroundAudioPlayer: BackgroundAudioPlayer?
     var bgAudioPlayerIsInterrupted: Bool
     
@@ -64,8 +64,8 @@ class ViewController: UIViewController, ModalVCDelegate {
 
         if let modalVC = modalVC, !modalVCIsPresented {
             present(modalVC, animated: true)
-//            setPublishersToUpdateOptions(from: modalVC.modalView)
             setPublisherToUpdateApartmentsDataSource()
+            setNotificationManagerAlertType()
             modalVCIsPresented = true
         }
     }
@@ -139,13 +139,6 @@ class ViewController: UIViewController, ModalVCDelegate {
         bgAudioPlayerIsInterrupted = false
     }
     
-    func setNotificationManagerAlertType(with state: Bool) {
-        guard let modalView = modalVCView else { return }
-        options.soundIsOn = modalView.optionsView.soundSwitch.isOn
-        UserDefaults.standard.set(options.soundIsOn, forKey: SavingKeys.soundIsOn.rawValue)
-        notificationsManager.setAlertType(to: options.soundIsOn ? .custom : .standart)
-    }
-    
     //MARK: - Support functions
     private func enableStopButton(_ status: Bool) {
         if status {
@@ -157,28 +150,13 @@ class ViewController: UIViewController, ModalVCDelegate {
         }
     }
     
-    private func bindPublisher<T: Equatable & Extractable>(_ publisher: NSObject.KeyValueObservingPublisher<UITextField, String?>, keyPath: WritableKeyPath<Options, T>, defaultValue: T) {
-        publisher
-            .map { value in
-                let extractedValue = T(extractFrom: value, defaultValue: defaultValue)
-                return extractedValue
-            }
-            .sink { [weak self] (value: T) in
-                guard let self = self else { return }
-                self.options[keyPath: keyPath] = value
+    private func setNotificationManagerAlertType() {
+        $options
+            .dropFirst()
+            .sink { [unowned self] options in
+                notificationsManager.setAlertType(to: options.soundIsOn ? .custom : .standart)
             }
             .store(in: &cancellables)
-    }
-    
-    private func setPublishersToUpdateOptions(from modalView: ModalView) {
-        guard let view = modalView.optionsView else { return }
-        bindPublisher(view.roomsMinTextField.publisher(for: \.text), keyPath: \.roomsMin, defaultValue: options.roomsMin)
-        bindPublisher(view.roomsMaxTextField.publisher(for: \.text), keyPath: \.roomsMax, defaultValue: options.roomsMax)
-        bindPublisher(view.areaMinTextField.publisher(for: \.text), keyPath: \.areaMin, defaultValue: options.areaMin)
-        bindPublisher(view.areaMaxTextField.publisher(for: \.text), keyPath: \.areaMax, defaultValue: options.areaMax)
-        bindPublisher(view.rentMinTextField.publisher(for: \.text), keyPath: \.rentMin, defaultValue: options.rentMin)
-        bindPublisher(view.rentMaxTextField.publisher(for: \.text), keyPath: \.rentMax, defaultValue: options.rentMax)
-        bindPublisher(view.timerUpdateTextField.publisher(for: \.text), keyPath: \.updateTime, defaultValue: options.updateTime)
     }
     
     private func setPublisherToUpdateApartmentsDataSource() {

@@ -96,21 +96,26 @@ class ModalVC: UIViewController {
                 }
             .compactMap { $0 }
             .removeDuplicates()
+        
+        let soundSwitchPublisher = modalView.optionsView.soundSwitch.switchPublisher
+            .prepend(options.soundIsOn)
 
         let roomsPub = Publishers.CombineLatest(roomsMinIntPublisher, roomsMaxIntPublisher)
         let areaPub = Publishers.CombineLatest(areaMinIntPublisher, areaMaxIntPublisher)
         let rentPub = Publishers.CombineLatest(rentMinIntPublisher, rentMaxIntPublisher)
+        let updateTimeAndSoundSwitchPub = Publishers.CombineLatest(timerUpdateIntPublisher, soundSwitchPublisher)
         
-        Publishers.CombineLatest4(roomsPub, areaPub, rentPub, timerUpdateIntPublisher)
+        Publishers.CombineLatest4(roomsPub, areaPub, rentPub, updateTimeAndSoundSwitchPub)
             .dropFirst()
-            .map { [unowned self] rooms, area, rent, updateTime in
+            .map { [unowned self] rooms, area, rent, timeAndSoundSwitch in
                 options.roomsMin = rooms.0
                 options.roomsMax = rooms.1
                 options.areaMin = area.0
                 options.areaMax = area.1
                 options.rentMin = rent.0
                 options.rentMax = rent.1
-                options.updateTime = updateTime
+                options.updateTime = timeAndSoundSwitch.0
+                options.soundIsOn = timeAndSoundSwitch.1
                 return rooms.0 <= rooms.1 && area.0 <= area.1 && rent.0 <= rent.0
             }
             .sink { [unowned self] isValid in
