@@ -90,20 +90,24 @@ class ViewController: UIViewController, ModalVCDelegate {
         timer = Timer.scheduledTimer(withTimeInterval: Double(options.updateTime), repeats: true) {[unowned self] timer in
             landlordsManager?.start { [weak self] apartments in
                 guard let self = self else { return }
-                if !self.isSecondRunPlus {
-                    self.currentApartments = apartments
-                    self.isSecondRunPlus = true
-                } else {
-                    if !apartments.isEmpty {
-                        let newApartments = apartments.map {
-                            Apartment(time: $0.time, title: $0.title, internalLink: $0.internalLink, street: $0.street, rooms: $0.rooms, area: $0.area, rent: $0.rent, externalLink: $0.externalLink, company: $0.company, isNew: true)
-                        }
-                        self.currentApartments.insert(contentsOf: newApartments, at: 0)
-                        
-                        if newApartments.contains(where: { self.apartmentSatisfyCurrentFilter($0) }) {
-                            self.notificationsManager.pushNotification(for: newApartments.count)
+                
+                if self.isSecondRunPlus && !apartments.isEmpty {
+                    var modifiedApartmentsCount = 0
+                    let newApartments = apartments.map { apartment in
+                        if self.apartmentSatisfyCurrentFilter(apartment) {
+                            var modifiedApartment = apartment
+                            modifiedApartment.isNew = true
+                            modifiedApartmentsCount += 1
+                            return modifiedApartment
+                        } else {
+                            return apartment
                         }
                     }
+                    self.currentApartments.insert(contentsOf: newApartments, at: 0)
+                    self.notificationsManager.pushNotification(for: modifiedApartmentsCount)
+                } else if !self.isSecondRunPlus {
+                    self.currentApartments = apartments
+                    self.isSecondRunPlus = true
                 }
                 self.loadingView?.removeFromSuperview()
                 self.statusLabel.text = "Last update: \(TimeManager.shared.getCurrentTime())"

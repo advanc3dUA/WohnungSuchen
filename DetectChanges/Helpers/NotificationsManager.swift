@@ -33,6 +33,7 @@ class NotificationsManager {
     }
     
     func pushNotification(for number: Int) {
+        guard number > 0 else { return }
         content.sound = notificationType.sound
         content.title = "\(number) new result\(number == 1 ? "" : "s")"
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
