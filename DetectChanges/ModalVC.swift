@@ -43,8 +43,7 @@ class ModalVC: UIViewController {
     //MARK: - VC Lifecycle
     
     override func loadView() {
-        guard let delegate = delegate else { return }
-        modalView = ModalView(delegate: delegate, options: options)
+        modalView = ModalView()
         view = modalView
     }
     
@@ -54,11 +53,55 @@ class ModalVC: UIViewController {
         let tapGasture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGasture)
         
+        modalView.startPauseButton.addTarget(self, action: #selector(startPauseButtonTapped(sender:)), for: .touchUpInside)
+        modalView.stopButton.addTarget(self, action: #selector(stopButtonTapped(sender:)), for: .touchUpInside)
+        
+        saveButtonIsEnabled(false)
+        modalView.optionsView.saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+        
         modalView.optionsView.updateOptionsUI(with: options)
         setOptionsPublishers()
     }
     
-    //MARK: - Save button
+    //MARK: - Button's actions
+    
+    func saveButtonIsEnabled(_ param: Bool) {
+        if param {
+            modalView.optionsView.saveButton.alpha = 1.0
+            modalView.optionsView.saveButton.isEnabled = true
+        } else {
+            modalView.optionsView.saveButton.alpha = 0.5
+            modalView.optionsView.saveButton.isEnabled = false
+        }
+    }
+    
+    @objc func saveButtonTapped() {
+        UserDefaults.standard.set(options.roomsMin, forKey: SavingKeys.roomsMin.rawValue)
+        UserDefaults.standard.set(options.roomsMax, forKey: SavingKeys.roomsMax.rawValue)
+        UserDefaults.standard.set(options.areaMin, forKey: SavingKeys.areaMin.rawValue)
+        UserDefaults.standard.set(options.areaMax, forKey: SavingKeys.areaMax.rawValue)
+        UserDefaults.standard.set(options.rentMin, forKey: SavingKeys.rentMin.rawValue)
+        UserDefaults.standard.set(options.rentMax, forKey: SavingKeys.rentMax.rawValue)
+        UserDefaults.standard.set(options.updateTime, forKey: SavingKeys.updateTime.rawValue)
+        UserDefaults.standard.set(options.soundIsOn, forKey: SavingKeys.soundIsOn.rawValue)
+        saveButtonIsEnabled(false)
+    }
+    
+    @objc func startPauseButtonTapped(sender: StartPauseButton) {
+        if sender.isOn {
+            sender.switchOff()
+            delegate?.startEngine()
+        } else {
+            sender.switchOn()
+            delegate?.pauseEngine()
+        }
+    }
+    
+    @objc func stopButtonTapped(sender: StopButton) {
+        delegate?.stopEngine()
+    }
+    
+    //MARK: - Options publishers
     
     func makeTextFieldIntPublisher(_ textField: UITextField, initialValue: Int) -> AnyPublisher<Int, Never> {
         textField.publisher(for: \.text)
@@ -119,7 +162,7 @@ class ModalVC: UIViewController {
                 return rooms.0 <= rooms.1 && area.0 <= area.1 && rent.0 <= rent.0
             }
             .sink { [unowned self] isValid in
-                modalView.saveButtonIsEnabled(isValid)
+                saveButtonIsEnabled(isValid)
                 delegate?.options = options
             }
             .store(in: &cancellables)

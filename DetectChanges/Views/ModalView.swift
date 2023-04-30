@@ -13,13 +13,9 @@ class ModalView: UIView {
     var containerView: UIView!
     var startPauseButton: StartPauseButton!
     var stopButton: StopButton!
-    var delegate: ModalVCDelegate
-    var options: Options
     var optionsView: OptionsView!
     
-    init(delegate: ModalVCDelegate, options: Options) {
-        self.delegate = delegate
-        self.options = options
+    init() {
         super.init(frame: .zero)
         backgroundColor = Colour.brandOlive.setColor
         setupStartStopButton()
@@ -36,8 +32,6 @@ class ModalView: UIView {
         let optionsNib = UINib(nibName: "OptionsView", bundle: nil)
         optionsView = optionsNib.instantiate(withOwner: self).first as? OptionsView
         optionsView.soundSwitch.set(offTint: Colour.brandGray.setColor)
-        optionsView.saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
-        saveButtonIsEnabled(false)
     }
     
     func showOptionsContent() {
@@ -73,7 +67,6 @@ class ModalView: UIView {
         ])
         
         startPauseButton = StartPauseButton()
-        startPauseButton.addTarget(self, action: #selector(startPauseButtonTapped(sender:)), for: .touchUpInside)
         startPauseButton.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(startPauseButton)
         NSLayoutConstraint.activate([
@@ -84,7 +77,6 @@ class ModalView: UIView {
         ])
         
         stopButton = StopButton()
-        stopButton.addTarget(self, action: #selector(stopButtonTapped(sender:)), for: .touchUpInside)
         stopButton.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(stopButton)
         NSLayoutConstraint.activate([
@@ -93,43 +85,6 @@ class ModalView: UIView {
             stopButton.rightAnchor.constraint(equalTo: containerView.rightAnchor),
             stopButton.topAnchor.constraint(equalTo: containerView.topAnchor)
         ])
-    }
-    
-    func saveButtonIsEnabled(_ param: Bool) {
-        if param {
-            optionsView.saveButton.alpha = 1.0
-            optionsView.saveButton.isEnabled = true
-        } else {
-            optionsView.saveButton.alpha = 0.5
-            optionsView.saveButton.isEnabled = false
-        }
-    }
-    
-    @objc func saveButtonTapped() {
-        UserDefaults.standard.set(options.roomsMin, forKey: SavingKeys.roomsMin.rawValue)
-        UserDefaults.standard.set(options.roomsMax, forKey: SavingKeys.roomsMax.rawValue)
-        UserDefaults.standard.set(options.areaMin, forKey: SavingKeys.areaMin.rawValue)
-        UserDefaults.standard.set(options.areaMax, forKey: SavingKeys.areaMax.rawValue)
-        UserDefaults.standard.set(options.rentMin, forKey: SavingKeys.rentMin.rawValue)
-        UserDefaults.standard.set(options.rentMax, forKey: SavingKeys.rentMax.rawValue)
-        UserDefaults.standard.set(options.updateTime, forKey: SavingKeys.updateTime.rawValue)
-        UserDefaults.standard.set(options.soundIsOn, forKey: SavingKeys.soundIsOn.rawValue)
-        saveButtonIsEnabled(false)
-    }
-    
-    @objc func startPauseButtonTapped(sender: StartPauseButton) {
-        if sender.isOn {
-            sender.switchOff()
-            delegate.startEngine()
-        } else {
-            sender.switchOn()
-            delegate.pauseEngine()
-        }
-    }
-    
-    @objc func stopButtonTapped(sender: StopButton) {
-        delegate.stopEngine()
-    }
-    
+    }    
 }
 
