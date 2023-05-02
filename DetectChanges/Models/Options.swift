@@ -18,23 +18,7 @@ enum SavingKeys: String {
     case soundIsOn
 }
 
-@propertyWrapper struct UserDefaultsBacked<T> {
-    let key: String
-    let storage: UserDefaults = .standard
-    let defaultValue: T
-    
-    var wrappedValue: T {
-        get {
-            let value = storage.object(forKey: key) as? T
-            return value ?? defaultValue
-        }
-        set {
-            storage.set(newValue, forKey: key)
-        }
-    }
-}
-
-class Options {
+final class Options {
     var roomsMin = UserDefaults.standard.object(forKey: SavingKeys.roomsMin.rawValue) as? Int ?? Constants.defaultOptions.roomsMin
     var roomsMax = UserDefaults.standard.object(forKey: SavingKeys.roomsMax.rawValue) as? Int ?? Constants.defaultOptions.roomsMax
     var areaMin = UserDefaults.standard.object(forKey: SavingKeys.areaMin.rawValue) as? Int ?? Constants.defaultOptions.areaMin
