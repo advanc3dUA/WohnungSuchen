@@ -8,9 +8,9 @@
 import UIKit
 import Combine
 
-class ModalVC: UIViewController {
-    var modalView: ModalView!
-    var options: Options
+final class ModalVC: UIViewController {
+    private var modalView: ModalView!
+    private var options: Options
     var currentDetent: UISheetPresentationController.Detent.Identifier? {
         didSet {
             switch currentDetent?.rawValue {
@@ -21,7 +21,7 @@ class ModalVC: UIViewController {
         }
     }
     var delegate: ModalVCDelegate?
-    var cancellables: Set<AnyCancellable> = []
+    private var cancellables: Set<AnyCancellable> = []
     
     init(smallDetentSize: CGFloat, options: Options) {
         currentDetent = .medium

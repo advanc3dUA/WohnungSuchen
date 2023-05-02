@@ -8,7 +8,7 @@
 import UIKit
 
 @IBDesignable
-class ImmoButton: CustomButton {
+final class ImmoButton: CustomButton {
     
     override func setup() {
         layer.cornerRadius = 5

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LandlordsManager {
+final class LandlordsManager {
     fileprivate var previousApartments = [Apartment]()
     private var landlords: [Landlord] = [Saga(), Vonovia()]
     private let immomioLinkFetcher: ImmomioLinkFetcher

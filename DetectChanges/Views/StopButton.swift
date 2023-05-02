@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StopButton: UIButton {
+final class StopButton: UIButton {
    
     override init(frame: CGRect) {
         super.init(frame: frame)

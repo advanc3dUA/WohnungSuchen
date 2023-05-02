@@ -8,8 +8,8 @@
 import Foundation
 import SwiftSoup
 
-class ImmomioLinkFetcher {
-    var networkManager: NetworkManager
+final class ImmomioLinkFetcher {
+    private var networkManager: NetworkManager
     
     init(networkManager: NetworkManager) {
         self.networkManager = networkManager

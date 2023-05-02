@@ -8,7 +8,7 @@
 import Foundation
 
 @IBDesignable
-class SaveButton: CustomButton {
+final class SaveButton: CustomButton {
     override func setup() {
         layer.cornerRadius = 10
         layer.borderWidth = 1

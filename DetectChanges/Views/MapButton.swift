@@ -8,7 +8,7 @@
 import UIKit
 
 @IBDesignable
-class MapButton: CustomButton {
+final class MapButton: CustomButton {
     
     override func setup() {
         layer.cornerRadius = 5

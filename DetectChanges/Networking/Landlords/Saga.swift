@@ -8,7 +8,7 @@
 import Foundation
 import SwiftSoup
 
-class Saga: Landlord {
+final class Saga: Landlord {
     private let networkManager: NetworkManager
     private let searchURLString = "https://www.saga.hamburg/immobiliensuche?type=wohnungen"
     

@@ -7,9 +7,9 @@
 
 import UIKit
 
-class LoadingView: UIView {
-    var loadingLabel: UILabel
-    var activityIndicator: UIActivityIndicatorView
+final class LoadingView: UIView {
+    private var loadingLabel: UILabel
+    private var activityIndicator: UIActivityIndicatorView
 
     override init(frame: CGRect) {
         let width = 100

@@ -12,8 +12,8 @@ enum ImageState: String {
     case play = "play"
 }
 
-class StartPauseButton: UIButton {
-    var isOn = false
+final class StartPauseButton: UIButton {
+    private(set) var isOn = false
    
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ApartmentCell: UITableViewCell {
+final class ApartmentCell: UITableViewCell {
 
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!

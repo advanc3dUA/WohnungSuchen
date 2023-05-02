@@ -8,12 +8,12 @@
 import UIKit
 import Combine
 
-class ModalView: UIView {
+final class ModalView: UIView {
     
-    var containerView: UIView!
-    var startPauseButton: StartPauseButton!
-    var stopButton: StopButton!
-    var optionsView: OptionsView!
+    private(set) var containerView: UIView!
+    private(set) var startPauseButton: StartPauseButton!
+    private(set) var stopButton: StopButton!
+    private(set) var optionsView: OptionsView!
     
     init() {
         super.init(frame: .zero)

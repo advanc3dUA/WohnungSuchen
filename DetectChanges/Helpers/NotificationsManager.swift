@@ -21,7 +21,7 @@ enum NotificationType {
     }
 }
 
-class NotificationsManager {
+final class NotificationsManager {
     private var content: UNMutableNotificationContent
     private var notificationType: NotificationType
     

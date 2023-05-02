@@ -8,23 +8,23 @@
 import UIKit
 import Combine
 
-class ViewController: UIViewController, ModalVCDelegate {
+final class ViewController: UIViewController, ModalVCDelegate {
     
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    var timer: Timer?
-    var modalVC: ModalVC?
-    var modalVCIsPresented: Bool
-    var modalVCView: ModalView?
+    private var timer: Timer?
+    private var modalVC: ModalVC?
+    private var modalVCIsPresented: Bool
+    private var modalVCView: ModalView?
     @Published var options: Options
     @Published var currentApartments: [Apartment]
     var apartmentsDataSource: [Apartment]
-    var immomioLinkFetcher: ImmomioLinkFetcher
-    var landlordsManager: LandlordsManager?
-    var notificationsManager: NotificationsManager
-    var isSecondRunPlus: Bool
-    var loadingView: LoadingView?
-    var backgroundAudioPlayer: BackgroundAudioPlayer?
+    private var immomioLinkFetcher: ImmomioLinkFetcher
+    private var landlordsManager: LandlordsManager?
+    private var notificationsManager: NotificationsManager
+    private var isSecondRunPlus: Bool
+    private var loadingView: LoadingView?
+    private(set) var backgroundAudioPlayer: BackgroundAudioPlayer?
     var bgAudioPlayerIsInterrupted: Bool
     
     private var cancellables: Set<AnyCancellable> = []

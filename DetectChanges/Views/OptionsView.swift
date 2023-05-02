@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OptionsView: UIView {
+final class OptionsView: UIView {
     
     @IBOutlet weak var roomsMinTextField: UITextField!
     @IBOutlet weak var roomsMaxTextField: UITextField!

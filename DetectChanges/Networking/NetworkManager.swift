@@ -7,7 +7,7 @@
 
 import Foundation
 
-class NetworkManager {
+final class NetworkManager {
     func fetchHtmlString(urlString: String, completion: @escaping (String?) -> ()) {
         guard let url = URL(string: urlString) else { return }
         let request = URLRequest(url: url)
