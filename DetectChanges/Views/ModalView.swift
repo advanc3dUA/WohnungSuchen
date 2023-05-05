@@ -12,13 +12,12 @@ final class ModalView: UIView {
     
     private(set) var containerView: UIView!
     private(set) var startPauseButton: StartPauseButton!
-    private(set) var stopButton: StopButton!
     private(set) var optionsView: OptionsView!
     
     init() {
         super.init(frame: .zero)
         backgroundColor = Colour.brandOlive.setColor
-        setupStartStopButton()
+        setupStartPauseButton()
         setupOptionsView()
     }
     
@@ -50,7 +49,7 @@ final class ModalView: UIView {
         optionsView.removeFromSuperview()
     }
     
-    private func setupStartStopButton() {
+    private func setupStartPauseButton() {
         let buttonsWidth = 75
         let buttonsHeight = 50
         let spacing = 5
@@ -60,7 +59,7 @@ final class ModalView: UIView {
         containerView.backgroundColor = Colour.brandOlive.setColor
         addSubview(containerView)
         NSLayoutConstraint.activate([
-            containerView.widthAnchor.constraint(equalToConstant: CGFloat(buttonsWidth * 2 + spacing)),
+            containerView.widthAnchor.constraint(equalToConstant: CGFloat(buttonsWidth)),
             containerView.heightAnchor.constraint(equalToConstant: CGFloat(buttonsHeight)),
             containerView.centerXAnchor.constraint(equalTo: centerXAnchor),
             containerView.centerYAnchor.constraint(equalTo: bottomAnchor, constant: -50)
@@ -74,16 +73,6 @@ final class ModalView: UIView {
             startPauseButton.heightAnchor.constraint(equalToConstant: CGFloat(buttonsHeight)),
             startPauseButton.leftAnchor.constraint(equalTo: containerView.leftAnchor),
             startPauseButton.topAnchor.constraint(equalTo: containerView.topAnchor)
-        ])
-        
-        stopButton = StopButton()
-        stopButton.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(stopButton)
-        NSLayoutConstraint.activate([
-            stopButton.widthAnchor.constraint(equalToConstant: CGFloat(buttonsWidth)),
-            stopButton.heightAnchor.constraint(equalToConstant: CGFloat(buttonsHeight)),
-            stopButton.rightAnchor.constraint(equalTo: containerView.rightAnchor),
-            stopButton.topAnchor.constraint(equalTo: containerView.topAnchor)
         ])
     }    
 }

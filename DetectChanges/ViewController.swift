@@ -56,6 +56,7 @@ final class ViewController: UIViewController, ModalVCDelegate {
         tableView.dataSource = self
         
         setupModalVC()
+        prepareEngine()
         startEngine()
     }
     
@@ -64,12 +65,13 @@ final class ViewController: UIViewController, ModalVCDelegate {
 
         if let modalVC = modalVC, !modalVCIsPresented {
             present(modalVC, animated: true)
-            setPublisherToUpdateApartmentsDataSource()
-            setNotificationManagerAlertType()
+            setPublisherForApartmentsDataSource()
+            setPublisherForNotificationAlertType()
+            setPublisherForTimerInterval()
             modalVCIsPresented = true
         }
     }
-    
+        
     private func setupModalVC() {
         modalVC = ModalVC(smallDetentSize: calcModalVCDetentSizeSmall(), options: options)
         modalVC?.presentationController?.delegate = self
@@ -80,13 +82,7 @@ final class ViewController: UIViewController, ModalVCDelegate {
     //MARK: - ModalVCDelegate
     
     func startEngine() {
-        backgroundAudioPlayer?.start()
-        landlordsManager = landlordsManager ?? LandlordsManager(immomioLinkFetcher: immomioLinkFetcher)
-        guard let modalVCView = modalVCView else { fatalError("Unable to get modalVCView in startEngine") }
-        modalVCView.containerView?.isHidden = true
-        loadingView = LoadingView(frame: tableView.bounds)
-        tableView.addSubview(loadingView!)
-        
+        showLoadingView()
         timer = Timer.scheduledTimer(withTimeInterval: Double(options.updateTime), repeats: true) {[unowned self] timer in
             landlordsManager?.start { [weak self] apartments in
                 guard let self = self else { return }
@@ -94,7 +90,7 @@ final class ViewController: UIViewController, ModalVCDelegate {
                 if self.isSecondRunPlus && !apartments.isEmpty {
                     var modifiedApartmentsCount = 0
                     let newApartments = apartments.map { apartment in
-                        if self.apartmentSatisfyCurrentFilter(apartment) {
+                        if self.checkApartmentSatisfyCurrentFilter(apartment) {
                             var modifiedApartment = apartment
                             modifiedApartment.isNew = true
                             modifiedApartmentsCount += 1
@@ -112,8 +108,7 @@ final class ViewController: UIViewController, ModalVCDelegate {
                 self.loadingView?.removeFromSuperview()
                 self.statusLabel.text = "Last update: \(TimeManager.shared.getCurrentTime())"
                 self.statusLabel.flash(numberOfFlashes: 1)
-                modalVCView.containerView?.isHidden = false
-                self.enableStopButton(false)
+                modalVCView?.containerView?.isHidden = false
             }
         }
         timer?.fire()
@@ -122,39 +117,23 @@ final class ViewController: UIViewController, ModalVCDelegate {
     func pauseEngine() {
         timer?.invalidate()
         timer = nil
-        enableStopButton(true)
-    }
-    
-    func stopEngine() {
-        let numberOfRows = tableView.numberOfRows(inSection: 0)
-        guard numberOfRows > 0 else {
-            return
-        }
-        apartmentsDataSource.removeAll()
-        
-        var indexPaths = [IndexPath]()
-        for row in 0..<numberOfRows {
-            indexPaths.append(IndexPath(row: row, section: 0))
-        }
-        tableView.deleteRows(at: indexPaths, with: .automatic)
-        isSecondRunPlus = false
-        landlordsManager = nil
-        backgroundAudioPlayer?.stop()
-        bgAudioPlayerIsInterrupted = false
     }
     
     //MARK: - Support functions
-    private func enableStopButton(_ status: Bool) {
-        if status {
-            modalVCView?.stopButton.isEnabled = true
-            modalVCView?.stopButton.alpha = 1.0
-        } else {
-            modalVCView?.stopButton.isEnabled = false
-            modalVCView?.stopButton.alpha = 0.5
-        }
+    
+    private func prepareEngine() {
+        backgroundAudioPlayer?.start()
+        landlordsManager = landlordsManager ?? LandlordsManager(immomioLinkFetcher: immomioLinkFetcher)
+        guard let modalVCView = modalVCView else { fatalError("Unable to get modalVCView in startEngine") }
+        modalVCView.containerView?.isHidden = true
     }
     
-    private func setNotificationManagerAlertType() {
+    private func showLoadingView() {
+        loadingView = LoadingView(frame: tableView.bounds)
+        tableView.addSubview(loadingView!)
+    }
+
+    private func setPublisherForNotificationAlertType() {
         $options
             .dropFirst()
             .sink { [unowned self] options in
@@ -163,12 +142,23 @@ final class ViewController: UIViewController, ModalVCDelegate {
             .store(in: &cancellables)
     }
     
-    private func setPublisherToUpdateApartmentsDataSource() {
+    private func setPublisherForTimerInterval() {
+        options.$updateTime
+            .dropFirst()
+            .sink { [unowned self] _ in
+                pauseEngine()
+                startEngine()
+            }
+            .store(in: &cancellables)
+            
+    }
+    
+    private func setPublisherForApartmentsDataSource() {
         Publishers.CombineLatest($currentApartments, $options)
             .dropFirst()
             .map { apartments, options in
                 return apartments.filter { apartment in
-                    self.apartmentSatisfyCurrentFilter(apartment)
+                    self.checkApartmentSatisfyCurrentFilter(apartment)
                 }
             }
             .sink { [unowned self] filteredApartments in
@@ -178,7 +168,7 @@ final class ViewController: UIViewController, ModalVCDelegate {
             .store(in: &cancellables)
     }
     
-    private func apartmentSatisfyCurrentFilter(_ apartment: Apartment) -> Bool {
+    private func checkApartmentSatisfyCurrentFilter(_ apartment: Apartment) -> Bool {
         apartment.rooms >= options.roomsMin && apartment.rooms <= options.roomsMax &&
         apartment.area >= options.areaMin && apartment.area <= options.areaMax &&
         apartment.rent >= options.rentMin && apartment.rent <= options.rentMax

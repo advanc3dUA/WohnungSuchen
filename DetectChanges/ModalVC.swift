@@ -54,7 +54,6 @@ final class ModalVC: UIViewController {
         view.addGestureRecognizer(tapGasture)
         
         modalView.startPauseButton.addTarget(self, action: #selector(startPauseButtonTapped(sender:)), for: .touchUpInside)
-        modalView.stopButton.addTarget(self, action: #selector(stopButtonTapped(sender:)), for: .touchUpInside)
         
         saveButtonIsEnabled(false)
         modalView.optionsView.saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
@@ -95,10 +94,6 @@ final class ModalVC: UIViewController {
             sender.switchOn()
             delegate?.pauseEngine()
         }
-    }
-    
-    @objc func stopButtonTapped(sender: StopButton) {
-        delegate?.stopEngine()
     }
     
     //MARK: - Options publishers

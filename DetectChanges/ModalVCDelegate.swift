@@ -11,5 +11,4 @@ protocol ModalVCDelegate {
     var options: Options { get set }
     func startEngine()
     func pauseEngine()
-    func stopEngine()
 }
