@@ -57,7 +57,6 @@ final class ViewController: UIViewController, ModalVCDelegate {
         
         setupModalVC()
         prepareEngine()
-        startEngine()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -144,7 +143,6 @@ final class ViewController: UIViewController, ModalVCDelegate {
     
     private func setPublisherForTimerInterval() {
         options.$updateTime
-            .dropFirst()
             .sink { [unowned self] _ in
                 pauseEngine()
                 startEngine()

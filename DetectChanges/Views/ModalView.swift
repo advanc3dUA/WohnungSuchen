@@ -52,7 +52,6 @@ final class ModalView: UIView {
     private func setupStartPauseButton() {
         let buttonsWidth = 75
         let buttonsHeight = 50
-        let spacing = 5
         
         containerView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         containerView.translatesAutoresizingMaskIntoConstraints = false
