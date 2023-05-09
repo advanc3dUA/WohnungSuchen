@@ -83,6 +83,7 @@ final class ViewController: UIViewController, ModalVCDelegate {
     func startEngine() {
         showLoadingView()
         timer = Timer.scheduledTimer(withTimeInterval: Double(options.updateTime), repeats: true) {[unowned self] timer in
+            print(options.updateTime)
             landlordsManager?.start { [weak self] apartments in
                 guard let self = self else { return }
                 
@@ -143,6 +144,7 @@ final class ViewController: UIViewController, ModalVCDelegate {
     
     private func setPublisherForTimerInterval() {
         options.$updateTime
+            .debounce(for: .seconds(0.25), scheduler: RunLoop.main)
             .sink { [unowned self] _ in
                 pauseEngine()
                 startEngine()
