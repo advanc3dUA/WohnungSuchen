@@ -28,50 +28,52 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="1LA-nZ-0xX">
-                                <rect key="frame" x="55" y="0.0" width="202" height="65"/>
+                                <rect key="frame" x="55" y="0.0" width="182" height="65"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pRV-IB-t7s">
-                                        <rect key="frame" x="0.0" y="0.0" width="202" height="21.666666666666668"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="182" height="21.666666666666668"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" name="brandDark"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4b-Ta-5oS">
-                                        <rect key="frame" x="0.0" y="21.666666666666664" width="202" height="21.666666666666664"/>
+                                        <rect key="frame" x="0.0" y="21.666666666666664" width="182" height="21.666666666666664"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" name="brandDark"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rooms, m2, €" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCX-9C-BgX">
-                                        <rect key="frame" x="0.0" y="43.333333333333336" width="202" height="21.666666666666664"/>
+                                        <rect key="frame" x="0.0" y="43.333333333333336" width="182" height="21.666666666666664"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" name="brandDark"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="6cD-FD-btq">
-                                <rect key="frame" x="262" y="0.0" width="80" height="65"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="6cD-FD-btq">
+                                <rect key="frame" x="242" y="0.0" width="100" height="65"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8I3-Yv-jjI" customClass="ImmoButton" customModule="DetectChanges" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="80" height="32"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Link"/>
-                                        <connections>
-                                            <action selector="linkButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="dHW-Ux-oz4"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KdT-Cp-48f" customClass="MapButton" customModule="DetectChanges" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="33" width="80" height="32"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="49.666666666666664" height="65"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Map"/>
                                         <connections>
                                             <action selector="mapButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="1oj-62-dmU"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8I3-Yv-jjI" customClass="ImmoButton" customModule="DetectChanges" customModuleProvider="target">
+                                        <rect key="frame" x="50.666666666666686" y="0.0" width="49.333333333333343" height="65"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Link"/>
+                                        <connections>
+                                            <action selector="linkButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="dHW-Ux-oz4"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="eKp-aW-RRF"/>
+                                    <constraint firstAttribute="width" constant="100" id="eKp-aW-RRF"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -108,10 +110,10 @@
     </objects>
     <designables>
         <designable name="8I3-Yv-jjI">
-            <size key="intrinsicContentSize" width="30" height="30"/>
+            <size key="intrinsicContentSize" width="37" height="36"/>
         </designable>
         <designable name="KdT-Cp-48f">
-            <size key="intrinsicContentSize" width="30" height="30"/>
+            <size key="intrinsicContentSize" width="39" height="36"/>
         </designable>
     </designables>
     <resources>

@@ -11,7 +11,6 @@ import UIKit
 final class MapButton: CustomButton {
     
     override func setup() {
-        layer.cornerRadius = 5
         layer.borderWidth = 1
         layer.borderColor = Colour.brandBlue.setColor?.cgColor
         setTitle("🧭", for: .normal)
