@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6B59BD45DF2B8933B6250731 /* Pods_DetectChanges.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9D8D936A7A4791A5EED83EB /* Pods_DetectChanges.framework */; };
+		779ED7C4674CE54B30A3868E /* Pods_WohnungSuchen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3E3C8D775B90D6EBB69FB26 /* Pods_WohnungSuchen.framework */; };
 		BF0F3F5D29BDE47D002909BB /* fanfare.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BF0F3F5C29BDE47D002909BB /* fanfare.mp3 */; };
 		BF11CEA029EFD6FF00A9D194 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF11CE9F29EFD6FF00A9D194 /* CustomButton.swift */; };
 		BF22E7E329EAB279003F245A /* Int+ExtractFromString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF22E7E229EAB279003F245A /* Int+ExtractFromString.swift */; };
@@ -65,6 +65,8 @@
 
 /* Begin PBXFileReference section */
 		0F4C83A9789C8378A8FD34E5 /* Pods-DetectChanges.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DetectChanges.release.xcconfig"; path = "Target Support Files/Pods-DetectChanges/Pods-DetectChanges.release.xcconfig"; sourceTree = "<group>"; };
+		371DD0AD0FD4AB6C602E542F /* Pods-WohnungSuchen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WohnungSuchen.release.xcconfig"; path = "Target Support Files/Pods-WohnungSuchen/Pods-WohnungSuchen.release.xcconfig"; sourceTree = "<group>"; };
+		A3E3C8D775B90D6EBB69FB26 /* Pods_WohnungSuchen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WohnungSuchen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3FE12165EF32A695B2F9190 /* Pods-DetectChanges.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DetectChanges.debug.xcconfig"; path = "Target Support Files/Pods-DetectChanges/Pods-DetectChanges.debug.xcconfig"; sourceTree = "<group>"; };
 		BF0F3F5C29BDE47D002909BB /* fanfare.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fanfare.mp3; sourceTree = "<group>"; };
 		BF11CE9F29EFD6FF00A9D194 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -77,7 +79,7 @@
 		BF5C017B29C71635006C06D4 /* heavy-rain.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "heavy-rain.wav"; sourceTree = "<group>"; };
 		BF5C017D29C71DCF006C06D4 /* VC+AVAudioPlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+AVAudioPlayerDelegate.swift"; sourceTree = "<group>"; };
 		BF5C017F29C72069006C06D4 /* SilentSong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SilentSong.wav; sourceTree = "<group>"; };
-		BF707BFA29BB427700225796 /* DetectChanges.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DetectChanges.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF707BFA29BB427700225796 /* WohnungSuchen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WohnungSuchen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF707BFD29BB427700225796 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF707BFF29BB427700225796 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BF707C0129BB427700225796 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -85,7 +87,7 @@
 		BF707C0629BB427900225796 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF707C0929BB427900225796 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BF707C0B29BB427900225796 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BF707C1129BB43D100225796 /* DetectChanges.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DetectChanges.entitlements; sourceTree = "<group>"; };
+		BF707C1129BB43D100225796 /* WohnungSuchen.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WohnungSuchen.entitlements; sourceTree = "<group>"; };
 		BF707C1229BB444700225796 /* LandlordsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandlordsManager.swift; sourceTree = "<group>"; };
 		BF8A62F729DD7B8500E2DCD4 /* VC+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		BF8A62F929DD9F5300E2DCD4 /* ApartmentCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentCellDelegate.swift; sourceTree = "<group>"; };
@@ -122,7 +124,7 @@
 		BFEBAA5729E2D15300CC83C8 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
 		BFEBAA5929E2D67B00CC83C8 /* OptionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionsView.xib; sourceTree = "<group>"; };
 		BFEBAA5B29E2EF0A00CC83C8 /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
-		E9D8D936A7A4791A5EED83EB /* Pods_DetectChanges.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DetectChanges.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F39389A37CC2338749915CF4 /* Pods-WohnungSuchen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WohnungSuchen.debug.xcconfig"; path = "Target Support Files/Pods-WohnungSuchen/Pods-WohnungSuchen.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +133,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF5C017829C71522006C06D4 /* AVFoundation.framework in Frameworks */,
-				6B59BD45DF2B8933B6250731 /* Pods_DetectChanges.framework in Frameworks */,
+				779ED7C4674CE54B30A3868E /* Pods_WohnungSuchen.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +145,8 @@
 			children = (
 				A3FE12165EF32A695B2F9190 /* Pods-DetectChanges.debug.xcconfig */,
 				0F4C83A9789C8378A8FD34E5 /* Pods-DetectChanges.release.xcconfig */,
+				F39389A37CC2338749915CF4 /* Pods-WohnungSuchen.debug.xcconfig */,
+				371DD0AD0FD4AB6C602E542F /* Pods-WohnungSuchen.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -207,7 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				BF707C0B29BB427900225796 /* Info.plist */,
-				BF707C1129BB43D100225796 /* DetectChanges.entitlements */,
+				BF707C1129BB43D100225796 /* WohnungSuchen.entitlements */,
 				BF707C0629BB427900225796 /* Assets.xcassets */,
 				BF707C0829BB427900225796 /* LaunchScreen.storyboard */,
 			);
@@ -253,8 +257,7 @@
 		BF707BF129BB427700225796 = {
 			isa = PBXGroup;
 			children = (
-				BF707BFC29BB427700225796 /* DetectChanges */,
-				BF8C912629DDB846008AD739 /* Logos */,
+				BF707BFC29BB427700225796 /* WohnungSuchen */,
 				BF707BFB29BB427700225796 /* Products */,
 				27D87C37BF331BB9AAB094A1 /* Pods */,
 				F7ACA5E1051974026F484C05 /* Frameworks */,
@@ -264,12 +267,12 @@
 		BF707BFB29BB427700225796 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BF707BFA29BB427700225796 /* DetectChanges.app */,
+				BF707BFA29BB427700225796 /* WohnungSuchen.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BF707BFC29BB427700225796 /* DetectChanges */ = {
+		BF707BFC29BB427700225796 /* WohnungSuchen */ = {
 			isa = PBXGroup;
 			children = (
 				BF0F3F6229BDE5D1002909BB /* Supporting files */,
@@ -280,8 +283,9 @@
 				BF0F3F5F29BDE58F002909BB /* Models */,
 				BF0F3F5E29BDE582002909BB /* Views */,
 				BF9DC6A629BC948F0027FADC /* Sounds */,
+				BF8C912629DDB846008AD739 /* Logos */,
 			);
-			path = DetectChanges;
+			path = WohnungSuchen;
 			sourceTree = "<group>";
 		};
 		BF8C912629DDB846008AD739 /* Logos */ = {
@@ -310,7 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				BF5C017729C71522006C06D4 /* AVFoundation.framework */,
-				E9D8D936A7A4791A5EED83EB /* Pods_DetectChanges.framework */,
+				A3E3C8D775B90D6EBB69FB26 /* Pods_WohnungSuchen.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -318,9 +322,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BF707BF929BB427700225796 /* DetectChanges */ = {
+		BF707BF929BB427700225796 /* WohnungSuchen */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BF707C0E29BB427900225796 /* Build configuration list for PBXNativeTarget "DetectChanges" */;
+			buildConfigurationList = BF707C0E29BB427900225796 /* Build configuration list for PBXNativeTarget "WohnungSuchen" */;
 			buildPhases = (
 				28DEDA1F2948BA777E93ECD1 /* [CP] Check Pods Manifest.lock */,
 				BF707BF629BB427700225796 /* Sources */,
@@ -332,9 +336,9 @@
 			);
 			dependencies = (
 			);
-			name = DetectChanges;
+			name = WohnungSuchen;
 			productName = DetectChanges;
-			productReference = BF707BFA29BB427700225796 /* DetectChanges.app */;
+			productReference = BF707BFA29BB427700225796 /* WohnungSuchen.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -352,7 +356,7 @@
 					};
 				};
 			};
-			buildConfigurationList = BF707BF529BB427700225796 /* Build configuration list for PBXProject "DetectChanges" */;
+			buildConfigurationList = BF707BF529BB427700225796 /* Build configuration list for PBXProject "WohnungSuchen" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -365,7 +369,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BF707BF929BB427700225796 /* DetectChanges */,
+				BF707BF929BB427700225796 /* WohnungSuchen */,
 			);
 		};
 /* End PBXProject section */
@@ -409,7 +413,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DetectChanges-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-WohnungSuchen-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -422,15 +426,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DetectChanges/Pods-DetectChanges-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-WohnungSuchen/Pods-WohnungSuchen-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DetectChanges/Pods-DetectChanges-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-WohnungSuchen/Pods-WohnungSuchen-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DetectChanges/Pods-DetectChanges-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WohnungSuchen/Pods-WohnungSuchen-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -620,16 +624,16 @@
 		};
 		BF707C0F29BB427900225796 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A3FE12165EF32A695B2F9190 /* Pods-DetectChanges.debug.xcconfig */;
+			baseConfigurationReference = F39389A37CC2338749915CF4 /* Pods-WohnungSuchen.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "DetectChanges/Supporting files/DetectChanges.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "WohnungSuchen/Supporting files/WohnungSuchen.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z4DAU59V98;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "DetectChanges/Supporting files/Info.plist";
+				INFOPLIST_FILE = "WohnungSuchen/Supporting files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -641,7 +645,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ua.advanc3d.DetectChanges;
+				PRODUCT_BUNDLE_IDENTIFIER = ua.advanc3d.WohnungSuchen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
@@ -654,16 +658,16 @@
 		};
 		BF707C1029BB427900225796 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F4C83A9789C8378A8FD34E5 /* Pods-DetectChanges.release.xcconfig */;
+			baseConfigurationReference = 371DD0AD0FD4AB6C602E542F /* Pods-WohnungSuchen.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "DetectChanges/Supporting files/DetectChanges.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "WohnungSuchen/Supporting files/WohnungSuchen.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z4DAU59V98;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "DetectChanges/Supporting files/Info.plist";
+				INFOPLIST_FILE = "WohnungSuchen/Supporting files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -675,7 +679,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ua.advanc3d.DetectChanges;
+				PRODUCT_BUNDLE_IDENTIFIER = ua.advanc3d.WohnungSuchen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
@@ -689,7 +693,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BF707BF529BB427700225796 /* Build configuration list for PBXProject "DetectChanges" */ = {
+		BF707BF529BB427700225796 /* Build configuration list for PBXProject "WohnungSuchen" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BF707C0C29BB427900225796 /* Debug */,
@@ -698,7 +702,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BF707C0E29BB427900225796 /* Build configuration list for PBXNativeTarget "DetectChanges" */ = {
+		BF707C0E29BB427900225796 /* Build configuration list for PBXNativeTarget "WohnungSuchen" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BF707C0F29BB427900225796 /* Debug */,
