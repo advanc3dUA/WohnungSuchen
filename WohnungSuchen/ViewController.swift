@@ -50,11 +50,7 @@ final class ViewController: UIViewController, ModalVCDelegate {
         
         backgroundAudioPlayer = BackgroundAudioPlayer(for: self)
         
-        tableView.layer.cornerRadius = 10
-        tableView.register(ApartmentCell.nib, forCellReuseIdentifier: ApartmentCell.identifier)
-        tableView.delegate = self
-        tableView.dataSource = self
-        
+        setupTableView()
         setupModalVC()
         prepareEngine()
     }
@@ -119,6 +115,15 @@ final class ViewController: UIViewController, ModalVCDelegate {
     }
     
     //MARK: - Support functions
+    
+    private func setupTableView() {
+        tableView.layer.cornerRadius = 10
+        tableView.separatorStyle = .singleLine
+        tableView.separatorInset = .zero
+        tableView.register(ApartmentCell.nib, forCellReuseIdentifier: ApartmentCell.identifier)
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
     
     private func prepareEngine() {
         backgroundAudioPlayer?.start()
