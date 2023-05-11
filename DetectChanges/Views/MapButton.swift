@@ -11,14 +11,14 @@ import UIKit
 final class MapButton: CustomButton {
     
     override func setup() {
-        layer.borderWidth = 1
+        super.setup()
         layer.borderColor = Colour.brandBlue.setColor?.cgColor
         setTitle("🧭", for: .normal)
         
-        let normalBackgroundColor = imageWithColor(Colour.brandDark.setColor ?? .clear)
+        let normalBackgroundColor = imageWithColor(Colour.brandDark.setColor ?? .clear, cornerRadius: layer.cornerRadius)
         setBackgroundImage(normalBackgroundColor, for: .normal)
         
-        let highlightedBackgroundColor = imageWithColor(Colour.brandBlue.setColor ?? .clear)
+        let highlightedBackgroundColor = imageWithColor(Colour.brandBlue.setColor ?? .clear, cornerRadius: layer.cornerRadius)
         setBackgroundImage(highlightedBackgroundColor, for: .highlighted)
     }
 }

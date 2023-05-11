@@ -11,7 +11,7 @@ import UIKit
 final class ImmoButton: CustomButton {
     
     override func setup() {
-        layer.borderWidth = 1
+        super.setup()
         layer.borderColor = Colour.brandDark.setColor?.cgColor
         setTitle("🔗", for: .normal)
         

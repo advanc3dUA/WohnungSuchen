@@ -16,15 +16,19 @@ class CustomButton: UIButton {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        backgroundColor = .clear
         setup()
     }
     
     func setup() {
-        
+        layer.borderWidth = 1
+        backgroundColor = .clear
+        layer.cornerRadius = 10.0
+        clipsToBounds = true
     }
     
     func imageWithColor(_ color: UIColor, cornerRadius: CGFloat = 0.0) -> UIImage {
-        let size = CGSize(width: 1, height: 1)
+        let size = CGSize(width: 100, height: 100)
         let bounds = CGRect(origin: .zero, size: size)
         let renderer = UIGraphicsImageRenderer(bounds: bounds)
         

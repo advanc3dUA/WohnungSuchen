@@ -9,12 +9,10 @@ import Foundation
 
 @IBDesignable
 final class SaveButton: CustomButton {
+    
     override func setup() {
-        layer.cornerRadius = 10
-        layer.borderWidth = 1
-        clipsToBounds = true
+        super.setup()
         layer.borderColor = Colour.brandDark.setColor?.cgColor
-        backgroundColor = Colour.brandBlue.setColor
         
         // Set title and title colors for both the normal and highlighted states
         setTitle("Save", for: .normal)
