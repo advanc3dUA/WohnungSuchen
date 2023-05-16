@@ -170,7 +170,7 @@ final class ModalVC: UIViewController {
         sheetPresentationController?.prefersScrollingExpandsWhenScrolledToEdge = true
         sheetPresentationController?.prefersEdgeAttachedInCompactHeight = true
         sheetPresentationController?.widthFollowsPreferredContentSizeWhenEdgeAttached = true
-        sheetPresentationController?.prefersGrabberVisible = false
+        sheetPresentationController?.prefersGrabberVisible = true
         sheetPresentationController?.preferredCornerRadius = 10
         
         // Disables hiding TraineeVC
