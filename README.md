@@ -37,10 +37,10 @@ Check for available Hamburg apartments from Saga & Vonovia. Locate the apartment
 3. Go to preferences of Xcode - Account tab. Login with your Apple ID
 4. Clone the repository or download with green button "Code" at the top of this page -> "Download Zip"
 5. Open the project with .xcworkspace file (double click it)
-6. In the File inspector (left side of XCode) select "WohnungSuchen" project (first line) and select "Signing & Capabilities". Set your you account and "Bundle Identifier". Any unique name is fine but more common way is x.y where x - you damain, y - name of the project. Example: ua.mysite.wohnungsuchen
+6. In the File inspector (left side of XCode) select "WohnungSuchen" project (first line) and select "Signing & Capabilities". Set your you account and "Bundle Identifier". Any unique name is fine but more common way is x.y where x - your damain, y - name of the project. Example: ua.mysite.wohnungsuchen
 7. Connect your iPhone with the cable, grant access to contact your Mac if needed.
-8. Select your phone in the top screen where "Any iOS Device (arm64" is currently set
-9. Press play button in the top left of the XCode and you are done
+8. Select your phone in the top screen where "Any iOS Device (arm64)" is currently set
+9. Press play button in the top left of the XCode to install the app and you are done
 
 ---
 
