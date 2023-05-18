@@ -10,31 +10,37 @@
 
 ### Disclaimer
 
-This application is made for educational purposes only. The main idea is to optimize gathering information with time from various websites, sort and check for changes. It is not for commercial usage. The application is limited with a minimum of 30 seconds of website check, so there couldn't be any additional server pressure caused.
+This application is made for educational purposes only. The main idea is to optimize gathering information with time from various websites, sort and check for changes, push local notifications when it is needed to grab the user's attention. It is not for commercial usage. The application is limited with a minimum of 30 seconds of website check, so there couldn't be any additional server pressure caused.
 
 ---
 
 ### About
 
-Check for available Hamburg apartments from Saga & Vonovia. Locate the apartment you like with Google Maps and open its page for applying with a single button.
+Check for available Hamburg apartments from Saga & Vonovia. Locate the apartment you like with Google Maps and open its applying page with a single button.
 
-> Hint: Found it useful? Please, give me a star: it costs nothing for you but means a lot for me!
+> Found it useful? Please, give me a star: it costs nothing for you but means a lot for me!
 
 ---
 
 ### Features
 - The app uses a walkaround not to be terminated in the background with a silent audio player (it plays soundless mp3 file endlessly) you have to grant permission on the first run. Be ready that your iPhone will consume more battery than usual. This is the price which has to be paid for the app to be able to run the main logic even if it is not in the foreground
 - Quickly expandable: make a new module for any other real estate provider conforming to Landlord protocol, add it to the array of providers in LandlordsManager and you are done
-- Filter apartments for your needs with options in the sheet view controller (swipe up to appear); save options as default for next runs of the app
+> Your pull requests are welcome!
+- Filter apartments for your needs with options in the sheets presented view controller (swipe up from down to appear); save options as default for next runs of the app
 - Get local notification when the new apartment is posted and the application is not in the foreground of two types which could be selected in the options (default & custom sound)
 
 ---
 
 ### How to install
-To install app you need:
-1. Get a Mac with Xcode which supports iOS 16+
-2. Clone this repo
-3. Install it to your iPhone
+1. Get a Mac wth OS Monterey 12.5+ and iPhone with iOS 16+
+2. Install XCode 14
+3. Go to preferences of Xcode - Account tab. Login with your Apple ID
+4. Clone the repository or download with green button "Code" at the top of this page -> "Download Zip"
+5. Open the project with .xcworkspace file (double click it)
+6. In the File inspector (left side of XCode) select "WohnungSuchen" project (first line) and select "Signing & Capabilities". Set your you account and "Bundle Identifier". Any unique name is fine but more common way is x.y where x - you damain, y - name of the project. Example: ua.mysite.wohnungsuchen
+7. Connect your iPhone with the cable, grant access to contact your Mac if needed.
+8. Select your phone in the top screen where "Any iOS Device (arm64" is currently set
+9. Press play button in the top left of the XCode and you are done
 
 ---
 
@@ -48,8 +54,3 @@ To install app you need:
 
 ### Developers
 [advanc3dUA](https://github.com/advanc3dUA)
-
----
-
-### License
-The project is distributed under MIT license.
