@@ -10,7 +10,7 @@ import Combine
 
 final class ModalVC: UIViewController {
     private var modalView: ModalView!
-    private var options: Options
+    private let optionsSubject: CurrentValueSubject<Options, Never>
     var currentDetent: UISheetPresentationController.Detent.Identifier? {
         didSet {
             switch currentDetent?.rawValue {
@@ -23,9 +23,9 @@ final class ModalVC: UIViewController {
     var delegate: ModalVCDelegate?
     private var cancellables: Set<AnyCancellable> = []
     
-    init(smallDetentSize: CGFloat, options: Options) {
+    init(smallDetentSize: CGFloat, optionsSubject: CurrentValueSubject<Options, Never>) {
         currentDetent = .medium
-        self.options = options
+        self.optionsSubject = optionsSubject
         super.init(nibName: nil, bundle: nil)
         
         // Custom medium detent
@@ -58,7 +58,7 @@ final class ModalVC: UIViewController {
         saveButtonIsEnabled(false)
         modalView.optionsView.saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         
-        modalView.optionsView.updateOptionsUI(with: options)
+        modalView.optionsView.updateOptionsUI(with: optionsSubject.value)
         setOptionsPublishers()
     }
     
@@ -75,14 +75,14 @@ final class ModalVC: UIViewController {
     }
     
     @objc func saveButtonTapped() {
-        UserDefaults.standard.set(options.roomsMin, forKey: SavingKeys.roomsMin.rawValue)
-        UserDefaults.standard.set(options.roomsMax, forKey: SavingKeys.roomsMax.rawValue)
-        UserDefaults.standard.set(options.areaMin, forKey: SavingKeys.areaMin.rawValue)
-        UserDefaults.standard.set(options.areaMax, forKey: SavingKeys.areaMax.rawValue)
-        UserDefaults.standard.set(options.rentMin, forKey: SavingKeys.rentMin.rawValue)
-        UserDefaults.standard.set(options.rentMax, forKey: SavingKeys.rentMax.rawValue)
-        UserDefaults.standard.set(options.updateTime, forKey: SavingKeys.updateTime.rawValue)
-        UserDefaults.standard.set(options.soundIsOn, forKey: SavingKeys.soundIsOn.rawValue)
+        UserDefaults.standard.set(optionsSubject.value.roomsMin, forKey: SavingKeys.roomsMin.rawValue)
+        UserDefaults.standard.set(optionsSubject.value.roomsMax, forKey: SavingKeys.roomsMax.rawValue)
+        UserDefaults.standard.set(optionsSubject.value.areaMin, forKey: SavingKeys.areaMin.rawValue)
+        UserDefaults.standard.set(optionsSubject.value.areaMax, forKey: SavingKeys.areaMax.rawValue)
+        UserDefaults.standard.set(optionsSubject.value.rentMin, forKey: SavingKeys.rentMin.rawValue)
+        UserDefaults.standard.set(optionsSubject.value.rentMax, forKey: SavingKeys.rentMax.rawValue)
+        UserDefaults.standard.set(optionsSubject.value.updateTime, forKey: SavingKeys.updateTime.rawValue)
+        UserDefaults.standard.set(optionsSubject.value.soundIsOn, forKey: SavingKeys.soundIsOn.rawValue)
         saveButtonIsEnabled(false)
     }
     
@@ -109,16 +109,16 @@ final class ModalVC: UIViewController {
     }
 
     private func setOptionsPublishers() {
-        let roomsMinIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.roomsMinTextField, initialValue: options.roomsMin)
-        let roomsMaxIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.roomsMaxTextField, initialValue: options.roomsMax)
-        let areaMinIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.areaMinTextField, initialValue: options.areaMin)
-        let areaMaxIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.areaMaxTextField, initialValue: options.areaMax)
-        let rentMinIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.rentMinTextField, initialValue: options.rentMin)
-        let rentMaxIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.rentMaxTextField, initialValue: options.rentMax)
+        let roomsMinIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.roomsMinTextField, initialValue: optionsSubject.value.roomsMin)
+        let roomsMaxIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.roomsMaxTextField, initialValue: optionsSubject.value.roomsMax)
+        let areaMinIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.areaMinTextField, initialValue: optionsSubject.value.areaMin)
+        let areaMaxIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.areaMaxTextField, initialValue: optionsSubject.value.areaMax)
+        let rentMinIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.rentMinTextField, initialValue: optionsSubject.value.rentMin)
+        let rentMaxIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.rentMaxTextField, initialValue: optionsSubject.value.rentMax)
         
         let timerUpdateIntPublisher = modalView.optionsView.timerUpdateTextField.publisher(for: \.text)
             .map { [unowned self] textValue in
-                Int(extractFrom: textValue, defaultValue: options.updateTime)
+                Int(extractFrom: textValue, defaultValue: optionsSubject.value.updateTime)
             }
             .scan(nil) { previous, current in
                     if current < 30 {
@@ -136,16 +136,17 @@ final class ModalVC: UIViewController {
             .removeDuplicates()
         
         let soundSwitchPublisher = modalView.optionsView.soundSwitch.switchPublisher
-            .prepend(options.soundIsOn)
+            .prepend(optionsSubject.value.soundIsOn)
 
         let roomsPub = Publishers.CombineLatest(roomsMinIntPublisher, roomsMaxIntPublisher)
         let areaPub = Publishers.CombineLatest(areaMinIntPublisher, areaMaxIntPublisher)
         let rentPub = Publishers.CombineLatest(rentMinIntPublisher, rentMaxIntPublisher)
         let updateTimeAndSoundSwitchPub = Publishers.CombineLatest(timerUpdateIntPublisher, soundSwitchPublisher)
+        let options = Options()
         
         Publishers.CombineLatest4(roomsPub, areaPub, rentPub, updateTimeAndSoundSwitchPub)
             .dropFirst()
-            .map { [unowned self] rooms, area, rent, timeAndSoundSwitch in
+            .map {rooms, area, rent, timeAndSoundSwitch in
                 options.roomsMin = rooms.0
                 options.roomsMax = rooms.1
                 options.areaMin = area.0
@@ -158,7 +159,7 @@ final class ModalVC: UIViewController {
             }
             .sink { [unowned self] isValid in
                 saveButtonIsEnabled(isValid)
-                delegate?.options = options
+                optionsSubject.value = options
             }
             .store(in: &cancellables)
     }

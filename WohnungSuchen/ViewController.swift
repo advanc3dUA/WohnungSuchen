@@ -17,6 +17,7 @@ final class ViewController: UIViewController, ModalVCDelegate {
     private var modalVCIsPresented: Bool
     private var modalVCView: ModalView?
     @Published var options: Options
+    private var optionsSubject = CurrentValueSubject<Options, Never>(Options())
     @Published var currentApartments: [Apartment]
     var apartmentsDataSource: [Apartment]
     private var immomioLinkFetcher: ImmomioLinkFetcher
@@ -68,9 +69,8 @@ final class ViewController: UIViewController, ModalVCDelegate {
     }
         
     private func setupModalVC() {
-        modalVC = ModalVC(smallDetentSize: calcModalVCDetentSizeSmall(), options: options)
+        modalVC = ModalVC(smallDetentSize: calcModalVCDetentSizeSmall(), optionsSubject: optionsSubject)
         modalVC?.presentationController?.delegate = self
-        modalVC?.delegate = self
         modalVCView = modalVC?.view as? ModalView
     }
     
@@ -158,8 +158,14 @@ final class ViewController: UIViewController, ModalVCDelegate {
     }
     
     private func setPublisherForApartmentsDataSource() {
-        Publishers.CombineLatest($currentApartments, $options)
-            .dropFirst()
+        optionsSubject
+            .sink {options in
+                print("current options are: \(options.roomsMin), \(options.roomsMax), \(options.areaMin), \(options.areaMax)")
+            }
+            .store(in: &cancellables)
+        
+        Publishers.CombineLatest($currentApartments, optionsSubject)
+           .dropFirst()
             .map { apartments, options in
                 return apartments.filter { apartment in
                     self.checkApartmentSatisfyCurrentFilter(apartment)
@@ -173,9 +179,9 @@ final class ViewController: UIViewController, ModalVCDelegate {
     }
     
     private func checkApartmentSatisfyCurrentFilter(_ apartment: Apartment) -> Bool {
-        apartment.rooms >= options.roomsMin && apartment.rooms <= options.roomsMax &&
-        apartment.area >= options.areaMin && apartment.area <= options.areaMax &&
-        apartment.rent >= options.rentMin && apartment.rent <= options.rentMax
+        apartment.rooms >= optionsSubject.value.roomsMin && apartment.rooms <= optionsSubject.value.roomsMax &&
+        apartment.area >= optionsSubject.value.areaMin && apartment.area <= optionsSubject.value.areaMax &&
+        apartment.rent >= optionsSubject.value.rentMin && apartment.rent <= optionsSubject.value.rentMax
     }
 }
 
