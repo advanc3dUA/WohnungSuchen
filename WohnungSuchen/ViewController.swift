@@ -70,6 +70,7 @@ final class ViewController: UIViewController, ModalVCDelegate {
     private func setupModalVC() {
         modalVC = ModalVC(smallDetentSize: calcModalVCDetentSizeSmall(), optionsSubject: optionsSubject)
         modalVC?.presentationController?.delegate = self
+        modalVC?.delegate = self
         modalVCView = modalVC?.view as? ModalView
     }
     
