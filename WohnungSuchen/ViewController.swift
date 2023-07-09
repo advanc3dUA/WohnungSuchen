@@ -16,8 +16,7 @@ final class ViewController: UIViewController, ModalVCDelegate {
     private var modalVC: ModalVC?
     private var modalVCIsPresented: Bool
     private var modalVCView: ModalView?
-    @Published var options: Options
-    private var optionsSubject = CurrentValueSubject<Options, Never>(Options())
+    private var optionsSubject: CurrentValueSubject<Options, Never>
     @Published var currentApartments: [Apartment]
     var apartmentsDataSource: [Apartment]
     private var immomioLinkFetcher: ImmomioLinkFetcher
@@ -31,7 +30,7 @@ final class ViewController: UIViewController, ModalVCDelegate {
     private var cancellables: Set<AnyCancellable> = []
     
     required init?(coder aDecoder: NSCoder) {
-        self.options = Options()
+        self.optionsSubject = CurrentValueSubject<Options, Never>(Options())
         self.immomioLinkFetcher = ImmomioLinkFetcher(networkManager: NetworkManager())
         self.currentApartments = [Apartment]()
         self.apartmentsDataSource = [Apartment]()
@@ -78,7 +77,7 @@ final class ViewController: UIViewController, ModalVCDelegate {
     
     func startEngine() {
         showLoadingView()
-        timer = Timer.scheduledTimer(withTimeInterval: Double(options.updateTime), repeats: true) {[unowned self] timer in
+        timer = Timer.scheduledTimer(withTimeInterval: Double(optionsSubject.value.updateTime), repeats: true) {[unowned self] timer in
             landlordsManager?.start { [weak self] apartments in
                 guard let self = self else { return }
                 
@@ -138,7 +137,7 @@ final class ViewController: UIViewController, ModalVCDelegate {
     }
 
     private func setPublisherForNotificationAlertType() {
-        $options
+        optionsSubject
             .dropFirst()
             .sink { [unowned self] options in
                 notificationsManager.setAlertType(to: options.soundIsOn ? .custom : .standart)
@@ -147,23 +146,26 @@ final class ViewController: UIViewController, ModalVCDelegate {
     }
     
     private func setPublisherForTimerInterval() {
-        options.$updateTime
-            .debounce(for: .seconds(0.25), scheduler: RunLoop.main)
+        optionsSubject
+            .map { currentOptions -> Int in
+                return currentOptions.updateTime
+            }
+            .scan(nil) { (previous: Int?, current: Int) -> Int? in
+                if previous != current {
+                    return current
+                } else {
+                    return nil
+                }
+            }
+            .compactMap { $0 }
             .sink { [unowned self] _ in
                 pauseEngine()
                 startEngine()
             }
             .store(in: &cancellables)
-            
     }
     
     private func setPublisherForApartmentsDataSource() {
-        optionsSubject
-            .sink {options in
-                print("current options are: \(options.roomsMin), \(options.roomsMax), \(options.areaMin), \(options.areaMax)")
-            }
-            .store(in: &cancellables)
-        
         Publishers.CombineLatest($currentApartments, optionsSubject)
            .dropFirst()
             .map { apartments, options in
