@@ -17,5 +17,7 @@ struct Constants {
         static let rentMax = 900
         static let updateTime = 30
         static let soundIsOn = true
+        static let saga = true
+        static let vonovia = true
     }
 }
