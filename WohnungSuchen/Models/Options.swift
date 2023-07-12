@@ -42,19 +42,15 @@ final class Options {
         updateTime = UserDefaults.standard.object(forKey: SavingKeys.updateTime.rawValue) as? Int ?? Constants.defaultOptions.updateTime
         soundIsOn = UserDefaults.standard.object(forKey: SavingKeys.soundIsOn.rawValue) as? Bool ?? Constants.defaultOptions.soundIsOn
         
-        let sagaIsOn = UserDefaults.standard.object(forKey: SavingKeys.saga.rawValue) as? Bool ?? Constants.defaultOptions.saga
-        let vonoviaIsOn = UserDefaults.standard.object(forKey: SavingKeys.vonovia.rawValue) as? Bool ?? Constants.defaultOptions.vonovia
         landlords = []
+        let sagaIsOn = UserDefaults.standard.object(forKey: SavingKeys.saga.rawValue) as? Bool ?? Constants.defaultOptions.saga
         if sagaIsOn {
             appendLandlord(Saga.init())
         }
+        let vonoviaIsOn = UserDefaults.standard.object(forKey: SavingKeys.vonovia.rawValue) as? Bool ?? Constants.defaultOptions.vonovia
         if vonoviaIsOn {
             appendLandlord(Vonovia.init())
         }
-        print("curr state of landlord: \(landlords)")
-        
-        removeLandLord(Vonovia.init())
-        print("curr state of landlord: \(landlords)")
     }
     
     func appendLandlord<T: Landlord>(_ landlord: T) {
@@ -67,17 +63,5 @@ final class Options {
     
     func removeLandLord<T: Landlord>(_ landlord: T) {
         landlords.removeAll { $0 is T }
-    }
-    
-    func removeSaga() {
-        landlords.removeAll { landlord in
-            landlord is Saga
-        }
-    }
-    
-    func removeVonovia() {
-        landlords.removeAll { landlord in
-            landlord is Vonovia
-        }
     }
 }
