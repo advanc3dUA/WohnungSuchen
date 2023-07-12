@@ -631,7 +631,7 @@
 				CODE_SIGN_ENTITLEMENTS = "WohnungSuchen/Supporting files/WohnungSuchen.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Z4DAU59V98;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WohnungSuchen/Supporting files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -665,7 +665,7 @@
 				CODE_SIGN_ENTITLEMENTS = "WohnungSuchen/Supporting files/WohnungSuchen.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Z4DAU59V98;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WohnungSuchen/Supporting files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -151,6 +151,7 @@ final class ViewController: UIViewController, ModalVCDelegate {
             .map { currentOptions -> Int in
                 return currentOptions.updateTime
             }
+            .removeDuplicates()
             .scan(nil) { (previous: Int?, current: Int) -> Int? in
                 if previous != current {
                     return current
