@@ -8,12 +8,14 @@
 import Foundation
 
 final class LandlordsManager {
-    fileprivate var previousApartments = [Apartment]()
-    private var landlords: [Landlord] = [Saga(), Vonovia()]
+    fileprivate var previousApartments: [Apartment]
+    private var landlords: [Landlord]
     private let immomioLinkFetcher: ImmomioLinkFetcher
     
-    init(immomioLinkFetcher: ImmomioLinkFetcher) {
+    init(immomioLinkFetcher: ImmomioLinkFetcher, for landlords: [Landlord]) {
         self.immomioLinkFetcher = immomioLinkFetcher
+        self.landlords = landlords
+        previousApartments = []
     }
     
     public func start(completion: @escaping ([Apartment]) -> ()) {

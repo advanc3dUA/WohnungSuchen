@@ -49,10 +49,13 @@ final class ViewController: UIViewController, ModalVCDelegate {
         notificationsManager.requestNotificationAuthorization()
         
         backgroundAudioPlayer = BackgroundAudioPlayer(for: self)
+        backgroundAudioPlayer?.start()
         
         setupTableView()
         setupModalVC()
-        prepareEngine()
+
+        guard let modalVCView = modalVCView else { fatalError("Unable to get modalVCView in startEngine") }
+        modalVCView.containerView?.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -78,6 +81,7 @@ final class ViewController: UIViewController, ModalVCDelegate {
     
     func startEngine() {
         showLoadingView()
+        landlordsManager = landlordsManager ?? LandlordsManager(immomioLinkFetcher: immomioLinkFetcher, for: optionsSubject.value.landlords)
         timer = Timer.scheduledTimer(withTimeInterval: Double(optionsSubject.value.updateTime), repeats: true) {[unowned self] timer in
             landlordsManager?.start { [weak self] apartments in
                 guard let self = self else { return }
@@ -123,13 +127,6 @@ final class ViewController: UIViewController, ModalVCDelegate {
         tableView.register(ApartmentCell.nib, forCellReuseIdentifier: ApartmentCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
-    }
-    
-    private func prepareEngine() {
-        backgroundAudioPlayer?.start()
-        landlordsManager = landlordsManager ?? LandlordsManager(immomioLinkFetcher: immomioLinkFetcher)
-        guard let modalVCView = modalVCView else { fatalError("Unable to get modalVCView in startEngine") }
-        modalVCView.containerView?.isHidden = true
     }
     
     private func showLoadingView() {
