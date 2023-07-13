@@ -52,8 +52,10 @@ final class ViewController: UIViewController, ModalVCDelegate {
         backgroundAudioPlayer?.start()
         
         setupTableView()
+        
+        landlordsManager = LandlordsManager(immomioLinkFetcher: immomioLinkFetcher, for: optionsSubject.value.landlords)
+        
         setupModalVC()
-
         guard let modalVCView = modalVCView else { fatalError("Unable to get modalVCView in startEngine") }
         modalVCView.containerView?.isHidden = true
     }
@@ -81,7 +83,6 @@ final class ViewController: UIViewController, ModalVCDelegate {
     
     func startEngine() {
         showLoadingView()
-        landlordsManager = landlordsManager ?? LandlordsManager(immomioLinkFetcher: immomioLinkFetcher, for: optionsSubject.value.landlords)
         timer = Timer.scheduledTimer(withTimeInterval: Double(optionsSubject.value.updateTime), repeats: true) {[unowned self] timer in
             landlordsManager?.start { [weak self] apartments in
                 guard let self = self else { return }

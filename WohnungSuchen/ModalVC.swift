@@ -83,6 +83,8 @@ final class ModalVC: UIViewController {
         UserDefaults.standard.set(optionsSubject.value.rentMax, forKey: SavingKeys.rentMax.rawValue)
         UserDefaults.standard.set(optionsSubject.value.updateTime, forKey: SavingKeys.updateTime.rawValue)
         UserDefaults.standard.set(optionsSubject.value.soundIsOn, forKey: SavingKeys.soundIsOn.rawValue)
+        UserDefaults.standard.set(optionsSubject.value.landlords[SavingKeys.saga.rawValue], forKey: SavingKeys.saga.rawValue)
+        UserDefaults.standard.set(optionsSubject.value.landlords[SavingKeys.vonovia.rawValue], forKey: SavingKeys.vonovia.rawValue)
         saveButtonIsEnabled(false)
     }
     

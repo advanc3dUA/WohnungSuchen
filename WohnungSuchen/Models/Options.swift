@@ -29,7 +29,7 @@ final class Options {
     var rentMax: Int
     var updateTime: Int
     var soundIsOn: Bool
-    var landlords: [Landlord]
+    var landlords: [String:Bool]
     
     
     init() {
@@ -42,26 +42,8 @@ final class Options {
         updateTime = UserDefaults.standard.object(forKey: SavingKeys.updateTime.rawValue) as? Int ?? Constants.defaultOptions.updateTime
         soundIsOn = UserDefaults.standard.object(forKey: SavingKeys.soundIsOn.rawValue) as? Bool ?? Constants.defaultOptions.soundIsOn
         
-        landlords = []
-        let sagaIsOn = UserDefaults.standard.object(forKey: SavingKeys.saga.rawValue) as? Bool ?? Constants.defaultOptions.saga
-        if sagaIsOn {
-            appendLandlord(Saga.init())
-        }
-        let vonoviaIsOn = UserDefaults.standard.object(forKey: SavingKeys.vonovia.rawValue) as? Bool ?? Constants.defaultOptions.vonovia
-        if vonoviaIsOn {
-            appendLandlord(Vonovia.init())
-        }
-    }
-    
-    func appendLandlord<T: Landlord>(_ landlord: T) {
-        if let _ = landlords.first(where: { $0 is T }) {
-            return
-        } else {
-            landlords.append(landlord)
-        }
-    }
-    
-    func removeLandLord<T: Landlord>(_ landlord: T) {
-        landlords.removeAll { $0 is T }
+        landlords = [ SavingKeys.saga.rawValue: UserDefaults.standard.object(forKey: SavingKeys.saga.rawValue) as? Bool ?? Constants.defaultOptions.saga,
+                      SavingKeys.vonovia.rawValue: UserDefaults.standard.object(forKey: SavingKeys.vonovia.rawValue) as? Bool ?? Constants.defaultOptions.vonovia
+                    ]
     }
 }
