@@ -53,7 +53,8 @@ final class ViewController: UIViewController, ModalVCDelegate {
         
         setupTableView()
         
-        landlordsManager = LandlordsManager(immomioLinkFetcher: immomioLinkFetcher, for: optionsSubject.value.landlords)
+        landlordsManager = LandlordsManager(immomioLinkFetcher: immomioLinkFetcher)
+        setPublisherToUpdateLandlordsListInManager()
         
         setupModalVC()
         guard let modalVCView = modalVCView else { fatalError("Unable to get modalVCView in startEngine") }
@@ -120,6 +121,28 @@ final class ViewController: UIViewController, ModalVCDelegate {
     }
     
     //MARK: - Support functions
+    
+        private func setPublisherToUpdateLandlordsListInManager() {
+            optionsSubject
+                .map {
+                    $0.landlords
+                }
+                .removeDuplicates()
+                .sink { landlords in
+                    self.landlordsManager?.landlords.removeAll()
+                    for landlord in landlords {
+                        if landlord.value {
+                            if landlord.key == "saga" {
+                                self.landlordsManager?.landlords.append(Saga())
+                            }
+                            if landlord.key == "vonovia" {
+                                self.landlordsManager?.landlords.append(Vonovia())
+                            }
+                        }
+                    }
+                }
+                .store(in: &cancellables)
+        }
     
     private func setupTableView() {
         tableView.layer.cornerRadius = 10

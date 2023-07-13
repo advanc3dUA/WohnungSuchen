@@ -10,38 +10,15 @@ import Foundation
 final class LandlordsManager {
     fileprivate var previousApartments: [Apartment]
     private let immomioLinkFetcher: ImmomioLinkFetcher
-    private let selectedLandlords: [String: Bool]
-    private var landlords: [Landlord]
+    var landlords: [Landlord]
     
-    init(immomioLinkFetcher: ImmomioLinkFetcher, for selectedLandlords: [String: Bool]) {
+    init(immomioLinkFetcher: ImmomioLinkFetcher) {
         self.immomioLinkFetcher = immomioLinkFetcher
-        self.selectedLandlords = selectedLandlords
         self.landlords = []
         self.previousApartments = []
     }
     
-    private func getLandlordsList(with selectedLandlords: [String: Bool]) -> [Landlord] {
-        var landlordsArray = [Landlord]()
-        
-        for (key, value) in selectedLandlords {
-            if value {
-                if key == "saga" {
-                    let saga = Saga()
-                    landlordsArray.append(saga)
-                }
-                
-                if key == "vonovia" {
-                    let vonovia = Vonovia()
-                    landlordsArray.append(vonovia)
-                }
-            }
-        }
-        return landlordsArray
-    }
-    
     public func start(completion: @escaping ([Apartment]) -> ()) {
-        landlords = getLandlordsList(with: selectedLandlords)
-        
         var currentApartments = [Apartment]()
         let dispatchGroup = DispatchGroup()
         
