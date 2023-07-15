@@ -63,7 +63,7 @@ final class ViewController: UIViewController, ModalVCDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        
         if let modalVC = modalVC, !modalVCIsPresented {
             present(modalVC, animated: true)
             setPublisherForApartmentsDataSource()
@@ -72,7 +72,7 @@ final class ViewController: UIViewController, ModalVCDelegate {
             modalVCIsPresented = true
         }
     }
-        
+    
     private func setupModalVC() {
         modalVC = ModalVC(smallDetentSize: calcModalVCDetentSizeSmall(), optionsSubject: optionsSubject)
         modalVC?.presentationController?.delegate = self
@@ -122,27 +122,32 @@ final class ViewController: UIViewController, ModalVCDelegate {
     
     //MARK: - Support functions
     
-        private func setPublisherToUpdateLandlordsListInManager() {
-            optionsSubject
-                .map {
-                    $0.landlords
-                }
-                .removeDuplicates()
-                .sink { landlords in
-                    self.landlordsManager?.landlords.removeAll()
-                    for landlord in landlords {
-                        if landlord.value {
-                            if landlord.key == "saga" {
-                                self.landlordsManager?.landlords.append(Saga())
-                            }
-                            if landlord.key == "vonovia" {
-                                self.landlordsManager?.landlords.append(Vonovia())
-                            }
-                        }
+    private func setPublisherToUpdateLandlordsListInManager() {
+        optionsSubject
+            .map { $0.landlords }
+            .removeDuplicates()
+            .sink { [unowned self] landlords in
+                landlordsManager?.landlords.removeAll()
+                apartmentsDataSource = []
+                
+                for (landlord, landlordIsOn) in landlords where landlordIsOn {
+                    switch landlord {
+                    case "saga":
+                        landlordsManager?.landlords.append(Saga())
+                        apartmentsDataSource.append(contentsOf: currentApartments.filter { $0.company == .saga })
+                        
+                    case "vonovia":
+                        landlordsManager?.landlords.append(Vonovia())
+                        apartmentsDataSource.append(contentsOf: currentApartments.filter { $0.company == .vonovia })
+                    default:
+                        break
                     }
                 }
-                .store(in: &cancellables)
-        }
+                
+                tableView.reloadData()
+            }
+            .store(in: &cancellables)
+    }
     
     private func setupTableView() {
         tableView.layer.cornerRadius = 10
@@ -157,7 +162,7 @@ final class ViewController: UIViewController, ModalVCDelegate {
         loadingView = LoadingView(frame: tableView.bounds)
         tableView.addSubview(loadingView!)
     }
-
+    
     private func setPublisherForNotificationAlertType() {
         optionsSubject
             .dropFirst()
@@ -190,7 +195,7 @@ final class ViewController: UIViewController, ModalVCDelegate {
     
     private func setPublisherForApartmentsDataSource() {
         Publishers.CombineLatest($currentApartments, optionsSubject)
-           .dropFirst()
+            .dropFirst()
             .map { apartments, options in
                 return apartments.filter { apartment in
                     self.checkApartmentSatisfyCurrentFilter(apartment)
