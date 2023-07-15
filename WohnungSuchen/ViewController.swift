@@ -85,8 +85,6 @@ final class ViewController: UIViewController, ModalVCDelegate {
     func startEngine() {
         showLoadingView()
         timer = Timer.scheduledTimer(withTimeInterval: Double(optionsSubject.value.updateTime), repeats: true) {[unowned self] timer in
-            print("new timer itteration started")
-            print("options are currently set to: \(optionsSubject.value.landlords)")
             landlordsManager?.start { [weak self] apartments in
                 guard let self = self else { return }
                 
@@ -129,25 +127,27 @@ final class ViewController: UIViewController, ModalVCDelegate {
             .map { $0.landlords }
             .sink { [unowned self] landlords in
                 landlordsManager?.landlords.removeAll()
-                apartmentsDataSource = []
-                
-                for (landlord, landlordIsOn) in landlords where landlordIsOn {
+
+                for (landlord, isSelected) in landlords {
                     switch landlord {
-                    case "saga":
-                        landlordsManager?.landlords.append(Saga())
-                        let filteredApartments = currentApartments.filter { $0.company == .saga && checkApartmentSatisfyCurrentFilter($0) }
-                        apartmentsDataSource.append(contentsOf: filteredApartments)
-                        
-                    case "vonovia":
-                        landlordsManager?.landlords.append(Vonovia())
-                        let filteredApartments = currentApartments.filter { $0.company == .vonovia && checkApartmentSatisfyCurrentFilter($0) }
-                        apartmentsDataSource.append(contentsOf: filteredApartments)
+                    case SavingKeys.saga.rawValue:
+                        if isSelected {
+                            landlordsManager?.landlords.append(Saga())
+                        } else {
+                            currentApartments.removeAll { $0.company == .saga }
+                            landlordsManager?.previousApartments.removeAll { $0.company == .saga }
+                        }
+                    case SavingKeys.vonovia.rawValue:
+                        if isSelected {
+                            landlordsManager?.landlords.append(Vonovia())
+                        } else {
+                            currentApartments.removeAll { $0.company == .vonovia }
+                            landlordsManager?.previousApartments.removeAll { $0.company == .vonovia }
+                        }
                     default:
                         break
                     }
                 }
-                print("options after change is: \(optionsSubject.value.landlords)")
-                tableView.reloadData()
             }
             .store(in: &cancellables)
     }

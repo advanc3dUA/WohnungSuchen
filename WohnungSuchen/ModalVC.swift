@@ -173,7 +173,7 @@ final class ModalVC: UIViewController {
         
         Publishers.CombineLatest4(roomsPub, areaPub, rentPub, updateTimeAndSoundSwitchPub)
             .dropFirst()
-            .map {rooms, area, rent, timeAndSoundSwitch in
+            .map { [unowned self] rooms, area, rent, timeAndSoundSwitch in
                 options.roomsMin = rooms.0
                 options.roomsMax = rooms.1
                 options.areaMin = area.0
@@ -182,6 +182,8 @@ final class ModalVC: UIViewController {
                 options.rentMax = rent.1
                 options.updateTime = timeAndSoundSwitch.0
                 options.soundIsOn = timeAndSoundSwitch.1
+                options.landlords[SavingKeys.saga.rawValue] = optionsSubject.value.landlords[SavingKeys.saga.rawValue]
+                options.landlords[SavingKeys.vonovia.rawValue] = optionsSubject.value.landlords[SavingKeys.vonovia.rawValue]
                 return rooms.0 <= rooms.1 && area.0 <= area.1 && rent.0 <= rent.0
             }
             .sink { [unowned self] isValid in

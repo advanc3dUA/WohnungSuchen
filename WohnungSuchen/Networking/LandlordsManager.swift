@@ -8,7 +8,7 @@
 import Foundation
 
 final class LandlordsManager {
-    fileprivate var previousApartments: [Apartment]
+    var previousApartments: [Apartment]
     private let immomioLinkFetcher: ImmomioLinkFetcher
     var landlords: [Landlord]
     
