@@ -19,6 +19,10 @@ final class OptionsView: UIView {
     @IBOutlet weak var soundSwitch: UISwitch!
     @IBOutlet weak var timerUpdateTextField: UITextField!
     
+    @IBOutlet weak var addSaga: UIButton!
+    @IBOutlet weak var addVonovia: UIButton!
+    @IBOutlet weak var removeVonovia: UIButton!
+    @IBOutlet weak var removeSaga: UIButton!
     override init(frame: CGRect) {
         super.init(frame: frame)
     }

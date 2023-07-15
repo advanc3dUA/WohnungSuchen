@@ -60,6 +60,31 @@ final class ModalVC: UIViewController {
         
         modalView.optionsView.updateOptionsUI(with: optionsSubject.value)
         setOptionsPublishers()
+        
+        modalView.optionsView.addSaga.addTarget(self, action: #selector(addSaga), for: .touchUpInside)
+        modalView.optionsView.removeSaga.addTarget(self, action: #selector(removeSaga), for: .touchUpInside)
+        modalView.optionsView.addVonovia.addTarget(self, action: #selector(addVonovia), for: .touchUpInside)
+        modalView.optionsView.removeVonovia.addTarget(self, action: #selector(removeVonovia), for: .touchUpInside)
+    }
+    
+    @objc func addSaga() {
+        optionsSubject.value.landlords[SavingKeys.saga.rawValue] = true
+        optionsSubject.send(optionsSubject.value)
+    }
+    
+    @objc func removeSaga() {
+        optionsSubject.value.landlords[SavingKeys.saga.rawValue] = false
+        optionsSubject.send(optionsSubject.value)
+    }
+    
+    @objc func addVonovia() {
+        optionsSubject.value.landlords[SavingKeys.vonovia.rawValue] = true
+        optionsSubject.send(optionsSubject.value)
+    }
+    
+    @objc func removeVonovia() {
+        optionsSubject.value.landlords[SavingKeys.vonovia.rawValue] = false
+        optionsSubject.send(optionsSubject.value)
     }
     
     //MARK: - Button's actions

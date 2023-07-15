@@ -85,6 +85,8 @@ final class ViewController: UIViewController, ModalVCDelegate {
     func startEngine() {
         showLoadingView()
         timer = Timer.scheduledTimer(withTimeInterval: Double(optionsSubject.value.updateTime), repeats: true) {[unowned self] timer in
+            print("new timer itteration started")
+            print("options are currently set to: \(optionsSubject.value.landlords)")
             landlordsManager?.start { [weak self] apartments in
                 guard let self = self else { return }
                 
@@ -125,7 +127,6 @@ final class ViewController: UIViewController, ModalVCDelegate {
     private func setPublisherToUpdateLandlordsListInManager() {
         optionsSubject
             .map { $0.landlords }
-            .removeDuplicates()
             .sink { [unowned self] landlords in
                 landlordsManager?.landlords.removeAll()
                 apartmentsDataSource = []
@@ -134,16 +135,18 @@ final class ViewController: UIViewController, ModalVCDelegate {
                     switch landlord {
                     case "saga":
                         landlordsManager?.landlords.append(Saga())
-                        apartmentsDataSource.append(contentsOf: currentApartments.filter { $0.company == .saga })
+                        let filteredApartments = currentApartments.filter { $0.company == .saga && checkApartmentSatisfyCurrentFilter($0) }
+                        apartmentsDataSource.append(contentsOf: filteredApartments)
                         
                     case "vonovia":
                         landlordsManager?.landlords.append(Vonovia())
-                        apartmentsDataSource.append(contentsOf: currentApartments.filter { $0.company == .vonovia })
+                        let filteredApartments = currentApartments.filter { $0.company == .vonovia && checkApartmentSatisfyCurrentFilter($0) }
+                        apartmentsDataSource.append(contentsOf: filteredApartments)
                     default:
                         break
                     }
                 }
-                
+                print("options after change is: \(optionsSubject.value.landlords)")
                 tableView.reloadData()
             }
             .store(in: &cancellables)
