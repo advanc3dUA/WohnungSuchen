@@ -32,7 +32,7 @@ extension OptionsView: UICollectionViewDataSource, UICollectionViewDelegate, UIC
         let selectedbackgroundColor = cell.providerButton.imageWithColor(Colour.brandBlue.setColor ?? .clear)
         cell.providerButton.setBackgroundImage(selectedbackgroundColor, for: .selected)
         
-        cell.providerButton.isHighlighted = true
+//        cell.providerButton.isHighlighted = true
         
         cell.providerButton.addTarget(self, action: #selector(providerButtonTapped(sender:)), for: .touchUpInside)
         return cell
