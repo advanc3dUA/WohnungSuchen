@@ -9,8 +9,8 @@ import UIKit
 import Combine
 
 final class ModalVC: UIViewController {
-    private var modalView: ModalView!
-    private let optionsSubject: CurrentValueSubject<Options, Never>
+    var modalView: ModalView!
+    let optionsSubject: CurrentValueSubject<Options, Never>
     var currentDetent: UISheetPresentationController.Detent.Identifier? {
         didSet {
             switch currentDetent?.rawValue {
@@ -59,12 +59,8 @@ final class ModalVC: UIViewController {
         modalView.optionsView.saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         
         modalView.optionsView.updateOptionsUI(with: optionsSubject.value)
+        modalView.optionsView.setLandlordsOption(with: optionsSubject.value)
         setOptionsPublishers()
-        
-        modalView.optionsView.addSaga.addTarget(self, action: #selector(addSaga), for: .touchUpInside)
-        modalView.optionsView.removeSaga.addTarget(self, action: #selector(removeSaga), for: .touchUpInside)
-        modalView.optionsView.addVonovia.addTarget(self, action: #selector(addVonovia), for: .touchUpInside)
-        modalView.optionsView.removeVonovia.addTarget(self, action: #selector(removeVonovia), for: .touchUpInside)
     }
     
     @objc func addSaga() {

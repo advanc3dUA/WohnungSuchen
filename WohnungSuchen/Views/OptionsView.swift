@@ -18,11 +18,9 @@ final class OptionsView: UIView {
     @IBOutlet weak var saveButton: SaveButton!
     @IBOutlet weak var soundSwitch: UISwitch!
     @IBOutlet weak var timerUpdateTextField: UITextField!
+    var providersCollectionView: UICollectionView!
+    var landlordsOptions: [String: Bool] = [:]
     
-    @IBOutlet weak var addSaga: UIButton!
-    @IBOutlet weak var addVonovia: UIButton!
-    @IBOutlet weak var removeVonovia: UIButton!
-    @IBOutlet weak var removeSaga: UIButton!
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -41,6 +39,36 @@ final class OptionsView: UIView {
         rentMaxTextField.attributedText = NSAttributedString(string: String(options.rentMax), attributes: defaultAttributes)
         timerUpdateTextField.attributedText = NSAttributedString(string: String(options.updateTime), attributes: defaultAttributes)
         soundSwitch.isOn = options.soundIsOn
+    }
+    
+    func setLandlordsOption(with options: Options) {
+        landlordsOptions = options.landlords
+        landlordsOptions = ["test1": false, "test2": false, "test3": false, "test4": false, "test5": false]
+    }
+    
+    func setupProvidersCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = 10
+        layout.itemSize = CGSize(width: 100, height: 30)
+
+        providersCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+
+        providersCollectionView.register(ProvidersCollectionViewCell.nib, forCellWithReuseIdentifier: ProvidersCollectionViewCell.identifier)
+        providersCollectionView.backgroundColor = .white
+        
+        providersCollectionView.delegate = self
+        providersCollectionView.dataSource = self
+
+        providersCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(providersCollectionView)
+        
+        NSLayoutConstraint.activate([
+            providersCollectionView.heightAnchor.constraint(equalToConstant: 30),
+            providersCollectionView.widthAnchor.constraint(equalToConstant: 210),
+            providersCollectionView.topAnchor.constraint(equalTo: self.saveButton.bottomAnchor, constant: 25),
+            providersCollectionView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+        ])
     }
 }
 

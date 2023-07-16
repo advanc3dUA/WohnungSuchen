@@ -19,6 +19,7 @@ final class ModalView: UIView {
         backgroundColor = Colour.brandOlive.setColor
         setupStartPauseButton()
         setupOptionsView()
+        optionsView.setupProvidersCollectionView()
     }
     
     required init?(coder: NSCoder) {

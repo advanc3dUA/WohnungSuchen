@@ -205,30 +205,6 @@
                         </stackView>
                     </subviews>
                 </stackView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zba-sW-UoW">
-                    <rect key="frame" x="19" y="386" width="93" height="35"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="AddSaga"/>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zFf-eL-Fav">
-                    <rect key="frame" x="114" y="385" width="70" height="35"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="-Saga"/>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JGC-UG-xhL">
-                    <rect key="frame" x="279" y="386" width="91" height="35"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="-Vonovia"/>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LL5-sb-lp3">
-                    <rect key="frame" x="177" y="386" width="94" height="35"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="+Vonovia"/>
-                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="mlO-Kp-05f"/>
             <constraints>
@@ -238,12 +214,8 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="addSaga" destination="zba-sW-UoW" id="MLM-R7-Oef"/>
-                <outlet property="addVonovia" destination="LL5-sb-lp3" id="AXI-6j-48d"/>
                 <outlet property="areaMaxTextField" destination="5tz-XP-35M" id="bQm-Zy-ar7"/>
                 <outlet property="areaMinTextField" destination="Wli-Fg-1dH" id="4bT-33-Dtf"/>
-                <outlet property="removeSaga" destination="zFf-eL-Fav" id="kei-NO-pQV"/>
-                <outlet property="removeVonovia" destination="JGC-UG-xhL" id="eT1-Hc-5YV"/>
                 <outlet property="rentMaxTextField" destination="drc-6k-Lsi" id="3JD-Ia-qcr"/>
                 <outlet property="rentMinTextField" destination="Saw-65-Rsm" id="4wf-sQ-6Sj"/>
                 <outlet property="roomsMaxTextField" destination="n3q-YH-J8b" id="FxP-CA-eWd"/>
