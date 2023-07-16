@@ -59,7 +59,7 @@ final class ModalVC: UIViewController {
         modalView.optionsView.saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         
         modalView.optionsView.updateOptionsUI(with: optionsSubject.value)
-        modalView.optionsView.setLandlordsOption(with: optionsSubject.value)
+        modalView.optionsView.setLandlordsOption(with: optionsSubject)
         setOptionsPublishers()
     }
     

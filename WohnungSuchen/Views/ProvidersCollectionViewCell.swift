@@ -9,7 +9,7 @@ import UIKit
 
 class ProvidersCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet var providerButton: UIButton!
+    @IBOutlet var providerButton: CustomButton!
     
     class var identifier: String {
         String(describing: self)

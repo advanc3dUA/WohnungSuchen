@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 final class OptionsView: UIView {
     
@@ -19,7 +20,7 @@ final class OptionsView: UIView {
     @IBOutlet weak var soundSwitch: UISwitch!
     @IBOutlet weak var timerUpdateTextField: UITextField!
     var providersCollectionView: UICollectionView!
-    var landlordsOptions: [String: Bool] = [:]
+    var optionsSubject: CurrentValueSubject<Options, Never>?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,9 +42,8 @@ final class OptionsView: UIView {
         soundSwitch.isOn = options.soundIsOn
     }
     
-    func setLandlordsOption(with options: Options) {
-        landlordsOptions = options.landlords
-        landlordsOptions = ["test1": false, "test2": false, "test3": false, "test4": false, "test5": false]
+    func setLandlordsOption(with optionsSubject: CurrentValueSubject<Options, Never>) {
+        self.optionsSubject = optionsSubject
     }
     
     func setupProvidersCollectionView() {
