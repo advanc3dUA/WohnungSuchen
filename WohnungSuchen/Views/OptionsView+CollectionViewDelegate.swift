@@ -1,5 +1,5 @@
 //
-//  ProvidersCollectionViewDataSource.swift
+//  OptionsView+CollectionViewDelegate.swift
 //  WohnungSuchen
 //
 //  Created by Yuriy Gudimov on 16.07.2023.

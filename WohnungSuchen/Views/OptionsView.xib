@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Q6U-61-QH2">
-                    <rect key="frame" x="10" y="25" width="380" height="353.33333333333331"/>
+                    <rect key="frame" x="10" y="25" width="380" height="398.66666666666669"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="3lZ-6l-THA">
                             <rect key="frame" x="82.666666666666686" y="0.0" width="215" height="182.33333333333334"/>
@@ -203,6 +203,20 @@
                                 </button>
                             </subviews>
                         </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Vmf-5S-Eft">
+                            <rect key="frame" x="40" y="378.33333333333331" width="300" height="20.333333333333314"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select available apartment providers:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hn9-Ml-F0D">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="20.333333333333332"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="300" id="HuI-My-VQp"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" name="brandDark"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
                     </subviews>
                 </stackView>
             </subviews>
@@ -216,6 +230,7 @@
             <connections>
                 <outlet property="areaMaxTextField" destination="5tz-XP-35M" id="bQm-Zy-ar7"/>
                 <outlet property="areaMinTextField" destination="Wli-Fg-1dH" id="4bT-33-Dtf"/>
+                <outlet property="availableProvidersLabel" destination="Hn9-Ml-F0D" id="jul-5I-YWV"/>
                 <outlet property="rentMaxTextField" destination="drc-6k-Lsi" id="3JD-Ia-qcr"/>
                 <outlet property="rentMinTextField" destination="Saw-65-Rsm" id="4wf-sQ-6Sj"/>
                 <outlet property="roomsMaxTextField" destination="n3q-YH-J8b" id="FxP-CA-eWd"/>

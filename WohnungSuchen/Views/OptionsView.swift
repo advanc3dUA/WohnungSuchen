@@ -19,6 +19,7 @@ final class OptionsView: UIView {
     @IBOutlet weak var saveButton: SaveButton!
     @IBOutlet weak var soundSwitch: UISwitch!
     @IBOutlet weak var timerUpdateTextField: UITextField!
+    @IBOutlet weak var availableProvidersLabel: UILabel!
     var providersCollectionView: UICollectionView!
     var optionsSubject: CurrentValueSubject<Options, Never>?
     
@@ -66,7 +67,7 @@ final class OptionsView: UIView {
         NSLayoutConstraint.activate([
             providersCollectionView.heightAnchor.constraint(equalToConstant: 30),
             providersCollectionView.widthAnchor.constraint(equalToConstant: 140),
-            providersCollectionView.topAnchor.constraint(equalTo: self.saveButton.bottomAnchor, constant: 25),
+            providersCollectionView.topAnchor.constraint(equalTo: self.availableProvidersLabel.bottomAnchor, constant: 25),
             providersCollectionView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
     }
