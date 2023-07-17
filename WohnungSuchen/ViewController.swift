@@ -30,7 +30,9 @@ final class ViewController: UIViewController, ModalVCDelegate {
     private var cancellables: Set<AnyCancellable> = []
     
     required init?(coder aDecoder: NSCoder) {
-        self.optionsSubject = CurrentValueSubject<Options, Never>(Options())
+        let savedDefaultOptions = Options()
+        savedDefaultOptions.loadSavedDefaults()
+        self.optionsSubject = CurrentValueSubject<Options, Never>(savedDefaultOptions)
         self.immomioLinkFetcher = ImmomioLinkFetcher(networkManager: NetworkManager())
         self.currentApartments = [Apartment]()
         self.apartmentsDataSource = [Apartment]()

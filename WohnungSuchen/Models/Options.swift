@@ -31,8 +31,19 @@ final class Options {
     var soundIsOn: Bool
     var landlords: [String:Bool]
     
-    
     init() {
+        self.roomsMin = 0
+        self.roomsMax = 0
+        self.areaMin = 0
+        self.areaMax = 0
+        self.rentMin = 0
+        self.rentMax = 0
+        self.updateTime = 30
+        self.soundIsOn = true
+        self.landlords = [:]
+    }
+    
+    func loadSavedDefaults() {
         roomsMin = UserDefaults.standard.object(forKey: SavingKeys.roomsMin.rawValue) as? Int ?? Constants.defaultOptions.roomsMin
         roomsMax = UserDefaults.standard.object(forKey: SavingKeys.roomsMax.rawValue) as? Int ?? Constants.defaultOptions.roomsMax
         areaMin = UserDefaults.standard.object(forKey: SavingKeys.areaMin.rawValue) as? Int ?? Constants.defaultOptions.areaMin

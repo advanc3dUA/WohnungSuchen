@@ -10,16 +10,12 @@ import UIKit
 extension OptionsView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let numberOfProviders = optionsSubject?.value.landlords.count {
-            return numberOfProviders
-        } else {
-            return 0
-        }
+        optionsSubject.value.landlords.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = self.providersCollectionView.dequeueReusableCell(withReuseIdentifier: ProvidersCollectionViewCell.identifier, for: indexPath) as! ProvidersCollectionViewCell
-        guard let landlords = optionsSubject?.value.landlords else { return cell }
+        let landlords = optionsSubject.value.landlords
         let providersKeys = Array(landlords.keys)
         let providersStates = Array(landlords.values)
         cell.providerButton.setTitle(providersKeys[indexPath.row], for: .normal)
@@ -37,11 +33,10 @@ extension OptionsView: UICollectionViewDataSource, UICollectionViewDelegate, UIC
         }
         sender.isSelected.toggle()
         
-        optionsSubject?.value.landlords[title] = sender.isSelected
+        optionsSubject.value.landlords[title] = sender.isSelected
         
-        if let options = optionsSubject?.value {
-            optionsSubject?.send(options)
-        }
+        let options = optionsSubject.value
+        optionsSubject.send(options)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

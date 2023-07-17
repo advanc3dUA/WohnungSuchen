@@ -63,26 +63,6 @@ final class ModalVC: UIViewController {
         setOptionsPublishers()
     }
     
-    @objc func addSaga() {
-        optionsSubject.value.landlords[SavingKeys.saga.rawValue] = true
-        optionsSubject.send(optionsSubject.value)
-    }
-    
-    @objc func removeSaga() {
-        optionsSubject.value.landlords[SavingKeys.saga.rawValue] = false
-        optionsSubject.send(optionsSubject.value)
-    }
-    
-    @objc func addVonovia() {
-        optionsSubject.value.landlords[SavingKeys.vonovia.rawValue] = true
-        optionsSubject.send(optionsSubject.value)
-    }
-    
-    @objc func removeVonovia() {
-        optionsSubject.value.landlords[SavingKeys.vonovia.rawValue] = false
-        optionsSubject.send(optionsSubject.value)
-    }
-    
     //MARK: - Button's actions
     
     func saveButtonIsEnabled(_ param: Bool) {
@@ -185,6 +165,14 @@ final class ModalVC: UIViewController {
             .sink { [unowned self] isValid in
                 saveButtonIsEnabled(isValid)
                 optionsSubject.value = options
+            }
+            .store(in: &cancellables)
+        
+        optionsSubject
+            .dropFirst()
+            .map { $0.landlords }
+            .sink { [unowned self] _ in
+                saveButtonIsEnabled(true)
             }
             .store(in: &cancellables)
     }

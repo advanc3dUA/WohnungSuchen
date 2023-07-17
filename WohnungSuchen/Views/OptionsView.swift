@@ -21,13 +21,15 @@ final class OptionsView: UIView {
     @IBOutlet weak var timerUpdateTextField: UITextField!
     @IBOutlet weak var availableProvidersLabel: UILabel!
     var providersCollectionView: UICollectionView!
-    var optionsSubject: CurrentValueSubject<Options, Never>?
+    var optionsSubject: CurrentValueSubject<Options, Never>
     
     override init(frame: CGRect) {
+        self.optionsSubject = CurrentValueSubject<Options, Never>(Options())
         super.init(frame: frame)
     }
     
     required init?(coder: NSCoder) {
+        self.optionsSubject = CurrentValueSubject<Options, Never>(Options())
         super.init(coder: coder)
     }
     
