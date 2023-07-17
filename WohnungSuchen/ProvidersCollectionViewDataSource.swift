@@ -23,16 +23,8 @@ extension OptionsView: UICollectionViewDataSource, UICollectionViewDelegate, UIC
         let providersKeys = Array(landlords.keys)
         let providersStates = Array(landlords.values)
         cell.providerButton.setTitle(providersKeys[indexPath.row], for: .normal)
+        cell.providerButton.setTitle(providersKeys[indexPath.row], for: .highlighted)
         cell.providerButton.isSelected = providersStates[indexPath.row]
-        
-        cell.providerButton.layer.borderColor = Colour.brandDark.setColor?.cgColor
-        let normalbackgroundColor = cell.providerButton.imageWithColor(Colour.brandDark.setColor ?? .clear)
-        cell.providerButton.setBackgroundImage(normalbackgroundColor, for: .normal)
-        
-        let selectedbackgroundColor = cell.providerButton.imageWithColor(Colour.brandBlue.setColor ?? .clear)
-        cell.providerButton.setBackgroundImage(selectedbackgroundColor, for: .selected)
-        
-//        cell.providerButton.isHighlighted = true
         
         cell.providerButton.addTarget(self, action: #selector(providerButtonTapped(sender:)), for: .touchUpInside)
         return cell
@@ -43,42 +35,17 @@ extension OptionsView: UICollectionViewDataSource, UICollectionViewDelegate, UIC
             print("Error getting the name of providerButton")
             return
         }
-        
-        print("Click")
         sender.isSelected.toggle()
         
         optionsSubject?.value.landlords[title] = sender.isSelected
-        print("Landlord \(title) is set to \(sender.isSelected)")
         
         if let options = optionsSubject?.value {
             optionsSubject?.send(options)
         }
     }
-
-    
-//    @objc func providerButtonTapped(sender: UIButton) {
-//        guard let title = sender.currentTitle else {
-//            print("error getting the name of providerButton")
-//            return
-//        }
-//        print("click")
-//        sender.isSelected = !sender.isSelected
-//        let options = Options()
-//        options.areaMax = optionsSubject!.value.areaMax
-//        options.areaMin = optionsSubject!.value.areaMin
-//        options.rentMin = optionsSubject!.value.rentMin
-//        options.rentMax = optionsSubject!.value.rentMax
-//        options.roomsMin = optionsSubject!.value.roomsMin
-//        options.roomsMax = optionsSubject!.value.roomsMax
-//        options.soundIsOn = optionsSubject!.value.soundIsOn
-//        options.updateTime = optionsSubject!.value.updateTime
-//        options.landlords[title] = sender.isSelected
-//        print("landlord \(title) is set to \(sender.isSelected)")
-//        optionsSubject?.send(options)
-//    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = 100
+        let cellWidth = 65
         let cellHeight = 30
         return CGSize(width: cellWidth, height: cellHeight)
     }

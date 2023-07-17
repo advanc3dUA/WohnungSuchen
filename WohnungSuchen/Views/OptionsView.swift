@@ -55,7 +55,7 @@ final class OptionsView: UIView {
         providersCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
 
         providersCollectionView.register(ProvidersCollectionViewCell.nib, forCellWithReuseIdentifier: ProvidersCollectionViewCell.identifier)
-        providersCollectionView.backgroundColor = .white
+        providersCollectionView.backgroundColor = Colour.brandGray.setColor
         
         providersCollectionView.delegate = self
         providersCollectionView.dataSource = self
@@ -65,7 +65,7 @@ final class OptionsView: UIView {
         
         NSLayoutConstraint.activate([
             providersCollectionView.heightAnchor.constraint(equalToConstant: 30),
-            providersCollectionView.widthAnchor.constraint(equalToConstant: 210),
+            providersCollectionView.widthAnchor.constraint(equalToConstant: 140),
             providersCollectionView.topAnchor.constraint(equalTo: self.saveButton.bottomAnchor, constant: 25),
             providersCollectionView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
