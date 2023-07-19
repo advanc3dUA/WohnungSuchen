@@ -50,7 +50,7 @@ final class ModalVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tapGasture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        let tapGasture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardInOptionsView))
         view.addGestureRecognizer(tapGasture)
         
         modalView.startPauseButton.addTarget(self, action: #selector(startPauseButtonTapped(sender:)), for: .touchUpInside)
@@ -191,13 +191,17 @@ final class ModalVC: UIViewController {
         isModalInPresentation = true
     }
     
-    @objc private func hideKeyboard() {
-        modalView.optionsView.roomsMinTextField.resignFirstResponder()
-        modalView.optionsView.roomsMaxTextField.resignFirstResponder()
-        modalView.optionsView.areaMinTextField.resignFirstResponder()
-        modalView.optionsView.areaMaxTextField.resignFirstResponder()
-        modalView.optionsView.rentMinTextField.resignFirstResponder()
-        modalView.optionsView.rentMaxTextField.resignFirstResponder()
-        modalView.optionsView.timerUpdateTextField.resignFirstResponder()
+    @objc private func hideKeyboardInOptionsView() {
+        hideKeyboardIfViewIsTextField(in: modalView.optionsView)
+    }
+    
+    private func hideKeyboardIfViewIsTextField(in view: UIView) {
+        for subview in view.subviews {
+            if subview is UITextField {
+                subview.resignFirstResponder()
+            } else {
+                hideKeyboardIfViewIsTextField(in: subview)
+            }
+        }
     }
 }
