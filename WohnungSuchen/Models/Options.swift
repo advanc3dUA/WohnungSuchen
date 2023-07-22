@@ -53,8 +53,35 @@ final class Options {
         updateTime = UserDefaults.standard.object(forKey: SavingKeys.updateTime.rawValue) as? Int ?? Constants.defaultOptions.updateTime
         soundIsOn = UserDefaults.standard.object(forKey: SavingKeys.soundIsOn.rawValue) as? Bool ?? Constants.defaultOptions.soundIsOn
         
-        landlords = [ SavingKeys.saga.rawValue: UserDefaults.standard.object(forKey: SavingKeys.saga.rawValue) as? Bool ?? Constants.defaultOptions.saga,
-                      SavingKeys.vonovia.rawValue: UserDefaults.standard.object(forKey: SavingKeys.vonovia.rawValue) as? Bool ?? Constants.defaultOptions.vonovia
+        landlords = [ SavingKeys.saga.rawValue: UserDefaults.standard.object(forKey: SavingKeys.saga.rawValue) as? Bool ?? Constants.defaultOptions.landlords[SavingKeys.saga.rawValue]!,
+                      SavingKeys.vonovia.rawValue: UserDefaults.standard.object(forKey: SavingKeys.vonovia.rawValue) as? Bool ?? Constants.defaultOptions.landlords[SavingKeys.vonovia.rawValue]!
                     ]
     }
+    
+    func isEqualToUserDefaults() -> Bool {
+        guard let defaultRoomsMin = UserDefaults.standard.object(forKey: SavingKeys.roomsMin.rawValue) as? Int,
+              let defaultRoomsMax = UserDefaults.standard.object(forKey: SavingKeys.roomsMax.rawValue) as? Int,
+              let defaultAreaMin = UserDefaults.standard.object(forKey: SavingKeys.areaMin.rawValue) as? Int,
+              let defaultAreaMax = UserDefaults.standard.object(forKey: SavingKeys.areaMax.rawValue) as? Int,
+              let defaultRentMin = UserDefaults.standard.object(forKey: SavingKeys.rentMin.rawValue) as? Int,
+              let defaultRentMax = UserDefaults.standard.object(forKey: SavingKeys.rentMax.rawValue) as? Int,
+              let defaultUpdateTime = UserDefaults.standard.object(forKey: SavingKeys.updateTime.rawValue) as? Int,
+              let defaultLandlords = getLandlordsFromUserDefaults() else { return false }
+              
+        return self.roomsMin == defaultRoomsMin && self.roomsMax == defaultRoomsMax &&
+        self.areaMin == defaultAreaMin && self.areaMax == defaultAreaMax &&
+        self.rentMin == defaultRentMin && self.rentMax == defaultRentMax &&
+        self.updateTime == defaultUpdateTime && self.landlords == defaultLandlords
+    }
+    
+    private func getLandlordsFromUserDefaults() -> [String: Bool]? {
+        var landlordsDict: [String: Bool] = [:]
+        for (key, _) in Constants.defaultOptions.landlords {
+            if let value = UserDefaults.standard.object(forKey: key) as? Bool {
+                landlordsDict[key] = value
+            } else { return nil }
+        }
+        return landlordsDict
+    }
+        
 }

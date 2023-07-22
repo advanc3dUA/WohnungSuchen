@@ -172,7 +172,9 @@ final class ModalVC: UIViewController {
             .dropFirst()
             .map { $0.landlords }
             .sink { [unowned self] _ in
-                saveButtonIsEnabled(true)
+                if optionsSubject.value.isEqualToUserDefaults() {
+                    saveButtonIsEnabled(false)
+                } else { saveButtonIsEnabled(true) }
             }
             .store(in: &cancellables)
     }

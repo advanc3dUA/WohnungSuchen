@@ -47,13 +47,14 @@ final class ViewController: UIViewController, ModalVCDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Colour.brandDark.setColor
         notificationsManager.requestNotificationAuthorization()
         
         backgroundAudioPlayer = BackgroundAudioPlayer(for: self)
         backgroundAudioPlayer?.start()
         
+        setupMainView()
         setupTableView()
+        setupStatusLabel()
         
         landlordsManager = LandlordsManager(immomioLinkFetcher: immomioLinkFetcher)
         setPublisherToUpdateLandlordsListInManager()
@@ -154,6 +155,10 @@ final class ViewController: UIViewController, ModalVCDelegate {
             .store(in: &cancellables)
     }
     
+    private func setupMainView() {
+        view.backgroundColor = Colour.brandDark.setColor
+    }
+    
     private func setupTableView() {
         tableView.layer.cornerRadius = 10
         tableView.separatorStyle = .singleLine
@@ -161,6 +166,11 @@ final class ViewController: UIViewController, ModalVCDelegate {
         tableView.register(ApartmentCell.nib, forCellReuseIdentifier: ApartmentCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    private func setupStatusLabel() {
+        statusLabel.layer.cornerRadius = 10
+        statusLabel.clipsToBounds = true
     }
     
     private func showLoadingView() {
