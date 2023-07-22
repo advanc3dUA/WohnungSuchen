@@ -66,12 +66,13 @@ final class Options {
               let defaultRentMin = UserDefaults.standard.object(forKey: SavingKeys.rentMin.rawValue) as? Int,
               let defaultRentMax = UserDefaults.standard.object(forKey: SavingKeys.rentMax.rawValue) as? Int,
               let defaultUpdateTime = UserDefaults.standard.object(forKey: SavingKeys.updateTime.rawValue) as? Int,
+              let defaultSoundIsOn = UserDefaults.standard.object(forKey: SavingKeys.soundIsOn.rawValue) as? Bool,
               let defaultLandlords = getLandlordsFromUserDefaults() else { return false }
               
         return self.roomsMin == defaultRoomsMin && self.roomsMax == defaultRoomsMax &&
         self.areaMin == defaultAreaMin && self.areaMax == defaultAreaMax &&
         self.rentMin == defaultRentMin && self.rentMax == defaultRentMax &&
-        self.updateTime == defaultUpdateTime && self.landlords == defaultLandlords
+        self.updateTime == defaultUpdateTime && self.soundIsOn == defaultSoundIsOn && self.landlords == defaultLandlords
     }
     
     private func getLandlordsFromUserDefaults() -> [String: Bool]? {
