@@ -41,7 +41,7 @@
 		BF8EB0F529E16B880070C64B /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EB0F429E16B880070C64B /* LoadingView.swift */; };
 		BF8EB0F729E17A360070C64B /* UIView+Flashing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EB0F629E17A360070C64B /* UIView+Flashing.swift */; };
 		BF8EEDB829C4701100F74971 /* MapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EEDB729C4701100F74971 /* MapButton.swift */; };
-		BF8EEDBA29C4771B00F74971 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EEDB929C4771B00F74971 /* Constants.swift */; };
+		BF8EEDBA29C4771B00F74971 /* DefaultOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EEDB929C4771B00F74971 /* DefaultOptions.swift */; };
 		BF9205A029E029830017CEEA /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF92059F29E029830017CEEA /* TimeManager.swift */; };
 		BF94F64A29D75D0B00993295 /* StartPauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF94F64929D75D0B00993295 /* StartPauseButton.swift */; };
 		BF9C8CF529D97FB500406480 /* Vonovia.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9C8CF429D97FB500406480 /* Vonovia.swift */; };
@@ -107,7 +107,7 @@
 		BF8EB0F429E16B880070C64B /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		BF8EB0F629E17A360070C64B /* UIView+Flashing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Flashing.swift"; sourceTree = "<group>"; };
 		BF8EEDB729C4701100F74971 /* MapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButton.swift; sourceTree = "<group>"; };
-		BF8EEDB929C4771B00F74971 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BF8EEDB929C4771B00F74971 /* DefaultOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultOptions.swift; sourceTree = "<group>"; };
 		BF92059F29E029830017CEEA /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
 		BF94F64929D75D0B00993295 /* StartPauseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPauseButton.swift; sourceTree = "<group>"; };
 		BF9C8CF429D97FB500406480 /* Vonovia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vonovia.swift; sourceTree = "<group>"; };
@@ -188,7 +188,7 @@
 				BF8C912D29DDB8C8008AD739 /* Company.swift */,
 				BF8EB0F229E166D10070C64B /* Colour.swift */,
 				BFEBAA5B29E2EF0A00CC83C8 /* Options.swift */,
-				BF8EEDB929C4771B00F74971 /* Constants.swift */,
+				BF8EEDB929C4771B00F74971 /* DefaultOptions.swift */,
 				BF9C8CF629D9952500406480 /* VonoviaJson.swift */,
 			);
 			path = Models;
@@ -462,7 +462,7 @@
 				BF8A62F829DD7B8500E2DCD4 /* VC+TableViewDelegate.swift in Sources */,
 				BF9C8CF729D9952500406480 /* VonoviaJson.swift in Sources */,
 				BF8EB0F329E166D10070C64B /* Colour.swift in Sources */,
-				BF8EEDBA29C4771B00F74971 /* Constants.swift in Sources */,
+				BF8EEDBA29C4771B00F74971 /* DefaultOptions.swift in Sources */,
 				BFA8D22D29F547450091D0FA /* SaveButton.swift in Sources */,
 				BF5C017E29C71DCF006C06D4 /* VC+AVAudioPlayerDelegate.swift in Sources */,
 				BF9205A029E029830017CEEA /* TimeManager.swift in Sources */,

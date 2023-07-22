@@ -44,17 +44,17 @@ final class Options {
     }
     
     func loadSavedDefaults() {
-        roomsMin = UserDefaults.standard.object(forKey: SavingKeys.roomsMin.rawValue) as? Int ?? Constants.defaultOptions.roomsMin
-        roomsMax = UserDefaults.standard.object(forKey: SavingKeys.roomsMax.rawValue) as? Int ?? Constants.defaultOptions.roomsMax
-        areaMin = UserDefaults.standard.object(forKey: SavingKeys.areaMin.rawValue) as? Int ?? Constants.defaultOptions.areaMin
-        areaMax = UserDefaults.standard.object(forKey: SavingKeys.areaMax.rawValue) as? Int ?? Constants.defaultOptions.areaMax
-        rentMin = UserDefaults.standard.object(forKey: SavingKeys.rentMin.rawValue) as? Int ?? Constants.defaultOptions.rentMin
-        rentMax = UserDefaults.standard.object(forKey: SavingKeys.rentMax.rawValue) as? Int ?? Constants.defaultOptions.rentMax
-        updateTime = UserDefaults.standard.object(forKey: SavingKeys.updateTime.rawValue) as? Int ?? Constants.defaultOptions.updateTime
-        soundIsOn = UserDefaults.standard.object(forKey: SavingKeys.soundIsOn.rawValue) as? Bool ?? Constants.defaultOptions.soundIsOn
+        roomsMin = UserDefaults.standard.object(forKey: SavingKeys.roomsMin.rawValue) as? Int ?? DefaultOptions.roomsMin
+        roomsMax = UserDefaults.standard.object(forKey: SavingKeys.roomsMax.rawValue) as? Int ?? DefaultOptions.roomsMax
+        areaMin = UserDefaults.standard.object(forKey: SavingKeys.areaMin.rawValue) as? Int ?? DefaultOptions.areaMin
+        areaMax = UserDefaults.standard.object(forKey: SavingKeys.areaMax.rawValue) as? Int ?? DefaultOptions.areaMax
+        rentMin = UserDefaults.standard.object(forKey: SavingKeys.rentMin.rawValue) as? Int ?? DefaultOptions.rentMin
+        rentMax = UserDefaults.standard.object(forKey: SavingKeys.rentMax.rawValue) as? Int ?? DefaultOptions.rentMax
+        updateTime = UserDefaults.standard.object(forKey: SavingKeys.updateTime.rawValue) as? Int ?? DefaultOptions.updateTime
+        soundIsOn = UserDefaults.standard.object(forKey: SavingKeys.soundIsOn.rawValue) as? Bool ?? DefaultOptions.soundIsOn
         
-        landlords = [ SavingKeys.saga.rawValue: UserDefaults.standard.object(forKey: SavingKeys.saga.rawValue) as? Bool ?? Constants.defaultOptions.landlords[SavingKeys.saga.rawValue]!,
-                      SavingKeys.vonovia.rawValue: UserDefaults.standard.object(forKey: SavingKeys.vonovia.rawValue) as? Bool ?? Constants.defaultOptions.landlords[SavingKeys.vonovia.rawValue]!
+        landlords = [ SavingKeys.saga.rawValue: UserDefaults.standard.object(forKey: SavingKeys.saga.rawValue) as? Bool ?? DefaultOptions.landlords[SavingKeys.saga.rawValue]!,
+                      SavingKeys.vonovia.rawValue: UserDefaults.standard.object(forKey: SavingKeys.vonovia.rawValue) as? Bool ?? DefaultOptions.landlords[SavingKeys.vonovia.rawValue]!
                     ]
     }
     
@@ -76,7 +76,7 @@ final class Options {
     
     private func getLandlordsFromUserDefaults() -> [String: Bool]? {
         var landlordsDict: [String: Bool] = [:]
-        for (key, _) in Constants.defaultOptions.landlords {
+        for (key, _) in DefaultOptions.landlords {
             if let value = UserDefaults.standard.object(forKey: key) as? Bool {
                 landlordsDict[key] = value
             } else { return nil }
