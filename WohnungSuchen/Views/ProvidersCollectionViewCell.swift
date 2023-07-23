@@ -22,12 +22,12 @@ class ProvidersCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        providerButton.layer.borderColor = Colour.brandDark.setColor?.cgColor
-        let normalbackgroundColor = providerButton.imageWithColor(Colour.brandDark.setColor ?? .clear)
+        providerButton.layer.borderColor = Color.brandDark.setColor?.cgColor
+        let normalbackgroundColor = providerButton.imageWithColor(Color.brandDark.setColor ?? .clear)
         providerButton.setBackgroundImage(normalbackgroundColor, for: .normal)
         providerButton.setTitleColor(.white, for: .normal)
         
-        let selectedbackgroundColor = providerButton.imageWithColor(Colour.brandBlue.setColor ?? .clear)
+        let selectedbackgroundColor = providerButton.imageWithColor(Color.brandBlue.setColor ?? .clear)
         providerButton.setBackgroundImage(selectedbackgroundColor, for: .selected)
         providerButton.setTitleColor(.white, for: .selected)
     }

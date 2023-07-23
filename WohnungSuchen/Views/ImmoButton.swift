@@ -12,13 +12,13 @@ final class ImmoButton: CustomButton {
     
     override func setup() {
         super.setup()
-        layer.borderColor = Colour.brandDark.setColor?.cgColor
+        layer.borderColor = Color.brandDark.setColor?.cgColor
         setTitle("🔗", for: .normal)
         
-        let normalBackgroundColor = imageWithColor(Colour.brandBlue.setColor ?? .clear)
+        let normalBackgroundColor = imageWithColor(Color.brandBlue.setColor ?? .clear)
         setBackgroundImage(normalBackgroundColor, for: .normal)
         
-        let highlightedBackgroundColor = imageWithColor(Colour.brandDark.setColor ?? .clear)
+        let highlightedBackgroundColor = imageWithColor(Color.brandDark.setColor ?? .clear)
         setBackgroundImage(highlightedBackgroundColor, for: .highlighted)
     }
 }

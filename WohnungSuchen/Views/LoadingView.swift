@@ -29,11 +29,11 @@ final class LoadingView: UIView {
     
     private func setup() {
         loadingLabel.text = "Loading..."
-        loadingLabel.backgroundColor = Colour.brandGray.setColor
-        loadingLabel.textColor = Colour.brandDark.setColor
+        loadingLabel.backgroundColor = Color.brandGray.setColor
+        loadingLabel.textColor = Color.brandDark.setColor
         
-        activityIndicator.color = Colour.brandDark.setColor
-        activityIndicator.backgroundColor = Colour.brandGray.setColor
+        activityIndicator.color = Color.brandDark.setColor
+        activityIndicator.backgroundColor = Color.brandGray.setColor
         activityIndicator.startAnimating()
         
         self.addSubview(loadingLabel)

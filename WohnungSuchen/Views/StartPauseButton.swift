@@ -32,17 +32,17 @@ final class StartPauseButton: UIButton {
     }
     
     func switchOn() {
-        layer.borderColor = Colour.brandBlue.setColor?.cgColor
-        backgroundColor = Colour.brandDark.setColor
+        layer.borderColor = Color.brandBlue.setColor?.cgColor
+        backgroundColor = Color.brandDark.setColor
         isOn = true
-        switchImage(to: .play, color: Colour.brandBlue.setColor)
+        switchImage(to: .play, color: Color.brandBlue.setColor)
     }
     
     func switchOff() {
-        layer.borderColor = Colour.brandDark.setColor?.cgColor
-        backgroundColor = Colour.brandBlue.setColor
+        layer.borderColor = Color.brandDark.setColor?.cgColor
+        backgroundColor = Color.brandBlue.setColor
         isOn = false
-        switchImage(to: .pause, color: Colour.brandDark.setColor)
+        switchImage(to: .pause, color: Color.brandDark.setColor)
     }
     
     private func switchImage(to imageState: ImageState, color: UIColor?) {

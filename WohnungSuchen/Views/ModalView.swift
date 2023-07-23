@@ -16,7 +16,7 @@ final class ModalView: UIView {
     
     init() {
         super.init(frame: .zero)
-        backgroundColor = Colour.brandOlive.setColor
+        backgroundColor = Color.brandOlive.setColor
         setupStartPauseButton()
         setupOptionsView()
         optionsView.setupProvidersCollectionView()
@@ -31,7 +31,7 @@ final class ModalView: UIView {
     private func setupOptionsView() {
         let optionsNib = UINib(nibName: "OptionsView", bundle: nil)
         optionsView = optionsNib.instantiate(withOwner: self).first as? OptionsView
-        optionsView.soundSwitch.set(offTint: Colour.brandGray.setColor)
+        optionsView.soundSwitch.set(offTint: Color.brandGray.setColor)
     }
     
     func showOptionsContent() {
@@ -56,7 +56,7 @@ final class ModalView: UIView {
         
         containerView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.backgroundColor = Colour.brandOlive.setColor
+        containerView.backgroundColor = Color.brandOlive.setColor
         addSubview(containerView)
         NSLayoutConstraint.activate([
             containerView.widthAnchor.constraint(equalToConstant: CGFloat(buttonsWidth)),

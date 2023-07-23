@@ -30,7 +30,7 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource {
         cell.detailsLabel.text = "Rooms: \(apartment.rooms), m2: \(apartment.area), €: \(apartment.rent)"
         cell.logoImageView.image = apartment.company.logoImage
         cell.timeLabel.text = apartment.time
-        cell.timeLabel.backgroundColor = apartment.isNew ? Colour.brandOlive.setColor : Colour.brandGray.setColor
+        cell.timeLabel.backgroundColor = apartment.isNew ? Color.brandOlive.setColor : Color.brandGray.setColor
         
         return cell
     }
@@ -45,7 +45,7 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource {
         
         let toggledIsNew = !apartmentsDataSource[index].isNew
         apartmentsDataSource[index].isNew = toggledIsNew
-        cell.timeLabel.backgroundColor = toggledIsNew ? Colour.brandOlive.setColor : Colour.brandGray.setColor
+        cell.timeLabel.backgroundColor = toggledIsNew ? Color.brandOlive.setColor : Color.brandGray.setColor
         
         if let index = currentApartmentIndex {
             currentApartments[index].isNew = toggledIsNew

@@ -12,7 +12,7 @@ final class SaveButton: CustomButton {
     
     override func setup() {
         super.setup()
-        layer.borderColor = Colour.brandDark.setColor?.cgColor
+        layer.borderColor = Color.brandDark.setColor?.cgColor
         
         // Set title and title colors for both the normal and highlighted states
         setTitle("Save", for: .normal)
@@ -21,10 +21,10 @@ final class SaveButton: CustomButton {
         setTitleColor(.white, for: .highlighted)
         
         // Set background images for both the normal and highlighted states
-        let normalBackgroundColor = imageWithColor(Colour.brandBlue.setColor ?? .clear, cornerRadius: layer.cornerRadius)
+        let normalBackgroundColor = imageWithColor(Color.brandBlue.setColor ?? .clear, cornerRadius: layer.cornerRadius)
         setBackgroundImage(normalBackgroundColor, for: .normal)
         
-        let highlightedBackgroundColor = imageWithColor(Colour.brandDark.setColor ?? .clear, cornerRadius: layer.cornerRadius)
+        let highlightedBackgroundColor = imageWithColor(Color.brandDark.setColor ?? .clear, cornerRadius: layer.cornerRadius)
         setBackgroundImage(highlightedBackgroundColor, for: .highlighted)
     }
 }

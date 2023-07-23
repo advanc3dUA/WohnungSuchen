@@ -1,5 +1,5 @@
 //
-//  Colour.swift
+//  Color.swift
 //  DetectChanges
 //
 //  Created by Yuriy Gudimov on 08.04.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum Colour: String {
+enum Color: String {
     case brandDark
     case brandBlue
     case brandGray

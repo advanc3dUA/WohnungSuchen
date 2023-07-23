@@ -58,7 +58,7 @@ final class OptionsView: UIView {
         providersCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
 
         providersCollectionView.register(ProvidersCollectionViewCell.nib, forCellWithReuseIdentifier: ProvidersCollectionViewCell.identifier)
-        providersCollectionView.backgroundColor = Colour.brandOlive.setColor
+        providersCollectionView.backgroundColor = Color.brandOlive.setColor
         
         providersCollectionView.delegate = self
         providersCollectionView.dataSource = self

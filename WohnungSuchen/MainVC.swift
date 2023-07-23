@@ -123,7 +123,7 @@ final class MainVC: UIViewController {
         timer = nil
     }
     
-    //MARK: - Support functions
+    //MARK: - Publishers
     
     private func setPublisherToUpdateLandlordsListInManager() {
         optionsSubject
@@ -153,29 +153,6 @@ final class MainVC: UIViewController {
                 }
             }
             .store(in: &cancellables)
-    }
-    
-    private func setupMainView() {
-        view.backgroundColor = Colour.brandDark.setColor
-    }
-    
-    private func setupTableView() {
-        tableView.layer.cornerRadius = 10
-        tableView.separatorStyle = .singleLine
-        tableView.separatorInset = .zero
-        tableView.register(ApartmentCell.nib, forCellReuseIdentifier: ApartmentCell.identifier)
-        tableView.delegate = self
-        tableView.dataSource = self
-    }
-    
-    private func setupStatusLabel() {
-        statusLabel.layer.cornerRadius = 10
-        statusLabel.clipsToBounds = true
-    }
-    
-    private func showLoadingView() {
-        loadingView = LoadingView(frame: tableView.bounds)
-        tableView.addSubview(loadingView!)
     }
     
     private func setPublisherForNotificationAlertType() {
@@ -221,6 +198,31 @@ final class MainVC: UIViewController {
                 tableView.reloadData()
             }
             .store(in: &cancellables)
+    }
+    
+    //MARK: - Support methods
+    
+    private func setupMainView() {
+        view.backgroundColor = Color.brandDark.setColor
+    }
+    
+    private func setupTableView() {
+        tableView.layer.cornerRadius = 10
+        tableView.separatorStyle = .singleLine
+        tableView.separatorInset = .zero
+        tableView.register(ApartmentCell.nib, forCellReuseIdentifier: ApartmentCell.identifier)
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    private func setupStatusLabel() {
+        statusLabel.layer.cornerRadius = 10
+        statusLabel.clipsToBounds = true
+    }
+    
+    private func showLoadingView() {
+        loadingView = LoadingView(frame: tableView.bounds)
+        tableView.addSubview(loadingView!)
     }
     
     private func checkApartmentSatisfyCurrentFilter(_ apartment: Apartment) -> Bool {
