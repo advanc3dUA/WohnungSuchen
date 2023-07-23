@@ -1,5 +1,5 @@
 //
-//  ViewController+ModalVCDelegate.swift
+//  MainVC+ModalVCDelegate.swift
 //  WohnungSuchen
 //
 //  Created by Yuriy Gudimov on 23.07.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension ViewController: ModalVCDelegate {
+extension MainVC: ModalVCDelegate {
     func didTapStartButton() {
         startEngine()
     }

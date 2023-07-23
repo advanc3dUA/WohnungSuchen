@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainVC.swift
 //  DetectChanges
 //
 //  Created by Yuriy Gudimov on 10.03.2023.
@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class ViewController: UIViewController {
+final class MainVC: UIViewController {
     
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -232,7 +232,7 @@ final class ViewController: UIViewController {
 
 // MARK: - DetectDetent Protocol
 
-extension ViewController: DetectDetent {
+extension MainVC: DetectDetent {
     func detentChanged(detent: UISheetPresentationController.Detent.Identifier) {
         switchModalVCCurrentDetent(to: detent)
     }
@@ -249,7 +249,7 @@ extension ViewController: DetectDetent {
 
 //MARK: - UISheetPresentationControllerDelegate
 
-extension ViewController: UISheetPresentationControllerDelegate {
+extension MainVC: UISheetPresentationControllerDelegate {
     func sheetPresentationControllerDidChangeSelectedDetentIdentifier(_ sheetPresentationController: UISheetPresentationController) {
         if let currentDetent = sheetPresentationController.selectedDetentIdentifier {
             detentChanged(detent: currentDetent)

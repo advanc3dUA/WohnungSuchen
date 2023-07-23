@@ -17,18 +17,18 @@
 		BF5C017829C71522006C06D4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF5C017729C71522006C06D4 /* AVFoundation.framework */; };
 		BF5C017A29C71574006C06D4 /* BackgroundAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5C017929C71574006C06D4 /* BackgroundAudioPlayer.swift */; };
 		BF5C017C29C71635006C06D4 /* heavy-rain.wav in Resources */ = {isa = PBXBuildFile; fileRef = BF5C017B29C71635006C06D4 /* heavy-rain.wav */; };
-		BF5C017E29C71DCF006C06D4 /* VC+AVAudioPlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5C017D29C71DCF006C06D4 /* VC+AVAudioPlayerDelegate.swift */; };
+		BF5C017E29C71DCF006C06D4 /* MainVC+AVAudioPlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5C017D29C71DCF006C06D4 /* MainVC+AVAudioPlayerDelegate.swift */; };
 		BF5C018029C72069006C06D4 /* SilentSong.wav in Resources */ = {isa = PBXBuildFile; fileRef = BF5C017F29C72069006C06D4 /* SilentSong.wav */; };
 		BF707BFE29BB427700225796 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF707BFD29BB427700225796 /* AppDelegate.swift */; };
 		BF707C0029BB427700225796 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF707BFF29BB427700225796 /* SceneDelegate.swift */; };
-		BF707C0229BB427700225796 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF707C0129BB427700225796 /* ViewController.swift */; };
+		BF707C0229BB427700225796 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF707C0129BB427700225796 /* MainVC.swift */; };
 		BF707C0529BB427700225796 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF707C0329BB427700225796 /* Main.storyboard */; };
 		BF707C0729BB427900225796 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF707C0629BB427900225796 /* Assets.xcassets */; };
 		BF707C0A29BB427900225796 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF707C0829BB427900225796 /* LaunchScreen.storyboard */; };
 		BF707C1329BB444700225796 /* LandlordsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF707C1229BB444700225796 /* LandlordsManager.swift */; };
-		BF8A62F829DD7B8500E2DCD4 /* VC+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A62F729DD7B8500E2DCD4 /* VC+TableViewDelegate.swift */; };
+		BF8A62F829DD7B8500E2DCD4 /* MainVC+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A62F729DD7B8500E2DCD4 /* MainVC+TableViewDelegate.swift */; };
 		BF8A62FA29DD9F5300E2DCD4 /* ApartmentCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A62F929DD9F5300E2DCD4 /* ApartmentCellDelegate.swift */; };
-		BF8A62FC29DDA1E700E2DCD4 /* VC+ApartmentCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A62FB29DDA1E700E2DCD4 /* VC+ApartmentCellDelegate.swift */; };
+		BF8A62FC29DDA1E700E2DCD4 /* MainVC+ApartmentCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A62FB29DDA1E700E2DCD4 /* MainVC+ApartmentCellDelegate.swift */; };
 		BF8BD27729F13DC400771321 /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8BD27629F13DC400771321 /* NotificationsManager.swift */; };
 		BF8C912829DDB865008AD739 /* IntelPentiumSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BF8C912729DDB865008AD739 /* IntelPentiumSound.mp3 */; };
 		BF8C912B29DDB877008AD739 /* VonoviaLogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BF8C912929DDB877008AD739 /* VonoviaLogo.jpg */; };
@@ -49,7 +49,7 @@
 		BF9DC6A829BC94B00027FADC /* sci-fi.wav in Resources */ = {isa = PBXBuildFile; fileRef = BF9DC6A729BC94B00027FADC /* sci-fi.wav */; };
 		BF9DC6AA29BC96CE0027FADC /* chicken.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BF9DC6A929BC96CD0027FADC /* chicken.mp3 */; };
 		BF9DC6AC29BCAF630027FADC /* Apartment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9DC6AB29BCAF630027FADC /* Apartment.swift */; };
-		BF9E7A472A6D345D00274A30 /* VC+ModalVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9E7A462A6D345D00274A30 /* VC+ModalVCDelegate.swift */; };
+		BF9E7A472A6D345D00274A30 /* MainVC+ModalVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9E7A462A6D345D00274A30 /* MainVC+ModalVCDelegate.swift */; };
 		BFA1C3D329C339540023396C /* UIView+removeAllSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA1C3D229C339540023396C /* UIView+removeAllSubviews.swift */; };
 		BFA3DEF129D82FD5009B23D8 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA3DEF029D82FD5009B23D8 /* ModalView.swift */; };
 		BFA68DD429DAEAB20023B268 /* ApartmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA68DD229DAEAB20023B268 /* ApartmentCell.swift */; };
@@ -81,21 +81,21 @@
 		BF5C017729C71522006C06D4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		BF5C017929C71574006C06D4 /* BackgroundAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundAudioPlayer.swift; sourceTree = "<group>"; };
 		BF5C017B29C71635006C06D4 /* heavy-rain.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "heavy-rain.wav"; sourceTree = "<group>"; };
-		BF5C017D29C71DCF006C06D4 /* VC+AVAudioPlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+AVAudioPlayerDelegate.swift"; sourceTree = "<group>"; };
+		BF5C017D29C71DCF006C06D4 /* MainVC+AVAudioPlayerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVC+AVAudioPlayerDelegate.swift"; sourceTree = "<group>"; };
 		BF5C017F29C72069006C06D4 /* SilentSong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SilentSong.wav; sourceTree = "<group>"; };
 		BF707BFA29BB427700225796 /* WohnungSuchen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WohnungSuchen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF707BFD29BB427700225796 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF707BFF29BB427700225796 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BF707C0129BB427700225796 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BF707C0129BB427700225796 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		BF707C0429BB427700225796 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BF707C0629BB427900225796 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF707C0929BB427900225796 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BF707C0B29BB427900225796 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF707C1129BB43D100225796 /* WohnungSuchen.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WohnungSuchen.entitlements; sourceTree = "<group>"; };
 		BF707C1229BB444700225796 /* LandlordsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandlordsManager.swift; sourceTree = "<group>"; };
-		BF8A62F729DD7B8500E2DCD4 /* VC+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+TableViewDelegate.swift"; sourceTree = "<group>"; };
+		BF8A62F729DD7B8500E2DCD4 /* MainVC+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVC+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		BF8A62F929DD9F5300E2DCD4 /* ApartmentCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentCellDelegate.swift; sourceTree = "<group>"; };
-		BF8A62FB29DDA1E700E2DCD4 /* VC+ApartmentCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+ApartmentCellDelegate.swift"; sourceTree = "<group>"; };
+		BF8A62FB29DDA1E700E2DCD4 /* MainVC+ApartmentCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVC+ApartmentCellDelegate.swift"; sourceTree = "<group>"; };
 		BF8BD27629F13DC400771321 /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
 		BF8C912729DDB865008AD739 /* IntelPentiumSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = IntelPentiumSound.mp3; sourceTree = "<group>"; };
 		BF8C912929DDB877008AD739 /* VonoviaLogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = VonoviaLogo.jpg; sourceTree = "<group>"; };
@@ -116,7 +116,7 @@
 		BF9DC6A729BC94B00027FADC /* sci-fi.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sci-fi.wav"; sourceTree = "<group>"; };
 		BF9DC6A929BC96CD0027FADC /* chicken.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chicken.mp3; sourceTree = "<group>"; };
 		BF9DC6AB29BCAF630027FADC /* Apartment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apartment.swift; sourceTree = "<group>"; };
-		BF9E7A462A6D345D00274A30 /* VC+ModalVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VC+ModalVCDelegate.swift"; sourceTree = "<group>"; };
+		BF9E7A462A6D345D00274A30 /* MainVC+ModalVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVC+ModalVCDelegate.swift"; sourceTree = "<group>"; };
 		BFA1C3D229C339540023396C /* UIView+removeAllSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+removeAllSubviews.swift"; sourceTree = "<group>"; };
 		BFA3DEF029D82FD5009B23D8 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
 		BFA68DD229DAEAB20023B268 /* ApartmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentCell.swift; sourceTree = "<group>"; };
@@ -232,11 +232,11 @@
 		BF0F3F6329BDE5DE002909BB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				BF707C0129BB427700225796 /* ViewController.swift */,
-				BF9E7A462A6D345D00274A30 /* VC+ModalVCDelegate.swift */,
-				BF8A62F729DD7B8500E2DCD4 /* VC+TableViewDelegate.swift */,
-				BF8A62FB29DDA1E700E2DCD4 /* VC+ApartmentCellDelegate.swift */,
-				BF5C017D29C71DCF006C06D4 /* VC+AVAudioPlayerDelegate.swift */,
+				BF707C0129BB427700225796 /* MainVC.swift */,
+				BF9E7A462A6D345D00274A30 /* MainVC+ModalVCDelegate.swift */,
+				BF8A62F729DD7B8500E2DCD4 /* MainVC+TableViewDelegate.swift */,
+				BF8A62FB29DDA1E700E2DCD4 /* MainVC+ApartmentCellDelegate.swift */,
+				BF5C017D29C71DCF006C06D4 /* MainVC+AVAudioPlayerDelegate.swift */,
 				BFA71BD529CD949800F8781E /* DetectDetent.swift */,
 				BFA71BD129CD935A00F8781E /* ModalVC.swift */,
 				BFA71BDB29CDA7D300F8781E /* ModalVCDelegate.swift */,
@@ -462,17 +462,17 @@
 				BFA71BD229CD935A00F8781E /* ModalVC.swift in Sources */,
 				BF8E050E2A63EC20003A585C /* ProvidersCollectionViewCell.swift in Sources */,
 				BFEBAA5829E2D15300CC83C8 /* OptionsView.swift in Sources */,
-				BF8A62F829DD7B8500E2DCD4 /* VC+TableViewDelegate.swift in Sources */,
+				BF8A62F829DD7B8500E2DCD4 /* MainVC+TableViewDelegate.swift in Sources */,
 				BF9C8CF729D9952500406480 /* VonoviaJson.swift in Sources */,
 				BF8EB0F329E166D10070C64B /* Colour.swift in Sources */,
 				BF8EEDBA29C4771B00F74971 /* DefaultOptions.swift in Sources */,
 				BFA8D22D29F547450091D0FA /* SaveButton.swift in Sources */,
-				BF5C017E29C71DCF006C06D4 /* VC+AVAudioPlayerDelegate.swift in Sources */,
+				BF5C017E29C71DCF006C06D4 /* MainVC+AVAudioPlayerDelegate.swift in Sources */,
 				BF9205A029E029830017CEEA /* TimeManager.swift in Sources */,
 				BF5C017A29C71574006C06D4 /* BackgroundAudioPlayer.swift in Sources */,
 				BF8A62FA29DD9F5300E2DCD4 /* ApartmentCellDelegate.swift in Sources */,
 				BFA9F37229C1F61E00ECB8F4 /* ImmoButton.swift in Sources */,
-				BF707C0229BB427700225796 /* ViewController.swift in Sources */,
+				BF707C0229BB427700225796 /* MainVC.swift in Sources */,
 				BF9DC6AC29BCAF630027FADC /* Apartment.swift in Sources */,
 				BF8E05112A63EE45003A585C /* OptionsView+CollectionViewDelegate.swift in Sources */,
 				BFA8344929FA5F3F0073526C /* UISwitch+publisher.swift in Sources */,
@@ -481,7 +481,7 @@
 				BFBA6CF829D42F08004D0AFD /* ImmomioLinkFetcher.swift in Sources */,
 				BFA68DD429DAEAB20023B268 /* ApartmentCell.swift in Sources */,
 				BF8BD27729F13DC400771321 /* NotificationsManager.swift in Sources */,
-				BF9E7A472A6D345D00274A30 /* VC+ModalVCDelegate.swift in Sources */,
+				BF9E7A472A6D345D00274A30 /* MainVC+ModalVCDelegate.swift in Sources */,
 				BF8EEDB829C4701100F74971 /* MapButton.swift in Sources */,
 				BFA3DEF129D82FD5009B23D8 /* ModalView.swift in Sources */,
 				BFA1C3D329C339540023396C /* UIView+removeAllSubviews.swift in Sources */,
@@ -496,7 +496,7 @@
 				BFA71BDC29CDA7D300F8781E /* ModalVCDelegate.swift in Sources */,
 				BF4704C129D2D53B00EEABEE /* Landlord.swift in Sources */,
 				BFEBAA5C29E2EF0A00CC83C8 /* Options.swift in Sources */,
-				BF8A62FC29DDA1E700E2DCD4 /* VC+ApartmentCellDelegate.swift in Sources */,
+				BF8A62FC29DDA1E700E2DCD4 /* MainVC+ApartmentCellDelegate.swift in Sources */,
 				BF707C0029BB427700225796 /* SceneDelegate.swift in Sources */,
 				BF8C912E29DDB8C8008AD739 /* Company.swift in Sources */,
 			);

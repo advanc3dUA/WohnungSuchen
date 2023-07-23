@@ -1,5 +1,5 @@
 //
-//  VC+ApartmentCellDelegate.swift
+//  MainVC+ApartmentCellDelegate.swift
 //  DetectChanges
 //
 //  Created by Yuriy Gudimov on 05.04.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension ViewController: ApartmentCellDelegate {
+extension MainVC: ApartmentCellDelegate {
     func didTapLinkButtonInCell(with apartmentLink: String) {
         guard let url = URL(string: apartmentLink) else { return }
         UIApplication.shared.open(url)

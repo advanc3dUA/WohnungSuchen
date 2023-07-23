@@ -1,5 +1,5 @@
 //
-//  VC+TableViewDelegate.swift
+//  MainVC+TableViewDelegate.swift
 //  DetectChanges
 //
 //  Created by Yuriy Gudimov on 05.04.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension MainVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
