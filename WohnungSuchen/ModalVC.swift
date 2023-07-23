@@ -164,7 +164,6 @@ final class ModalVC: UIViewController {
             }
             .sink { [unowned self] isValid in
                 saveButtonIsEnabled(isValid)
-                print("Combine latest saveButtonIsEnabled(\(isValid)")
                 optionsSubject.value = options
             }
             .store(in: &cancellables)
