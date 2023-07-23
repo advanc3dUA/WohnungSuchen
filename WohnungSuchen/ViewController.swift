@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class ViewController: UIViewController, ModalVCDelegate {
+final class ViewController: UIViewController {
     
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -83,7 +83,7 @@ final class ViewController: UIViewController, ModalVCDelegate {
         modalVCView = modalVC?.view as? ModalView
     }
     
-    //MARK: - ModalVCDelegate
+    //MARK: - Start/Stop Engine
     
     func startEngine() {
         showLoadingView()

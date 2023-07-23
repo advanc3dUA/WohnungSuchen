@@ -20,7 +20,7 @@ final class ModalVC: UIViewController {
             }
         }
     }
-    var delegate: ModalVCDelegate?
+    weak var delegate: ModalVCDelegate?
     private var cancellables: Set<AnyCancellable> = []
     
     init(smallDetentSize: CGFloat, optionsSubject: CurrentValueSubject<Options, Never>) {
@@ -92,10 +92,10 @@ final class ModalVC: UIViewController {
     @objc func startPauseButtonTapped(sender: StartPauseButton) {
         if sender.isOn {
             sender.switchOff()
-            delegate?.startEngine()
+            delegate?.didTapStartButton()
         } else {
             sender.switchOn()
-            delegate?.pauseEngine()
+            delegate?.didTapPauseButton()
         }
     }
     
@@ -164,6 +164,7 @@ final class ModalVC: UIViewController {
             }
             .sink { [unowned self] isValid in
                 saveButtonIsEnabled(isValid)
+                print("Combine latest saveButtonIsEnabled(\(isValid)")
                 optionsSubject.value = options
             }
             .store(in: &cancellables)

@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ModalVCDelegate {
-    func startEngine()
-    func pauseEngine()
+protocol ModalVCDelegate: AnyObject {
+    func didTapStartButton()
+    func didTapPauseButton()
 }
