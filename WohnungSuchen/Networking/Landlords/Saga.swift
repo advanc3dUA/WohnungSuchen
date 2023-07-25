@@ -20,7 +20,8 @@ final class Saga: Landlord {
         var currentApartments = [Apartment]()
         let dispatchGroup = DispatchGroup()
         
-        networkManager.fetchHtmlString(urlString: searchURLString) {[unowned self] htmlString in
+        networkManager.fetchHtmlString(urlString: searchURLString) {[weak self] htmlString in
+            guard let self = self else { return }
             guard let htmlString = htmlString else {
                 fatalError("Can't get htmlString for SAGA")
             }
@@ -33,12 +34,12 @@ final class Saga: Landlord {
                        let href = try? link.attr("href"),
                        let title = try? link.select("h3").first()?.text(),
                        let roomInfo = try? link.select("span.ft-semi:contains(Zimmer:)").first()?.parent()?.text(),
-                       let details = extractApartmentDetails(from: roomInfo),
+                       let details = self.extractApartmentDetails(from: roomInfo),
                        let street = try? link.select("span.ft-semi:contains(Straße:)").first()?.parent()?.text() {
                         let newApartment = Apartment(time: time,
                                                      title: title,
                                                      internalLink: "https://www.saga.hamburg" + href,
-                                                     street: dropPrefix(for: street),
+                                                     street: self.dropPrefix(for: street),
                                                      rooms: details.rooms,
                                                      area: details.area,
                                                      rent: details.rent,

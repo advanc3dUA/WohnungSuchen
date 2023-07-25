@@ -140,41 +140,39 @@ final class ModalVC: UIViewController {
         
         let soundSwitchPublisher = modalView.optionsView.soundSwitch.switchPublisher
             .prepend(optionsSubject.value.soundIsOn)
+        
+        let landlordsPublisher = optionsSubject
+            .map { $0.landlords }
+            .removeDuplicates()
 
         let roomsPub = Publishers.CombineLatest(roomsMinIntPublisher, roomsMaxIntPublisher)
         let areaPub = Publishers.CombineLatest(areaMinIntPublisher, areaMaxIntPublisher)
         let rentPub = Publishers.CombineLatest(rentMinIntPublisher, rentMaxIntPublisher)
-        let updateTimeAndSoundSwitchPub = Publishers.CombineLatest(timerUpdateIntPublisher, soundSwitchPublisher)
+        let updateTimeSoundSwitchAndLandlordsPub = Publishers.CombineLatest3(timerUpdateIntPublisher, soundSwitchPublisher, landlordsPublisher)
         let options = Options()
         
-        Publishers.CombineLatest4(roomsPub, areaPub, rentPub, updateTimeAndSoundSwitchPub)
+        Publishers.CombineLatest4(roomsPub, areaPub, rentPub, updateTimeSoundSwitchAndLandlordsPub)
             .dropFirst()
-            .map { [unowned self] rooms, area, rent, timeAndSoundSwitch in
+            .map { rooms, area, rent, updateTimeSoundSwitchAndLandlords in
                 options.roomsMin = rooms.0
                 options.roomsMax = rooms.1
                 options.areaMin = area.0
                 options.areaMax = area.1
                 options.rentMin = rent.0
                 options.rentMax = rent.1
-                options.updateTime = timeAndSoundSwitch.0
-                options.soundIsOn = timeAndSoundSwitch.1
-                options.landlords[SavingKeys.saga.rawValue] = optionsSubject.value.landlords[SavingKeys.saga.rawValue]
-                options.landlords[SavingKeys.vonovia.rawValue] = optionsSubject.value.landlords[SavingKeys.vonovia.rawValue]
+                options.updateTime = updateTimeSoundSwitchAndLandlords.0
+                options.soundIsOn = updateTimeSoundSwitchAndLandlords.1
+                options.landlords[SavingKeys.saga.rawValue] = updateTimeSoundSwitchAndLandlords.2[SavingKeys.saga.rawValue]
+                options.landlords[SavingKeys.vonovia.rawValue] = updateTimeSoundSwitchAndLandlords.2[SavingKeys.vonovia.rawValue]
                 return rooms.0 <= rooms.1 && area.0 <= area.1 && rent.0 <= rent.0
             }
+        
             .sink { [unowned self] isValid in
                 saveButtonIsEnabled(isValid)
-                optionsSubject.value = options
-            }
-            .store(in: &cancellables)
-        
-        optionsSubject
-            .dropFirst()
-            .map { $0.landlords }
-            .sink { [unowned self] _ in
-                if optionsSubject.value.isEqualToUserDefaults() {
+                if options.isEqualToUserDefaults() {
                     saveButtonIsEnabled(false)
-                } else { saveButtonIsEnabled(true) }
+                }
+                optionsSubject.value = options
             }
             .store(in: &cancellables)
     }
