@@ -1,5 +1,5 @@
 //
-//  NetworkManager.swift
+//  LandlordsManager.swift
 //  DetectChanges
 //
 //  Created by Yuriy Gudimov on 10.03.2023.
@@ -27,7 +27,7 @@ final class LandlordsManager {
             landlord.fetchApartmentsList { result in
                 switch result {
                 case .success(let apartments): currentApartments += apartments
-                case .failure(let error): print("Failed to fetch apartments for landlord. Error: \(error)")
+                case .failure(let error): print("Failed to fetch apartments for landlord. \(error)")
                 }
                 dispatchGroup.leave()
             }

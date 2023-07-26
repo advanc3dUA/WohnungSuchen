@@ -16,19 +16,22 @@ final class ImmomioLinkFetcher {
     }
     
     func fetchLink(for apartmentLink: String, completion: @escaping (Result<String, Error>) -> Void) {
-        var immomioLink = ""
         networkManager.fetchHtmlString(urlString: apartmentLink) { htmlString in
             guard let htmlString = htmlString else {
-                fatalError("Couldn't parse SAGA apartment htmlString")
+                completion(.failure(NSError(domain: "", code: 1001, userInfo: [NSLocalizedDescriptionKey: "Couldn't parse SAGA apartment htmlString"])))
+                return
             }
             do {
                 let doc = try SwiftSoup.parse(htmlString)
-                immomioLink = try doc.select("a[href^=\"https://rdr.immomio.com\"]").first()!.attr("href")
+                if let immomioLink = try? doc.select("a[href^=\"https://rdr.immomio.com\"]").first()?.attr("href") {
+                    completion(.success(immomioLink))
+                } else {
+                    completion(.failure(NSError(domain: "", code: 1002, userInfo: [NSLocalizedDescriptionKey: "Couldn't find immomioLink"])))
+                }
             } catch {
-                print("Error parsing HTML: \(error)")
-                completion(.failure(error))
+                completion(.failure(NSError(domain: "", code: 1003, userInfo: [NSLocalizedDescriptionKey: "Couldn't parse doc for apartment"])))
             }
-            completion(.success(immomioLink))
         }
     }
+
 }
