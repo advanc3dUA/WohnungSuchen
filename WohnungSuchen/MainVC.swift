@@ -128,6 +128,7 @@ final class MainVC: UIViewController {
     private func setPublisherToUpdateLandlordsListInManager() {
         optionsSubject
             .map { $0.landlords }
+            .removeDuplicates()
             .sink { [unowned self] landlords in
                 landlordsManager?.landlords.removeAll()
 
