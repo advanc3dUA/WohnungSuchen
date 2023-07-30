@@ -42,6 +42,7 @@
 		BF8EB0F729E17A360070C64B /* UIView+Flashing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EB0F629E17A360070C64B /* UIView+Flashing.swift */; };
 		BF8EEDB829C4701100F74971 /* MapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EEDB729C4701100F74971 /* MapButton.swift */; };
 		BF8EEDBA29C4771B00F74971 /* DefaultOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EEDB929C4771B00F74971 /* DefaultOptions.swift */; };
+		BF9055782A76472400A8082B /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9055772A76472400A8082B /* AppError.swift */; };
 		BF9205A029E029830017CEEA /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF92059F29E029830017CEEA /* TimeManager.swift */; };
 		BF94F64A29D75D0B00993295 /* StartPauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF94F64929D75D0B00993295 /* StartPauseButton.swift */; };
 		BF9C8CF529D97FB500406480 /* Vonovia.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9C8CF429D97FB500406480 /* Vonovia.swift */; };
@@ -109,6 +110,7 @@
 		BF8EB0F629E17A360070C64B /* UIView+Flashing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Flashing.swift"; sourceTree = "<group>"; };
 		BF8EEDB729C4701100F74971 /* MapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButton.swift; sourceTree = "<group>"; };
 		BF8EEDB929C4771B00F74971 /* DefaultOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultOptions.swift; sourceTree = "<group>"; };
+		BF9055772A76472400A8082B /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		BF92059F29E029830017CEEA /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
 		BF94F64929D75D0B00993295 /* StartPauseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPauseButton.swift; sourceTree = "<group>"; };
 		BF9C8CF429D97FB500406480 /* Vonovia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vonovia.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				BFEBAA5B29E2EF0A00CC83C8 /* Options.swift */,
 				BF8EEDB929C4771B00F74971 /* DefaultOptions.swift */,
 				BF9C8CF629D9952500406480 /* VonoviaJson.swift */,
+				BF9055772A76472400A8082B /* AppError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				BF707C0229BB427700225796 /* MainVC.swift in Sources */,
 				BF9DC6AC29BCAF630027FADC /* Apartment.swift in Sources */,
 				BF8E05112A63EE45003A585C /* OptionsView+CollectionViewDelegate.swift in Sources */,
+				BF9055782A76472400A8082B /* AppError.swift in Sources */,
 				BFA8344929FA5F3F0073526C /* UISwitch+publisher.swift in Sources */,
 				BFA8D22729F3FC810091D0FA /* Extractable.swift in Sources */,
 				BF8EB0F529E16B880070C64B /* LoadingView.swift in Sources */,

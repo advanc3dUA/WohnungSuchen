@@ -21,7 +21,7 @@ final class Vonovia: Landlord {
         networkManager.fetchData(urlString: searchURLString) {[weak self] data in
             do {
                 let decoder = JSONDecoder()
-                let result = try decoder.decode(VonoviaJson.self, from: data)
+                let result = try decoder.decode(VonoviaJson.self, from: data.get())
                 
                 var currentApartments = [Apartment]()
                 guard let self = self else { return }

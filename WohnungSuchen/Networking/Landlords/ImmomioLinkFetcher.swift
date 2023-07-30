@@ -17,12 +17,8 @@ final class ImmomioLinkFetcher {
     
     func fetchLink(for apartmentLink: String, completion: @escaping (Result<String, Error>) -> Void) {
         networkManager.fetchHtmlString(urlString: apartmentLink) { htmlString in
-            guard let htmlString = htmlString else {
-                completion(.failure(NSError(domain: "", code: 1001, userInfo: [NSLocalizedDescriptionKey: "Couldn't parse SAGA apartment htmlString"])))
-                return
-            }
             do {
-                let doc = try SwiftSoup.parse(htmlString)
+                let doc = try SwiftSoup.parse(htmlString.get())
                 if let immomioLink = try? doc.select("a[href^=\"https://rdr.immomio.com\"]").first()?.attr("href") {
                     completion(.success(immomioLink))
                 } else {

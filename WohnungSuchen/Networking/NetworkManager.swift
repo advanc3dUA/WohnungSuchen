@@ -8,25 +8,30 @@
 import Foundation
 
 final class NetworkManager {
-    func fetchHtmlString(urlString: String, completion: @escaping (String?) -> ()) {
+    func fetchHtmlString(urlString: String, completion: @escaping (Result<String, AppError.NetworkManagerError>) -> ()) {
         guard let url = URL(string: urlString) else { return }
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data else { return }
-            let htmlString = String(decoding: data, as: UTF8.self)
+            if let networkError = AppError.NetworkManagerError(data: data, response: response, error: error) {
+                completion(.failure(networkError))
+                return
+            }
+            let htmlString = String(decoding: data!, as: UTF8.self)
             
-            completion(htmlString)
+            completion(.success(htmlString))
         }
         task.resume()
     }
     
-    func fetchData(urlString: String, completion: @escaping (Data) -> ()) {
+    func fetchData(urlString: String, completion: @escaping (Result<Data, AppError.NetworkManagerError>) -> ()) {
         guard let url = URL(string: urlString) else { return }
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data else { return }
-            
-            completion(data)
+            if let networkError = AppError.NetworkManagerError(data: data, response: response, error: error) {
+                completion(.failure(networkError))
+                return
+            }
+            completion(.success(data!))
         }
         task.resume()
     }

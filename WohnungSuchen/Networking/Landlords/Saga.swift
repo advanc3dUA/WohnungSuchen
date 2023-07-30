@@ -21,12 +21,9 @@ final class Saga: Landlord {
         let dispatchGroup = DispatchGroup()
         
         networkManager.fetchHtmlString(urlString: searchURLString) {[unowned self] htmlString in
-            guard let htmlString = htmlString else {
-                fatalError("Can't get htmlString for SAGA")
-            }
             do {
                 let time = TimeManager.shared.getCurrentTime()
-                let doc = try SwiftSoup.parse(htmlString)
+                let doc = try SwiftSoup.parse(htmlString.get())
                 let apartments = try doc.select("div.teaser3")
                 for apartment in apartments {
                     if let link = try? apartment.select("a").first(),
