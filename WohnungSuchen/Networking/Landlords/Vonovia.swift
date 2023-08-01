@@ -17,16 +17,19 @@ final class Vonovia: Landlord {
         self.networkManager = networkManager
     }
     
-    func fetchApartmentsList(completion: @escaping (Result<[Apartment], Error>) -> Void) {
-        networkManager.fetchData(urlString: searchURLString) {[weak self] data in
-            do {
+    func fetchApartmentsList(completion: @escaping (Result<[Apartment], AppError>) -> Void) {
+        networkManager.fetchData(urlString: searchURLString) {[weak self] result in
+            switch result {
+            case .success(let data):
                 let decoder = JSONDecoder()
-                let result = try decoder.decode(VonoviaJson.self, from: data.get())
-                
+                guard let decodedData = try? decoder.decode(VonoviaJson.self, from: data) else {
+                    completion(.failure(AppError.landlordError(.vonoviaDecodedDataCreationFailed)))
+                    return
+                }
                 var currentApartments = [Apartment]()
                 guard let self = self else { return }
                 let time = TimeManager.shared.getCurrentTime()
-                for jsonApartment in result.apartments {
+                for jsonApartment in decodedData.apartments {
                     let link = self.vonoviaURL + jsonApartment.slug.lowercased() + "-" + jsonApartment.wrk_id
                     let area = self.getRoundedInt(from: jsonApartment.groesse)
                     let price = self.getRoundedInt(from: jsonApartment.preis)
@@ -44,16 +47,10 @@ final class Vonovia: Landlord {
                                               company: .vonovia)
                     currentApartments.append(apartment)
                 }
-                if currentApartments.isEmpty {
-                    completion(.success([]))
-                } else {
-                    completion(.success(currentApartments))
-                }
-            }
-
-            catch {
-                print("ERROR IN VONOVIA")
-                print(error.localizedDescription)
+                completion(.success(currentApartments))
+ 
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }

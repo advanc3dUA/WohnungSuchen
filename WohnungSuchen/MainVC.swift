@@ -88,31 +88,37 @@ final class MainVC: UIViewController {
     func startEngine() {
         showLoadingView()
         timer = Timer.scheduledTimer(withTimeInterval: Double(optionsSubject.value.updateTime), repeats: true) {[unowned self] timer in
-            landlordsManager?.start { [weak self] apartments in
+            landlordsManager?.start { [weak self] result in
                 guard let self = self else { return }
                 
-                if self.isSecondRunPlus && !apartments.isEmpty {
-                    var modifiedApartmentsCount = 0
-                    let newApartments = apartments.map { apartment in
-                        if self.checkApartmentSatisfyCurrentFilter(apartment) {
-                            var modifiedApartment = apartment
-                            modifiedApartment.isNew = true
-                            modifiedApartmentsCount += 1
-                            return modifiedApartment
-                        } else {
-                            return apartment
+                switch result {
+                case .failure(let error):
+                    print("Error is: \(error)")
+                    
+                case .success(let apartments):
+                    if self.isSecondRunPlus && !apartments.isEmpty {
+                        var modifiedApartmentsCount = 0
+                        let newApartments = apartments.map { apartment in
+                            if self.checkApartmentSatisfyCurrentFilter(apartment) {
+                                var modifiedApartment = apartment
+                                modifiedApartment.isNew = true
+                                modifiedApartmentsCount += 1
+                                return modifiedApartment
+                            } else {
+                                return apartment
+                            }
                         }
+                        self.currentApartments.insert(contentsOf: newApartments, at: 0)
+                        self.notificationsManager.pushNotification(for: modifiedApartmentsCount)
+                    } else if !self.isSecondRunPlus {
+                        self.currentApartments = apartments
+                        self.isSecondRunPlus = true
                     }
-                    self.currentApartments.insert(contentsOf: newApartments, at: 0)
-                    self.notificationsManager.pushNotification(for: modifiedApartmentsCount)
-                } else if !self.isSecondRunPlus {
-                    self.currentApartments = apartments
-                    self.isSecondRunPlus = true
+                    self.loadingView?.removeFromSuperview()
+                    self.statusLabel.text = "Last update: \(TimeManager.shared.getCurrentTime())"
+                    self.statusLabel.flash(numberOfFlashes: 1)
+                    modalVCView?.containerView?.isHidden = false
                 }
-                self.loadingView?.removeFromSuperview()
-                self.statusLabel.text = "Last update: \(TimeManager.shared.getCurrentTime())"
-                self.statusLabel.flash(numberOfFlashes: 1)
-                modalVCView?.containerView?.isHidden = false
             }
         }
         timer?.fire()

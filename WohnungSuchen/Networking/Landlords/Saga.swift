@@ -16,15 +16,18 @@ final class Saga: Landlord {
         self.networkManager = networkManager
     }
     
-    func fetchApartmentsList(completion: @escaping (Result<[Apartment], Error>) -> Void) {
+    func fetchApartmentsList(completion: @escaping (Result<[Apartment], AppError>) -> Void) {
         var currentApartments = [Apartment]()
         let dispatchGroup = DispatchGroup()
         
-        networkManager.fetchHtmlString(urlString: searchURLString) {[unowned self] htmlString in
-            do {
+        networkManager.fetchHtmlString(urlString: searchURLString) {[unowned self] result in
+            switch result {
+            case .success(let htmlString):
                 let time = TimeManager.shared.getCurrentTime()
-                let doc = try SwiftSoup.parse(htmlString.get())
-                let apartments = try doc.select("div.teaser3")
+                guard let doc = try? SwiftSoup.parse(htmlString), let apartments = try? doc.select("div.teaser3") else {
+                    completion(.failure(AppError.landlordError(.sagaDocCreationFailed)))
+                    return
+                }
                 for apartment in apartments {
                     if let link = try? apartment.select("a").first(),
                        let href = try? link.attr("href"),
@@ -46,13 +49,11 @@ final class Saga: Landlord {
                         dispatchGroup.leave()
                     }
                 }
-            } catch { print("Error parsing HTML: \(error)") }
-            dispatchGroup.notify(queue: DispatchQueue.main) {
-                if currentApartments.isEmpty {
-                    completion(.success([]))
-                } else {
+                dispatchGroup.notify(queue: DispatchQueue.main) {
                     completion(.success(currentApartments))
                 }
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }

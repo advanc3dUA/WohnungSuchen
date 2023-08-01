@@ -10,6 +10,7 @@ import Foundation
 enum AppError: Error {
     case networkManagerError(NetworkManagerError)
     case immomioLinkError(ImmomioLinkError)
+    case landlordError(LandlordsError)
     
     enum NetworkManagerError: Error {
         case transport(Error)
@@ -20,6 +21,11 @@ enum AppError: Error {
     enum ImmomioLinkError: Error {
         case docCreationFailed
         case linkExtractionFailed
+    }
+    
+    enum LandlordsError: Error {
+        case sagaDocCreationFailed
+        case vonoviaDecodedDataCreationFailed
     }
 }
 
