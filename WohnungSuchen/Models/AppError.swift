@@ -8,6 +8,9 @@
 import Foundation
 
 enum AppError: Error {
+    case networkManagerError(NetworkManagerError)
+    case immomioLinkError(ImmomioLinkError)
+    
     enum NetworkManagerError: Error {
         case transportError(Error)
         case serverError(statusCode: Int)
@@ -15,7 +18,7 @@ enum AppError: Error {
     }
     
     enum ImmomioLinkError: Error {
-
+        case docCreationError
     }
 }
 
