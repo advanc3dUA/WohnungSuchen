@@ -12,25 +12,26 @@ enum AppError: Error {
     case immomioLinkError(ImmomioLinkError)
     
     enum NetworkManagerError: Error {
-        case transportError(Error)
-        case serverError(statusCode: Int)
+        case transport(Error)
+        case server(statusCode: Int)
         case dataUnavailable
     }
     
     enum ImmomioLinkError: Error {
-        case docCreationError
+        case docCreationFailed
+        case linkExtractionFailed
     }
 }
 
 extension AppError.NetworkManagerError {
     init?(data: Data?, response: URLResponse?, error: Error?) {
         if let error = error {
-            self = .transportError(error)
+            self = .transport(error)
             return
         }
         
         if let response = response as? HTTPURLResponse, !(200...299).contains(response.statusCode) {
-            self = .serverError(statusCode: response.statusCode)
+            self = .server(statusCode: response.statusCode)
             return
         }
         

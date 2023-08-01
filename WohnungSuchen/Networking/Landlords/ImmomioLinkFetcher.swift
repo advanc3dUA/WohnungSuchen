@@ -15,19 +15,23 @@ final class ImmomioLinkFetcher {
         self.networkManager = networkManager
     }
     
-    func fetchLink(for apartmentLink: String, completion: @escaping (Result<String, Error>) -> Void) {
-        networkManager.fetchHtmlString(urlString: apartmentLink) { htmlString in
-            do {
-                let doc = try SwiftSoup.parse(htmlString.get())
+    func fetchLink(for apartmentLink: String, completion: @escaping (Result<String, AppError>) -> Void) {
+        networkManager.fetchHtmlString(urlString: apartmentLink) { result in
+            switch result {
+            case .success(let htmlString):
+                guard let doc = try? SwiftSoup.parse(htmlString) else {
+                    completion(.failure(AppError.immomioLinkError(.docCreationFailed)))
+                    return
+                }
+                
                 if let immomioLink = try? doc.select("a[href^=\"https://rdr.immomio.com\"]").first()?.attr("href") {
                     completion(.success(immomioLink))
                 } else {
-                    completion(.failure(NSError(domain: "", code: 1002, userInfo: [NSLocalizedDescriptionKey: "Couldn't find immomioLink"])))
+                    completion(.failure(AppError.immomioLinkError(.linkExtractionFailed)))
                 }
-            } catch {
-                completion(.failure(NSError(domain: "", code: 1003, userInfo: [NSLocalizedDescriptionKey: "Couldn't parse doc for apartment"])))
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }
-
 }
