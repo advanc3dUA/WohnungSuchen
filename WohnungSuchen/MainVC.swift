@@ -25,6 +25,7 @@ final class MainVC: UIViewController {
     private var isSecondRunPlus: Bool
     private var loadingView: LoadingView?
     private(set) var backgroundAudioPlayer: BackgroundAudioPlayer?
+    private var warningAlertControllerFactory: WarningAlertControllerFactory
     var bgAudioPlayerIsInterrupted: Bool
     
     private var cancellables: Set<AnyCancellable> = []
@@ -37,6 +38,7 @@ final class MainVC: UIViewController {
         self.currentApartments = [Apartment]()
         self.apartmentsDataSource = [Apartment]()
         self.notificationsManager = NotificationsManager()
+        self.warningAlertControllerFactory = WarningAlertControllerFactory()
         self.modalVCIsPresented = false
         self.isSecondRunPlus = false
         self.bgAudioPlayerIsInterrupted = false
@@ -93,7 +95,13 @@ final class MainVC: UIViewController {
                 
                 switch result {
                 case .failure(let error):
-                    print("Error is: \(error)")
+                    let errorDescription = warningAlertControllerFactory.getDescription(for: error)
+                    DispatchQueue.main.async { [unowned modalVC] in
+                        let warningController = UIAlertController(title: "Warning", message: errorDescription, preferredStyle: .alert)
+                        let okButton = UIAlertAction(title: "OK", style: .cancel)
+                        warningController.addAction(okButton)
+                        modalVC?.present(warningController, animated: true)
+                    }
                     
                 case .success(let apartments):
                     if self.isSecondRunPlus && !apartments.isEmpty {

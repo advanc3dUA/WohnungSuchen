@@ -58,6 +58,7 @@
 		BFA71BD229CD935A00F8781E /* ModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA71BD129CD935A00F8781E /* ModalVC.swift */; };
 		BFA71BD629CD949800F8781E /* DetectDetent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA71BD529CD949800F8781E /* DetectDetent.swift */; };
 		BFA71BDC29CDA7D300F8781E /* ModalVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA71BDB29CDA7D300F8781E /* ModalVCDelegate.swift */; };
+		BFA7A99F2A7AA61A004957CD /* WarningAlertControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA7A99E2A7AA61A004957CD /* WarningAlertControllerFactory.swift */; };
 		BFA8344929FA5F3F0073526C /* UISwitch+publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA8344829FA5F3F0073526C /* UISwitch+publisher.swift */; };
 		BFA8D22729F3FC810091D0FA /* Extractable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA8D22629F3FC810091D0FA /* Extractable.swift */; };
 		BFA8D22D29F547450091D0FA /* SaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA8D22C29F547450091D0FA /* SaveButton.swift */; };
@@ -126,6 +127,7 @@
 		BFA71BD129CD935A00F8781E /* ModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalVC.swift; sourceTree = "<group>"; };
 		BFA71BD529CD949800F8781E /* DetectDetent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectDetent.swift; sourceTree = "<group>"; };
 		BFA71BDB29CDA7D300F8781E /* ModalVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalVCDelegate.swift; sourceTree = "<group>"; };
+		BFA7A99E2A7AA61A004957CD /* WarningAlertControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningAlertControllerFactory.swift; sourceTree = "<group>"; };
 		BFA8344829FA5F3F0073526C /* UISwitch+publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISwitch+publisher.swift"; sourceTree = "<group>"; };
 		BFA8D22629F3FC810091D0FA /* Extractable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extractable.swift; sourceTree = "<group>"; };
 		BFA8D22C29F547450091D0FA /* SaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButton.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				BFA71BD129CD935A00F8781E /* ModalVC.swift */,
 				BFA71BDB29CDA7D300F8781E /* ModalVCDelegate.swift */,
 				BF8A62F929DD9F5300E2DCD4 /* ApartmentCellDelegate.swift */,
+				BFA7A99E2A7AA61A004957CD /* WarningAlertControllerFactory.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -468,6 +471,7 @@
 				BF8A62F829DD7B8500E2DCD4 /* MainVC+TableViewDelegate.swift in Sources */,
 				BF9C8CF729D9952500406480 /* VonoviaJson.swift in Sources */,
 				BF8EB0F329E166D10070C64B /* Color.swift in Sources */,
+				BFA7A99F2A7AA61A004957CD /* WarningAlertControllerFactory.swift in Sources */,
 				BF8EEDBA29C4771B00F74971 /* DefaultOptions.swift in Sources */,
 				BFA8D22D29F547450091D0FA /* SaveButton.swift in Sources */,
 				BF5C017E29C71DCF006C06D4 /* MainVC+AVAudioPlayerDelegate.swift in Sources */,
