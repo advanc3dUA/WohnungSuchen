@@ -122,10 +122,12 @@ final class MainVC: UIViewController {
                         self.currentApartments = apartments
                         self.isSecondRunPlus = true
                     }
-                    self.loadingView?.removeFromSuperview()
                     self.statusLabel.text = "Last update: \(TimeManager.shared.getCurrentTime())"
                     self.statusLabel.flash(numberOfFlashes: 1)
                     modalVCView?.containerView?.isHidden = false
+                }
+                DispatchQueue.main.async {
+                    self.loadingView?.removeFromSuperview()                    
                 }
             }
         }

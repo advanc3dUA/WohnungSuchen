@@ -21,6 +21,7 @@ final class LandlordsManager {
     public func start(completion: @escaping (Result<[Apartment], AppError>) -> ()) {
         var currentApartments = [Apartment]()
         let dispatchGroup = DispatchGroup()
+        var errorOccured = false
         
         for landlord in landlords {
             dispatchGroup.enter()
@@ -30,12 +31,15 @@ final class LandlordsManager {
                     currentApartments += apartments
                 case .failure(let error):
                     completion(.failure(error))
+                    errorOccured = true
                 }
                 dispatchGroup.leave()
             }
         }
-        
         dispatchGroup.notify(queue: .main) { [weak self] in
+            if errorOccured {
+                return
+            }
             self?.comparePreviousApartments(with: currentApartments) { result in
                 switch result {
                 case .success(let newApartments):
