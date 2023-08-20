@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct VonoviaJson: Codable {
+struct VonoviaJson: Decodable {
     var apartments: [VonoviaApartment]
     
     private enum CodingKeys: String, CodingKey {
@@ -15,7 +15,7 @@ struct VonoviaJson: Codable {
     }
 }
 
-struct VonoviaApartment: Codable {
+struct VonoviaApartment: Decodable {
     var wrk_id: String
     var strasse: String
     var titel: String
