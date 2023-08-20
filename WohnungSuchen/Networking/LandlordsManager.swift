@@ -81,8 +81,7 @@ final class LandlordsManager {
             immomioLinkFetcher.fetchLink(for: apartment.internalLink) { result in
                 switch result {
                 case .success(let immomioLink):
-                    var sagaModifiedApartment = apartment
-                    sagaModifiedApartment.externalLink = immomioLink
+                    let sagaModifiedApartment = Apartment(apartment: apartment, with: immomioLink)
                     modifiedApartments.append(sagaModifiedApartment)
                 case .failure(let error):
                     completion(.failure(error))

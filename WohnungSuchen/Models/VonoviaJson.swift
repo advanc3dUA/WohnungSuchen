@@ -16,13 +16,13 @@ struct VonoviaJson: Decodable {
 }
 
 struct VonoviaApartment: Decodable {
-    var wrk_id: String
-    var strasse: String
-    var titel: String
-    var preis: String
-    var groesse: String
-    var anzahl_zimmer: String
-    var slug: String
+    let wrk_id: String
+    let strasse: String
+    let titel: String
+    let preis: String
+    let groesse: String
+    let anzahl_zimmer: String
+    let slug: String
 }
 
 

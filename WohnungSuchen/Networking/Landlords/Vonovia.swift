@@ -35,7 +35,6 @@ final class Vonovia: Landlord {
                     let price = self.getRoundedInt(from: jsonApartment.preis)
                     let rooms = self.getRoundedInt(from: jsonApartment.anzahl_zimmer)
                     
-                    
                     let apartment = Apartment(time: time,
                                               title: jsonApartment.titel,
                                               internalLink: link,
@@ -44,7 +43,8 @@ final class Vonovia: Landlord {
                                               area: area,
                                               rent: price,
                                               externalLink: link,
-                                              company: .vonovia)
+                                              company: .vonovia
+                    )
                     currentApartments.append(apartment)
                 }
                 completion(.success(currentApartments))
