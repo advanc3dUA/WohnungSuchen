@@ -9,6 +9,8 @@ import UIKit
 import Combine
 
 final class ModalVC: UIViewController {
+    
+    //MARK: - Properties
     var modalView: ModalView!
     let optionsSubject: CurrentValueSubject<Options, Never>
     var currentDetent: UISheetPresentationController.Detent.Identifier? {
@@ -23,6 +25,7 @@ final class ModalVC: UIViewController {
     weak var delegate: ModalVCDelegate?
     private var cancellables: Set<AnyCancellable> = []
     
+    //MARK: - Initialization
     init(smallDetentSize: CGFloat, optionsSubject: CurrentValueSubject<Options, Never>) {
         currentDetent = .medium
         self.optionsSubject = optionsSubject
@@ -41,7 +44,6 @@ final class ModalVC: UIViewController {
     }
     
     //MARK: - VC Lifecycle
-    
     override func loadView() {
         modalView = ModalView()
         view = modalView
@@ -64,7 +66,6 @@ final class ModalVC: UIViewController {
     }
     
     //MARK: - Button's actions
-    
     func saveButtonIsEnabled(_ param: Bool) {
         if param {
             modalView.optionsView.saveButton.alpha = 1.0
@@ -100,7 +101,6 @@ final class ModalVC: UIViewController {
     }
     
     //MARK: - Options publishers
-    
     func makeTextFieldIntPublisher(_ textField: UITextField, initialValue: Int) -> AnyPublisher<Int, Never> {
         textField.publisher(for: \.text)
             .map { text in

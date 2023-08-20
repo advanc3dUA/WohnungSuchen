@@ -10,6 +10,7 @@ import Combine
 
 final class MainVC: UIViewController {
     
+    //MARK: - Properties
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     private var timer: Timer?
@@ -27,9 +28,9 @@ final class MainVC: UIViewController {
     private(set) var backgroundAudioPlayer: BackgroundAudioPlayer?
     private var warningAlertControllerFactory: WarningAlertControllerFactory
     var bgAudioPlayerIsInterrupted: Bool
-    
     private var cancellables: Set<AnyCancellable> = []
     
+    //MARK: - Initialization
     required init?(coder aDecoder: NSCoder) {
         let savedDefaultOptions = Options()
         savedDefaultOptions.loadSavedDefaults()
@@ -46,7 +47,6 @@ final class MainVC: UIViewController {
     }
     
     //MARK: - VC Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         notificationsManager.requestNotificationAuthorization()
@@ -78,15 +78,7 @@ final class MainVC: UIViewController {
         }
     }
     
-    private func setupModalVC() {
-        modalVC = ModalVC(smallDetentSize: calcModalVCDetentSizeSmall(), optionsSubject: optionsSubject)
-        modalVC?.presentationController?.delegate = self
-        modalVC?.delegate = self
-        modalVCView = modalVC?.view as? ModalView
-    }
-    
     //MARK: - Start/Stop Engine
-    
     func startEngine() {
         showLoadingView()
         timer = Timer.scheduledTimer(withTimeInterval: Double(optionsSubject.value.updateTime), repeats: true) {[unowned self] timer in
@@ -140,7 +132,6 @@ final class MainVC: UIViewController {
     }
     
     //MARK: - Publishers
-    
     private func setPublisherToUpdateLandlordsListInManager() {
         optionsSubject
             .map { $0.landlords }
@@ -218,9 +209,15 @@ final class MainVC: UIViewController {
     }
     
     //MARK: - Support methods
-    
     private func setupMainView() {
         view.backgroundColor = Color.brandDark.setColor
+    }
+    
+    private func setupModalVC() {
+        modalVC = ModalVC(smallDetentSize: calcModalVCDetentSizeSmall(), optionsSubject: optionsSubject)
+        modalVC?.presentationController?.delegate = self
+        modalVC?.delegate = self
+        modalVCView = modalVC?.view as? ModalView
     }
     
     private func setupTableView() {
@@ -250,7 +247,6 @@ final class MainVC: UIViewController {
 }
 
 // MARK: - DetectDetent Protocol
-
 extension MainVC: DetectDetent {
     func detentChanged(detent: UISheetPresentationController.Detent.Identifier) {
         switchModalVCCurrentDetent(to: detent)
@@ -267,7 +263,6 @@ extension MainVC: DetectDetent {
 }
 
 //MARK: - UISheetPresentationControllerDelegate
-
 extension MainVC: UISheetPresentationControllerDelegate {
     func sheetPresentationControllerDidChangeSelectedDetentIdentifier(_ sheetPresentationController: UISheetPresentationController) {
         if let currentDetent = sheetPresentationController.selectedDetentIdentifier {
