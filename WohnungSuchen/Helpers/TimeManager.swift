@@ -9,9 +9,9 @@ import Foundation
 
 struct TimeManager {
     static let shared = TimeManager()
-    
+
     private init() {}
-    
+
     func getCurrentTime() -> String {
         let currentTime = Date()
         let dateFormatter = DateFormatter()

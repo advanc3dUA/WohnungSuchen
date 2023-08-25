@@ -18,7 +18,7 @@ struct Apartment {
     let externalLink: String
     let company: Company
     var isNew: Bool
-    
+
     init(time: String,
          title: String,
          internalLink: String,
@@ -29,7 +29,7 @@ struct Apartment {
          externalLink: String = "",
          company: Company,
          isNew: Bool = false) {
-        
+
         self.time = time
         self.title = title
         self.internalLink = internalLink

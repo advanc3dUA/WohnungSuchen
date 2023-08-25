@@ -10,6 +10,7 @@
 		779ED7C4674CE54B30A3868E /* Pods_WohnungSuchen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3E3C8D775B90D6EBB69FB26 /* Pods_WohnungSuchen.framework */; };
 		BF0F3F5D29BDE47D002909BB /* fanfare.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BF0F3F5C29BDE47D002909BB /* fanfare.mp3 */; };
 		BF11CEA029EFD6FF00A9D194 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF11CE9F29EFD6FF00A9D194 /* CustomButton.swift */; };
+		BF160B792A97905B0049BCA2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BF160B782A97905B0049BCA2 /* .swiftlint.yml */; };
 		BF22E7E329EAB279003F245A /* Int+ExtractFromString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF22E7E229EAB279003F245A /* Int+ExtractFromString.swift */; };
 		BF4704BC29D2D47A00EEABEE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4704BB29D2D47A00EEABEE /* NetworkManager.swift */; };
 		BF4704BF29D2D52A00EEABEE /* Saga.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4704BE29D2D52A00EEABEE /* Saga.swift */; };
@@ -76,6 +77,7 @@
 		A3FE12165EF32A695B2F9190 /* Pods-DetectChanges.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DetectChanges.debug.xcconfig"; path = "Target Support Files/Pods-DetectChanges/Pods-DetectChanges.debug.xcconfig"; sourceTree = "<group>"; };
 		BF0F3F5C29BDE47D002909BB /* fanfare.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fanfare.mp3; sourceTree = "<group>"; };
 		BF11CE9F29EFD6FF00A9D194 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		BF160B782A97905B0049BCA2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		BF22E7E229EAB279003F245A /* Int+ExtractFromString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+ExtractFromString.swift"; sourceTree = "<group>"; };
 		BF4704BB29D2D47A00EEABEE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		BF4704BE29D2D52A00EEABEE /* Saga.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Saga.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 		BF707BF129BB427700225796 = {
 			isa = PBXGroup;
 			children = (
+				BF160B782A97905B0049BCA2 /* .swiftlint.yml */,
 				BF707BFC29BB427700225796 /* WohnungSuchen */,
 				BF707BFB29BB427700225796 /* Products */,
 				27D87C37BF331BB9AAB094A1 /* Pods */,
@@ -349,6 +352,7 @@
 				BF707BF729BB427700225796 /* Frameworks */,
 				BF707BF829BB427700225796 /* Resources */,
 				9420BA0B765C7DBB0DE9A186 /* [CP] Embed Pods Frameworks */,
+				BFB684FF2A9785B500017E10 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -397,6 +401,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF160B792A97905B0049BCA2 /* .swiftlint.yml in Resources */,
 				BF5C018029C72069006C06D4 /* SilentSong.wav in Resources */,
 				BF707C0A29BB427900225796 /* LaunchScreen.storyboard in Resources */,
 				BF9DC6A829BC94B00027FADC /* sci-fi.wav in Resources */,
@@ -455,6 +460,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WohnungSuchen/Pods-WohnungSuchen-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		BFB684FF2A9785B500017E10 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -655,7 +678,7 @@
 				CODE_SIGN_ENTITLEMENTS = "WohnungSuchen/Supporting files/WohnungSuchen.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Z4DAU59V98;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WohnungSuchen/Supporting files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -669,6 +692,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = ua.advanc3d.WohnungSuchen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
@@ -688,7 +712,7 @@
 				CODE_SIGN_ENTITLEMENTS = "WohnungSuchen/Supporting files/WohnungSuchen.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Z4DAU59V98;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WohnungSuchen/Supporting files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -702,6 +726,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = ua.advanc3d.WohnungSuchen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;

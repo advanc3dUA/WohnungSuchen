@@ -11,11 +11,9 @@ extension MainVC: ModalVCDelegate {
     func didTapStartButton() {
         startEngine()
     }
-    
+
     func didTapPauseButton() {
         pauseEngine()
     }
-    
-    
-}
 
+}

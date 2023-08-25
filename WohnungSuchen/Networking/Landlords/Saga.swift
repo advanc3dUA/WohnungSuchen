@@ -11,15 +11,15 @@ import SwiftSoup
 final class Saga: Landlord {
     private let networkManager: NetworkManager
     private let searchURLString = "https://www.saga.hamburg/immobiliensuche?type=wohnungen"
-    
+
     init(networkManager: NetworkManager = NetworkManager()) {
         self.networkManager = networkManager
     }
-    
+
     func fetchApartmentsList(completion: @escaping (Result<[Apartment], AppError>) -> Void) {
         var currentApartments = [Apartment]()
         let dispatchGroup = DispatchGroup()
-        
+
         networkManager.fetchHtmlString(urlString: searchURLString) {[unowned self] result in
             switch result {
             case .success(let htmlString):
@@ -57,10 +57,10 @@ final class Saga: Landlord {
             }
         }
     }
-    
+
     private func extractApartmentDetails(from string: String) -> (rooms: Int, area: Int, rent: Int)? {
         let components = string.components(separatedBy: .whitespacesAndNewlines)
-        
+
         guard let roomsIndex = components.firstIndex(of: "Zimmer:"), roomsIndex + 2 < components.count else { return nil }
         let roomsString = components[roomsIndex + 1]
         var rooms = Int(roomsString) ?? 0
@@ -69,18 +69,18 @@ final class Saga: Landlord {
         } else if components[roomsIndex + 2].contains("2/2") {
             rooms += 2
         }
-        
+
         guard let areaIndex = components.firstIndex(of: "Fläche:"), areaIndex + 1 < components.count else { return nil }
         let area = Int(components[areaIndex + 2]) ?? 0
-        
+
         guard let rentIndex = components.firstIndex(of: "Gesamtmiete:"), rentIndex + 1 < components.count else { return nil }
         let rentString = components[rentIndex + 1].replacingOccurrences(of: ".", with: "").replacingOccurrences(of: ",", with: ".")
         let rentFloat = Float(rentString) ?? 0
         let rent = Int(rentFloat)
-        
+
         return (rooms: rooms, area: area, rent: rent)
     }
-    
+
     private func dropPrefix(for street: String) -> String {
         let prefixToDrop = "Straße: "
         let streetWithoutPrefix = street.map { $0 }.dropFirst(prefixToDrop.count)

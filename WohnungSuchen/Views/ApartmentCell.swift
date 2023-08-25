@@ -17,15 +17,15 @@ final class ApartmentCell: UITableViewCell {
     @IBOutlet weak var mapButton: MapButton!
     weak var delegate: ApartmentCellDelegate?
     var apartment: Apartment?
-    
+
     class var identifier: String {
         String(describing: self)
     }
-    
+
     class var nib: UINib {
         UINib(nibName: identifier, bundle: nil)
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -36,13 +36,12 @@ final class ApartmentCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
     @IBAction func linkButtonTapped(_ sender: ImmoButton) {
         guard let apartment = apartment else { return }
         delegate?.didTapLinkButtonInCell(with: apartment.externalLink)
     }
-    
-    
+
     @IBAction func mapButtonTapped(_ sender: MapButton) {
         guard let apartment = apartment else { return }
         delegate?.didTapMapButtonInCell(with: apartment.street)

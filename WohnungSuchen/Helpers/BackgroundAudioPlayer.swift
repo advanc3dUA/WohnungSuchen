@@ -11,11 +11,11 @@ import AVFoundation
 final class BackgroundAudioPlayer {
     private(set) var audioPlayer: AVAudioPlayer?
     private var controller: AVAudioPlayerDelegate
-    
+
     init(for controller: AVAudioPlayerDelegate) {
         self.controller = controller
     }
-    
+
     public func start() {
         guard let url = Bundle.main.url(forResource: "SilentSong", withExtension: "wav") else {
 //        guard let url = Bundle.main.url(forResource: "heavy-rain", withExtension: "wav") else {
@@ -26,18 +26,18 @@ final class BackgroundAudioPlayer {
             let session = AVAudioSession.sharedInstance()
             try session.setCategory(.playback, mode: .default, options: .mixWithOthers)
             try session.setActive(true)
-            
+
             audioPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.wav.rawValue)
             audioPlayer?.delegate = controller
             audioPlayer?.numberOfLoops = -1
             audioPlayer?.prepareToPlay()
             audioPlayer?.play()
-    
+
         } catch let error {
             print(error.localizedDescription)
         }
     }
-    
+
     public func stop() {
         audioPlayer?.stop()
         audioPlayer = nil

@@ -14,23 +14,21 @@ extension MainVC: AVAudioPlayerDelegate {
             player.play()
         }
     }
-    
+
     func audioPlayerBeginInterruption(_ player: AVAudioPlayer) {
         if player == backgroundAudioPlayer?.audioPlayer {
             bgAudioPlayerIsInterrupted = true
             player.pause()
         }
     }
-    
+
     func audioPlayerEndInterruption(_ player: AVAudioPlayer, withOptions flags: Int) {
         if player == backgroundAudioPlayer?.audioPlayer {
             guard bgAudioPlayerIsInterrupted else { return }
             do {
                 try AVAudioSession.sharedInstance().setActive(true)
                 player.play()
-            }
-            
-            catch {
+            } catch {
                 print(error.localizedDescription)
             }
         }

@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch let error {
             print(error.localizedDescription)
         }
-        
+
         return true
     }
 
@@ -28,4 +28,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 }
-

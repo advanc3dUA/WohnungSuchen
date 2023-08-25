@@ -11,7 +11,7 @@ enum Company {
     case saga
     case vonovia
     case unknown
-    
+
     var logoImage: UIImage? {
         switch self {
         case .saga: return UIImage(named: "SagaLogo.jpg")

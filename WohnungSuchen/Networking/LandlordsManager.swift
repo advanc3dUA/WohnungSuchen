@@ -11,18 +11,18 @@ final class LandlordsManager {
     var previousApartments: [Apartment]
     private let immomioLinkFetcher: ImmomioLinkFetcher
     var landlords: [Landlord]
-    
+
     init(immomioLinkFetcher: ImmomioLinkFetcher) {
         self.immomioLinkFetcher = immomioLinkFetcher
         self.landlords = []
         self.previousApartments = []
     }
-    
-    public func start(completion: @escaping (Result<[Apartment], AppError>) -> ()) {
+
+    public func start(completion: @escaping (Result<[Apartment], AppError>) -> Void) {
         var currentApartments = [Apartment]()
         let dispatchGroup = DispatchGroup()
         var errorOccured = false
-        
+
         for landlord in landlords {
             dispatchGroup.enter()
             landlord.fetchApartmentsList { result in
@@ -51,8 +51,8 @@ final class LandlordsManager {
             self?.previousApartments = currentApartments
         }
     }
-    
-    private func comparePreviousApartments(with currentApartments: [Apartment], completion: @escaping (Result<[Apartment], AppError>) -> ()) {
+
+    private func comparePreviousApartments(with currentApartments: [Apartment], completion: @escaping (Result<[Apartment], AppError>) -> Void) {
         let newApartments = findNewApartments(from: currentApartments)
         fetchImmomioLinks(for: newApartments) { result in
             switch result {
@@ -63,19 +63,19 @@ final class LandlordsManager {
             }
         }
     }
-    
+
     private func findNewApartments(from currentApartments: [Apartment]) -> [Apartment] {
         return currentApartments.filter { apartment in
             !previousApartments.contains(where: { $0.internalLink == apartment.internalLink })
         }
     }
-    
-    private func fetchImmomioLinks(for apartments: [Apartment], completion: @escaping (Result<[Apartment], AppError>) -> ()) {
+
+    private func fetchImmomioLinks(for apartments: [Apartment], completion: @escaping (Result<[Apartment], AppError>) -> Void) {
         let dispatchGroup = DispatchGroup()
         var modifiedApartments = [Apartment]()
-        
+
         let sagaApartments = apartments.filter { $0.company == .saga }
-        
+
         for apartment in sagaApartments {
             dispatchGroup.enter()
             immomioLinkFetcher.fetchLink(for: apartment.internalLink) { result in
@@ -88,7 +88,7 @@ final class LandlordsManager {
                 }
                 dispatchGroup.leave()
             }
-            
+
         }
         modifiedApartments += apartments.filter { $0.company != .saga }
         dispatchGroup.notify(queue: .main) {

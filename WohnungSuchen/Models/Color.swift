@@ -12,7 +12,7 @@ enum Color: String {
     case brandBlue
     case brandGray
     case brandOlive
-    
+
     var setColor: UIColor? {
         switch self {
         case .brandDark: return UIColor(named: self.rawValue)

@@ -8,7 +8,7 @@
 import Foundation
 
 final class NetworkManager {
-    func fetchHtmlString(urlString: String, completion: @escaping (Result<String, AppError>) -> ()) {
+    func fetchHtmlString(urlString: String, completion: @escaping (Result<String, AppError>) -> Void) {
         guard let url = URL(string: urlString) else { return }
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -17,13 +17,13 @@ final class NetworkManager {
                 return
             }
             let htmlString = String(decoding: data!, as: UTF8.self)
-            
+
             completion(.success(htmlString))
         }
         task.resume()
     }
-    
-    func fetchData(urlString: String, completion: @escaping (Result<Data, AppError>) -> ()) {
+
+    func fetchData(urlString: String, completion: @escaping (Result<Data, AppError>) -> Void) {
         guard let url = URL(string: urlString) else { return }
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in

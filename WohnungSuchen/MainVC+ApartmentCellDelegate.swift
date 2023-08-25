@@ -12,7 +12,7 @@ extension MainVC: ApartmentCellDelegate {
         guard let url = URL(string: apartmentLink) else { return }
         UIApplication.shared.open(url)
     }
-    
+
     func didTapMapButtonInCell(with address: String) {
         guard let address = address.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         let urlString = "comgooglemaps://?q=\(address)&zoom=10"

@@ -9,8 +9,8 @@ import UIKit
 import Combine
 
 final class ModalVC: UIViewController {
-    
-    //MARK: - Properties
+
+    // MARK: - Properties
     var modalView: ModalView!
     let optionsSubject: CurrentValueSubject<Options, Never>
     var currentDetent: UISheetPresentationController.Detent.Identifier? {
@@ -24,48 +24,48 @@ final class ModalVC: UIViewController {
     }
     weak var delegate: ModalVCDelegate?
     private var cancellables: Set<AnyCancellable> = []
-    
-    //MARK: - Initialization
+
+    // MARK: - Initialization
     init(smallDetentSize: CGFloat, optionsSubject: CurrentValueSubject<Options, Never>) {
         currentDetent = .medium
         self.optionsSubject = optionsSubject
         super.init(nibName: nil, bundle: nil)
-        
+
         // Custom medium detent
         let smallID = UISheetPresentationController.Detent.Identifier("small")
-        let smallDetent = UISheetPresentationController.Detent.custom(identifier: smallID) { context in
+        let smallDetent = UISheetPresentationController.Detent.custom(identifier: smallID) { _ in
             return smallDetentSize
         }
         setupSheetPresentationController(with: smallDetent)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    //MARK: - VC Lifecycle
+
+    // MARK: - VC Lifecycle
     override func loadView() {
         modalView = ModalView()
         view = modalView
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let tapGasture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardInOptionsView))
         view.addGestureRecognizer(tapGasture)
-        
+
         modalView.startPauseButton.addTarget(self, action: #selector(startPauseButtonTapped(sender:)), for: .touchUpInside)
-        
+
         saveButtonIsEnabled(false)
         modalView.optionsView.saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
-        
+
         modalView.optionsView.updateOptionsUI(with: optionsSubject.value)
         modalView.optionsView.setLandlordsOption(with: optionsSubject)
         setOptionsPublishers()
     }
-    
-    //MARK: - Button's actions
+
+    // MARK: - Button's actions
     func saveButtonIsEnabled(_ param: Bool) {
         if param {
             modalView.optionsView.saveButton.alpha = 1.0
@@ -75,7 +75,7 @@ final class ModalVC: UIViewController {
             modalView.optionsView.saveButton.isEnabled = false
         }
     }
-    
+
     @objc func saveButtonTapped() {
         UserDefaults.standard.set(optionsSubject.value.roomsMin, forKey: SavingKeys.roomsMin.rawValue)
         UserDefaults.standard.set(optionsSubject.value.roomsMax, forKey: SavingKeys.roomsMax.rawValue)
@@ -89,7 +89,7 @@ final class ModalVC: UIViewController {
         UserDefaults.standard.set(optionsSubject.value.landlords[SavingKeys.vonovia.rawValue], forKey: SavingKeys.vonovia.rawValue)
         saveButtonIsEnabled(false)
     }
-    
+
     @objc func startPauseButtonTapped(sender: StartPauseButton) {
         if sender.isOn {
             sender.switchOff()
@@ -99,8 +99,8 @@ final class ModalVC: UIViewController {
             delegate?.didTapPauseButton()
         }
     }
-    
-    //MARK: - Options publishers
+
+    // MARK: - Options publishers
     func makeTextFieldIntPublisher(_ textField: UITextField, initialValue: Int) -> AnyPublisher<Int, Never> {
         textField.publisher(for: \.text)
             .map { text in
@@ -118,7 +118,7 @@ final class ModalVC: UIViewController {
         let areaMaxIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.areaMaxTextField, initialValue: optionsSubject.value.areaMax)
         let rentMinIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.rentMinTextField, initialValue: optionsSubject.value.rentMin)
         let rentMaxIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.rentMaxTextField, initialValue: optionsSubject.value.rentMax)
-        
+
         let timerUpdateIntPublisher = modalView.optionsView.timerUpdateTextField.publisher(for: \.text)
             .map { [unowned self] textValue in
                 Int(extractFrom: textValue, defaultValue: optionsSubject.value.updateTime)
@@ -137,10 +137,10 @@ final class ModalVC: UIViewController {
                 }
             .compactMap { $0 }
             .removeDuplicates()
-        
+
         let soundSwitchPublisher = modalView.optionsView.soundSwitch.switchPublisher
             .prepend(optionsSubject.value.soundIsOn)
-        
+
         let landlordsPublisher = optionsSubject
             .map { $0.landlords }
             .removeDuplicates()
@@ -150,7 +150,7 @@ final class ModalVC: UIViewController {
         let rentPub = Publishers.CombineLatest(rentMinIntPublisher, rentMaxIntPublisher)
         let updateTimeSoundSwitchAndLandlordsPub = Publishers.CombineLatest3(timerUpdateIntPublisher, soundSwitchPublisher, landlordsPublisher)
         let options = Options()
-        
+
         Publishers.CombineLatest4(roomsPub, areaPub, rentPub, updateTimeSoundSwitchAndLandlordsPub)
             .dropFirst()
             .map { rooms, area, rent, updateTimeSoundSwitchAndLandlords in
@@ -166,7 +166,7 @@ final class ModalVC: UIViewController {
                 options.landlords[SavingKeys.vonovia.rawValue] = updateTimeSoundSwitchAndLandlords.2[SavingKeys.vonovia.rawValue]
                 return rooms.0 <= rooms.1 && area.0 <= area.1 && rent.0 <= rent.0
             }
-        
+
             .sink { [unowned self] isValid in
                 saveButtonIsEnabled(isValid)
                 if options.isEqualToUserDefaults() {
@@ -176,8 +176,8 @@ final class ModalVC: UIViewController {
             }
             .store(in: &cancellables)
     }
-    
-    //MARK: - Supporting methods
+
+    // MARK: - Supporting methods
     private func setupSheetPresentationController(with smallDetent: UISheetPresentationController.Detent) {
         sheetPresentationController?.detents = [smallDetent, .large()]
         sheetPresentationController?.largestUndimmedDetentIdentifier = .large
@@ -186,15 +186,15 @@ final class ModalVC: UIViewController {
         sheetPresentationController?.widthFollowsPreferredContentSizeWhenEdgeAttached = true
         sheetPresentationController?.prefersGrabberVisible = true
         sheetPresentationController?.preferredCornerRadius = 10
-        
+
         // Disables hiding TraineeVC
         isModalInPresentation = true
     }
-    
+
     @objc private func hideKeyboardInOptionsView() {
         hideKeyboardIfViewIsTextField(in: modalView.optionsView)
     }
-    
+
     private func hideKeyboardIfViewIsTextField(in view: UIView) {
         for subview in view.subviews {
             if subview is UITextField {
