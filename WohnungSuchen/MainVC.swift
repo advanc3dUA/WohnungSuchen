@@ -11,7 +11,7 @@ import Combine
 final class MainVC: UIViewController {
 
     // MARK: - Properties
-    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var statusLabel: StatusLabel!
     @IBOutlet weak var tableView: UITableView!
     private var timer: Timer?
     private var modalVC: ModalVC?
@@ -56,7 +56,6 @@ final class MainVC: UIViewController {
 
         setupMainView()
         setupTableView()
-        setupStatusLabel()
 
         landlordsManager = LandlordsManager(immomioLinkFetcher: immomioLinkFetcher)
         setPublisherToUpdateLandlordsListInManager()
@@ -93,7 +92,7 @@ final class MainVC: UIViewController {
                         let okButton = UIAlertAction(title: "OK", style: .cancel)
                         warningController.addAction(okButton)
                         modalVC?.present(warningController, animated: true)
-                        self.updateStatusLabel(receivedError: true)
+                        self.statusLabel.update(receivedError: true)
                     }
 
                 case .success(let apartments):
@@ -115,7 +114,7 @@ final class MainVC: UIViewController {
                         self.currentApartments = apartments
                         self.isSecondRunPlus = true
                     }
-                    self.updateStatusLabel(receivedError: false)
+                    self.statusLabel.update(receivedError: false)
                     modalVCView?.containerView?.isHidden = false
                 }
                 DispatchQueue.main.async {
@@ -227,24 +226,6 @@ final class MainVC: UIViewController {
         tableView.register(ApartmentCell.nib, forCellReuseIdentifier: ApartmentCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
-    }
-
-    private func setupStatusLabel() {
-        statusLabel.layer.cornerRadius = 10
-        statusLabel.clipsToBounds = true
-    }
-
-    private func updateStatusLabel(receivedError: Bool) {
-        if receivedError {
-            statusLabel.backgroundColor = Color.brandRed.setColor
-            statusLabel.textColor = .white
-            statusLabel.text = "Error occurred: \(TimeManager.shared.getCurrentTime())"
-        } else {
-            statusLabel.backgroundColor = Color.brandOlive.setColor
-            statusLabel.textColor = Color.brandDark.setColor
-            statusLabel.text = "Last update: \(TimeManager.shared.getCurrentTime())"
-        }
-        self.statusLabel.flash(numberOfFlashes: 1)
     }
 
     private func showLoadingView() {

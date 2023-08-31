@@ -59,6 +59,7 @@
 		BFA71BD229CD935A00F8781E /* ModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA71BD129CD935A00F8781E /* ModalVC.swift */; };
 		BFA71BD629CD949800F8781E /* DetectDetent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA71BD529CD949800F8781E /* DetectDetent.swift */; };
 		BFA71BDC29CDA7D300F8781E /* ModalVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA71BDB29CDA7D300F8781E /* ModalVCDelegate.swift */; };
+		BFA73B812AA0DBA30061747C /* StatusLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA73B802AA0DBA30061747C /* StatusLabel.swift */; };
 		BFA7A99F2A7AA61A004957CD /* WarningAlertControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA7A99E2A7AA61A004957CD /* WarningAlertControllerFactory.swift */; };
 		BFA8344929FA5F3F0073526C /* UISwitch+publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA8344829FA5F3F0073526C /* UISwitch+publisher.swift */; };
 		BFA8D22729F3FC810091D0FA /* Extractable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA8D22629F3FC810091D0FA /* Extractable.swift */; };
@@ -129,6 +130,7 @@
 		BFA71BD129CD935A00F8781E /* ModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalVC.swift; sourceTree = "<group>"; };
 		BFA71BD529CD949800F8781E /* DetectDetent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectDetent.swift; sourceTree = "<group>"; };
 		BFA71BDB29CDA7D300F8781E /* ModalVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalVCDelegate.swift; sourceTree = "<group>"; };
+		BFA73B802AA0DBA30061747C /* StatusLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusLabel.swift; sourceTree = "<group>"; };
 		BFA7A99E2A7AA61A004957CD /* WarningAlertControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningAlertControllerFactory.swift; sourceTree = "<group>"; };
 		BFA8344829FA5F3F0073526C /* UISwitch+publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISwitch+publisher.swift"; sourceTree = "<group>"; };
 		BFA8D22629F3FC810091D0FA /* Extractable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extractable.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			children = (
 				BF707C0329BB427700225796 /* Main.storyboard */,
 				BFA3DEF029D82FD5009B23D8 /* ModalView.swift */,
+				BFA73B802AA0DBA30061747C /* StatusLabel.swift */,
 				BF11CE9F29EFD6FF00A9D194 /* CustomButton.swift */,
 				BF8EEDB729C4701100F74971 /* MapButton.swift */,
 				BFA9F37129C1F61E00ECB8F4 /* ImmoButton.swift */,
@@ -505,6 +508,7 @@
 				BF707C0229BB427700225796 /* MainVC.swift in Sources */,
 				BF9DC6AC29BCAF630027FADC /* Apartment.swift in Sources */,
 				BF8E05112A63EE45003A585C /* OptionsView+CollectionViewDelegate.swift in Sources */,
+				BFA73B812AA0DBA30061747C /* StatusLabel.swift in Sources */,
 				BF9055782A76472400A8082B /* AppError.swift in Sources */,
 				BFA8344929FA5F3F0073526C /* UISwitch+publisher.swift in Sources */,
 				BFA8D22729F3FC810091D0FA /* Extractable.swift in Sources */,
