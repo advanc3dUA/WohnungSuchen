@@ -93,6 +93,7 @@ final class MainVC: UIViewController {
                         let okButton = UIAlertAction(title: "OK", style: .cancel)
                         warningController.addAction(okButton)
                         modalVC?.present(warningController, animated: true)
+                        self.updateStatusLabel(receivedError: true)
                     }
 
                 case .success(let apartments):
@@ -114,8 +115,7 @@ final class MainVC: UIViewController {
                         self.currentApartments = apartments
                         self.isSecondRunPlus = true
                     }
-                    self.statusLabel.text = "Last update: \(TimeManager.shared.getCurrentTime())"
-                    self.statusLabel.flash(numberOfFlashes: 1)
+                    self.updateStatusLabel(receivedError: false)
                     modalVCView?.containerView?.isHidden = false
                 }
                 DispatchQueue.main.async {
@@ -232,6 +232,19 @@ final class MainVC: UIViewController {
     private func setupStatusLabel() {
         statusLabel.layer.cornerRadius = 10
         statusLabel.clipsToBounds = true
+    }
+
+    private func updateStatusLabel(receivedError: Bool) {
+        if receivedError {
+            statusLabel.backgroundColor = Color.brandRed.setColor
+            statusLabel.textColor = .white
+            statusLabel.text = "Error occurred: \(TimeManager.shared.getCurrentTime())"
+        } else {
+            statusLabel.backgroundColor = Color.brandOlive.setColor
+            statusLabel.textColor = Color.brandDark.setColor
+            statusLabel.text = "Last update: \(TimeManager.shared.getCurrentTime())"
+        }
+        self.statusLabel.flash(numberOfFlashes: 1)
     }
 
     private func showLoadingView() {

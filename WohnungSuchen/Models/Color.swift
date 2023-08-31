@@ -12,6 +12,7 @@ enum Color: String {
     case brandBlue
     case brandGray
     case brandOlive
+    case brandRed
 
     var setColor: UIColor? {
         switch self {
@@ -19,6 +20,7 @@ enum Color: String {
         case .brandBlue: return UIColor(named: self.rawValue)
         case .brandGray: return UIColor(named: self.rawValue)
         case .brandOlive: return UIColor(named: self.rawValue)
+        case .brandRed: return UIColor(named: self.rawValue)
         }
     }
 }

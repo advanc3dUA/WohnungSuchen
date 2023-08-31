@@ -711,7 +711,7 @@
 				CODE_SIGN_ENTITLEMENTS = "WohnungSuchen/Supporting files/WohnungSuchen.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8YW779MG62;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WohnungSuchen/Supporting files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -725,6 +725,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = co;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
