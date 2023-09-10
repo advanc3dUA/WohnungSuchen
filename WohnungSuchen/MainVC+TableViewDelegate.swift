@@ -30,7 +30,7 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
         cell.addressLabel.text = "\(apartment.street)"
         cell.detailsLabel.text = "Rooms: \(apartment.rooms), m2: \(apartment.area), €: \(apartment.rent)"
-        cell.logoImageView.image = apartment.company.logoImage
+        cell.logoImageView.image = apartment.logoImage
         cell.timeLabel.text = apartment.time
         cell.timeLabel.backgroundColor = apartment.isNew ? Color.brandOlive.setColor : Color.brandGray.setColor
 

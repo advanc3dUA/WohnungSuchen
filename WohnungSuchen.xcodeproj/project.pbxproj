@@ -34,7 +34,6 @@
 		BF8C912829DDB865008AD739 /* IntelPentiumSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BF8C912729DDB865008AD739 /* IntelPentiumSound.mp3 */; };
 		BF8C912B29DDB877008AD739 /* VonoviaLogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BF8C912929DDB877008AD739 /* VonoviaLogo.jpg */; };
 		BF8C912C29DDB877008AD739 /* SagaLogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BF8C912A29DDB877008AD739 /* SagaLogo.jpg */; };
-		BF8C912E29DDB8C8008AD739 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8C912D29DDB8C8008AD739 /* Company.swift */; };
 		BF8E050E2A63EC20003A585C /* ProvidersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8E050C2A63EC20003A585C /* ProvidersCollectionViewCell.swift */; };
 		BF8E050F2A63EC20003A585C /* ProvidersCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF8E050D2A63EC20003A585C /* ProvidersCollectionViewCell.xib */; };
 		BF8E05112A63EE45003A585C /* OptionsView+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8E05102A63EE45003A585C /* OptionsView+CollectionViewDelegate.swift */; };
@@ -105,7 +104,6 @@
 		BF8C912729DDB865008AD739 /* IntelPentiumSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = IntelPentiumSound.mp3; sourceTree = "<group>"; };
 		BF8C912929DDB877008AD739 /* VonoviaLogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = VonoviaLogo.jpg; sourceTree = "<group>"; };
 		BF8C912A29DDB877008AD739 /* SagaLogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SagaLogo.jpg; sourceTree = "<group>"; };
-		BF8C912D29DDB8C8008AD739 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		BF8E050C2A63EC20003A585C /* ProvidersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvidersCollectionViewCell.swift; sourceTree = "<group>"; };
 		BF8E050D2A63EC20003A585C /* ProvidersCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProvidersCollectionViewCell.xib; sourceTree = "<group>"; };
 		BF8E05102A63EE45003A585C /* OptionsView+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
@@ -196,7 +194,6 @@
 			isa = PBXGroup;
 			children = (
 				BF9DC6AB29BCAF630027FADC /* Apartment.swift */,
-				BF8C912D29DDB8C8008AD739 /* Company.swift */,
 				BF8EB0F229E166D10070C64B /* Color.swift */,
 				BFEBAA5B29E2EF0A00CC83C8 /* Options.swift */,
 				BF8EEDB929C4771B00F74971 /* DefaultOptions.swift */,
@@ -533,7 +530,6 @@
 				BFEBAA5C29E2EF0A00CC83C8 /* Options.swift in Sources */,
 				BF8A62FC29DDA1E700E2DCD4 /* MainVC+ApartmentCellDelegate.swift in Sources */,
 				BF707C0029BB427700225796 /* SceneDelegate.swift in Sources */,
-				BF8C912E29DDB8C8008AD739 /* Company.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,7 +678,7 @@
 				CODE_SIGN_ENTITLEMENTS = "WohnungSuchen/Supporting files/WohnungSuchen.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z4DAU59V98;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WohnungSuchen/Supporting files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -696,7 +692,6 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = ua.advanc3d.WohnungSuchen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;

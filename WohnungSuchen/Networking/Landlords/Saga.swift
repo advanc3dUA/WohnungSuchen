@@ -5,13 +5,15 @@
 //  Created by Yuriy Gudimov on 28.03.2023.
 //
 
-import Foundation
+import UIKit
 import SwiftSoup
 
 final class Saga: Landlord {
+    let name = "Saga"
     private let immomioLinkFetcher: ImmomioLinkFetcher
     private let networkManager: NetworkManager
     private let searchURLString = "https://www.saga.hamburg/immobiliensuche?type=wohnungen"
+    private let imageLink = "SagaLogo.jpg"
 
     init(networkManager: NetworkManager = NetworkManager()) {
         self.networkManager = networkManager
@@ -44,7 +46,7 @@ final class Saga: Landlord {
                                                      rooms: details.rooms,
                                                      area: details.area,
                                                      rent: details.rent,
-                                                     company: .saga,
+                                                     imageLink: imageLink,
                                                      landlord: self
                         )
                         dispatchGroup.enter()

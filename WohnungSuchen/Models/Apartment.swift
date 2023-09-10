@@ -5,7 +5,7 @@
 //  Created by Yuriy Gudimov on 11.03.2023.
 //
 
-import Foundation
+import UIKit
 
 struct Apartment {
     let time: String
@@ -16,7 +16,7 @@ struct Apartment {
     let area: Int
     let rent: Int
     let externalLink: String
-    let company: Company
+    let logoImage: UIImage?
     let landlord: Landlord
     var isNew: Bool
 
@@ -28,7 +28,7 @@ struct Apartment {
          area: Int,
          rent: Int,
          externalLink: String = "",
-         company: Company,
+         imageLink: String = "",
          landlord: Landlord,
          isNew: Bool = false) {
 
@@ -40,7 +40,7 @@ struct Apartment {
         self.area = area
         self.rent = rent
         self.externalLink = externalLink
-        self.company = company
+        self.logoImage = UIImage(named: imageLink)
         self.landlord = landlord
         self.isNew = isNew
     }
@@ -55,7 +55,7 @@ struct Apartment {
         self.area = apartment.area
         self.rent = apartment.rent
         self.externalLink = externalLink
-        self.company = apartment.company
+        self.logoImage = apartment.logoImage
         self.landlord = apartment.landlord
         self.isNew = apartment.isNew
     }

@@ -144,15 +144,15 @@ final class MainVC: UIViewController {
                         if isSelected {
                             landlordsManager?.landlords.append(Saga())
                         } else {
-                            currentApartments.removeAll { $0.company == .saga }
-                            landlordsManager?.previousApartments.removeAll { $0.company == .saga }
+                            currentApartments.removeAll { $0.landlord.name == "Saga" }
+                            landlordsManager?.previousApartments.removeAll { $0.landlord.name == "Saga" }
                         }
                     case SavingKeys.vonovia.rawValue:
                         if isSelected {
                             landlordsManager?.landlords.append(Vonovia())
                         } else {
-                            currentApartments.removeAll { $0.company == .vonovia }
-                            landlordsManager?.previousApartments.removeAll { $0.company == .vonovia }
+                            currentApartments.removeAll { $0.landlord.name == "Vonovia" }
+                            landlordsManager?.previousApartments.removeAll { $0.landlord.name == "Vonovia" }
                         }
                     default:
                         break

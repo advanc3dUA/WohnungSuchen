@@ -9,8 +9,10 @@ import Foundation
 import SwiftSoup
 
 final class Vonovia: Landlord {
+    let name = "Vonovia"
     private let networkManager: NetworkManager
     private let vonoviaURL = "https://www.vonovia.de/de-de/immobiliensuche/"
+    private let imageLink = "VonoviaLogo.jpg"
     private let searchURLString = "https://www.wohnraumkarte.de/Api/getImmoList?offset=0&limit=25&orderBy=date_asc&city=Hamburg&rentType=miete&immoType=all&priceMax=1500&sizeMin=20&sizeMax=0&minRooms=1&dachgeschoss=0&erdgeschoss=0&sofortfrei=egal&lift=0&balcony=egal&disabilityAccess=egal&subsidizedHousingPermit=egal&userCookieValue=e64300007d54e2f903e5a62b1a63c39613705590&geoLocation=1"
 
     init(networkManager: NetworkManager = NetworkManager()) {
@@ -42,7 +44,7 @@ final class Vonovia: Landlord {
                                               rooms: rooms,
                                               area: area,
                                               rent: price,
-                                              company: .vonovia,
+                                              imageLink: imageLink,
                                               landlord: self
                     )
                     currentApartments.append(apartment)
