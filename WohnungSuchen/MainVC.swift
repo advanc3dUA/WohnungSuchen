@@ -57,7 +57,7 @@ final class MainVC: UIViewController {
         setupMainView()
         setupTableView()
 
-        landlordsManager = LandlordsManager(immomioLinkFetcher: immomioLinkFetcher)
+        landlordsManager = LandlordsManager()
         setPublisherToUpdateLandlordsListInManager()
 
         setupModalVC()

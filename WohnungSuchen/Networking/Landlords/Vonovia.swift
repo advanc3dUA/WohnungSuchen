@@ -42,8 +42,8 @@ final class Vonovia: Landlord {
                                               rooms: rooms,
                                               area: area,
                                               rent: price,
-                                              externalLink: link,
-                                              company: .vonovia
+                                              company: .vonovia,
+                                              landlord: self
                     )
                     currentApartments.append(apartment)
                 }
@@ -53,6 +53,11 @@ final class Vonovia: Landlord {
                 completion(.failure(error))
             }
         }
+    }
+
+    func setExternalLink(for apartment: Apartment, completion: @escaping (Result<Apartment, AppError>) -> Void) {
+        let modifiedApartment = Apartment(apartment: apartment, with: apartment.internalLink)
+        completion(.success(modifiedApartment))
     }
 
     private func getRoundedInt(from stringNumber: String) -> Int {

@@ -9,11 +9,9 @@ import Foundation
 
 final class LandlordsManager {
     var previousApartments: [Apartment]
-    private let immomioLinkFetcher: ImmomioLinkFetcher
     var landlords: [Landlord]
 
-    init(immomioLinkFetcher: ImmomioLinkFetcher) {
-        self.immomioLinkFetcher = immomioLinkFetcher
+    init() {
         self.landlords = []
         self.previousApartments = []
     }
@@ -54,10 +52,10 @@ final class LandlordsManager {
 
     private func comparePreviousApartments(with currentApartments: [Apartment], completion: @escaping (Result<[Apartment], AppError>) -> Void) {
         let newApartments = findNewApartments(from: currentApartments)
-        fetchImmomioLinks(for: newApartments) { result in
+        fetchExternalLinks(for: newApartments) { result in
             switch result {
-            case .success(let modifiledApartments):
-                completion(.success(modifiledApartments))
+            case .success(let modifiedApartments):
+                completion(.success(modifiedApartments))
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -70,27 +68,24 @@ final class LandlordsManager {
         }
     }
 
-    private func fetchImmomioLinks(for apartments: [Apartment], completion: @escaping (Result<[Apartment], AppError>) -> Void) {
+    private func fetchExternalLinks(for apartments: [Apartment], completion: @escaping (Result<[Apartment], AppError>) -> Void) {
         let dispatchGroup = DispatchGroup()
         var modifiedApartments = [Apartment]()
 
-        let sagaApartments = apartments.filter { $0.company == .saga }
-
-        for apartment in sagaApartments {
+        for apartment in apartments {
             dispatchGroup.enter()
-            immomioLinkFetcher.fetchLink(for: apartment.internalLink) { result in
+            let landlord = apartment.landlord
+            landlord.setExternalLink(for: apartment) { result in
                 switch result {
-                case .success(let immomioLink):
-                    let sagaModifiedApartment = Apartment(apartment: apartment, with: immomioLink)
-                    modifiedApartments.append(sagaModifiedApartment)
+                case .success(let modifiedApartment):
+                    modifiedApartments.append(modifiedApartment)
                 case .failure(let error):
                     completion(.failure(error))
                 }
                 dispatchGroup.leave()
             }
-
         }
-        modifiedApartments += apartments.filter { $0.company != .saga }
+
         dispatchGroup.notify(queue: .main) {
             completion(.success(modifiedApartments))
         }

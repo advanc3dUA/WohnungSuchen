@@ -17,6 +17,7 @@ struct Apartment {
     let rent: Int
     let externalLink: String
     let company: Company
+    let landlord: Landlord
     var isNew: Bool
 
     init(time: String,
@@ -28,6 +29,7 @@ struct Apartment {
          rent: Int,
          externalLink: String = "",
          company: Company,
+         landlord: Landlord,
          isNew: Bool = false) {
 
         self.time = time
@@ -39,6 +41,7 @@ struct Apartment {
         self.rent = rent
         self.externalLink = externalLink
         self.company = company
+        self.landlord = landlord
         self.isNew = isNew
     }
 
@@ -53,6 +56,7 @@ struct Apartment {
         self.rent = apartment.rent
         self.externalLink = externalLink
         self.company = apartment.company
+        self.landlord = apartment.landlord
         self.isNew = apartment.isNew
     }
 }

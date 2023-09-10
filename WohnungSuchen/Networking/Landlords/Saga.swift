@@ -9,11 +9,13 @@ import Foundation
 import SwiftSoup
 
 final class Saga: Landlord {
+    private let immomioLinkFetcher: ImmomioLinkFetcher
     private let networkManager: NetworkManager
     private let searchURLString = "https://www.saga.hamburg/immobiliensuche?type=wohnungen"
 
     init(networkManager: NetworkManager = NetworkManager()) {
         self.networkManager = networkManager
+        self.immomioLinkFetcher = ImmomioLinkFetcher(networkManager: networkManager)
     }
 
     func fetchApartmentsList(completion: @escaping (Result<[Apartment], AppError>) -> Void) {
@@ -42,7 +44,8 @@ final class Saga: Landlord {
                                                      rooms: details.rooms,
                                                      area: details.area,
                                                      rent: details.rent,
-                                                     company: .saga
+                                                     company: .saga,
+                                                     landlord: self
                         )
                         dispatchGroup.enter()
                         currentApartments.append(newApartment)
@@ -56,6 +59,24 @@ final class Saga: Landlord {
                 completion(.failure(error))
             }
         }
+    }
+
+    func setExternalLink(for apartment: Apartment, completion: @escaping (Result<Apartment, AppError>) -> Void) {
+        let semaphore = DispatchSemaphore(value: 0)
+        var modifiedApartment = apartment
+
+        immomioLinkFetcher.fetchLink(for: apartment.internalLink) { result in
+            switch result {
+            case .success(let immomioLink):
+                modifiedApartment = Apartment(apartment: apartment, with: immomioLink)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+            semaphore.signal()
+        }
+
+        semaphore.wait()
+        completion(.success(modifiedApartment))
     }
 
     private func extractApartmentDetails(from string: String) -> (rooms: Int, area: Int, rent: Int)? {

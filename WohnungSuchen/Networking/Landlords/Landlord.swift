@@ -9,4 +9,5 @@ import Foundation
 
 protocol Landlord {
     func fetchApartmentsList(completion: @escaping (Result<[Apartment], AppError>) -> Void)
+    func setExternalLink(for apartment: Apartment, completion: @escaping (Result<Apartment, AppError>) -> Void)
 }
