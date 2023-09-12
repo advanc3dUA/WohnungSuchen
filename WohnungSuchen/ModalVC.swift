@@ -85,8 +85,10 @@ final class ModalVC: UIViewController {
         UserDefaults.standard.set(optionsSubject.value.rentMax, forKey: SavingKeys.rentMax.rawValue)
         UserDefaults.standard.set(optionsSubject.value.updateTime, forKey: SavingKeys.updateTime.rawValue)
         UserDefaults.standard.set(optionsSubject.value.soundIsOn, forKey: SavingKeys.soundIsOn.rawValue)
-        UserDefaults.standard.set(optionsSubject.value.landlords[SavingKeys.saga.rawValue], forKey: SavingKeys.saga.rawValue)
-        UserDefaults.standard.set(optionsSubject.value.landlords[SavingKeys.vonovia.rawValue], forKey: SavingKeys.vonovia.rawValue)
+
+        optionsSubject.value.landlords.forEach { (landlord, isActive) in
+            UserDefaults.standard.set(isActive, forKey: landlord.rawValue)
+        }
         saveButtonIsEnabled(false)
     }
 
@@ -162,8 +164,9 @@ final class ModalVC: UIViewController {
                 options.rentMax = rent.1
                 options.updateTime = updateTimeSoundSwitchAndLandlords.0
                 options.soundIsOn = updateTimeSoundSwitchAndLandlords.1
-                options.landlords[SavingKeys.saga.rawValue] = updateTimeSoundSwitchAndLandlords.2[SavingKeys.saga.rawValue]
-                options.landlords[SavingKeys.vonovia.rawValue] = updateTimeSoundSwitchAndLandlords.2[SavingKeys.vonovia.rawValue]
+                options.landlords.forEach { (landlord, _) in
+                    options.landlords[landlord] = updateTimeSoundSwitchAndLandlords.2[landlord]
+                }
                 return rooms.0 <= rooms.1 && area.0 <= area.1 && rent.0 <= rent.0
             }
 

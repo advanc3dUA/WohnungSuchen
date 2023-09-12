@@ -16,5 +16,23 @@ struct DefaultOptions {
     static let rentMax = 900
     static let updateTime = 30
     static let soundIsOn = true
-    static let landlords: [String: Bool] = [SavingKeys.saga.rawValue: true, SavingKeys.vonovia.rawValue: true]
+    static let landlords: [Provider: Bool] = [.saga: true, .vonovia: true]
+}
+
+enum Provider: String {
+    case saga = "Saga"
+    case vonovia = "Vonovia"
+
+    static func generateProvider(with provider: Provider) -> Landlord {
+        let generatedProvider: Landlord
+        switch provider {
+        case .saga: generatedProvider = Saga()
+        case .vonovia: generatedProvider = Vonovia()
+        }
+        return generatedProvider
+    }
+
+    static func getProvider(from string: String) -> Provider? {
+        return Provider(rawValue: string)
+    }
 }

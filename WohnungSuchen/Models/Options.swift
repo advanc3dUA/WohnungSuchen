@@ -16,8 +16,6 @@ enum SavingKeys: String {
     case rentMax
     case updateTime
     case soundIsOn
-    case saga
-    case vonovia
 }
 
 final class Options {
@@ -29,7 +27,7 @@ final class Options {
     var rentMax: Int
     var updateTime: Int
     var soundIsOn: Bool
-    var landlords: [String: Bool]
+    var landlords: [Provider: Bool]
 
     init() {
         self.roomsMin = 0
@@ -53,9 +51,9 @@ final class Options {
         updateTime = UserDefaults.standard.object(forKey: SavingKeys.updateTime.rawValue) as? Int ?? DefaultOptions.updateTime
         soundIsOn = UserDefaults.standard.object(forKey: SavingKeys.soundIsOn.rawValue) as? Bool ?? DefaultOptions.soundIsOn
 
-        landlords = [ SavingKeys.saga.rawValue: UserDefaults.standard.object(forKey: SavingKeys.saga.rawValue) as? Bool ?? DefaultOptions.landlords[SavingKeys.saga.rawValue]!,
-                      SavingKeys.vonovia.rawValue: UserDefaults.standard.object(forKey: SavingKeys.vonovia.rawValue) as? Bool ?? DefaultOptions.landlords[SavingKeys.vonovia.rawValue]!
-                    ]
+        DefaultOptions.landlords.forEach { (landlord, _) in
+            landlords.updateValue(UserDefaults.standard.object(forKey: landlord.rawValue) as? Bool ?? DefaultOptions.landlords[landlord]!, forKey: landlord)
+        }
     }
 
     func isEqualToUserDefaults() -> Bool {
@@ -75,10 +73,10 @@ final class Options {
         self.updateTime == defaultUpdateTime && self.soundIsOn == defaultSoundIsOn && self.landlords == defaultLandlords
     }
 
-    private func getLandlordsFromUserDefaults() -> [String: Bool]? {
-        var landlordsDict: [String: Bool] = [:]
+    private func getLandlordsFromUserDefaults() -> [Provider: Bool]? {
+        var landlordsDict: [Provider: Bool] = [:]
         for (key, _) in DefaultOptions.landlords {
-            if let value = UserDefaults.standard.object(forKey: key) as? Bool {
+            if let value = UserDefaults.standard.object(forKey: key.rawValue) as? Bool {
                 landlordsDict[key] = value
             } else { return nil }
         }

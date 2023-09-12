@@ -20,8 +20,8 @@ extension OptionsView: UICollectionViewDataSource, UICollectionViewDelegate, UIC
         let landlords = optionsSubject.value.landlords
         let providersKeys = Array(landlords.keys)
         let providersStates = Array(landlords.values)
-        cell.providerButton.setTitle(providersKeys[indexPath.row], for: .normal)
-        cell.providerButton.setTitle(providersKeys[indexPath.row], for: .highlighted)
+        cell.providerButton.setTitle(providersKeys[indexPath.row].rawValue, for: .normal)
+        cell.providerButton.setTitle(providersKeys[indexPath.row].rawValue, for: .highlighted)
         cell.providerButton.isSelected = providersStates[indexPath.row]
 
         cell.providerButton.addTarget(self, action: #selector(providerButtonTapped(sender:)), for: .touchUpInside)
@@ -35,7 +35,9 @@ extension OptionsView: UICollectionViewDataSource, UICollectionViewDelegate, UIC
         }
         sender.isSelected.toggle()
 
-        optionsSubject.value.landlords[title] = sender.isSelected
+        if let provider = Provider.getProvider(from: title) {
+            optionsSubject.value.landlords[provider] = sender.isSelected
+        }
 
         let options = optionsSubject.value
         optionsSubject.send(options)

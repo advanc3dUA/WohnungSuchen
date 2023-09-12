@@ -136,26 +136,20 @@ final class MainVC: UIViewController {
             .map { $0.landlords }
             .removeDuplicates()
             .sink { [unowned self] landlords in
-                landlordsManager?.landlords.removeAll()
-
-                for (landlord, isSelected) in landlords {
-                    switch landlord {
-                    case SavingKeys.saga.rawValue:
-                        if isSelected {
-                            landlordsManager?.landlords.append(Saga())
-                        } else {
-                            currentApartments.removeAll { $0.landlord.name == "Saga" }
-                            landlordsManager?.previousApartments.removeAll { $0.landlord.name == "Saga" }
-                        }
-                    case SavingKeys.vonovia.rawValue:
-                        if isSelected {
-                            landlordsManager?.landlords.append(Vonovia())
-                        } else {
-                            currentApartments.removeAll { $0.landlord.name == "Vonovia" }
-                            landlordsManager?.previousApartments.removeAll { $0.landlord.name == "Vonovia" }
-                        }
-                    default:
-                        break
+                guard let activeProviders = landlordsManager?.landlords else {
+                    fatalError("Error in setPublisherToUpdateLandlordsListInManager")
+                }
+                landlords.forEach { (landlord, isActive) in
+                    let isAlreadyAdded = activeProviders.contains(where: { $0.name == landlord.rawValue })
+                    if isActive && !isAlreadyAdded {
+                        let newProvider = Provider.generateProvider(with: landlord)
+                        landlordsManager?.landlords.append(newProvider)
+                    } else if !isActive && isAlreadyAdded {
+                        landlordsManager?.landlords.removeAll(where: { $0.name == landlord.rawValue })
+                        landlordsManager?.previousApartments.removeAll(where: { apartment in
+                            apartment.landlord.name == landlord.rawValue
+                        })
+                        currentApartments.removeAll(where: { $0.landlord.name == landlord.rawValue })
                     }
                 }
             }
