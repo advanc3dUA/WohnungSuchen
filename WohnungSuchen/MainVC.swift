@@ -140,16 +140,16 @@ final class MainVC: UIViewController {
                     fatalError("Error in setPublisherToUpdateLandlordsListInManager")
                 }
                 landlords.forEach { (landlord, isActive) in
-                    let isAlreadyAdded = activeProviders.contains(where: { $0.name == landlord.rawValue })
+                    let isAlreadyAdded = activeProviders.contains(where: { $0.name == landlord })
                     if isActive && !isAlreadyAdded {
                         let newProvider = Provider.generateProvider(with: landlord)
                         landlordsManager?.landlords.append(newProvider)
                     } else if !isActive && isAlreadyAdded {
-                        landlordsManager?.landlords.removeAll(where: { $0.name == landlord.rawValue })
+                        landlordsManager?.landlords.removeAll(where: { $0.name == landlord })
                         landlordsManager?.previousApartments.removeAll(where: { apartment in
-                            apartment.landlord.name == landlord.rawValue
+                            apartment.landlord.name == landlord
                         })
-                        currentApartments.removeAll(where: { $0.landlord.name == landlord.rawValue })
+                        currentApartments.removeAll(where: { $0.landlord.name == landlord })
                     }
                 }
             }

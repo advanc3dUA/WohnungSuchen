@@ -9,7 +9,7 @@ import UIKit
 import SwiftSoup
 
 final class Saga: Landlord {
-    let name = "Saga"
+    let name: Provider = .saga
     private let immomioLinkFetcher: ImmomioLinkFetcher
     private let networkManager: NetworkManager
     private let searchURLString = "https://www.saga.hamburg/immobiliensuche?type=wohnungen"

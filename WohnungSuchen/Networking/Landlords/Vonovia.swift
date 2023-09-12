@@ -9,7 +9,7 @@ import Foundation
 import SwiftSoup
 
 final class Vonovia: Landlord {
-    let name = "Vonovia"
+    let name: Provider = .vonovia
     private let networkManager: NetworkManager
     private let vonoviaURL = "https://www.vonovia.de/de-de/immobiliensuche/"
     private let imageLink = "VonoviaLogo.jpg"
