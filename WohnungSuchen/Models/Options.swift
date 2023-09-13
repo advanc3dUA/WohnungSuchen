@@ -38,7 +38,7 @@ final class Options {
         self.rentMax = 0
         self.updateTime = 30
         self.soundIsOn = true
-        self.landlords = [:]
+        self.landlords = DefaultOptions.landlords
     }
 
     func loadSavedDefaults() {

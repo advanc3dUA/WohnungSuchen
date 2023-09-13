@@ -36,11 +36,10 @@ extension OptionsView: UICollectionViewDataSource, UICollectionViewDelegate, UIC
         sender.isSelected.toggle()
 
         if let provider = Provider.getProvider(from: title) {
-            optionsSubject.value.landlords[provider] = sender.isSelected
+            let options = optionsSubject.value
+            options.landlords[provider] = sender.isSelected
+            optionsSubject.send(options)
         }
-
-        let options = optionsSubject.value
-        optionsSubject.send(options)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
