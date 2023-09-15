@@ -13,6 +13,7 @@ final class ModalVC: UIViewController {
     // MARK: - Properties
     var modalView: ModalView!
     let optionsSubject: CurrentValueSubject<Options, Never>
+    let selectedProvidersSubject: PassthroughSubject<[Provider: Bool], Never>
     var currentDetent: UISheetPresentationController.Detent.Identifier? {
         didSet {
             switch currentDetent?.rawValue {
@@ -29,6 +30,8 @@ final class ModalVC: UIViewController {
     init(smallDetentSize: CGFloat, optionsSubject: CurrentValueSubject<Options, Never>) {
         currentDetent = .medium
         self.optionsSubject = optionsSubject
+        self.selectedProvidersSubject = PassthroughSubject()
+        self.selectedProvidersSubject.send(optionsSubject.value.landlords)
         super.init(nibName: nil, bundle: nil)
 
         // Custom medium detent
@@ -61,7 +64,8 @@ final class ModalVC: UIViewController {
         modalView.optionsView.saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
 
         modalView.optionsView.updateOptionsUI(with: optionsSubject.value)
-        modalView.optionsView.setLandlordsOption(with: optionsSubject)
+        modalView.optionsView.setOption(with: optionsSubject)
+        modalView.optionsView.setSelectedProviders(with: selectedProvidersSubject)
         setOptionsPublishers()
     }
 
@@ -143,29 +147,24 @@ final class ModalVC: UIViewController {
         let soundSwitchPublisher = modalView.optionsView.soundSwitch.switchPublisher
             .prepend(optionsSubject.value.soundIsOn)
 
-        let landlordsPublisher = optionsSubject
-            .map { $0.landlords }
-            .removeDuplicates()
-
         let roomsPub = Publishers.CombineLatest(roomsMinIntPublisher, roomsMaxIntPublisher)
         let areaPub = Publishers.CombineLatest(areaMinIntPublisher, areaMaxIntPublisher)
         let rentPub = Publishers.CombineLatest(rentMinIntPublisher, rentMaxIntPublisher)
-        let updateTimeSoundSwitchAndLandlordsPub = Publishers.CombineLatest3(timerUpdateIntPublisher, soundSwitchPublisher, landlordsPublisher)
+        let updateTimeSoundSwitchAndSelectedProvidersPub = Publishers.CombineLatest3(timerUpdateIntPublisher, soundSwitchPublisher, selectedProvidersSubject)
         let options = Options()
 
-        Publishers.CombineLatest4(roomsPub, areaPub, rentPub, updateTimeSoundSwitchAndLandlordsPub)
-            .dropFirst()
-            .map { rooms, area, rent, updateTimeSoundSwitchAndLandlords in
+        Publishers.CombineLatest4(roomsPub, areaPub, rentPub, updateTimeSoundSwitchAndSelectedProvidersPub)
+            .map { rooms, area, rent, updateTimeSoundSwitchAndProviders in
                 options.roomsMin = rooms.0
                 options.roomsMax = rooms.1
                 options.areaMin = area.0
                 options.areaMax = area.1
                 options.rentMin = rent.0
                 options.rentMax = rent.1
-                options.updateTime = updateTimeSoundSwitchAndLandlords.0
-                options.soundIsOn = updateTimeSoundSwitchAndLandlords.1
+                options.updateTime = updateTimeSoundSwitchAndProviders.0
+                options.soundIsOn = updateTimeSoundSwitchAndProviders.1
                 options.landlords.forEach { (landlord, _) in
-                    options.landlords[landlord] = updateTimeSoundSwitchAndLandlords.2[landlord]
+                    options.landlords[landlord] = updateTimeSoundSwitchAndProviders.2[landlord]
                 }
                 return rooms.0 <= rooms.1 && area.0 <= area.1 && rent.0 <= rent.0
             }

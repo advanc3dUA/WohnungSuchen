@@ -36,9 +36,9 @@ extension OptionsView: UICollectionViewDataSource, UICollectionViewDelegate, UIC
         sender.isSelected.toggle()
 
         if let provider = Provider.getProvider(from: title) {
-            let options = optionsSubject.value
-            options.landlords[provider] = sender.isSelected
-            optionsSubject.send(options)
+            var updatedProviders = optionsSubject.value.landlords
+            updatedProviders[provider] = sender.isSelected
+            selectedProvidersSubject.send(updatedProviders)
         }
     }
 
