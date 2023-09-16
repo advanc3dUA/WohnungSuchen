@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProvidersCollectionViewCell: UICollectionViewCell {
+final class ProvidersCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet var providerButton: SaveButton!
 
