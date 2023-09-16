@@ -27,4 +27,14 @@ final class SaveButton: CustomButton {
         let highlightedBackgroundColor = imageWithColor(Color.brandDark.setColor ?? .clear, cornerRadius: layer.cornerRadius)
         setBackgroundImage(highlightedBackgroundColor, for: .highlighted)
     }
+
+    func toggleState(with state: Bool) {
+        if state {
+            self.alpha = 1.0
+            self.isEnabled = true
+        } else {
+            self.alpha = 0.5
+            self.isEnabled = false
+        }
+    }
 }

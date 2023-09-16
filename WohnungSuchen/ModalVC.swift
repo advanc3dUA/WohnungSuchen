@@ -13,7 +13,7 @@ final class ModalVC: UIViewController {
     // MARK: - Properties
     var modalView: ModalView!
     let optionsSubject: CurrentValueSubject<Options, Never>
-    let selectedProvidersSubject: PassthroughSubject<[Provider: Bool], Never>
+    let selectedProvidersSubject: CurrentValueSubject<[Provider: Bool], Never>
     var currentDetent: UISheetPresentationController.Detent.Identifier? {
         didSet {
             switch currentDetent?.rawValue {
@@ -30,8 +30,7 @@ final class ModalVC: UIViewController {
     init(smallDetentSize: CGFloat, optionsSubject: CurrentValueSubject<Options, Never>) {
         currentDetent = .medium
         self.optionsSubject = optionsSubject
-        self.selectedProvidersSubject = PassthroughSubject()
-        self.selectedProvidersSubject.send(optionsSubject.value.landlords)
+        self.selectedProvidersSubject = CurrentValueSubject(optionsSubject.value.landlords)
         super.init(nibName: nil, bundle: nil)
 
         // Custom medium detent
@@ -64,20 +63,14 @@ final class ModalVC: UIViewController {
         modalView.optionsView.saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
 
         modalView.optionsView.updateOptionsUI(with: optionsSubject.value)
-        modalView.optionsView.setOption(with: optionsSubject)
+        modalView.optionsView.setOptions(with: optionsSubject)
         modalView.optionsView.setSelectedProviders(with: selectedProvidersSubject)
         setOptionsPublishers()
     }
 
     // MARK: - Button's actions
-    func saveButtonIsEnabled(_ param: Bool) {
-        if param {
-            modalView.optionsView.saveButton.alpha = 1.0
-            modalView.optionsView.saveButton.isEnabled = true
-        } else {
-            modalView.optionsView.saveButton.alpha = 0.5
-            modalView.optionsView.saveButton.isEnabled = false
-        }
+    func saveButtonIsEnabled(_ state: Bool) {
+        modalView.optionsView.saveButton.toggleState(with: state)
     }
 
     @objc func saveButtonTapped() {
@@ -147,13 +140,17 @@ final class ModalVC: UIViewController {
         let soundSwitchPublisher = modalView.optionsView.soundSwitch.switchPublisher
             .prepend(optionsSubject.value.soundIsOn)
 
+        let selectedProvidersPub = selectedProvidersSubject
+            .eraseToAnyPublisher()
+
         let roomsPub = Publishers.CombineLatest(roomsMinIntPublisher, roomsMaxIntPublisher)
         let areaPub = Publishers.CombineLatest(areaMinIntPublisher, areaMaxIntPublisher)
         let rentPub = Publishers.CombineLatest(rentMinIntPublisher, rentMaxIntPublisher)
-        let updateTimeSoundSwitchAndSelectedProvidersPub = Publishers.CombineLatest3(timerUpdateIntPublisher, soundSwitchPublisher, selectedProvidersSubject)
+        let updateTimeSoundSwitchAndSelectedProvidersPub = Publishers.CombineLatest3(timerUpdateIntPublisher, soundSwitchPublisher, selectedProvidersPub)
         let options = Options()
 
         Publishers.CombineLatest4(roomsPub, areaPub, rentPub, updateTimeSoundSwitchAndSelectedProvidersPub)
+            .dropFirst()
             .map { rooms, area, rent, updateTimeSoundSwitchAndProviders in
                 options.roomsMin = rooms.0
                 options.roomsMax = rooms.1
@@ -168,7 +165,6 @@ final class ModalVC: UIViewController {
                 }
                 return rooms.0 <= rooms.1 && area.0 <= area.1 && rent.0 <= rent.0
             }
-
             .sink { [unowned self] isValid in
                 saveButtonIsEnabled(isValid)
                 if options.isEqualToUserDefaults() {

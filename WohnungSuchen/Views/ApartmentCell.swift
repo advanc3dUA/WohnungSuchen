@@ -9,13 +9,13 @@ import UIKit
 
 final class ApartmentCell: UITableViewCell {
 
-    @IBOutlet weak var logoImageView: UIImageView!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var detailsLabel: UILabel!
-    @IBOutlet var linkButton: ImmoButton!
-    @IBOutlet weak var mapButton: MapButton!
-    weak var delegate: ApartmentCellDelegate?
+    @IBOutlet weak private var logoImageView: UIImageView!
+    @IBOutlet weak private var timeLabel: UILabel!
+    @IBOutlet weak private var addressLabel: UILabel!
+    @IBOutlet weak private var detailsLabel: UILabel!
+    @IBOutlet private var linkButton: ImmoButton!
+    @IBOutlet weak private var mapButton: MapButton!
+    weak private var delegate: ApartmentCellDelegate?
     var apartment: Apartment?
 
     class var identifier: String {
@@ -28,13 +28,25 @@ final class ApartmentCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+    }
+
+    func configure(apartment: Apartment, delegate: ApartmentCellDelegate?) {
+        self.delegate = delegate
+        self.selectionStyle = .none
+        addressLabel.text = "\(apartment.street)"
+        detailsLabel.text = "Rooms: \(apartment.rooms), m2: \(apartment.area), €: \(apartment.rent)"
+        logoImageView.image = apartment.logoImage
+        timeLabel.text = apartment.time
+        timeLabel.backgroundColor = apartment.isNew ? Color.brandOlive.setColor : Color.brandGray.setColor
+    }
+
+    func toggleTimeLabelColor(with state: Bool) {
+        timeLabel.backgroundColor = state ? Color.brandOlive.setColor : Color.brandGray.setColor
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
     @IBAction func linkButtonTapped(_ sender: ImmoButton) {

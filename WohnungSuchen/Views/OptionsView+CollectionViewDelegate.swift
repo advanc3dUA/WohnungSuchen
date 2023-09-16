@@ -20,11 +20,8 @@ extension OptionsView: UICollectionViewDataSource, UICollectionViewDelegate, UIC
         let landlords = optionsSubject.value.landlords
         let providersKeys = Array(landlords.keys)
         let providersStates = Array(landlords.values)
-        cell.providerButton.setTitle(providersKeys[indexPath.row].rawValue, for: .normal)
-        cell.providerButton.setTitle(providersKeys[indexPath.row].rawValue, for: .highlighted)
-        cell.providerButton.isSelected = providersStates[indexPath.row]
-
-        cell.providerButton.addTarget(self, action: #selector(providerButtonTapped(sender:)), for: .touchUpInside)
+        cell.configure(title: providersKeys[indexPath.row].rawValue, isSelected: providersStates[indexPath.row])
+        cell.setProviderButtonTarget(self, action: #selector(providerButtonTapped(sender:)), for: .touchUpInside)
         return cell
     }
 

@@ -24,16 +24,7 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ApartmentCell.identifier, for: indexPath) as? ApartmentCell else {
             return UITableViewCell()
         }
-        let apartment = apartmentsDataSource[indexPath.row]
-        cell.apartment = apartment
-        cell.delegate = self
-        cell.selectionStyle = .none
-        cell.addressLabel.text = "\(apartment.street)"
-        cell.detailsLabel.text = "Rooms: \(apartment.rooms), m2: \(apartment.area), €: \(apartment.rent)"
-        cell.logoImageView.image = apartment.logoImage
-        cell.timeLabel.text = apartment.time
-        cell.timeLabel.backgroundColor = apartment.isNew ? Color.brandOlive.setColor : Color.brandGray.setColor
-
+        cell.configure(apartment: apartmentsDataSource[indexPath.row], delegate: self)
         return cell
     }
 
@@ -45,12 +36,12 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource {
     func toggleIsNew(at index: Int, cell: ApartmentCell) {
         let currentApartmentIndex = currentApartments.firstIndex { $0.externalLink == apartmentsDataSource[index].externalLink }
 
-        let toggledIsNew = !apartmentsDataSource[index].isNew
-        apartmentsDataSource[index].isNew = toggledIsNew
-        cell.timeLabel.backgroundColor = toggledIsNew ? Color.brandOlive.setColor : Color.brandGray.setColor
+        let isNew = !apartmentsDataSource[index].isNew
+        apartmentsDataSource[index].isNew = isNew
+        cell.toggleTimeLabelColor(with: isNew)
 
         if let index = currentApartmentIndex {
-            currentApartments[index].isNew = toggledIsNew
+            currentApartments[index].isNew = isNew
         }
     }
 }

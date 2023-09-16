@@ -22,17 +22,17 @@ final class OptionsView: UIView {
     @IBOutlet weak var availableProvidersLabel: UILabel!
     var providersCollectionView: UICollectionView!
     var optionsSubject: CurrentValueSubject<Options, Never>
-    var selectedProvidersSubject: PassthroughSubject<[Provider: Bool], Never>
+    var selectedProvidersSubject: CurrentValueSubject<[Provider: Bool], Never>
 
     override init(frame: CGRect) {
         self.optionsSubject = CurrentValueSubject<Options, Never>(Options())
-        self.selectedProvidersSubject = PassthroughSubject()
+        self.selectedProvidersSubject = CurrentValueSubject<[Provider: Bool], Never>(DefaultOptions.landlords)
         super.init(frame: frame)
     }
 
     required init?(coder: NSCoder) {
         self.optionsSubject = CurrentValueSubject<Options, Never>(Options())
-        self.selectedProvidersSubject = PassthroughSubject()
+        self.selectedProvidersSubject = CurrentValueSubject<[Provider: Bool], Never>(DefaultOptions.landlords)
         super.init(coder: coder)
     }
 
@@ -48,11 +48,11 @@ final class OptionsView: UIView {
         soundSwitch.isOn = options.soundIsOn
     }
 
-    func setOption(with optionsSubject: CurrentValueSubject<Options, Never>) {
+    func setOptions(with optionsSubject: CurrentValueSubject<Options, Never>) {
         self.optionsSubject = optionsSubject
     }
 
-    func setSelectedProviders(with selectedProvidersSubject: PassthroughSubject<[Provider: Bool], Never>) {
+    func setSelectedProviders(with selectedProvidersSubject: CurrentValueSubject<[Provider: Bool], Never>) {
         self.selectedProvidersSubject = selectedProvidersSubject
     }
 

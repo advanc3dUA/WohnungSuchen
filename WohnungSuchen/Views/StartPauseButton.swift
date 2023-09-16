@@ -7,11 +7,6 @@
 
 import UIKit
 
-enum ImageState: String {
-    case pause
-    case play
-}
-
 final class StartPauseButton: UIButton {
     private(set) var isOn = false
 
@@ -56,5 +51,12 @@ final class StartPauseButton: UIButton {
                 .draw(in: imageBounds)
         }
         setImage(image, for: .normal)
+    }
+}
+
+extension StartPauseButton {
+    enum ImageState: String {
+        case pause
+        case play
     }
 }
