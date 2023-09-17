@@ -24,7 +24,7 @@ final class MainVC: UIViewController {
     private var landlordsManager: LandlordsManager?
     private var notificationsManager: NotificationsManager
     private var isSecondRunPlus: Bool
-    private var loadingView: LoadingView?
+    private lazy var loadingView: LoadingView = makeLoadingView()
     private(set) var backgroundAudioPlayer: BackgroundAudioPlayer?
     private var warningAlertControllerFactory: WarningAlertControllerFactory
     var bgAudioPlayerIsInterrupted: Bool
@@ -79,7 +79,7 @@ final class MainVC: UIViewController {
 
     // MARK: - Start/Stop Engine
     func startEngine() {
-        showLoadingView()
+        tableView.addSubview(loadingView)
         timer = Timer.scheduledTimer(withTimeInterval: Double(optionsSubject.value.updateTime), repeats: true) {[unowned self] _ in
             landlordsManager?.start { [weak self] result in
                 guard let self = self else { return }
@@ -118,7 +118,7 @@ final class MainVC: UIViewController {
                     modalVCView?.containerView?.isHidden = false
                 }
                 DispatchQueue.main.async {
-                    self.loadingView?.removeFromSuperview()
+                    self.loadingView.removeFromSuperview()
                 }
             }
         }
@@ -222,9 +222,8 @@ final class MainVC: UIViewController {
         tableView.dataSource = self
     }
 
-    private func showLoadingView() {
-        loadingView = LoadingView(frame: tableView.bounds)
-        tableView.addSubview(loadingView!)
+    private func makeLoadingView() -> LoadingView {
+        LoadingView(frame: tableView.bounds)
     }
 
     private func checkApartmentSatisfyCurrentFilter(_ apartment: Apartment) -> Bool {
