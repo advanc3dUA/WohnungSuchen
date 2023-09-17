@@ -10,15 +10,14 @@ import Combine
 
 final class ModalView: UIView {
 
-    private(set) var containerView: UIView!
-    private(set) var startPauseButton: StartPauseButton!
-    private(set) var optionsView: OptionsView!
+    private(set) lazy var containerView: UIView = UIView()
+    private(set) lazy var startPauseButton: StartPauseButton = StartPauseButton()
+    private(set) lazy var optionsView: OptionsView = makeOptionsView()
 
     init() {
         super.init(frame: .zero)
         backgroundColor = Color.brandOlive.setColor
         setupStartPauseButton()
-        setupOptionsView()
         optionsView.setupProvidersCollectionView()
     }
 
@@ -28,9 +27,12 @@ final class ModalView: UIView {
 
     // MARK: - Setup views
 
-    private func setupOptionsView() {
+    private func makeOptionsView() -> OptionsView {
         let optionsNib = UINib(nibName: "OptionsView", bundle: nil)
-        optionsView = optionsNib.instantiate(withOwner: self).first as? OptionsView
+        guard let optionsView = optionsNib.instantiate(withOwner: self).first as? OptionsView else {
+            return OptionsView()
+        }
+        return optionsView
     }
 
     func showOptionsContent() {

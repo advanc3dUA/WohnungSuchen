@@ -21,7 +21,7 @@ final class OptionsView: UIView {
     @IBOutlet weak private var soundSwitch: UISwitch!
     @IBOutlet weak private var timerUpdateTextField: UITextField!
     @IBOutlet weak private var availableProvidersLabel: UILabel!
-    private var providersCollectionView: UICollectionView!
+    private lazy var providersCollectionView: UICollectionView = makeProvidersCollectionView()
     private(set) var optionsSubject: CurrentValueSubject<Options, Never>
     var selectedProvidersSubject: CurrentValueSubject<[Provider: Bool], Never>
 
@@ -72,17 +72,21 @@ final class OptionsView: UIView {
         providersCollectionView.dequeueReusableCell(withReuseIdentifier: ProvidersCollectionViewCell.identifier, for: indexPath) as? ProvidersCollectionViewCell
     }
 
-    func setupProvidersCollectionView() {
+    private func makeProvidersCollectionView() -> UICollectionView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 10
         layout.itemSize = CGSize(width: 100, height: 30)
 
-        providersCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
 
-        providersCollectionView.register(ProvidersCollectionViewCell.nib, forCellWithReuseIdentifier: ProvidersCollectionViewCell.identifier)
-        providersCollectionView.backgroundColor = Color.brandOlive.setColor
+        collectionView.register(ProvidersCollectionViewCell.nib, forCellWithReuseIdentifier: ProvidersCollectionViewCell.identifier)
+        collectionView.backgroundColor = Color.brandOlive.setColor
 
+        return collectionView
+    }
+
+    func setupProvidersCollectionView() {
         providersCollectionView.delegate = self
         providersCollectionView.dataSource = self
 

@@ -62,7 +62,7 @@ final class MainVC: UIViewController {
 
         setupModalVC()
         guard let modalVCView = modalVCView else { fatalError("Unable to get modalVCView in startEngine") }
-        modalVCView.containerView?.isHidden = true
+        modalVCView.containerView.isHidden = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -115,7 +115,7 @@ final class MainVC: UIViewController {
                         self.isSecondRunPlus = true
                     }
                     self.statusLabel.update(receivedError: false)
-                    modalVCView?.containerView?.isHidden = false
+                    modalVCView?.containerView.isHidden = false
                 }
                 DispatchQueue.main.async {
                     self.loadingView.removeFromSuperview()

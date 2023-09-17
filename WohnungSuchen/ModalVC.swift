@@ -11,7 +11,7 @@ import Combine
 final class ModalVC: UIViewController {
 
     // MARK: - Properties
-    var modalView: ModalView!
+    lazy var modalView: ModalView = ModalView()
     let optionsSubject: CurrentValueSubject<Options, Never>
     let selectedProvidersSubject: CurrentValueSubject<[Provider: Bool], Never>
     var currentDetent: UISheetPresentationController.Detent.Identifier? {

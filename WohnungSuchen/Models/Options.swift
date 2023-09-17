@@ -52,7 +52,9 @@ final class Options {
         soundIsOn = UserDefaults.standard.object(forKey: SavingKeys.soundIsOn.rawValue) as? Bool ?? DefaultOptions.soundIsOn
 
         DefaultOptions.landlords.forEach { (landlord, _) in
-            landlords.updateValue(UserDefaults.standard.object(forKey: landlord.rawValue) as? Bool ?? DefaultOptions.landlords[landlord]!, forKey: landlord)
+            if let defaultLandlordValue = DefaultOptions.landlords[landlord] {
+                landlords.updateValue(UserDefaults.standard.object(forKey: landlord.rawValue) as? Bool ?? defaultLandlordValue, forKey: landlord)
+            }
         }
     }
 
