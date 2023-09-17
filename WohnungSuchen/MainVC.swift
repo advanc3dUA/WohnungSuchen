@@ -13,22 +13,21 @@ final class MainVC: UIViewController {
     // MARK: - Properties
     @IBOutlet weak var statusLabel: StatusLabel!
     @IBOutlet weak var tableView: UITableView!
+    private lazy var modalVC: ModalVC = makeModalVC()
+    private lazy var landlordsManager: LandlordsManager = LandlordsManager()
+    private lazy var loadingView: LoadingView = makeLoadingView()
+    private(set) lazy var backgroundAudioPlayer: BackgroundAudioPlayer = BackgroundAudioPlayer(for: self)
     private var timer: Timer?
-    private var modalVC: ModalVC?
-    private var modalVCIsPresented: Bool
-    private var modalVCView: ModalView?
-    private var optionsSubject: CurrentValueSubject<Options, Never>
-    @Published var currentApartments: [Apartment]
-    var apartmentsDataSource: [Apartment]
     private var immomioLinkFetcher: ImmomioLinkFetcher
-    private var landlordsManager: LandlordsManager?
     private var notificationsManager: NotificationsManager
     private var isSecondRunPlus: Bool
-    private lazy var loadingView: LoadingView = makeLoadingView()
-    private(set) var backgroundAudioPlayer: BackgroundAudioPlayer?
     private var warningAlertControllerFactory: WarningAlertControllerFactory
-    var bgAudioPlayerIsInterrupted: Bool
+    private var modalVCIsPresented: Bool
+    private var optionsSubject: CurrentValueSubject<Options, Never>
     private var cancellables: Set<AnyCancellable> = []
+    @Published var currentApartments: [Apartment]
+    var apartmentsDataSource: [Apartment]
+    var bgAudioPlayerIsInterrupted: Bool
 
     // MARK: - Initialization
     required init?(coder aDecoder: NSCoder) {
@@ -51,24 +50,18 @@ final class MainVC: UIViewController {
         super.viewDidLoad()
         notificationsManager.requestNotificationAuthorization()
 
-        backgroundAudioPlayer = BackgroundAudioPlayer(for: self)
-        backgroundAudioPlayer?.start()
-
         setupMainView()
         setupTableView()
 
-        landlordsManager = LandlordsManager()
-        setPublisherToUpdateLandlordsListInManager()
+        backgroundAudioPlayer.start()
 
-        setupModalVC()
-        guard let modalVCView = modalVCView else { fatalError("Unable to get modalVCView in startEngine") }
-        modalVCView.containerView.isHidden = true
+        setPublisherToUpdateLandlordsListInManager()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if let modalVC = modalVC, !modalVCIsPresented {
+        if !modalVCIsPresented {
             present(modalVC, animated: true)
             setPublisherForApartmentsDataSource()
             setPublisherForNotificationAlertType()
@@ -81,7 +74,7 @@ final class MainVC: UIViewController {
     func startEngine() {
         tableView.addSubview(loadingView)
         timer = Timer.scheduledTimer(withTimeInterval: Double(optionsSubject.value.updateTime), repeats: true) {[unowned self] _ in
-            landlordsManager?.start { [weak self] result in
+            landlordsManager.start { [weak self] result in
                 guard let self = self else { return }
 
                 switch result {
@@ -91,7 +84,7 @@ final class MainVC: UIViewController {
                         let warningController = UIAlertController(title: "Warning", message: errorDescription, preferredStyle: .alert)
                         let okButton = UIAlertAction(title: "OK", style: .cancel)
                         warningController.addAction(okButton)
-                        modalVC?.present(warningController, animated: true)
+                        modalVC.present(warningController, animated: true)
                         self.statusLabel.update(receivedError: true)
                     }
 
@@ -115,7 +108,9 @@ final class MainVC: UIViewController {
                         self.isSecondRunPlus = true
                     }
                     self.statusLabel.update(receivedError: false)
-                    modalVCView?.containerView.isHidden = false
+                    if let modalVCView = modalVC.view as? ModalView {
+                        modalVCView.containerView.isHidden = false
+                    }
                 }
                 DispatchQueue.main.async {
                     self.loadingView.removeFromSuperview()
@@ -136,17 +131,14 @@ final class MainVC: UIViewController {
             .map { $0.landlords }
             .removeDuplicates()
             .sink { [unowned self] landlords in
-                guard let activeProviders = landlordsManager?.landlords else {
-                    fatalError("Error in setPublisherToUpdateLandlordsListInManager")
-                }
                 landlords.forEach { (landlord, isActive) in
-                    let isAlreadyAdded = activeProviders.contains(where: { $0.name == landlord })
+                    let isAlreadyAdded = landlordsManager.landlords.contains(where: { $0.name == landlord })
                     if isActive && !isAlreadyAdded {
                         let newProvider = Provider.generateProvider(with: landlord)
-                        landlordsManager?.landlords.append(newProvider)
+                        landlordsManager.landlords.append(newProvider)
                     } else if !isActive && isAlreadyAdded {
-                        landlordsManager?.landlords.removeAll(where: { $0.name == landlord })
-                        landlordsManager?.previousApartments.removeAll(where: { apartment in
+                        landlordsManager.landlords.removeAll(where: { $0.name == landlord })
+                        landlordsManager.previousApartments.removeAll(where: { apartment in
                             apartment.landlord.name == landlord
                         })
                         currentApartments.removeAll(where: { $0.landlord.name == landlord })
@@ -206,11 +198,14 @@ final class MainVC: UIViewController {
         view.backgroundColor = Color.brandDark.setColor
     }
 
-    private func setupModalVC() {
-        modalVC = ModalVC(smallDetentSize: calcModalVCDetentSizeSmall(), optionsSubject: optionsSubject)
-        modalVC?.presentationController?.delegate = self
-        modalVC?.delegate = self
-        modalVCView = modalVC?.view as? ModalView
+    private func makeModalVC() -> ModalVC {
+        let modalVC = ModalVC(smallDetentSize: calcModalVCDetentSizeSmall(), optionsSubject: optionsSubject)
+        modalVC.presentationController?.delegate = self
+        modalVC.delegate = self
+        if let modalVCView = modalVC.view as? ModalView {
+            modalVCView.containerView.isHidden = true
+        }
+        return modalVC
     }
 
     private func setupTableView() {
@@ -240,7 +235,7 @@ extension MainVC: DetectDetent {
     }
 
     private func switchModalVCCurrentDetent(to detent: UISheetPresentationController.Detent.Identifier) {
-        modalVC?.currentDetent = detent
+        modalVC.currentDetent = detent
     }
 
     private func calcModalVCDetentSizeSmall() -> CGFloat {
