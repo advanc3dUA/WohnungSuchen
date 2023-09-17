@@ -31,7 +31,6 @@ final class ModalView: UIView {
     private func setupOptionsView() {
         let optionsNib = UINib(nibName: "OptionsView", bundle: nil)
         optionsView = optionsNib.instantiate(withOwner: self).first as? OptionsView
-        optionsView.soundSwitch.set(offTint: Color.brandGray.setColor)
     }
 
     func showOptionsContent() {

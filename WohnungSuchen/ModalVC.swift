@@ -60,7 +60,7 @@ final class ModalVC: UIViewController {
         modalView.startPauseButton.addTarget(self, action: #selector(startPauseButtonTapped(sender:)), for: .touchUpInside)
 
         saveButtonIsEnabled(false)
-        modalView.optionsView.saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+        modalView.optionsView.setTargetForSaveButton(self, action: #selector(saveButtonTapped), for: .touchUpInside)
 
         modalView.optionsView.updateOptionsUI(with: optionsSubject.value)
         modalView.optionsView.setOptions(with: optionsSubject)
@@ -70,7 +70,7 @@ final class ModalVC: UIViewController {
 
     // MARK: - Button's actions
     func saveButtonIsEnabled(_ state: Bool) {
-        modalView.optionsView.saveButton.toggleState(with: state)
+        modalView.optionsView.toggleStateOfSaveButton(state)
     }
 
     @objc func saveButtonTapped() {
@@ -100,53 +100,21 @@ final class ModalVC: UIViewController {
     }
 
     // MARK: - Options publishers
-    func makeTextFieldIntPublisher(_ textField: UITextField, initialValue: Int) -> AnyPublisher<Int, Never> {
-        textField.publisher(for: \.text)
-            .map { text in
-                Int(extractFrom: text, defaultValue: initialValue)
-            }
-            .prepend(initialValue)
-            .removeDuplicates()
-            .eraseToAnyPublisher()
-    }
-
     private func setOptionsPublishers() {
-        let roomsMinIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.roomsMinTextField, initialValue: optionsSubject.value.roomsMin)
-        let roomsMaxIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.roomsMaxTextField, initialValue: optionsSubject.value.roomsMax)
-        let areaMinIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.areaMinTextField, initialValue: optionsSubject.value.areaMin)
-        let areaMaxIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.areaMaxTextField, initialValue: optionsSubject.value.areaMax)
-        let rentMinIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.rentMinTextField, initialValue: optionsSubject.value.rentMin)
-        let rentMaxIntPublisher = makeTextFieldIntPublisher(modalView.optionsView.rentMaxTextField, initialValue: optionsSubject.value.rentMax)
-
-        let timerUpdateIntPublisher = modalView.optionsView.timerUpdateTextField.publisher(for: \.text)
-            .map { [unowned self] textValue in
-                Int(extractFrom: textValue, defaultValue: optionsSubject.value.updateTime)
-            }
-            .scan(nil) { previous, current in
-                    if current < 30 {
-                        self.modalView.optionsView.timerUpdateTextField.text = "30"
-                        if previous == nil || previous == 30 {
-                            return nil
-                        } else {
-                            return 30
-                        }
-                    } else {
-                        return current
-                    }
-                }
-            .compactMap { $0 }
-            .removeDuplicates()
-
-        let soundSwitchPublisher = modalView.optionsView.soundSwitch.switchPublisher
-            .prepend(optionsSubject.value.soundIsOn)
-
-        let selectedProvidersPub = selectedProvidersSubject
-            .eraseToAnyPublisher()
+        let roomsMinIntPublisher = modalView.optionsView.makePublisherForRoomsMinTextField()
+        let roomsMaxIntPublisher = modalView.optionsView.makePublisherForRoomsMaxTextField()
+        let areaMinIntPublisher = modalView.optionsView.makePublisherForAreaMinTextField()
+        let areaMaxIntPublisher = modalView.optionsView.makePublisherForAreaMaxTextField()
+        let rentMinIntPublisher = modalView.optionsView.makePublisherForRentMinTextField()
+        let rentMaxIntPublisher = modalView.optionsView.makePublisherForRentMaxTextField()
+        let timerUpdateIntPublisher = modalView.optionsView.makePublisherForTimerUpdateTextField()
+        let soundSwitchPublisher = modalView.optionsView.makePublisherForSoundSwitch()
+        let selectedProvidersPublisher = modalView.optionsView.makePublisherForselectedProvidersSubject()
 
         let roomsPub = Publishers.CombineLatest(roomsMinIntPublisher, roomsMaxIntPublisher)
         let areaPub = Publishers.CombineLatest(areaMinIntPublisher, areaMaxIntPublisher)
         let rentPub = Publishers.CombineLatest(rentMinIntPublisher, rentMaxIntPublisher)
-        let updateTimeSoundSwitchAndSelectedProvidersPub = Publishers.CombineLatest3(timerUpdateIntPublisher, soundSwitchPublisher, selectedProvidersPub)
+        let updateTimeSoundSwitchAndSelectedProvidersPub = Publishers.CombineLatest3(timerUpdateIntPublisher, soundSwitchPublisher, selectedProvidersPublisher)
         let options = Options()
 
         Publishers.CombineLatest4(roomsPub, areaPub, rentPub, updateTimeSoundSwitchAndSelectedProvidersPub)
