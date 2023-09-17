@@ -21,7 +21,7 @@ final class LandlordsManager {
         let dispatchGroup = DispatchGroup()
         var errorOccured = false
 
-        for landlord in landlords {
+        landlords.forEach { landlord in
             dispatchGroup.enter()
             landlord.fetchApartmentsList { result in
                 switch result {
@@ -34,6 +34,7 @@ final class LandlordsManager {
                 dispatchGroup.leave()
             }
         }
+
         dispatchGroup.notify(queue: .main) { [weak self] in
             if errorOccured {
                 return
@@ -72,7 +73,7 @@ final class LandlordsManager {
         let dispatchGroup = DispatchGroup()
         var modifiedApartments = [Apartment]()
 
-        for apartment in apartments {
+        apartments.forEach { apartment in
             dispatchGroup.enter()
             let landlord = apartment.landlord
             landlord.setExternalLink(for: apartment) { result in

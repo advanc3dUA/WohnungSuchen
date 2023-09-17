@@ -77,12 +77,11 @@ final class Options {
 
     private func getLandlordsFromUserDefaults() -> [Provider: Bool]? {
         var landlordsDict: [Provider: Bool] = [:]
-        for (key, _) in DefaultOptions.landlords {
+        DefaultOptions.landlords.forEach { (key, value) in
             if let value = UserDefaults.standard.object(forKey: key.rawValue) as? Bool {
                 landlordsDict[key] = value
-            } else { return nil }
+            }
         }
         return landlordsDict
     }
-
 }

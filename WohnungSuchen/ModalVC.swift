@@ -162,7 +162,7 @@ final class ModalVC: UIViewController {
     }
 
     private func hideKeyboardIfViewIsTextField(in view: UIView) {
-        for subview in view.subviews {
+        view.subviews.forEach { subview in
             if subview is UITextField {
                 subview.resignFirstResponder()
             } else {

@@ -10,7 +10,7 @@ import UIKit
 
 extension UIView {
     func removeAllSubviews() {
-        for subview in subviews {
+        subviews.forEach { subview in
             subview.removeFromSuperview()
         }
     }

@@ -32,7 +32,8 @@ final class Saga: Landlord {
                     completion(.failure(AppError.landlordError(.sagaDocCreationFailed)))
                     return
                 }
-                for apartment in apartments {
+
+                apartments.forEach { apartment in
                     if let link = try? apartment.select("a").first(),
                        let href = try? link.attr("href"),
                        let title = try? link.select("h3").first()?.text(),
