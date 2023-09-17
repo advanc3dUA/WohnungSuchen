@@ -31,7 +31,7 @@ final class Vonovia: Landlord {
                 var currentApartments = [Apartment]()
                 guard let self = self else { return }
                 let time = TimeManager.shared.getCurrentTime()
-                for jsonApartment in decodedData.apartments {
+                for jsonApartment in decodedData.results {
                     let link = self.vonoviaURL + jsonApartment.slug.lowercased() + "-" + jsonApartment.wrk_id
                     let area = self.getRoundedInt(from: jsonApartment.groesse)
                     let price = self.getRoundedInt(from: jsonApartment.preis)

@@ -23,7 +23,7 @@ final class MainVC: UIViewController {
     private var isSecondRunPlus: Bool
     private var warningAlertControllerFactory: WarningAlertControllerFactory
     private var modalVCIsPresented: Bool
-    private var optionsSubject: CurrentValueSubject<Options, Never>
+    private let optionsSubject: CurrentValueSubject<Options, Never>
     private var cancellables: Set<AnyCancellable> = []
     @Published var currentApartments: [Apartment]
     var apartmentsDataSource: [Apartment]

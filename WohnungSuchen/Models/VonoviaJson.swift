@@ -8,11 +8,7 @@
 import Foundation
 
 struct VonoviaJson: Decodable {
-    var apartments: [VonoviaApartment]
-
-    private enum CodingKeys: String, CodingKey {
-        case apartments = "results"
-    }
+    var results: [VonoviaApartment]
 }
 
 extension VonoviaJson {
