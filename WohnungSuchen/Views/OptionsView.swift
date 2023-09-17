@@ -10,6 +10,7 @@ import Combine
 
 final class OptionsView: UIView {
 
+    // MARK: - Views and Properties
     @IBOutlet weak private var roomsMinTextField: UITextField!
     @IBOutlet weak private var roomsMaxTextField: UITextField!
     @IBOutlet weak private var areaMinTextField: UITextField!
@@ -24,6 +25,7 @@ final class OptionsView: UIView {
     private(set) var optionsSubject: CurrentValueSubject<Options, Never>
     var selectedProvidersSubject: CurrentValueSubject<[Provider: Bool], Never>
 
+    // MARK: - Initialization
     override init(frame: CGRect) {
         self.optionsSubject = CurrentValueSubject<Options, Never>(Options())
         self.selectedProvidersSubject = CurrentValueSubject<[Provider: Bool], Never>(DefaultOptions.landlords)
@@ -36,7 +38,8 @@ final class OptionsView: UIView {
         super.init(coder: coder)
     }
 
-    func updateOptionsUI(with options: Options) {
+    // MARK: - Setup methods
+    func configure(with options: Options) {
         let defaultAttributes = [NSAttributedString.Key.foregroundColor: UIColor.darkGray]
         roomsMinTextField.attributedText = NSAttributedString(string: String(options.roomsMin), attributes: defaultAttributes)
         roomsMaxTextField.attributedText = NSAttributedString(string: String(options.roomsMax), attributes: defaultAttributes)
@@ -160,15 +163,5 @@ final class OptionsView: UIView {
     func makePublisherForselectedProvidersSubject() -> AnyPublisher<[Provider: Bool], Never> {
         selectedProvidersSubject
             .eraseToAnyPublisher()
-    }
-}
-
-extension UISwitch {
-
-    func set(offTint color: UIColor?) {
-        let minSide = min(bounds.size.height, bounds.size.width)
-        layer.cornerRadius = minSide / 2
-        backgroundColor = color
-        tintColor = color
     }
 }

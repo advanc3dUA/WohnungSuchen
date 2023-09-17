@@ -42,6 +42,7 @@
 		BF8EB0F729E17A360070C64B /* UIView+Flashing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EB0F629E17A360070C64B /* UIView+Flashing.swift */; };
 		BF8EEDB829C4701100F74971 /* MapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EEDB729C4701100F74971 /* MapButton.swift */; };
 		BF8EEDBA29C4771B00F74971 /* DefaultOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8EEDB929C4771B00F74971 /* DefaultOptions.swift */; };
+		BF8F93F22AB6F5D700FAF2C7 /* UISwitch+offTint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8F93F12AB6F5D700FAF2C7 /* UISwitch+offTint.swift */; };
 		BF9055782A76472400A8082B /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9055772A76472400A8082B /* AppError.swift */; };
 		BF9205A029E029830017CEEA /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF92059F29E029830017CEEA /* TimeManager.swift */; };
 		BF94F64A29D75D0B00993295 /* StartPauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF94F64929D75D0B00993295 /* StartPauseButton.swift */; };
@@ -112,6 +113,7 @@
 		BF8EB0F629E17A360070C64B /* UIView+Flashing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Flashing.swift"; sourceTree = "<group>"; };
 		BF8EEDB729C4701100F74971 /* MapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButton.swift; sourceTree = "<group>"; };
 		BF8EEDB929C4771B00F74971 /* DefaultOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultOptions.swift; sourceTree = "<group>"; };
+		BF8F93F12AB6F5D700FAF2C7 /* UISwitch+offTint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISwitch+offTint.swift"; sourceTree = "<group>"; };
 		BF9055772A76472400A8082B /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		BF92059F29E029830017CEEA /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
 		BF94F64929D75D0B00993295 /* StartPauseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPauseButton.swift; sourceTree = "<group>"; };
@@ -168,19 +170,17 @@
 		BF0F3F5E29BDE582002909BB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BF8F93F02AB6F58500FAF2C7 /* Extensions */,
 				BF707C0329BB427700225796 /* Main.storyboard */,
 				BFA3DEF029D82FD5009B23D8 /* ModalView.swift */,
 				BFA73B802AA0DBA30061747C /* StatusLabel.swift */,
-				BF11CE9F29EFD6FF00A9D194 /* CustomButton.swift */,
 				BF8EEDB729C4701100F74971 /* MapButton.swift */,
 				BFA9F37129C1F61E00ECB8F4 /* ImmoButton.swift */,
 				BF94F64929D75D0B00993295 /* StartPauseButton.swift */,
 				BFA8D22C29F547450091D0FA /* SaveButton.swift */,
-				BFA1C3D229C339540023396C /* UIView+removeAllSubviews.swift */,
 				BFA68DD229DAEAB20023B268 /* ApartmentCell.swift */,
 				BFA68DD329DAEAB20023B268 /* ApartmentCell.xib */,
 				BF8EB0F429E16B880070C64B /* LoadingView.swift */,
-				BF8EB0F629E17A360070C64B /* UIView+Flashing.swift */,
 				BFEBAA5729E2D15300CC83C8 /* OptionsView.swift */,
 				BF8E05102A63EE45003A585C /* OptionsView+CollectionViewDelegate.swift */,
 				BFEBAA5929E2D67B00CC83C8 /* OptionsView.xib */,
@@ -316,6 +316,17 @@
 				BF8C912929DDB877008AD739 /* VonoviaLogo.jpg */,
 			);
 			path = Logos;
+			sourceTree = "<group>";
+		};
+		BF8F93F02AB6F58500FAF2C7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BF11CE9F29EFD6FF00A9D194 /* CustomButton.swift */,
+				BFA1C3D229C339540023396C /* UIView+removeAllSubviews.swift */,
+				BF8EB0F629E17A360070C64B /* UIView+Flashing.swift */,
+				BF8F93F12AB6F5D700FAF2C7 /* UISwitch+offTint.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		BF9DC6A629BC948F0027FADC /* Sounds */ = {
@@ -502,6 +513,7 @@
 				BF5C017A29C71574006C06D4 /* BackgroundAudioPlayer.swift in Sources */,
 				BF8A62FA29DD9F5300E2DCD4 /* ApartmentCellDelegate.swift in Sources */,
 				BFA9F37229C1F61E00ECB8F4 /* ImmoButton.swift in Sources */,
+				BF8F93F22AB6F5D700FAF2C7 /* UISwitch+offTint.swift in Sources */,
 				BF707C0229BB427700225796 /* MainVC.swift in Sources */,
 				BF9DC6AC29BCAF630027FADC /* Apartment.swift in Sources */,
 				BF8E05112A63EE45003A585C /* OptionsView+CollectionViewDelegate.swift in Sources */,

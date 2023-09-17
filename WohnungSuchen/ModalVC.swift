@@ -62,7 +62,7 @@ final class ModalVC: UIViewController {
         saveButtonIsEnabled(false)
         modalView.optionsView.setTargetForSaveButton(self, action: #selector(saveButtonTapped), for: .touchUpInside)
 
-        modalView.optionsView.updateOptionsUI(with: optionsSubject.value)
+        modalView.optionsView.configure(with: optionsSubject.value)
         modalView.optionsView.setOptions(with: optionsSubject)
         modalView.optionsView.setSelectedProviders(with: selectedProvidersSubject)
         setOptionsPublishers()
