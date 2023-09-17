@@ -52,8 +52,7 @@ final class LandlordsManager {
     }
 
     private func comparePreviousApartments(with currentApartments: [Apartment], completion: @escaping (Result<[Apartment], AppError>) -> Void) {
-        let newApartments = findNewApartments(from: currentApartments)
-        fetchExternalLinks(for: newApartments) { result in
+        fetchExternalLinks(for: findNewApartments(from: currentApartments)) { result in
             switch result {
             case .success(let modifiedApartments):
                 completion(.success(modifiedApartments))

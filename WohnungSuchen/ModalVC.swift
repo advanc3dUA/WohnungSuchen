@@ -47,7 +47,6 @@ final class ModalVC: UIViewController {
 
     // MARK: - VC Lifecycle
     override func loadView() {
-        modalView = ModalView()
         view = modalView
     }
 
@@ -59,12 +58,7 @@ final class ModalVC: UIViewController {
 
         modalView.startPauseButton.addTarget(self, action: #selector(startPauseButtonTapped(sender:)), for: .touchUpInside)
 
-        saveButtonIsEnabled(false)
-        modalView.optionsView.setTargetForSaveButton(self, action: #selector(saveButtonTapped), for: .touchUpInside)
-
-        modalView.optionsView.configure(with: optionsSubject.value)
-        modalView.optionsView.setOptions(with: optionsSubject)
-        modalView.optionsView.setSelectedProviders(with: selectedProvidersSubject)
+        configureOptionsView()
         setOptionsPublishers()
     }
 
@@ -144,6 +138,14 @@ final class ModalVC: UIViewController {
     }
 
     // MARK: - Supporting methods
+    private func configureOptionsView() {
+        modalView.optionsView.setTargetForSaveButton(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+        modalView.optionsView.configure(with: optionsSubject.value)
+        modalView.optionsView.setOptions(with: optionsSubject)
+        modalView.optionsView.setSelectedProviders(with: selectedProvidersSubject)
+        saveButtonIsEnabled(false)
+    }
+
     private func setupSheetPresentationController(with smallDetent: UISheetPresentationController.Detent) {
         sheetPresentationController?.detents = [smallDetent, .large()]
         sheetPresentationController?.largestUndimmedDetentIdentifier = .large

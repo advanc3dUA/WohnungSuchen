@@ -11,19 +11,20 @@ import SwiftSoup
 final class Vonovia: Landlord {
     let name: Provider = .vonovia
     private let networkManager: NetworkManager
+    private let decoder: JSONDecoder
     private let vonoviaURL = "https://www.vonovia.de/de-de/immobiliensuche/"
     private let imageLink = "VonoviaLogo.jpg"
     private let searchURLString = "https://www.wohnraumkarte.de/Api/getImmoList?offset=0&limit=25&orderBy=date_asc&city=Hamburg&rentType=miete&immoType=all&priceMax=1500&sizeMin=20&sizeMax=0&minRooms=1&dachgeschoss=0&erdgeschoss=0&sofortfrei=egal&lift=0&balcony=egal&disabilityAccess=egal&subsidizedHousingPermit=egal&userCookieValue=e64300007d54e2f903e5a62b1a63c39613705590&geoLocation=1"
 
     init(networkManager: NetworkManager = NetworkManager()) {
         self.networkManager = networkManager
+        self.decoder = JSONDecoder()
     }
 
     func fetchApartmentsList(completion: @escaping (Result<[Apartment], AppError>) -> Void) {
-        networkManager.fetchData(urlString: searchURLString) {[weak self] result in
+        networkManager.fetchData(urlString: searchURLString) {[weak self, decoder] result in
             switch result {
             case .success(let data):
-                let decoder = JSONDecoder()
                 guard let decodedData = try? decoder.decode(VonoviaJson.self, from: data) else {
                     completion(.failure(AppError.landlordError(.vonoviaDecodedDataCreationFailed)))
                     return
