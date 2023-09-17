@@ -20,8 +20,8 @@ final class OptionsView: UIView {
     @IBOutlet weak private var soundSwitch: UISwitch!
     @IBOutlet weak private var timerUpdateTextField: UITextField!
     @IBOutlet weak private var availableProvidersLabel: UILabel!
-    var providersCollectionView: UICollectionView!
-    var optionsSubject: CurrentValueSubject<Options, Never>
+    private var providersCollectionView: UICollectionView!
+    private(set) var optionsSubject: CurrentValueSubject<Options, Never>
     var selectedProvidersSubject: CurrentValueSubject<[Provider: Bool], Never>
 
     override init(frame: CGRect) {
@@ -63,6 +63,10 @@ final class OptionsView: UIView {
 
     func toggleStateOfSaveButton(_ state: Bool) {
         saveButton.toggleState(with: state)
+    }
+
+    func getProvidersCollectionViewCell(with indexPath: IndexPath) -> ProvidersCollectionViewCell? {
+        providersCollectionView.dequeueReusableCell(withReuseIdentifier: ProvidersCollectionViewCell.identifier, for: indexPath) as? ProvidersCollectionViewCell
     }
 
     func setupProvidersCollectionView() {

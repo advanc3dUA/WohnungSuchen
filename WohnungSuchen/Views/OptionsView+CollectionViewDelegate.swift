@@ -14,7 +14,7 @@ extension OptionsView: UICollectionViewDataSource, UICollectionViewDelegate, UIC
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = self.providersCollectionView.dequeueReusableCell(withReuseIdentifier: ProvidersCollectionViewCell.identifier, for: indexPath) as? ProvidersCollectionViewCell else {
+        guard let cell = getProvidersCollectionViewCell(with: indexPath) else {
             return UICollectionViewCell()
         }
         let landlords = optionsSubject.value.landlords
