@@ -16,7 +16,7 @@ final class ApartmentCell: UITableViewCell {
     @IBOutlet private var linkButton: ImmoButton!
     @IBOutlet weak private var mapButton: MapButton!
     weak private var delegate: ApartmentCellDelegate?
-    var apartment: Apartment?
+    private var apartment: Apartment?
 
     class var identifier: String {
         String(describing: self)
@@ -31,6 +31,7 @@ final class ApartmentCell: UITableViewCell {
     }
 
     func configure(apartment: Apartment, delegate: ApartmentCellDelegate?) {
+        self.apartment = apartment
         self.delegate = delegate
         self.selectionStyle = .none
         addressLabel.text = "\(apartment.street)"
