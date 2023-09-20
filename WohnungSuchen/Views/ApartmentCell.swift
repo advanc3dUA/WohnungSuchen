@@ -35,7 +35,7 @@ final class ApartmentCell: UITableViewCell {
         self.delegate = delegate
         self.selectionStyle = .none
         addressLabel.text = "\(apartment.street)"
-        detailsLabel.text = "Rooms: \(apartment.rooms), m2: \(apartment.area), €: \(apartment.rent)"
+        detailsLabel.text = "Rooms: \(apartment.rooms), m²: \(apartment.area), €: \(apartment.rent)"
         logoImageView.image = apartment.logoImage
         timeLabel.text = apartment.time
         timeLabel.backgroundColor = apartment.isNew ? Color.brandOlive.setColor : Color.brandGray.setColor

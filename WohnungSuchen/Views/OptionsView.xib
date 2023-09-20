@@ -19,16 +19,16 @@
                     <rect key="frame" x="10" y="25" width="380" height="398.66666666666669"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="3lZ-6l-THA">
-                            <rect key="frame" x="82.666666666666686" y="0.0" width="215" height="182.33333333333334"/>
+                            <rect key="frame" x="77.666666666666686" y="0.0" width="225" height="182.33333333333334"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter apartments:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uz7-BL-aBz">
-                                    <rect key="frame" x="40.333333333333329" y="0.0" width="134" height="20.333333333333332"/>
+                                    <rect key="frame" x="45.333333333333329" y="0.0" width="134" height="20.333333333333332"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" name="brandDark"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="pyr-6Y-in7">
-                                    <rect key="frame" x="0.0" y="39.333333333333329" width="215" height="35"/>
+                                    <rect key="frame" x="0.0" y="39.333333333333329" width="225" height="35"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jih-Dl-Wrz">
                                             <rect key="frame" x="0.0" y="0.0" width="60" height="35"/>
@@ -42,16 +42,16 @@
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt; Rooms &lt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GKH-vv-jEu">
-                                            <rect key="frame" x="64.999999999999986" y="0.0" width="85.000000000000014" height="35"/>
+                                            <rect key="frame" x="64.999999999999986" y="0.0" width="95.000000000000014" height="35"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="85" id="G45-Ic-gHc"/>
+                                                <constraint firstAttribute="width" constant="95" id="G45-Ic-gHc"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" name="brandDark"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n3q-YH-J8b">
-                                            <rect key="frame" x="155" y="0.0" width="60" height="35"/>
+                                            <rect key="frame" x="165" y="0.0" width="60" height="35"/>
                                             <color key="backgroundColor" name="brandGray"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="35" id="Cme-Im-EsY"/>
@@ -64,7 +64,7 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="yKM-uv-Spx">
-                                    <rect key="frame" x="0.0" y="93.333333333333329" width="215" height="34.999999999999986"/>
+                                    <rect key="frame" x="0.0" y="93.333333333333329" width="225" height="34.999999999999986"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wli-Fg-1dH">
                                             <rect key="frame" x="0.0" y="0.0" width="60" height="35"/>
@@ -77,17 +77,17 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         </textField>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt; Area &lt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AI4-hV-fCy">
-                                            <rect key="frame" x="64.999999999999986" y="0.0" width="85.000000000000014" height="35"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt; Area, m² &lt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AI4-hV-fCy">
+                                            <rect key="frame" x="64.999999999999986" y="0.0" width="95.000000000000014" height="35"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="85" id="rcK-4w-l5Z"/>
+                                                <constraint firstAttribute="width" constant="95" id="rcK-4w-l5Z"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" name="brandDark"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5tz-XP-35M">
-                                            <rect key="frame" x="155" y="0.0" width="60" height="35"/>
+                                            <rect key="frame" x="165" y="0.0" width="60" height="35"/>
                                             <color key="backgroundColor" name="brandGray"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="SRw-I5-Ef6"/>
@@ -100,7 +100,7 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fUf-eQ-ivA">
-                                    <rect key="frame" x="0.0" y="147.33333333333334" width="215" height="35"/>
+                                    <rect key="frame" x="0.0" y="147.33333333333334" width="225" height="35"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Saw-65-Rsm">
                                             <rect key="frame" x="0.0" y="0.0" width="60" height="35"/>
@@ -113,17 +113,17 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         </textField>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt; Price &lt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kSw-tR-nhG">
-                                            <rect key="frame" x="64.999999999999986" y="0.0" width="85.000000000000014" height="35"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt; Price, € &lt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kSw-tR-nhG">
+                                            <rect key="frame" x="64.999999999999986" y="0.0" width="95.000000000000014" height="35"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="85" id="7fn-aI-pHY"/>
+                                                <constraint firstAttribute="width" constant="95" id="7fn-aI-pHY"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" name="brandDark"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="drc-6k-Lsi">
-                                            <rect key="frame" x="155" y="0.0" width="60" height="35"/>
+                                            <rect key="frame" x="165" y="0.0" width="60" height="35"/>
                                             <color key="backgroundColor" name="brandGray"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="DMt-bk-jp2"/>
