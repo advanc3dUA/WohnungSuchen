@@ -12,6 +12,7 @@
 		BF11CEA029EFD6FF00A9D194 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF11CE9F29EFD6FF00A9D194 /* CustomButton.swift */; };
 		BF160B792A97905B0049BCA2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BF160B782A97905B0049BCA2 /* .swiftlint.yml */; };
 		BF22E7E329EAB279003F245A /* Int+ExtractFromString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF22E7E229EAB279003F245A /* Int+ExtractFromString.swift */; };
+		BF355FFD2ABB37F3005B1996 /* MainVC+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355FFC2ABB37F3005B1996 /* MainVC+TableViewDataSource.swift */; };
 		BF4704BC29D2D47A00EEABEE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4704BB29D2D47A00EEABEE /* NetworkManager.swift */; };
 		BF4704BF29D2D52A00EEABEE /* Saga.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4704BE29D2D52A00EEABEE /* Saga.swift */; };
 		BF4704C129D2D53B00EEABEE /* Landlord.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4704C029D2D53B00EEABEE /* Landlord.swift */; };
@@ -80,6 +81,7 @@
 		BF11CE9F29EFD6FF00A9D194 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		BF160B782A97905B0049BCA2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		BF22E7E229EAB279003F245A /* Int+ExtractFromString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+ExtractFromString.swift"; sourceTree = "<group>"; };
+		BF355FFC2ABB37F3005B1996 /* MainVC+TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVC+TableViewDataSource.swift"; sourceTree = "<group>"; };
 		BF4704BB29D2D47A00EEABEE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		BF4704BE29D2D52A00EEABEE /* Saga.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Saga.swift; sourceTree = "<group>"; };
 		BF4704C029D2D53B00EEABEE /* Landlord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landlord.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				BF707C0129BB427700225796 /* MainVC.swift */,
 				BF9E7A462A6D345D00274A30 /* MainVC+ModalVCDelegate.swift */,
 				BF8A62F729DD7B8500E2DCD4 /* MainVC+TableViewDelegate.swift */,
+				BF355FFC2ABB37F3005B1996 /* MainVC+TableViewDataSource.swift */,
 				BF8A62FB29DDA1E700E2DCD4 /* MainVC+ApartmentCellDelegate.swift */,
 				BF5C017D29C71DCF006C06D4 /* MainVC+AVAudioPlayerDelegate.swift */,
 				BFA71BD529CD949800F8781E /* DetectDetent.swift */,
@@ -499,6 +502,7 @@
 			files = (
 				BF4704BC29D2D47A00EEABEE /* NetworkManager.swift in Sources */,
 				BF707C1329BB444700225796 /* LandlordsManager.swift in Sources */,
+				BF355FFD2ABB37F3005B1996 /* MainVC+TableViewDataSource.swift in Sources */,
 				BFA71BD229CD935A00F8781E /* ModalVC.swift in Sources */,
 				BF8E050E2A63EC20003A585C /* ProvidersCollectionViewCell.swift in Sources */,
 				BFEBAA5829E2D15300CC83C8 /* OptionsView.swift in Sources */,
