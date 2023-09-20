@@ -53,10 +53,9 @@ final class ModalVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let tapGasture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardInOptionsView))
-        view.addGestureRecognizer(tapGasture)
+        createTapGestureRecognizer()
 
-        modalView.startPauseButton.addTarget(self, action: #selector(startPauseButtonTapped(sender:)), for: .touchUpInside)
+        setTargetForStartPauseButton()
 
         configureOptionsView()
         setOptionsPublishers()
@@ -157,6 +156,15 @@ final class ModalVC: UIViewController {
 
         // Disables hiding TraineeVC
         isModalInPresentation = true
+    }
+
+    private func createTapGestureRecognizer() {
+        let tapGasture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardInOptionsView))
+        view.addGestureRecognizer(tapGasture)
+    }
+
+    private func setTargetForStartPauseButton() {
+        modalView.startPauseButton.addTarget(self, action: #selector(startPauseButtonTapped(sender:)), for: .touchUpInside)
     }
 
     @objc private func hideKeyboardInOptionsView() {

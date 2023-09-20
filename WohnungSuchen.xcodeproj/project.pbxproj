@@ -13,6 +13,7 @@
 		BF160B792A97905B0049BCA2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BF160B782A97905B0049BCA2 /* .swiftlint.yml */; };
 		BF22E7E329EAB279003F245A /* Int+ExtractFromString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF22E7E229EAB279003F245A /* Int+ExtractFromString.swift */; };
 		BF355FFD2ABB37F3005B1996 /* MainVC+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355FFC2ABB37F3005B1996 /* MainVC+TableViewDataSource.swift */; };
+		BF355FFF2ABB4935005B1996 /* OptionsView+CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF355FFE2ABB4935005B1996 /* OptionsView+CollectionViewDataSource.swift */; };
 		BF4704BC29D2D47A00EEABEE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4704BB29D2D47A00EEABEE /* NetworkManager.swift */; };
 		BF4704BF29D2D52A00EEABEE /* Saga.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4704BE29D2D52A00EEABEE /* Saga.swift */; };
 		BF4704C129D2D53B00EEABEE /* Landlord.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4704C029D2D53B00EEABEE /* Landlord.swift */; };
@@ -82,6 +83,7 @@
 		BF160B782A97905B0049BCA2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		BF22E7E229EAB279003F245A /* Int+ExtractFromString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+ExtractFromString.swift"; sourceTree = "<group>"; };
 		BF355FFC2ABB37F3005B1996 /* MainVC+TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVC+TableViewDataSource.swift"; sourceTree = "<group>"; };
+		BF355FFE2ABB4935005B1996 /* OptionsView+CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionsView+CollectionViewDataSource.swift"; sourceTree = "<group>"; };
 		BF4704BB29D2D47A00EEABEE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		BF4704BE29D2D52A00EEABEE /* Saga.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Saga.swift; sourceTree = "<group>"; };
 		BF4704C029D2D53B00EEABEE /* Landlord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landlord.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				BFA68DD329DAEAB20023B268 /* ApartmentCell.xib */,
 				BF8EB0F429E16B880070C64B /* LoadingView.swift */,
 				BFEBAA5729E2D15300CC83C8 /* OptionsView.swift */,
+				BF355FFE2ABB4935005B1996 /* OptionsView+CollectionViewDataSource.swift */,
 				BF8E05102A63EE45003A585C /* OptionsView+CollectionViewDelegate.swift */,
 				BFEBAA5929E2D67B00CC83C8 /* OptionsView.xib */,
 				BF8E050C2A63EC20003A585C /* ProvidersCollectionViewCell.swift */,
@@ -542,6 +545,7 @@
 				BF8EB0F729E17A360070C64B /* UIView+Flashing.swift in Sources */,
 				BF22E7E329EAB279003F245A /* Int+ExtractFromString.swift in Sources */,
 				BFA71BDC29CDA7D300F8781E /* ModalVCDelegate.swift in Sources */,
+				BF355FFF2ABB4935005B1996 /* OptionsView+CollectionViewDataSource.swift in Sources */,
 				BF4704C129D2D53B00EEABEE /* Landlord.swift in Sources */,
 				BFEBAA5C29E2EF0A00CC83C8 /* Options.swift in Sources */,
 				BF8A62FC29DDA1E700E2DCD4 /* MainVC+ApartmentCellDelegate.swift in Sources */,
