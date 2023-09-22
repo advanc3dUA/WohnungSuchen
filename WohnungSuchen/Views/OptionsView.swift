@@ -40,7 +40,7 @@ final class OptionsView: UIView {
 
     // MARK: - Setup methods
     func configure(with options: Options) {
-        let defaultAttributes = [NSAttributedString.Key.foregroundColor: UIColor.darkGray]
+        let defaultAttributes = [NSAttributedString.Key.foregroundColor: Color.brandDark.setColor ?? UIColor.darkGray] as [NSAttributedString.Key: Any]
         roomsMinTextField.attributedText = NSAttributedString(string: String(options.roomsMin), attributes: defaultAttributes)
         roomsMaxTextField.attributedText = NSAttributedString(string: String(options.roomsMax), attributes: defaultAttributes)
         areaMinTextField.attributedText = NSAttributedString(string: String(options.areaMin), attributes: defaultAttributes)
@@ -66,6 +66,10 @@ final class OptionsView: UIView {
 
     func toggleStateOfSaveButton(_ state: Bool) {
         saveButton.toggleState(with: state)
+    }
+
+    func setSaveButtonToSelected() {
+        saveButton.isSelected = true
     }
 
     func getProvidersCollectionViewCell(with indexPath: IndexPath) -> ProvidersCollectionViewCell? {

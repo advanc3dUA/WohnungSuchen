@@ -244,7 +244,7 @@
     </objects>
     <designables>
         <designable name="KYn-Qa-ThD">
-            <size key="intrinsicContentSize" width="39" height="34"/>
+            <size key="intrinsicContentSize" width="100" height="100"/>
         </designable>
     </designables>
     <resources>

@@ -19,19 +19,6 @@ final class ProvidersCollectionViewCell: UICollectionViewCell {
         UINib(nibName: identifier, bundle: nil)
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-
-        providerButton.layer.borderColor = Color.brandDark.setColor?.cgColor
-        let normalbackgroundColor = providerButton.imageWithColor(Color.brandDark.setColor ?? .clear)
-        providerButton.setBackgroundImage(normalbackgroundColor, for: .normal)
-        providerButton.setTitleColor(.white, for: .normal)
-
-        let selectedbackgroundColor = providerButton.imageWithColor(Color.brandBlue.setColor ?? .clear)
-        providerButton.setBackgroundImage(selectedbackgroundColor, for: .selected)
-        providerButton.setTitleColor(.white, for: .selected)
-    }
-
     func configure(title: String, isSelected: Bool) {
         providerButton.setTitle(title, for: .normal)
         providerButton.setTitle(title, for: .highlighted)

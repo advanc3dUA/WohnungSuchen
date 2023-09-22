@@ -64,6 +64,10 @@ final class ModalVC: UIViewController {
     // MARK: - Button's actions
     func saveButtonIsEnabled(_ state: Bool) {
         modalView.optionsView.toggleStateOfSaveButton(state)
+
+        if state {
+            modalView.optionsView.setSaveButtonToSelected()
+        }
     }
 
     @objc func saveButtonTapped() {

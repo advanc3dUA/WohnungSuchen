@@ -38,11 +38,11 @@ final class ApartmentCell: UITableViewCell {
         detailsLabel.text = "Rooms: \(apartment.rooms), m²: \(apartment.area), €: \(apartment.rent)"
         logoImageView.image = apartment.logoImage
         timeLabel.text = apartment.time
-        timeLabel.backgroundColor = apartment.isNew ? Color.brandOlive.setColor : Color.brandGray.setColor
+        timeLabel.backgroundColor = apartment.isNew ? Color.brandContrast.setColor : Color.brandGray.setColor
     }
 
     func toggleTimeLabelColor(with state: Bool) {
-        timeLabel.backgroundColor = state ? Color.brandOlive.setColor : Color.brandGray.setColor
+        timeLabel.backgroundColor = state ? Color.brandContrast.setColor : Color.brandGray.setColor
 
     }
 
