@@ -31,5 +31,7 @@ final class ImmoButton: CustomButton {
 
         let highlightedBackgroundColor = imageWithColor(Color.brandDark.setColor ?? .clear)
         setBackgroundImage(highlightedBackgroundColor, for: .highlighted)
+
+        layer.borderColor = Color.brandDark.setColor?.cgColor
     }
 }

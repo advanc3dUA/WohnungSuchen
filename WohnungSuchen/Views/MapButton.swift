@@ -32,5 +32,7 @@ final class MapButton: CustomButton {
 
         let highlightedBackgroundColor = imageWithColor(Color.brandBlue.setColor ?? .clear, cornerRadius: layer.cornerRadius)
         setBackgroundImage(highlightedBackgroundColor, for: .highlighted)
+
+        layer.borderColor = Color.brandBlue.setColor?.cgColor
     }
 }

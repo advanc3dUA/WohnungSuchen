@@ -16,6 +16,7 @@ enum SavingKeys: String {
     case rentMax
     case updateTime
     case soundIsOn
+    case appTheme
 }
 
 final class Options {
@@ -28,6 +29,19 @@ final class Options {
     var updateTime: Int
     var soundIsOn: Bool
     var landlords: [Provider: Bool]
+    var currentTheme: AppTheme {
+        get {
+            if let storedTheme = UserDefaults.standard.value(forKey: SavingKeys.appTheme.rawValue) as? String,
+                let theme = AppTheme(rawValue: storedTheme) {
+                    return theme
+            }
+            return .system
+        }
+
+        set {
+            UserDefaults.standard.set(newValue.rawValue, forKey: SavingKeys.appTheme.rawValue)
+        }
+    }
 
     init() {
         self.roomsMin = 0

@@ -16,10 +16,25 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Q6U-61-QH2">
-                    <rect key="frame" x="10" y="25" width="380" height="398.66666666666669"/>
+                    <rect key="frame" x="10" y="25" width="380" height="458.66666666666669"/>
                     <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="EXn-KK-tG9">
+                            <rect key="frame" x="20" y="0.0" width="340" height="35"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Fv-C1-gQf">
+                                    <rect key="frame" x="305" y="0.0" width="35" height="35"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="35" id="AyO-gc-29C"/>
+                                        <constraint firstAttribute="width" constant="35" id="Qh3-rF-v0a"/>
+                                    </constraints>
+                                    <color key="tintColor" name="brandBlue"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="sun.max.fill" catalog="system"/>
+                                </button>
+                            </subviews>
+                        </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="3lZ-6l-THA">
-                            <rect key="frame" x="77.666666666666686" y="0.0" width="225" height="182.33333333333334"/>
+                            <rect key="frame" x="77.666666666666686" y="60.000000000000014" width="225" height="182.33333333333337"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter apartments:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uz7-BL-aBz">
                                     <rect key="frame" x="45.333333333333329" y="0.0" width="134" height="20.333333333333332"/>
@@ -64,7 +79,7 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="yKM-uv-Spx">
-                                    <rect key="frame" x="0.0" y="93.333333333333329" width="225" height="34.999999999999986"/>
+                                    <rect key="frame" x="0.0" y="93.333333333333343" width="225" height="35"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wli-Fg-1dH">
                                             <rect key="frame" x="0.0" y="0.0" width="60" height="35"/>
@@ -138,7 +153,7 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="8c3-HW-4Zo">
-                            <rect key="frame" x="91.666666666666671" y="207.33333333333334" width="196.66666666666663" height="35"/>
+                            <rect key="frame" x="91.666666666666671" y="267.33333333333331" width="196.66666666666663" height="35"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update every (s):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S04-sZ-Ojc">
                                     <rect key="frame" x="0.0" y="0.0" width="131.66666666666666" height="35"/>
@@ -163,7 +178,7 @@
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="tSU-3u-nvn">
-                            <rect key="frame" x="67.333333333333329" y="267.33333333333331" width="245.33333333333337" height="31"/>
+                            <rect key="frame" x="67.333333333333329" y="327.33333333333331" width="245.33333333333337" height="31"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Custom notification alert:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPN-o2-lVe">
                                     <rect key="frame" x="0.0" y="0.0" width="191.33333333333334" height="31"/>
@@ -180,7 +195,7 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="B91-oZ-l0W">
-                            <rect key="frame" x="80" y="323.33333333333331" width="220" height="30"/>
+                            <rect key="frame" x="80" y="383.33333333333331" width="220" height="30"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Options as default:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nhy-3t-7HF">
                                     <rect key="frame" x="0.0" y="0.0" width="150" height="30"/>
@@ -204,7 +219,7 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Vmf-5S-Eft">
-                            <rect key="frame" x="40" y="378.33333333333331" width="300" height="20.333333333333314"/>
+                            <rect key="frame" x="40" y="438.33333333333331" width="300" height="20.333333333333314"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select available apartment providers:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hn9-Ml-F0D">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="20.333333333333332"/>
@@ -218,6 +233,9 @@
                             </subviews>
                         </stackView>
                     </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="EXn-KK-tG9" secondAttribute="trailing" constant="20" id="0iH-dO-1l9"/>
+                    </constraints>
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="mlO-Kp-05f"/>
@@ -228,6 +246,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="appThemeButton" destination="1Fv-C1-gQf" id="4bh-qp-EZe"/>
                 <outlet property="areaMaxTextField" destination="5tz-XP-35M" id="bQm-Zy-ar7"/>
                 <outlet property="areaMinTextField" destination="Wli-Fg-1dH" id="4bT-33-Dtf"/>
                 <outlet property="availableProvidersLabel" destination="Hn9-Ml-F0D" id="jul-5I-YWV"/>
@@ -248,6 +267,7 @@
         </designable>
     </designables>
     <resources>
+        <image name="sun.max.fill" catalog="system" width="128" height="125"/>
         <namedColor name="brandBlue">
             <color red="0.21568627450980393" green="0.52549019607843139" blue="0.78823529411764703" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

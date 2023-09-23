@@ -21,6 +21,7 @@ final class OptionsView: UIView {
     @IBOutlet weak private var soundSwitch: UISwitch!
     @IBOutlet weak private var timerUpdateTextField: UITextField!
     @IBOutlet weak private var availableProvidersLabel: UILabel!
+    @IBOutlet weak var appThemeButton: UIButton!
     private lazy var providersCollectionView: UICollectionView = makeProvidersCollectionView()
     private(set) var optionsSubject: CurrentValueSubject<Options, Never>
     var selectedProvidersSubject: CurrentValueSubject<[Provider: Bool], Never>
@@ -103,6 +104,14 @@ final class OptionsView: UIView {
             providersCollectionView.topAnchor.constraint(equalTo: self.availableProvidersLabel.bottomAnchor, constant: 25),
             providersCollectionView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
+    }
+
+    func setImageForAppThemeButton(with theme: AppTheme) {
+        switch theme {
+        case .light: appThemeButton.setImage(UIImage(systemName: "sun.max.fill"), for: .normal)
+        case .dark: appThemeButton.setImage(UIImage(systemName: "moon"), for: .normal)
+        case .system: appThemeButton.setImage(UIImage(systemName: "a.circle"), for: .normal)
+        }
     }
 
     // MARK: - Publishers

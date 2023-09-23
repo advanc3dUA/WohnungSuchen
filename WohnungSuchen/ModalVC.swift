@@ -59,6 +59,9 @@ final class ModalVC: UIViewController {
 
         configureOptionsView()
         setOptionsPublishers()
+
+        applyApplicationTheme()
+        setTargetForAppThemeButton()
     }
 
     // MARK: - Button's actions
@@ -169,6 +172,43 @@ final class ModalVC: UIViewController {
 
     private func setTargetForStartPauseButton() {
         modalView.startPauseButton.addTarget(self, action: #selector(startPauseButtonTapped(sender:)), for: .touchUpInside)
+    }
+
+    private func setTargetForAppThemeButton() {
+        modalView.optionsView.appThemeButton.addTarget(self, action: #selector(appThemeButtonTapped(_:)), for: .touchUpInside)
+    }
+
+    @objc private func appThemeButtonTapped(_ sender: UIButton) {
+        toggleCurrentThemeInOptions()
+        applyApplicationTheme()
+    }
+
+    private func toggleCurrentThemeInOptions() {
+        switch optionsSubject.value.currentTheme {
+        case .light: optionsSubject.value.currentTheme = .dark
+        case .dark: optionsSubject.value.currentTheme = .system
+        case .system: optionsSubject.value.currentTheme = .light
+        }
+    }
+
+    private func applyApplicationTheme() {
+        let newTheme: UIUserInterfaceStyle
+        switch optionsSubject.value.currentTheme {
+        case .light: newTheme = .light
+        case .dark: newTheme = .dark
+        case .system: newTheme = .unspecified
+        }
+
+        modalView.optionsView.setImageForAppThemeButton(with: optionsSubject.value.currentTheme)
+
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            let windows = windowScene.windows
+            if let keyWindow = windows.first(where: { $0.isKeyWindow }) {
+                UIView.transition(with: keyWindow, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                    keyWindow.overrideUserInterfaceStyle = newTheme
+                }, completion: nil)
+            }
+        }
     }
 
     @objc private func hideKeyboardInOptionsView() {

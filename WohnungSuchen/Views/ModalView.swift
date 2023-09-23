@@ -43,7 +43,7 @@ final class ModalView: UIView {
             optionsView.leftAnchor.constraint(equalTo: leftAnchor, constant: 5),
             optionsView.rightAnchor.constraint(equalTo: rightAnchor, constant: -5),
             optionsView.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: -5),
-            optionsView.topAnchor.constraint(equalTo: centerYAnchor, constant: -275)
+            optionsView.topAnchor.constraint(equalTo: centerYAnchor, constant: -325)
         ])
     }
 
