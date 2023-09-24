@@ -8,7 +8,7 @@
    <img src="https://img.shields.io/badge/License-MIT-source" alt="License">
 </p>
 <p align="center">
-[![GitHub Clones since 11.09.2023](https://img.shields.io/badge/dynamic/json?color=success&label=Clone&query=count&url=https://gist.githubusercontent.com/advanc3dUA/64246d82f8d3073cec7968493dbeb97c/raw/clone.json&logo=github)](https://github.com/MShawon/github-clone-count-badge)
+<a href='https://github.com/MShawon/github-clone-count-badge'><img alt='GitHub Clones' src='https://img.shields.io/badge/dynamic/json?color=success&label=Clone&query=count&url=https://gist.githubusercontent.com/advanc3dUA/64246d82f8d3073cec7968493dbeb97c/raw/clone.json&logo=github'></a> <sup>since 11.09.2023</sup>
 </p>
 
 ### Disclaimer
