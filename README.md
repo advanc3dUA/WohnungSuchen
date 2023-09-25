@@ -8,7 +8,6 @@
    <img src="https://img.shields.io/badge/License-MIT-source" alt="License">
 </p>
 <p align="center">
-<a href='https://github.com/MShawon/github-clone-count-badge'><img alt='GitHub Traffic' src='https://img.shields.io/badge/dynamic/json?color=success&label=Views&query=count&url=https://gist.githubusercontent.com/advanc3dUA/e32f60d03d035d640214dae344be34c9/raw/traffic.json&logo=github'></a>
 <a href='https://github.com/MShawon/github-clone-count-badge'><img alt='GitHub Clones' src='https://img.shields.io/badge/dynamic/json?color=success&label=Clone&query=count&url=https://gist.githubusercontent.com/advanc3dUA/64246d82f8d3073cec7968493dbeb97c/raw/clone.json&logo=github'></a> <sup>since 11.09.2023</sup>
 </p>
 
@@ -41,12 +40,10 @@ Check for available Hamburg apartments from Saga & Vonovia. Locate the apartment
 1. Mac with OS Monteray 12.5+
 2. iPhone with iOS 16+
 3. XCode 14+
-
-> Don't have a Mac with Xcode but only an iPhone? Find my contacts on my GitHub [home page](https://github.com/advanc3dUA) - I will try to help you.
-
 ---
 
 ### How to install
+> Attention: The application will work no longer than 7 days. After that, you have to reinstall it to resign (Apple's restriction for free Developer's accounts). If you don't have a Mac with Xcode or just want to deal with this 7-day restriction, find my contacts on my GitHub [home page](https://github.com/advanc3dUA) - I will try to help you.
 1. Google how to join the Apple Developers Program with your Apple ID. There is no need for a paid account - free is fine. The only limitation in this case is that you have to reinstall the app every 7 days but it will take a few minutes.
 2. Go to preferences of Xcode - Account tab. Press "+" and add your Apple ID.
 3. Clone the repository or press the green "Code" button at the top of this page and then "Download Zip". Unzip the downloaded file.
