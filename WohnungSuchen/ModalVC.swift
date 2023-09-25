@@ -60,8 +60,7 @@ final class ModalVC: UIViewController {
         configureOptionsView()
         setOptionsPublishers()
 
-        applyApplicationTheme()
-        setTargetForAppThemeButton()
+        setupAppearanceSegmentedControl()
     }
 
     // MARK: - Button's actions
@@ -174,15 +173,6 @@ final class ModalVC: UIViewController {
         modalView.startPauseButton.addTarget(self, action: #selector(startPauseButtonTapped(sender:)), for: .touchUpInside)
     }
 
-    private func setTargetForAppThemeButton() {
-        modalView.optionsView.appThemeButton.addTarget(self, action: #selector(appThemeButtonTapped(_:)), for: .touchUpInside)
-    }
-
-    @objc private func appThemeButtonTapped(_ sender: UIButton) {
-        toggleCurrentThemeInOptions()
-        applyApplicationTheme()
-    }
-
     private func toggleCurrentThemeInOptions() {
         switch optionsSubject.value.currentTheme {
         case .light: optionsSubject.value.currentTheme = .dark
@@ -191,24 +181,39 @@ final class ModalVC: UIViewController {
         }
     }
 
-    private func applyApplicationTheme() {
+    private func setupAppearanceSegmentedControl() {
+        modalView.optionsView.configureAppearanceSegmentedControl(with: optionsSubject.value.currentTheme)
+        applyApplicationTheme(optionsSubject.value.currentTheme)
+        modalView.optionsView.appearanceSegmentedControl.addTarget(self, action: #selector(segmentTapped(_:)), for: .valueChanged)
+    }
+
+    @objc private func segmentTapped(_ segmentedControl: UISegmentedControl) {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0: applyApplicationTheme(.system)
+        case 1: applyApplicationTheme(.light)
+        case 2: applyApplicationTheme(.dark)
+        default: return
+        }
+    }
+
+    private func applyApplicationTheme(_ selectedTheme: AppTheme) {
         let newTheme: UIUserInterfaceStyle
-        switch optionsSubject.value.currentTheme {
+        switch selectedTheme {
         case .light: newTheme = .light
         case .dark: newTheme = .dark
         case .system: newTheme = .unspecified
         }
 
-        modalView.optionsView.setImageForAppThemeButton(with: optionsSubject.value.currentTheme)
-
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
             let windows = windowScene.windows
             if let keyWindow = windows.first(where: { $0.isKeyWindow }) {
-                UIView.transition(with: keyWindow, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                UIView.transition(with: keyWindow, duration: 0.5, options: .transitionCrossDissolve, animations: {
                     keyWindow.overrideUserInterfaceStyle = newTheme
                 }, completion: nil)
             }
         }
+
+        optionsSubject.value.currentTheme = selectedTheme
     }
 
     @objc private func hideKeyboardInOptionsView() {

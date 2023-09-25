@@ -21,7 +21,7 @@ final class OptionsView: UIView {
     @IBOutlet weak private var soundSwitch: UISwitch!
     @IBOutlet weak private var timerUpdateTextField: UITextField!
     @IBOutlet weak private var availableProvidersLabel: UILabel!
-    @IBOutlet weak var appThemeButton: UIButton!
+    @IBOutlet var appearanceSegmentedControl: UISegmentedControl!
     private lazy var providersCollectionView: UICollectionView = makeProvidersCollectionView()
     private(set) var optionsSubject: CurrentValueSubject<Options, Never>
     var selectedProvidersSubject: CurrentValueSubject<[Provider: Bool], Never>
@@ -106,12 +106,21 @@ final class OptionsView: UIView {
         ])
     }
 
-    func setImageForAppThemeButton(with theme: AppTheme) {
+    func configureAppearanceSegmentedControl(with theme: AppTheme) {
+        appearanceSegmentedControl.removeAllSegments()
+        appearanceSegmentedControl.insertSegment(with: UIImage(systemName: "character"), at: 0, animated: false)
+        appearanceSegmentedControl.insertSegment(with: UIImage(systemName: "sun.max"), at: 1, animated: false)
+        appearanceSegmentedControl.insertSegment(with: UIImage(systemName: "moon"), at: 2, animated: false)
+        appearanceSegmentedControl.layer.cornerRadius = 5
+        appearanceSegmentedControl.backgroundColor = Color.brandGray.setColor
+
+        let selectedTheme: Int
         switch theme {
-        case .light: appThemeButton.setImage(UIImage(systemName: "sun.max.fill"), for: .normal)
-        case .dark: appThemeButton.setImage(UIImage(systemName: "moon"), for: .normal)
-        case .system: appThemeButton.setImage(UIImage(systemName: "a.circle"), for: .normal)
+        case .system: selectedTheme = 0
+        case .light: selectedTheme = 1
+        case .dark: selectedTheme = 2
         }
+        appearanceSegmentedControl.selectedSegmentIndex = selectedTheme
     }
 
     // MARK: - Publishers
@@ -155,17 +164,17 @@ final class OptionsView: UIView {
                 Int(extractFrom: textValue, defaultValue: optionsSubject.value.updateTime)
             }
             .scan(nil) { previous, current in
-                    if current < 30 {
-                        self.timerUpdateTextField.text = "30"
-                        if previous == nil || previous == 30 {
-                            return nil
-                        } else {
-                            return 30
-                        }
+                if current < 30 {
+                    self.timerUpdateTextField.text = "30"
+                    if previous == nil || previous == 30 {
+                        return nil
                     } else {
-                        return current
+                        return 30
                     }
+                } else {
+                    return current
                 }
+            }
             .compactMap { $0 }
             .removeDuplicates()
             .eraseToAnyPublisher()

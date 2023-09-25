@@ -8,5 +8,5 @@
 import Foundation
 
 enum AppTheme: String {
-    case light, dark, system
+    case system, light, dark
 }
