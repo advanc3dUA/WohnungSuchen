@@ -14,10 +14,12 @@ final class Saga: Landlord {
     private let networkManager: NetworkManager
     private let searchURLString = "https://www.saga.hamburg/immobiliensuche?type=wohnungen"
     private let imageLink = "SagaLogo.jpg"
+    private let timeManager: TimeManager
 
     init(networkManager: NetworkManager = NetworkManager()) {
         self.networkManager = networkManager
         self.immomioLinkFetcher = ImmomioLinkFetcher(networkManager: networkManager)
+        self.timeManager = TimeManager.shared
     }
 
     func fetchApartmentsList(completion: @escaping (Result<[Apartment], AppError>) -> Void) {
@@ -27,7 +29,7 @@ final class Saga: Landlord {
         networkManager.fetchHtmlString(urlString: searchURLString) {[unowned self] result in
             switch result {
             case .success(let htmlString):
-                let time = TimeManager.shared.getCurrentTime()
+                let time = timeManager.getCurrentTime()
                 guard let doc = try? SwiftSoup.parse(htmlString), let apartments = try? doc.select("div.teaser3") else {
                     completion(.failure(AppError.landlordError(.sagaDocCreationFailed)))
                     return

@@ -15,10 +15,12 @@ final class Vonovia: Landlord {
     private let vonoviaURL = "https://www.vonovia.de/de-de/immobiliensuche/"
     private let imageLink = "VonoviaLogo.jpg"
     private let searchURLString = "https://www.wohnraumkarte.de/Api/getImmoList?offset=0&limit=25&orderBy=date_asc&city=Hamburg&rentType=miete&immoType=all&priceMax=1500&sizeMin=20&sizeMax=0&minRooms=1&dachgeschoss=0&erdgeschoss=0&sofortfrei=egal&lift=0&balcony=egal&disabilityAccess=egal&subsidizedHousingPermit=egal&userCookieValue=e64300007d54e2f903e5a62b1a63c39613705590&geoLocation=1"
+    private let timeManager: TimeManager
 
     init(networkManager: NetworkManager = NetworkManager()) {
         self.networkManager = networkManager
         self.decoder = JSONDecoder()
+        self.timeManager = TimeManager.shared
     }
 
     func fetchApartmentsList(completion: @escaping (Result<[Apartment], AppError>) -> Void) {
@@ -31,7 +33,7 @@ final class Vonovia: Landlord {
                 }
                 var currentApartments = [Apartment]()
                 guard let self = self else { return }
-                let time = TimeManager.shared.getCurrentTime()
+                let time = timeManager.getCurrentTime()
                 for jsonApartment in decodedData.results {
                     let link = self.vonoviaURL + jsonApartment.slug.lowercased() + "-" + jsonApartment.wrk_id
                     let area = self.getRoundedInt(from: jsonApartment.groesse)
