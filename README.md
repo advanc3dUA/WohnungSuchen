@@ -74,3 +74,6 @@ Check for available Hamburg apartments from Saga & Vonovia. Locate the apartment
 
 ### Developers
 [advanc3dUA](https://github.com/advanc3dUA)
+
+### License
+[Not for commercial usage](https://creativecommons.org/licenses/by-nc/4.0/).
