@@ -4,8 +4,8 @@
 
 <p align="center">
    <img src="https://img.shields.io/badge/iOS-16.0%2B-blueviolet" alt="iOS Version">
-   <img src="https://img.shields.io/badge/Version-1.2-blue" alt="Game Version">
-   <img src="https://img.shields.io/badge/License-MIT-source" alt="License">
+   <img src="https://img.shields.io/badge/Version-1.21-blue" alt="Game Version">
+   <img src="https://img.shields.io/badge/License-CC_BY--NC_4.0-darkgreen.svg" alt="License">
 </p>
 <p align="center">
 <a href='https://github.com/MShawon/github-clone-count-badge'><img alt='GitHub Clones' src='https://img.shields.io/badge/dynamic/json?color=success&label=Clone&query=count&url=https://gist.githubusercontent.com/advanc3dUA/64246d82f8d3073cec7968493dbeb97c/raw/clone.json&logo=github'></a> <sup>since 11.09.2023</sup>
@@ -50,12 +50,12 @@ Check for available Hamburg apartments from Saga & Vonovia. Locate the apartment
 3. Recommended: download the latest stable version [here](https://github.com/advanc3dUA/WohnungSuchen/releases). Alternative: clone the repository or press the green "Code" button at the top of this page and then "Download Zip".
 4. Unzip the downloaded file.
 5. Open the project with the .xcworkspace file (double-click it).
-6. In the File inspector (left side of XCode) select the "WohnungSuchen" project (first line) and select the "Signing & Capabilities" tab in the top center part of XCode. Set your account (select your Apple ID) and "Bundle Identifier". For "Bundle Identifier" any unique name is good but the more common way is the format "x.y" where x - is your reversed domain (e.g. "com.site" instead of "site.com") and y - is the name of the project. Example: ua.mysite.wohnungsuchen or com.younickname.wohnungsuchen.
+6. In the File inspector (left side of XCode) select the "WohnungSuchen" project (first line) and select the "Signing & Capabilities" tab in the top center part of XCode. Set your account (select your Apple ID) and "Bundle Identifier". For "Bundle Identifier" any unique name is good but the more common way is the format "x.y" where x - is your reversed domain (e.g. "com.site" instead of "site.com") and y - is the name of the project. Examples: ua.mysite.wohnungsuchen or com.younickname.wohnungsuchen. Change mysite\yournickname to your custom unique value.
 7. Connect your iPhone with the cable and grant access to contact your Mac if needed.
 8. Using your iPhone, open Settings - Privacy & Security - Turn on Developer Mode. You will be asked to restart your phone - do it.
 9. Select your phone at the top of the screen of XCode where "Any iOS Device (arm64)" is currently set.
-10. Press the play button in the top left of the XCode to install the app.
-11. If the app WohnungSuchen successfully appears on your springboard, you can unplug the phone from the Mac.
+10. Press the ▶️ ("Play") button in the top left of the XCode to install the app.
+11. If the application WohnungSuchen successfully appears on your springboard, you can unplug the phone from the Mac.
 12. On your phone, open Settings - General - VPN and Device Management. Tap on your Apple ID under the Developer App heading and allow the use of the app you have installed.
 
 ---
