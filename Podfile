@@ -7,5 +7,6 @@ target 'WohnungSuchen' do
 
   # Pods for DetectChanges
 pod 'SwiftSoup'
+pod 'SwiftLint'
 
 end

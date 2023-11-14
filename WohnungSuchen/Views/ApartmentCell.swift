@@ -26,10 +26,6 @@ final class ApartmentCell: UITableViewCell {
         UINib(nibName: identifier, bundle: nil)
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
     func configure(apartment: Apartment, delegate: ApartmentCellDelegate?) {
         self.apartment = apartment
         self.delegate = delegate
@@ -44,10 +40,6 @@ final class ApartmentCell: UITableViewCell {
     func toggleTimeLabelColor(with state: Bool) {
         timeLabel.backgroundColor = state ? Color.brandContrast.setColor : Color.brandGray.setColor
 
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
     }
 
     @IBAction func linkButtonTapped(_ sender: ImmoButton) {
