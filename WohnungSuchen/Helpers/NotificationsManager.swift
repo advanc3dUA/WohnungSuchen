@@ -7,20 +7,6 @@
 
 import UserNotifications
 
-enum NotificationType {
-    case standart
-    case custom
-
-    var sound: UNNotificationSound {
-        switch self {
-        case .standart:
-            return .default
-        case .custom:
-            return UNNotificationSound(named: UNNotificationSoundName("IntelPentiumSound.mp3"))
-        }
-    }
-}
-
 final class NotificationsManager {
     private var content: UNMutableNotificationContent
     private var notificationType: NotificationType
@@ -64,5 +50,21 @@ final class NotificationsManager {
             }
         }
         center.removeAllPendingNotificationRequests()
+    }
+}
+
+extension NotificationsManager {
+    enum NotificationType {
+        case standart
+        case custom
+
+        var sound: UNNotificationSound {
+            switch self {
+            case .standart:
+                return .default
+            case .custom:
+                return UNNotificationSound(named: UNNotificationSoundName("IntelPentiumSound.mp3"))
+            }
+        }
     }
 }
