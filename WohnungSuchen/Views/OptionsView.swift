@@ -114,13 +114,11 @@ final class OptionsView: UIView {
         appearanceSegmentedControl.layer.cornerRadius = 5
         appearanceSegmentedControl.backgroundColor = Color.brandGray.setColor
 
-        let selectedTheme: Int
-        switch theme {
-        case .system: selectedTheme = 0
-        case .light: selectedTheme = 1
-        case .dark: selectedTheme = 2
-        }
-        appearanceSegmentedControl.selectedSegmentIndex = selectedTheme
+        appearanceSegmentedControl.selectedSegmentIndex = switch theme {
+            case .system: 0
+            case .light: 1
+            case .dark: 2
+            }
     }
 
     // MARK: - Publishers

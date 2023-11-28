@@ -164,11 +164,7 @@ final class MainVC: UIViewController {
             }
             .removeDuplicates()
             .scan(nil) { (previous: Int?, current: Int) -> Int? in
-                if previous != current {
-                    return current
-                } else {
-                    return nil
-                }
+                previous != current ? current : nil
             }
             .compactMap { $0 }
             .sink { [unowned self] _ in

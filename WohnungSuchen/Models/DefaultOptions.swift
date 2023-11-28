@@ -24,12 +24,10 @@ enum Provider: String {
     case vonovia = "Vonovia"
 
     static func generateProvider(with provider: Provider) -> Landlord {
-        let generatedProvider: Landlord
         switch provider {
-        case .saga: generatedProvider = Saga()
-        case .vonovia: generatedProvider = Vonovia()
+        case .saga: Saga()
+        case .vonovia: Vonovia()
         }
-        return generatedProvider
     }
 
     static func getProvider(from string: String) -> Provider? {

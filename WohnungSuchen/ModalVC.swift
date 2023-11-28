@@ -174,11 +174,11 @@ final class ModalVC: UIViewController {
     }
 
     private func toggleCurrentThemeInOptions() {
-        switch optionsSubject.value.currentTheme {
-        case .light: optionsSubject.value.currentTheme = .dark
-        case .dark: optionsSubject.value.currentTheme = .system
-        case .system: optionsSubject.value.currentTheme = .light
-        }
+        optionsSubject.value.currentTheme = switch optionsSubject.value.currentTheme {
+            case .light: .dark
+            case .dark: .system
+            case .system: .light
+            }
     }
 
     private func setupAppearanceSegmentedControl() {
@@ -197,11 +197,10 @@ final class ModalVC: UIViewController {
     }
 
     private func applyApplicationTheme(_ selectedTheme: AppTheme) {
-        let newTheme: UIUserInterfaceStyle
-        switch selectedTheme {
-        case .light: newTheme = .light
-        case .dark: newTheme = .dark
-        case .system: newTheme = .unspecified
+        let newTheme: UIUserInterfaceStyle = switch selectedTheme {
+        case .light: .light
+        case .dark: .dark
+        case .system: .unspecified
         }
 
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
