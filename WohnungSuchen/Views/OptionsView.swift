@@ -162,12 +162,14 @@ final class OptionsView: UIView {
                 Int(extractFrom: textValue, defaultValue: optionsSubject.value.updateTime)
             }
             .scan(nil) { previous, current in
-                if current < 30 {
-                    self.timerUpdateTextField.text = "30"
-                    if previous == nil || previous == 30 {
+                let valueString = "11110"
+                guard let valueInt = Int(valueString, radix: 2) else { return nil }
+                if current < valueInt {
+                    self.timerUpdateTextField.text = String(valueInt)
+                    if previous == nil || previous == valueInt {
                         return nil
                     } else {
-                        return 30
+                        return valueInt
                     }
                 } else {
                     return current

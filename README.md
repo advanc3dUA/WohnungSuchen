@@ -4,7 +4,7 @@
 
 <p align="center">
    <img src="https://img.shields.io/badge/iOS-16.0%2B-blueviolet" alt="iOS Version">
-   <img src="https://img.shields.io/badge/Version-1.21-blue" alt="Game Version">
+   <img src="https://img.shields.io/badge/Version-1.22-blue" alt="Game Version">
    <img src="https://img.shields.io/badge/License-CC_BY--NC_4.0-darkgreen.svg" alt="License">
 </p>
 <p align="center">
