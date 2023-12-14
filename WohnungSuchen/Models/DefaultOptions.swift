@@ -8,13 +8,13 @@
 import Foundation
 
 struct DefaultOptions {
-    static let roomsMin = 2
-    static let roomsMax = 3
-    static let areaMin = 40
-    static let areaMax = 60
-    static let rentMin = 300
-    static let rentMax = 900
-    static let updateTime = 30
+    static let roomsMin = 1
+    static let roomsMax = 5
+    static let areaMin = 20
+    static let areaMax = 120
+    static let rentMin = 150
+    static let rentMax = 1400
+    static let updateTime = 45
     static let soundIsOn = true
     static let landlords: [Provider: Bool] = [.saga: true, .vonovia: true]
 }

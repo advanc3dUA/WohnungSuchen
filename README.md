@@ -38,7 +38,7 @@ Check for available Hamburg apartments from Saga & Vonovia. Locate the apartment
 ---
 
 ### Requirements
-1. Mac with OS Monteray 12.5+
+1. Mac with OS Monterey 12.5+
 2. iPhone with iOS 16+
 3. XCode 14+
 ---
