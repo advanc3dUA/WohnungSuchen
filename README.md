@@ -12,7 +12,9 @@
 </p>
 
 ### Attention
-This application is deprecated. The new one is currently in closed beta.
+This application is deprecated and no longer works. The new one is currently in closed beta.
+
+Try this Telegram bot instead: [@ImmoZillaBot](https://t.me/immozillabot/).
 
 
 ### Disclaimer
