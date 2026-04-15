@@ -14,9 +14,6 @@
 ### Attention
 This application is deprecated and no longer works. The new one is currently in closed beta.
 
-Try this Telegram bot instead: [@ImmoZillaBot](https://t.me/immozillabot/).
-
-
 ### Disclaimer
 
 This application is made for educational purposes only. The primary goal of the app is to optimize gathering information with time from various websites, sort and check for changes, and push local notifications when needed to grab the user's attention, only for non-commercial usage. The application is limited with a minimum of 45 seconds of website check, so there couldn't be any additional server pressure caused.
